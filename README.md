@@ -46,7 +46,13 @@ on your fork, and open a pull request against `main`. See
 
 ## License
 
-GNU General Public License, version 2 only. See [LICENSE](LICENSE).
+Copyright (C) 2026 NIRE-Mods contributors.
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; version 2 of the License. It is distributed WITHOUT ANY
+WARRANTY, without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. See [LICENSE](LICENSE) for the full text.
 
 RAMI - Advanced Medical Interface bundles page-tab icons adapted from ACE3
 artwork under the same license; the source, revision and modification notice are
