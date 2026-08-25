@@ -1,0 +1,12 @@
+SCR_ChimeraCharacter {
+ ID "520EC961A090B1EE"
+ components {
+  ActionsManagerComponent "{520EA1D2F659CE02}" {
+   additionalActions {
+    SCR_SalineBagUserAction "{5A5CCAE248697020}" {
+     Duration 3
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,2336 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Slot FrameWidgetSlot "{646C95CE11764778}" {
+  Anchor 0 0 1 1
+  PositionX 0
+  OffsetLeft 0
+  PositionY 0
+  OffsetTop 0
+  SizeX 0
+  OffsetRight 0
+  SizeY 0
+  OffsetBottom 0
+ }
+ {
+  TextWidgetClass "{69FD60A001000001}" {
+   Name "SelfinventoryTitle"
+   Slot FrameWidgetSlot "{69FD60A001100001}" {
+    Anchor 0 0 1 0.069444
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "Self Inventory"
+   "Font Size" 24
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  FrameWidgetClass "{69FD60A002000001}" {
+   Name "MedicationEpinephrineRow"
+   Slot FrameWidgetSlot "{69FD60A002100001}" {
+    Anchor 0 0.1875 0.477273 0.263889
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A002000002}" {
+     Name "MedicationEpinephrineButton"
+     Slot FrameWidgetSlot "{69FD60A002100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A002000005}" {
+     Name "MedicationEpinephrineIcon"
+     Slot FrameWidgetSlot "{69FD60A002100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A002000003}" {
+     Name "MedicationEpinephrineLabel"
+     Slot FrameWidgetSlot "{69FD60A002100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Epi"
+     "Font Size" 17
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A002000004}" {
+     Name "MedicationEpinephrineCount"
+     Slot FrameWidgetSlot "{69FD60A002100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A003000001}" {
+   Name "MedicationMorphineRow"
+   Slot FrameWidgetSlot "{69FD60A003100001}" {
+    Anchor 0.522727 0.1875 1 0.263889
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A003000002}" {
+     Name "MedicationMorphineButton"
+     Slot FrameWidgetSlot "{69FD60A003100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A003000005}" {
+     Name "MedicationMorphineIcon"
+     Slot FrameWidgetSlot "{69FD60A003100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A003000003}" {
+     Name "MedicationMorphineLabel"
+     Slot FrameWidgetSlot "{69FD60A003100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Morphine"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A003000004}" {
+     Name "MedicationMorphineCount"
+     Slot FrameWidgetSlot "{69FD60A003100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A004000001}" {
+   Name "MedicationNaloxoneRow"
+   Slot FrameWidgetSlot "{69FD60A004100001}" {
+    Anchor 0 0.277778 0.477273 0.354167
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A004000002}" {
+     Name "MedicationNaloxoneButton"
+     Slot FrameWidgetSlot "{69FD60A004100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A004000005}" {
+     Name "MedicationNaloxoneIcon"
+     Slot FrameWidgetSlot "{69FD60A004100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A004000003}" {
+     Name "MedicationNaloxoneLabel"
+     Slot FrameWidgetSlot "{69FD60A004100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Naloxon"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A004000004}" {
+     Name "MedicationNaloxoneCount"
+     Slot FrameWidgetSlot "{69FD60A004100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A005000001}" {
+   Name "MedicationPhenylephrineRow"
+   Slot FrameWidgetSlot "{69FD60A005100001}" {
+    Anchor 0.522727 0.277778 1 0.354167
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A005000002}" {
+     Name "MedicationPhenylephrineButton"
+     Slot FrameWidgetSlot "{69FD60A005100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A005000005}" {
+     Name "MedicationPhenylephrineIcon"
+     Slot FrameWidgetSlot "{69FD60A005100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A005000003}" {
+     Name "MedicationPhenylephrineLabel"
+     Slot FrameWidgetSlot "{69FD60A005100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Penylephrin"
+     "Font Size" 16
+     "Min Font Size" 8
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A005000004}" {
+     Name "MedicationPhenylephrineCount"
+     Slot FrameWidgetSlot "{69FD60A005100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A006000001}" {
+   Name "MedicationMetoprololRow"
+   Slot FrameWidgetSlot "{69FD60A006100001}" {
+    Anchor 0 0.368056 0.477273 0.444444
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A006000002}" {
+     Name "MedicationMetoprololButton"
+     Slot FrameWidgetSlot "{69FD60A006100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A006000005}" {
+     Name "MedicationMetoprololIcon"
+     Slot FrameWidgetSlot "{69FD60A006100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A006000003}" {
+     Name "MedicationMetoprololLabel"
+     Slot FrameWidgetSlot "{69FD60A006100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Metoprolol"
+     "Font Size" 16
+     "Min Font Size" 9
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A006000004}" {
+     Name "MedicationMetoprololCount"
+     Slot FrameWidgetSlot "{69FD60A006100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A007000001}" {
+   Name "MedicationAmmoniaRow"
+   Slot FrameWidgetSlot "{69FD60A007100001}" {
+    Anchor 0.522727 0.368056 1 0.444444
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A007000002}" {
+     Name "MedicationAmmoniaButton"
+     Slot FrameWidgetSlot "{69FD60A007100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A007000005}" {
+     Name "MedicationAmmoniaIcon"
+     Slot FrameWidgetSlot "{69FD60A007100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A007000003}" {
+     Name "MedicationAmmoniaLabel"
+     Slot FrameWidgetSlot "{69FD60A007100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Ammonia"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A007000004}" {
+     Name "MedicationAmmoniaCount"
+     Slot FrameWidgetSlot "{69FD60A007100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{82A2F50000000001}" {
+   Name "MedicationSalineToggleRow"
+   Slot FrameWidgetSlot "{82A2F50000100001}" {
+    Anchor 0 0.097222 1 0.173611
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{82A2F50000000002}" {
+     Name "MedicationSalineToggleButton"
+     Slot FrameWidgetSlot "{82A2F50000100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{82A2F50000000005}" {
+     Name "MedicationSalineToggleIcon"
+     Slot FrameWidgetSlot "{82A2F50000100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{82A2F50000000003}" {
+     Name "MedicationSalineToggleLabel"
+     Slot FrameWidgetSlot "{82A2F50000100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{82A2F50000000004}" {
+     Name "MedicationSalineToggleCount"
+     Slot FrameWidgetSlot "{82A2F50000100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A008000001}" {
+   Name "MedicationSaline500Row"
+   Slot FrameWidgetSlot "{69FD60A008100001}" {
+    Anchor 0.522727 0.1875 1 0.263889
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A008000002}" {
+     Name "MedicationSaline500Button"
+     Slot FrameWidgetSlot "{69FD60A008100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A008000005}" {
+     Name "MedicationSaline500Icon"
+     Slot FrameWidgetSlot "{69FD60A008100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A008000003}" {
+     Name "MedicationSaline500Label"
+     Slot FrameWidgetSlot "{69FD60A008100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 500 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A008000004}" {
+     Name "MedicationSaline500Count"
+     Slot FrameWidgetSlot "{69FD60A008100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A009000001}" {
+   Name "MedicationSaline1000Row"
+Slot FrameWidgetSlot "{69FD60A009100001}" {
+    Anchor 0.522727 0.277778 1 0.354167
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A009000002}" {
+     Name "MedicationSaline1000Button"
+Slot FrameWidgetSlot "{69FD60A009100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A009000005}" {
+     Name "MedicationSaline1000Icon"
+     Slot FrameWidgetSlot "{69FD60A009100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A009000003}" {
+     Name "MedicationSaline1000Label"
+Slot FrameWidgetSlot "{69FD60A009100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 1000 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A009000004}" {
+     Name "MedicationSaline1000Count"
+Slot FrameWidgetSlot "{69FD60A009100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A00A000001}" {
+   Name "MedicationSaline1500Row"
+Slot FrameWidgetSlot "{69FD60A00A100001}" {
+    Anchor 0.522727 0.368056 1 0.444444
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A00A000002}" {
+     Name "MedicationSaline1500Button"
+Slot FrameWidgetSlot "{69FD60A00A100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A00A000005}" {
+     Name "MedicationSaline1500Icon"
+     Slot FrameWidgetSlot "{69FD60A00A100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A00A000003}" {
+     Name "MedicationSaline1500Label"
+Slot FrameWidgetSlot "{69FD60A00A100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 1500 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A00A000004}" {
+     Name "MedicationSaline1500Count"
+Slot FrameWidgetSlot "{69FD60A00A100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A00B000001}" {
+   Name "MedicationSaline750Row"
+   Slot FrameWidgetSlot "{69FD60A00B100001}" {
+    Anchor 0 0.277778 0.477273 0.354167
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A00B000002}" {
+     Name "MedicationSaline750Button"
+     Slot FrameWidgetSlot "{69FD60A00B100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A00B000005}" {
+     Name "MedicationSaline750Icon"
+     Slot FrameWidgetSlot "{69FD60A00B100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A00B000003}" {
+     Name "MedicationSaline750Label"
+     Slot FrameWidgetSlot "{69FD60A00B100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 750 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A00B000004}" {
+     Name "MedicationSaline750Count"
+     Slot FrameWidgetSlot "{69FD60A00B100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{82A2F90000000001}" {
+   Name "MedicationSaline250Row"
+   Slot FrameWidgetSlot "{82A2F90000100001}" {
+    Anchor 0 0.1875 0.477273 0.263889
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{82A2F90000000002}" {
+     Name "MedicationSaline250Button"
+     Slot FrameWidgetSlot "{82A2F90000100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{82A2F90000000005}" {
+     Name "MedicationSaline250Icon"
+     Slot FrameWidgetSlot "{82A2F90000100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{82A2F90000000003}" {
+     Name "MedicationSaline250Label"
+     Slot FrameWidgetSlot "{82A2F90000100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 250 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{82A2F90000000004}" {
+     Name "MedicationSaline250Count"
+     Slot FrameWidgetSlot "{82A2F90000100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{82A2FA0000000001}" {
+   Name "MedicationSaline1250Row"
+   Slot FrameWidgetSlot "{82A2FA0000100001}" {
+    Anchor 0 0.368056 0.477273 0.444444
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{82A2FA0000000002}" {
+     Name "MedicationSaline1250Button"
+     Slot FrameWidgetSlot "{82A2FA0000100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{82A2FA0000000005}" {
+     Name "MedicationSaline1250Icon"
+     Slot FrameWidgetSlot "{82A2FA0000100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{82A2FA0000000003}" {
+     Name "MedicationSaline1250Label"
+     Slot FrameWidgetSlot "{82A2FA0000100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 1250 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{82A2FA0000000004}" {
+     Name "MedicationSaline1250Count"
+     Slot FrameWidgetSlot "{82A2FA0000100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{82A2F70000000001}" {
+   Name "MedicationStopSalineRow"
+   Slot FrameWidgetSlot "{82A2F70000100001}" {
+    Anchor 0 0.458333 1 0.534722
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{82A2F70000000002}" {
+     Name "MedicationStopSalineButton"
+     Slot FrameWidgetSlot "{82A2F70000100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    TextWidgetClass "{82A2F70000000003}" {
+     Name "MedicationStopSalineLabel"
+     Slot FrameWidgetSlot "{82A2F70000100003}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "STOP SALINE"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  TextWidgetClass "{69FD60A011000001}" {
+   Name "ForeigninventoryTitle"
+   Slot FrameWidgetSlot "{69FD60A011100001}" {
+    Anchor 0 0.555556 1 0.625
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "Foreign Inventory"
+   "Font Size" 24
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  FrameWidgetClass "{69FD60A012000001}" {
+   Name "MedicationEpinephrineRowForeign"
+   Slot FrameWidgetSlot "{69FD60A012100001}" {
+    Anchor 0 0.7245 0.477273 0.7847
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A012000002}" {
+     Name "MedicationEpinephrineButtonForeign"
+     Slot FrameWidgetSlot "{69FD60A012100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A012000005}" {
+     Name "MedicationEpinephrineIconForeign"
+     Slot FrameWidgetSlot "{69FD60A012100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A012000003}" {
+     Name "MedicationEpinephrineLabelForeign"
+     Slot FrameWidgetSlot "{69FD60A012100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Epi"
+     "Font Size" 17
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A012000004}" {
+     Name "MedicationEpinephrineCountForeign"
+     Slot FrameWidgetSlot "{69FD60A012100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A013000001}" {
+   Name "MedicationMorphineRowForeign"
+   Slot FrameWidgetSlot "{69FD60A013100001}" {
+    Anchor 0.522727 0.7245 1 0.7847
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A013000002}" {
+     Name "MedicationMorphineButtonForeign"
+     Slot FrameWidgetSlot "{69FD60A013100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A013000005}" {
+     Name "MedicationMorphineIconForeign"
+     Slot FrameWidgetSlot "{69FD60A013100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A013000003}" {
+     Name "MedicationMorphineLabelForeign"
+     Slot FrameWidgetSlot "{69FD60A013100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Morphine"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A013000004}" {
+     Name "MedicationMorphineCountForeign"
+     Slot FrameWidgetSlot "{69FD60A013100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A014000001}" {
+   Name "MedicationNaloxoneRowForeign"
+   Slot FrameWidgetSlot "{69FD60A014100001}" {
+    Anchor 0 0.7963 0.477273 0.8565
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A014000002}" {
+     Name "MedicationNaloxoneButtonForeign"
+     Slot FrameWidgetSlot "{69FD60A014100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A014000005}" {
+     Name "MedicationNaloxoneIconForeign"
+     Slot FrameWidgetSlot "{69FD60A014100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A014000003}" {
+     Name "MedicationNaloxoneLabelForeign"
+     Slot FrameWidgetSlot "{69FD60A014100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Naloxon"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A014000004}" {
+     Name "MedicationNaloxoneCountForeign"
+     Slot FrameWidgetSlot "{69FD60A014100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A015000001}" {
+   Name "MedicationPhenylephrineRowForeign"
+   Slot FrameWidgetSlot "{69FD60A015100001}" {
+    Anchor 0.522727 0.7963 1 0.8565
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A015000002}" {
+     Name "MedicationPhenylephrineButtonForeign"
+     Slot FrameWidgetSlot "{69FD60A015100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A015000005}" {
+     Name "MedicationPhenylephrineIconForeign"
+     Slot FrameWidgetSlot "{69FD60A015100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A015000003}" {
+     Name "MedicationPhenylephrineLabelForeign"
+     Slot FrameWidgetSlot "{69FD60A015100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Penylephrin"
+     "Font Size" 16
+     "Min Font Size" 8
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A015000004}" {
+     Name "MedicationPhenylephrineCountForeign"
+     Slot FrameWidgetSlot "{69FD60A015100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A016000001}" {
+   Name "MedicationMetoprololRowForeign"
+   Slot FrameWidgetSlot "{69FD60A016100001}" {
+    Anchor 0 0.8681 0.477273 0.9283
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A016000002}" {
+     Name "MedicationMetoprololButtonForeign"
+     Slot FrameWidgetSlot "{69FD60A016100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A016000005}" {
+     Name "MedicationMetoprololIconForeign"
+     Slot FrameWidgetSlot "{69FD60A016100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A016000003}" {
+     Name "MedicationMetoprololLabelForeign"
+     Slot FrameWidgetSlot "{69FD60A016100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Metoprolol"
+     "Font Size" 16
+     "Min Font Size" 9
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A016000004}" {
+     Name "MedicationMetoprololCountForeign"
+     Slot FrameWidgetSlot "{69FD60A016100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A017000001}" {
+   Name "MedicationAmmoniaRowForeign"
+   Slot FrameWidgetSlot "{69FD60A017100001}" {
+    Anchor 0.522727 0.8681 1 0.9283
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A017000002}" {
+     Name "MedicationAmmoniaButtonForeign"
+     Slot FrameWidgetSlot "{69FD60A017100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A017000005}" {
+     Name "MedicationAmmoniaIconForeign"
+     Slot FrameWidgetSlot "{69FD60A017100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A017000003}" {
+     Name "MedicationAmmoniaLabelForeign"
+     Slot FrameWidgetSlot "{69FD60A017100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Ammonia"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A017000004}" {
+     Name "MedicationAmmoniaCountForeign"
+     Slot FrameWidgetSlot "{69FD60A017100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{82A2F60000000001}" {
+   Name "MedicationSalineToggleRowForeign"
+   Slot FrameWidgetSlot "{82A2F60000100001}" {
+    Anchor 0 0.652778 1 0.713
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{82A2F60000000002}" {
+     Name "MedicationSalineToggleButtonForeign"
+     Slot FrameWidgetSlot "{82A2F60000100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{82A2F60000000005}" {
+     Name "MedicationSalineToggleIconForeign"
+     Slot FrameWidgetSlot "{82A2F60000100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{82A2F60000000003}" {
+     Name "MedicationSalineToggleLabelForeign"
+     Slot FrameWidgetSlot "{82A2F60000100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{82A2F60000000004}" {
+     Name "MedicationSalineToggleCountForeign"
+     Slot FrameWidgetSlot "{82A2F60000100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A019000001}" {
+   Name "MedicationSaline1000RowForeign"
+Slot FrameWidgetSlot "{69FD60A019100001}" {
+    Anchor 0.522727 0.7963 1 0.8565
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A019000002}" {
+     Name "MedicationSaline1000ButtonForeign"
+Slot FrameWidgetSlot "{69FD60A019100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A019000005}" {
+     Name "MedicationSaline1000IconForeign"
+     Slot FrameWidgetSlot "{69FD60A019100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A019000003}" {
+     Name "MedicationSaline1000LabelForeign"
+Slot FrameWidgetSlot "{69FD60A019100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 1000 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A019000004}" {
+     Name "MedicationSaline1000CountForeign"
+Slot FrameWidgetSlot "{69FD60A019100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A01A000001}" {
+   Name "MedicationSaline1500RowForeign"
+Slot FrameWidgetSlot "{69FD60A01A100001}" {
+    Anchor 0.522727 0.8681 1 0.9283
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A01A000002}" {
+     Name "MedicationSaline1500ButtonForeign"
+Slot FrameWidgetSlot "{69FD60A01A100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A01A000005}" {
+     Name "MedicationSaline1500IconForeign"
+     Slot FrameWidgetSlot "{69FD60A01A100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A01A000003}" {
+     Name "MedicationSaline1500LabelForeign"
+Slot FrameWidgetSlot "{69FD60A01A100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 1500 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A01A000004}" {
+     Name "MedicationSaline1500CountForeign"
+Slot FrameWidgetSlot "{69FD60A01A100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A01B000001}" {
+   Name "MedicationSaline750RowForeign"
+   Slot FrameWidgetSlot "{69FD60A01B100001}" {
+    Anchor 0 0.7963 0.477273 0.8565
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A01B000002}" {
+     Name "MedicationSaline750ButtonForeign"
+     Slot FrameWidgetSlot "{69FD60A01B100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A01B000005}" {
+     Name "MedicationSaline750IconForeign"
+     Slot FrameWidgetSlot "{69FD60A01B100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A01B000003}" {
+     Name "MedicationSaline750LabelForeign"
+     Slot FrameWidgetSlot "{69FD60A01B100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 750 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A01B000004}" {
+     Name "MedicationSaline750CountForeign"
+     Slot FrameWidgetSlot "{69FD60A01B100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{69FD60A018000001}" {
+   Name "MedicationSaline500RowForeign"
+   Slot FrameWidgetSlot "{69FD60A018100001}" {
+    Anchor 0.522727 0.7245 1 0.7847
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD60A018000002}" {
+     Name "MedicationSaline500ButtonForeign"
+     Slot FrameWidgetSlot "{69FD60A018100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{69FD60A018000005}" {
+     Name "MedicationSaline500IconForeign"
+     Slot FrameWidgetSlot "{69FD60A018100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{69FD60A018000003}" {
+     Name "MedicationSaline500LabelForeign"
+     Slot FrameWidgetSlot "{69FD60A018100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 500 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{69FD60A018000004}" {
+     Name "MedicationSaline500CountForeign"
+     Slot FrameWidgetSlot "{69FD60A018100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{82A2FB0000000001}" {
+   Name "MedicationSaline250RowForeign"
+   Slot FrameWidgetSlot "{82A2FB0000100001}" {
+    Anchor 0 0.7245 0.477273 0.7847
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{82A2FB0000000002}" {
+     Name "MedicationSaline250ButtonForeign"
+     Slot FrameWidgetSlot "{82A2FB0000100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{82A2FB0000000005}" {
+     Name "MedicationSaline250IconForeign"
+     Slot FrameWidgetSlot "{82A2FB0000100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{82A2FB0000000003}" {
+     Name "MedicationSaline250LabelForeign"
+     Slot FrameWidgetSlot "{82A2FB0000100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 250 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{82A2FB0000000004}" {
+     Name "MedicationSaline250CountForeign"
+     Slot FrameWidgetSlot "{82A2FB0000100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{82A2FC0000000001}" {
+   Name "MedicationSaline1250RowForeign"
+   Slot FrameWidgetSlot "{82A2FC0000100001}" {
+    Anchor 0 0.8681 0.477273 0.9283
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{82A2FC0000000002}" {
+     Name "MedicationSaline1250ButtonForeign"
+     Slot FrameWidgetSlot "{82A2FC0000100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    ItemPreviewWidgetClass "{82A2FC0000000005}" {
+     Name "MedicationSaline1250IconForeign"
+     Slot FrameWidgetSlot "{82A2FC0000100005}" {
+      Anchor 0 0 0.22 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+    }
+    TextWidgetClass "{82A2FC0000000003}" {
+     Name "MedicationSaline1250LabelForeign"
+     Slot FrameWidgetSlot "{82A2FC0000100003}" {
+      Anchor 0.22 0 0.78 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Saline 1250 ml"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{82A2FC0000000004}" {
+     Name "MedicationSaline1250CountForeign"
+     Slot FrameWidgetSlot "{82A2FC0000100004}" {
+      Anchor 0.78 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "0"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+  FrameWidgetClass "{82A2F80000000001}" {
+   Name "MedicationStopSalineRowForeign"
+   Slot FrameWidgetSlot "{82A2F80000100001}" {
+    Anchor 0 0.9399 1 0.9999
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{82A2F80000000002}" {
+     Name "MedicationStopSalineButtonForeign"
+     Slot FrameWidgetSlot "{82A2F80000100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    TextWidgetClass "{82A2F80000000003}" {
+     Name "MedicationStopSalineLabelForeign"
+     Slot FrameWidgetSlot "{82A2F80000100003}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "STOP SALINE"
+     "Font Size" 17
+     "Min Font Size" 10
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+   }
+  }
+ }
+}

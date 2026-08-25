@@ -1,0 +1,314 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Slot FrameWidgetSlot "{69FD01A630BDE889}" {
+  Anchor 0 0 1 1
+  PositionX 0
+  OffsetLeft 0
+  PositionY 0
+  OffsetTop 0
+  SizeX 0
+  OffsetRight 0
+  SizeY 0
+  OffsetBottom 0
+ }
+ {
+  TextWidgetClass "{69FD01A630BDE88A}" {
+   Name "PageTitle"
+   Slot FrameWidgetSlot "{69FD01A630BDE88B}" {
+    Anchor 0 0 1 0.09
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "Diagnose"
+   "Font Size" 36
+   "Min Font Size" 28
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  TextWidgetClass "{69FD01A630BDE89A}" {
+   Name "DiagnosePatientName"
+   Slot FrameWidgetSlot "{69FD01A630BDE89B}" {
+    Anchor 0.2 0.1 0.8 0.21
+    PositionX 0
+    OffsetLeft 0
+    PositionY 37.25
+    SizeX 0
+    OffsetRight 0
+    SizeY -37.25
+    OffsetBottom 0
+   }
+   Text "VITALS FROM:"
+   "Font Size" 25
+   "Min Font Size" 20
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  ButtonWidgetClass "{69FD01A630BDE88E}" {
+   Name "DiagnoseHeartRateButton"
+   Slot FrameWidgetSlot "{69FD01A630BDE88F}" {
+    Anchor 0.04 0.22 0.3 0.3
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A630BDE890}" {
+     Name "DiagnoseHeartRateText"
+     Slot ButtonWidgetSlot "{69FD01A630BDE891}" {
+     }
+     Color 0 0 0 1
+     Text "MONITOR HEART RATE"
+     "Font Size" 18
+     "Min Font Size" 12
+    }
+   }
+  }
+  TextWidgetClass "{69FD01A630BDE892}" {
+   Name "DiagnoseHeartRateValue"
+   Slot FrameWidgetSlot "{69FD01A630BDE893}" {
+    Anchor 0.31 0.22 0.49 0.3
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "NOT MONITORED"
+   "Font Size" 24
+   "Min Font Size" 16
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  CanvasWidgetClass "{69FD01A630BDE89C}" {
+   Name "DiagnoseHeartRateGraph"
+   Slot FrameWidgetSlot "{69FD01A630BDE89D}" {
+    Anchor 0.04 0.35 0.49 0.88
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+  }
+  TextWidgetClass "{69FD01A630BDE8A4}" {
+   Name "DiagnoseHeartRhythmLabel"
+   Slot FrameWidgetSlot "{69FD01A630BDE8A5}" {
+    Anchor 0.04 0.31 0.25 0.35
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "ECG RHYTHM // RATE ONLY"
+   "Font Size" 13
+   "Min Font Size" 9
+  }
+  ButtonWidgetClass "{69FD01A630BDE894}" {
+   Name "DiagnoseBloodPressureButton"
+   Slot FrameWidgetSlot "{69FD01A630BDE895}" {
+    Anchor 0.54 0.22 0.8 0.3
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A630BDE896}" {
+     Name "DiagnoseBloodPressureText"
+     Slot ButtonWidgetSlot "{69FD01A630BDE897}" {
+     }
+     Color 0 0 0 1
+     Text "MONITOR BLOOD PRESSURE"
+     "Font Size" 18
+     "Min Font Size" 12
+    }
+   }
+  }
+  TextWidgetClass "{69FD01A630BDE898}" {
+   Name "DiagnoseBloodPressureValue"
+   Slot FrameWidgetSlot "{69FD01A630BDE899}" {
+    Anchor 0.81 0.22 0.96 0.3
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "NOT MONITORED"
+   "Font Size" 24
+   "Min Font Size" 16
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  TextWidgetClass "{69FD01A630BDE8A0}" {
+   Name "DiagnoseSystolicLegend"
+   Slot FrameWidgetSlot "{69FD01A630BDE8A1}" {
+    Anchor 0.59 0.31 0.7 0.35
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 0.6275 0.251 1
+   Text "SYSTOLIC"
+   "Font Size" 14
+   "Min Font Size" 10
+  }
+  TextWidgetClass "{69FD01A630BDE8A2}" {
+   Name "DiagnoseDiastolicLegend"
+   Slot FrameWidgetSlot "{69FD01A630BDE8A3}" {
+    Anchor 0.71 0.31 0.82 0.35
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.251 0.7529 1 1
+   Text "DIASTOLIC"
+   "Font Size" 14
+   "Min Font Size" 10
+  }
+  CanvasWidgetClass "{69FD01A630BDE89E}" {
+   Name "DiagnoseBloodPressureGraph"
+   Slot FrameWidgetSlot "{69FD01A630BDE89F}" {
+    Anchor 0.58 0.36 0.96 0.88
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+  }
+  TextWidgetClass "{69FD01A630BDE8A6}" {
+   Name "DiagnoseBloodPressureHigh"
+   Slot FrameWidgetSlot "{69FD01A630BDE8A7}" {
+    Anchor 0.54 0.35 0.575 0.39
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "200"
+   "Font Size" 12
+   "Min Font Size" 9
+   "Horizontal Alignment" Right
+  }
+  TextWidgetClass "{69FD01A630BDE8A8}" {
+   Name "DiagnoseBloodPressureMiddle"
+   Slot FrameWidgetSlot "{69FD01A630BDE8A9}" {
+    Anchor 0.54 0.6 0.575 0.64
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "120"
+   "Font Size" 12
+   "Min Font Size" 9
+   "Horizontal Alignment" Right
+  }
+  TextWidgetClass "{69FD01A630BDE8AA}" {
+   Name "DiagnoseBloodPressureLow"
+   Slot FrameWidgetSlot "{69FD01A630BDE8AB}" {
+    Anchor 0.54 0.85 0.575 0.89
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "40"
+   "Font Size" 12
+   "Min Font Size" 9
+   "Horizontal Alignment" Right
+  }
+  TextWidgetClass "{69FD01A630BDE8AC}" {
+   Name "DiagnoseBloodPressureYAxis"
+   Slot FrameWidgetSlot "{69FD01A630BDE8AD}" {
+    Anchor 0.54 0.31 0.58 0.35
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "mmHg"
+   "Font Size" 12
+   "Min Font Size" 9
+   "Horizontal Alignment" Right
+  }
+  TextWidgetClass "{69FD01A630BDE8AE}" {
+   Name "DiagnoseBloodPressureXAxis"
+   Slot FrameWidgetSlot "{69FD01A630BDE8AF}" {
+    Anchor 0.79 0.89 0.96 0.94
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "RECENT 30 SECONDS"
+   "Font Size" 12
+   "Min Font Size" 9
+   "Horizontal Alignment" Right
+  }
+ }
+}

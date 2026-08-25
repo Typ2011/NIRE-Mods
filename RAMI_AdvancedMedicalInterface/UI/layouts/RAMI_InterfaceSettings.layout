@@ -1,0 +1,51 @@
+VerticalLayoutWidgetClass {
+ Name "RAMISettings"
+ Slot LayoutSlot "{6A15B001C0100003}" {
+ }
+ {
+  VerticalLayoutWidgetClass "{6A15B001C0100004}" : "{FEEEB639F2735BA1}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsTitle.layout" {
+   Name "RAMISettingsTitle"
+   Slot LayoutSlot "{6A15B001C0100005}" {
+   }
+   components {
+    SCR_LabelComponent "{6A15B001C0100006}" {
+     m_sLabel "AMI"
+    }
+   }
+  }
+  ButtonWidgetClass "{6A15B001C0100007}" : "{C9DF0E6590F6C388}UI/layouts/WidgetLibrary/SpinBox/WLib_SpinBox.layout" {
+   Name "RAMIButtonTextColor"
+   Slot LayoutSlot "{6A15B001C0100008}" {
+    Padding 4 4 4 4
+   }
+   components {
+    SCR_SpinBoxComponent "{5472C6CBC0640458}" {
+     m_sLabel "Button text color"
+     m_sLabelLayout "{F003823FF141983C}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsLabel.layout"
+     m_aElementNames {
+      "Default" "White" "Yellow" "Cyan" "Black" "Red" "Orange" "Green" "Blue" "Magenta"
+     }
+     m_bUseLightArrows 1
+     m_bCycleMode 1
+    }
+   }
+  }
+  ButtonWidgetClass "{6A15B001C010000A}" : "{C9DF0E6590F6C388}UI/layouts/WidgetLibrary/SpinBox/WLib_SpinBox.layout" {
+   Name "RAMIColorblindMode"
+   Slot LayoutSlot "{6A15B001C010000B}" {
+    Padding 4 4 4 4
+   }
+   components {
+    SCR_SpinBoxComponent "{5472C6CBC0640458}" {
+     m_sLabel "Colorblind mode"
+     m_sLabelLayout "{F003823FF141983C}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsLabel.layout"
+     m_aElementNames {
+      "Off" "On"
+     }
+     m_bUseLightArrows 1
+     m_bCycleMode 1
+    }
+   }
+  }
+ }
+}

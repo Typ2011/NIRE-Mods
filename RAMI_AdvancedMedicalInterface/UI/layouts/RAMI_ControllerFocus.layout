@@ -1,0 +1,13 @@
+PanelWidgetClass {
+ Name "ControllerFocus"
+ Slot FrameWidgetSlot "{18A7CA42F4FA4125}" {
+  OffsetLeft 0
+  OffsetTop 0
+  SizeX 0
+  OffsetRight 0
+  SizeY 0
+  OffsetBottom 0
+ }
+ Color 0 1 1 0.5
+ style outline_4px
+}

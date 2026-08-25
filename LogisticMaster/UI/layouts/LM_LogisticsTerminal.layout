@@ -1,0 +1,8 @@
+FrameWidgetClass {
+ Name "LM_LogisticsTerminalRoot"
+ Slot FrameWidgetSlot "{82FC60DE37327792}" {
+  Anchor 0 0 1 1
+  OffsetRight 0
+  OffsetBottom 0
+ }
+}

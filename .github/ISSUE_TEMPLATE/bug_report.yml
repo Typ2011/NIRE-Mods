@@ -1,0 +1,121 @@
+name: Bug report
+description: Something in one of the mods behaves incorrectly.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the version, mod list and log fields. Without them a bug
+        usually cannot be reproduced, and the issue stalls.
+
+  - type: dropdown
+    id: mod
+    attributes:
+      label: Affected mod
+      options:
+        - DisableGlobalChat
+        - Expanded Saline Bags
+        - Expanded Saline Bags - UK
+        - GMVehicleLock
+        - InventoryBoxes
+        - LogisticMaster
+        - RAMI - Advanced Medical Interface
+        - AMI - ACE Breathing Compat
+        - More than one / not sure
+    validations:
+      required: true
+
+  - type: input
+    id: mod-version
+    attributes:
+      label: Mod version
+      description: The version shown in the Workshop entry, or the commit SHA if you built from source.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: game-version
+    attributes:
+      label: Arma Reforger version
+      placeholder: "1.5.0.xxx"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Where did it happen?
+      options:
+        - Dedicated server
+        - Hosted / listen server
+        - Singleplayer or local Game Master
+        - Workbench (Play mode)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your role at the time
+      options:
+        - Player
+        - Game Master
+        - Server admin
+      multiple: true
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected to see instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start a dedicated server with mods X, Y, Z
+        2. Open the Game Master and place ...
+        3. As a player, ...
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: modlist
+    attributes:
+      label: Full mod list
+      description: Every mod loaded at the time, in load order. Mod conflicts are the most common cause of reports here.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: script.log / console.log excerpt
+      description: |
+        The relevant lines, not the whole file. Logs live in
+        `%USERPROFILE%\Documents\My Games\ArmaReforgerWorkbench\logs\` for
+        Workbench and in the server's profile folder for a dedicated server.
+        For a client crash, attach `crash.log` as a file.
+      render: text
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues and this is not a duplicate.
+          required: true
+        - label: I reproduced this with the current version of the mod.
+          required: true
+        - label: I tried it without other mods loaded, or I explained below why I could not.
+          required: false

@@ -1,0 +1,665 @@
+16:30:09.162 INIT         : Workbench startup
+16:30:09.162  INIT         : Workbench Init Engine
+16:30:09.162   RESOURCES    : ResourceDB: full scan
+16:30:09.164    RESOURCES    : processing meta-files...
+16:30:09.164     RESOURCES (E): metafile without corresponding resource: '$RAMI_AdvancedMedicalInterface:UI/Textures/RAMI_BodyZones/RAMI_Tourniquet.edds.meta'
+16:30:09.226    RESOURCES    : processing files...
+16:30:09.226     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/config.json". Setting null GUID
+16:30:09.226     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_ravage.json". Setting null GUID
+16:30:09.228     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_robots.json". Setting null GUID
+16:30:09.234     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_ravage_as_fia.json". Setting null GUID
+16:30:09.234     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default.json". Setting null GUID
+16:30:09.234     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default_pve.json". Setting null GUID
+16:30:09.234     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/config.json". Setting null GUID
+16:30:09.235     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_02.json". Setting null GUID
+16:30:09.235     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_03.json". Setting null GUID
+16:30:09.235     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_04.json". Setting null GUID
+16:30:09.235     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/playerstats.json". Setting null GUID
+16:30:09.236     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/16e0b884-a2f2-49c5-a722-3b44148f8b26_playerstats.json". Setting null GUID
+16:30:09.236     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemote.json". Setting null GUID
+16:30:09.236     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptions.json". Setting null GUID
+16:30:09.236     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptionsList.json". Setting null GUID
+16:30:09.236     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/OneTimeWipeAllPlayerXP.json". Setting null GUID
+16:30:09.237     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PersistentRanks.json". Setting null GUID
+16:30:09.237     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PlayerStatsSubMenuVisibility.json". Setting null GUID
+16:30:09.237     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PunishAdminsForTeamKills.json". Setting null GUID
+16:30:09.237     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/RemoveVehicleKillsFromKDRatio.json". Setting null GUID
+16:30:09.238     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/SavingMethod.json". Setting null GUID
+16:30:09.238     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerStats.json". Setting null GUID
+16:30:09.238     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerXP.json". Setting null GUID
+16:30:09.238     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ServerStartWipePlayerXP.json". Setting null GUID
+16:30:09.239     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/StatsAreOnlyVisibleInOwnHQ.json". Setting null GUID
+16:30:09.239     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipePlayerStatsExemptions.json". Setting null GUID
+16:30:09.239     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipeXPExemptions.json". Setting null GUID
+16:30:09.239     RESOURCES (W): resource not registered: @"$profile:CMSquadRadioSound/player_ui_settings.json". Setting null GUID
+16:30:09.240     RESOURCES (W): resource not registered: @"$profile:DEH_RealTimeSyncConfig.json". Setting null GUID
+16:30:09.240     RESOURCES (W): resource not registered: @"$profile:GM_Tools/gm_tools_config.json". Setting null GUID
+16:30:09.240     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/grs_atak.json". Setting null GUID
+16:30:09.240     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/players/16e0b884-a2f2-49c5-a722-3b44148f8b26.json". Setting null GUID
+16:30:09.241     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/profile.json". Setting null GUID
+16:30:09.241     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/server_config.json". Setting null GUID
+16:30:09.241     RESOURCES (W): resource not registered: @"$profile:IRRU_RFPropagation.json". Setting null GUID
+16:30:09.241     RESOURCES (W): resource not registered: @"$profile:LAG_server_restarter_config.json". Setting null GUID
+16:30:09.241     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPConfig.json". Setting null GUID
+16:30:09.242     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPProgress.json". Setting null GUID
+16:30:09.242     RESOURCES (W): resource not registered: @"$profile:OpsTrackSettings.json". Setting null GUID
+16:30:09.242     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/PlayerStats.json". Setting null GUID
+16:30:09.242     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WebHook_config.json". Setting null GUID
+16:30:09.242     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_killFeed.json". Setting null GUID
+16:30:09.242     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_livestats.json". Setting null GUID
+16:30:09.244     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_status&chat.json". Setting null GUID
+16:30:09.244     RESOURCES (W): resource not registered: @"$profile:RadioData.json". Setting null GUID
+16:30:09.244     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Drawings_default.json". Setting null GUID
+16:30:09.244     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Markers2_default.json". Setting null GUID
+16:30:09.245     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Config.json". Setting null GUID
+16:30:09.245     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Stats.json". Setting null GUID
+16:30:09.245     RESOURCES (W): resource not registered: @"$profile:ServerRulesQuiz/ServerRulesConfig.json". Setting null GUID
+16:30:09.245     RESOURCES (W): resource not registered: @"$profile:VONData.json". Setting null GUID
+16:30:09.246     RESOURCES (W): resource not registered: @"$profile:VONServerData.json". Setting null GUID
+16:30:09.246     RESOURCES (W): resource not registered: @"$profile:vPad/Settings.json". Setting null GUID
+16:30:09.246     RESOURCES (W): resource not registered: @"$profile:WalkingSpeedIndicator/WalkingSpeedIndicatorConfig.json". Setting null GUID
+16:30:09.320   RESOURCES (E): ResourceDB: could not open cache file
+16:30:09.324   ENGINE       : GameProject load
+16:30:09.324    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECoreDev_65AD7D0D9941A380/dev.gproj"
+16:30:09.324     RESOURCES (E): Wrong GUID/name for resource @"{DE0B68C7B4B0E89C}Language/ACE_localization.st" in property "StringTableSource"
+16:30:09.325    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCoreDev_6586079789278413/dev.gproj"
+16:30:09.325     RESOURCES (E): Wrong GUID/name for resource @"{D393C26C894B1404}Language/ACE_Medical_Core_localization.st" in property "StringTableSource"
+16:30:09.326    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCirculationDev_65AD7D4F994EA327/dev.gproj"
+16:30:09.326     RESOURCES (E): Wrong GUID/name for resource @"{0780D43A82968920}Language/ACE_Medical_Circulation_localization.st" in property "StringTableSource"
+16:30:09.327    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECarryingDev_65AD7C379CBD394D/dev.gproj"
+16:30:09.327     RESOURCES (E): Wrong GUID/name for resource @"{2E272B1D21C4446A}Language/ACE_Carrying_localization.st" in property "StringTableSource"
+16:30:14.001  INIT         : Workbench Create Game
+16:30:14.002   SCRIPT       : Compiling Game scripts
+16:30:14.002    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+16:30:14.220    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+16:30:14.221    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+16:30:14.460    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+16:30:14.491    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+16:30:14.578    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+16:30:14.579    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+16:30:14.579    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+16:30:14.579    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+16:30:14.669    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+16:30:14.669    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+16:30:14.670    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+16:30:14.710    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+16:30:14.712    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+16:30:14.762    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+16:30:14.782    RESOURCES    : GetResourceObject @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+16:30:14.782     WORLD        : Entity prefab load @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+16:30:14.782      WORLD     (E): Unknown class 'SCR_ChimeraCharacter' at offset 21(0x15)
+16:30:14.782      ENGINE    (W): Can't load prefab Prefabs/Characters/Core/Character_Base.et
+16:30:14.783     RESOURCES (E): Failed to load
+16:30:15.095   ENGINE    (E): BackendDebug:: cannot create directory ($logs:.backend/)
+16:30:15.152   PLATFORM  (E): Steamworks: SteamAPI_Init failed. Is Steam running?
+16:30:15.152   PLATFORM  (E): Could not initialize platform services.
+16:31:48.401 INIT         : Workbench startup
+16:31:48.401  INIT         : Workbench Init Engine
+16:31:48.401   RESOURCES    : ResourceDB: full scan
+16:31:48.401    RESOURCES    : processing meta-files...
+16:31:48.401     RESOURCES (E): metafile without corresponding resource: '$RAMI_AdvancedMedicalInterface:UI/Textures/RAMI_BodyZones/RAMI_Tourniquet.edds.meta'
+16:31:48.469    RESOURCES    : processing files...
+16:31:48.469     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/config.json". Setting null GUID
+16:31:48.469     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_ravage.json". Setting null GUID
+16:31:48.470     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_robots.json". Setting null GUID
+16:31:48.470     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_ravage_as_fia.json". Setting null GUID
+16:31:48.470     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default.json". Setting null GUID
+16:31:48.470     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default_pve.json". Setting null GUID
+16:31:48.470     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/config.json". Setting null GUID
+16:31:48.470     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_02.json". Setting null GUID
+16:31:48.472     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_03.json". Setting null GUID
+16:31:48.472     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_04.json". Setting null GUID
+16:31:48.472     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/playerstats.json". Setting null GUID
+16:31:48.472     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/16e0b884-a2f2-49c5-a722-3b44148f8b26_playerstats.json". Setting null GUID
+16:31:48.473     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemote.json". Setting null GUID
+16:31:48.473     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptions.json". Setting null GUID
+16:31:48.473     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptionsList.json". Setting null GUID
+16:31:48.473     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/OneTimeWipeAllPlayerXP.json". Setting null GUID
+16:31:48.474     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PersistentRanks.json". Setting null GUID
+16:31:48.474     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PlayerStatsSubMenuVisibility.json". Setting null GUID
+16:31:48.474     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PunishAdminsForTeamKills.json". Setting null GUID
+16:31:48.474     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/RemoveVehicleKillsFromKDRatio.json". Setting null GUID
+16:31:48.474     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/SavingMethod.json". Setting null GUID
+16:31:48.475     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerStats.json". Setting null GUID
+16:31:48.475     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerXP.json". Setting null GUID
+16:31:48.475     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ServerStartWipePlayerXP.json". Setting null GUID
+16:31:48.475     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/StatsAreOnlyVisibleInOwnHQ.json". Setting null GUID
+16:31:48.476     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipePlayerStatsExemptions.json". Setting null GUID
+16:31:48.476     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipeXPExemptions.json". Setting null GUID
+16:31:48.476     RESOURCES (W): resource not registered: @"$profile:CMSquadRadioSound/player_ui_settings.json". Setting null GUID
+16:31:48.476     RESOURCES (W): resource not registered: @"$profile:DEH_RealTimeSyncConfig.json". Setting null GUID
+16:31:48.476     RESOURCES (W): resource not registered: @"$profile:GM_Tools/gm_tools_config.json". Setting null GUID
+16:31:48.477     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/grs_atak.json". Setting null GUID
+16:31:48.477     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/players/16e0b884-a2f2-49c5-a722-3b44148f8b26.json". Setting null GUID
+16:31:48.477     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/profile.json". Setting null GUID
+16:31:48.477     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/server_config.json". Setting null GUID
+16:31:48.478     RESOURCES (W): resource not registered: @"$profile:IRRU_RFPropagation.json". Setting null GUID
+16:31:48.478     RESOURCES (W): resource not registered: @"$profile:LAG_server_restarter_config.json". Setting null GUID
+16:31:48.478     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPConfig.json". Setting null GUID
+16:31:48.478     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPProgress.json". Setting null GUID
+16:31:48.478     RESOURCES (W): resource not registered: @"$profile:OpsTrackSettings.json". Setting null GUID
+16:31:48.478     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/PlayerStats.json". Setting null GUID
+16:31:48.480     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WebHook_config.json". Setting null GUID
+16:31:48.480     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_killFeed.json". Setting null GUID
+16:31:48.480     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_livestats.json". Setting null GUID
+16:31:48.480     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_status&chat.json". Setting null GUID
+16:31:48.481     RESOURCES (W): resource not registered: @"$profile:RadioData.json". Setting null GUID
+16:31:48.481     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Drawings_default.json". Setting null GUID
+16:31:48.481     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Markers2_default.json". Setting null GUID
+16:31:48.481     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Config.json". Setting null GUID
+16:31:48.481     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Stats.json". Setting null GUID
+16:31:48.482     RESOURCES (W): resource not registered: @"$profile:ServerRulesQuiz/ServerRulesConfig.json". Setting null GUID
+16:31:48.482     RESOURCES (W): resource not registered: @"$profile:VONData.json". Setting null GUID
+16:31:48.482     RESOURCES (W): resource not registered: @"$profile:VONServerData.json". Setting null GUID
+16:31:48.482     RESOURCES (W): resource not registered: @"$profile:vPad/Settings.json". Setting null GUID
+16:31:48.483     RESOURCES (W): resource not registered: @"$profile:WalkingSpeedIndicator/WalkingSpeedIndicatorConfig.json". Setting null GUID
+16:31:48.566   RESOURCES (E): ResourceDB: could not open cache file
+16:31:48.570   ENGINE       : GameProject load
+16:31:48.570    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECoreDev_65AD7D0D9941A380/dev.gproj"
+16:31:48.570     RESOURCES (E): Wrong GUID/name for resource @"{DE0B68C7B4B0E89C}Language/ACE_localization.st" in property "StringTableSource"
+16:31:48.571    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCoreDev_6586079789278413/dev.gproj"
+16:31:48.571     RESOURCES (E): Wrong GUID/name for resource @"{D393C26C894B1404}Language/ACE_Medical_Core_localization.st" in property "StringTableSource"
+16:31:48.571    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCirculationDev_65AD7D4F994EA327/dev.gproj"
+16:31:48.572     RESOURCES (E): Wrong GUID/name for resource @"{0780D43A82968920}Language/ACE_Medical_Circulation_localization.st" in property "StringTableSource"
+16:31:48.572    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECarryingDev_65AD7C379CBD394D/dev.gproj"
+16:31:48.572     RESOURCES (E): Wrong GUID/name for resource @"{2E272B1D21C4446A}Language/ACE_Carrying_localization.st" in property "StringTableSource"
+16:31:53.270  INIT         : Workbench Create Game
+16:31:53.270   SCRIPT       : Compiling Game scripts
+16:31:53.270    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+16:31:53.498    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+16:31:53.499    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+16:31:53.804    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+16:31:53.838    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+16:31:53.938    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+16:31:53.938    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+16:31:53.939    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+16:31:53.939    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+16:31:54.040    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+16:31:54.040    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+16:31:54.042    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+16:31:54.088    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+16:31:54.088    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+16:31:54.145    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+16:31:54.166    RESOURCES    : GetResourceObject @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+16:31:54.167     WORLD        : Entity prefab load @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+16:31:54.167      WORLD     (E): Unknown class 'SCR_ChimeraCharacter' at offset 21(0x15)
+16:31:54.167      ENGINE    (W): Can't load prefab Prefabs/Characters/Core/Character_Base.et
+16:31:54.168     RESOURCES (E): Failed to load
+16:31:54.492   ENGINE    (E): BackendDebug:: cannot create directory ($logs:.backend/)
+16:31:54.549   PLATFORM  (E): Steamworks: SteamAPI_Init failed. Is Steam running?
+16:31:54.549   PLATFORM  (E): Could not initialize platform services.
+16:51:29.967 INIT         : Workbench startup
+16:51:29.967  INIT         : Workbench Init Engine
+16:51:29.967   RESOURCES    : ResourceDB: full scan
+16:51:29.967    RESOURCES    : processing meta-files...
+16:51:29.968     RESOURCES (E): metafile without corresponding resource: '$RAMI_AdvancedMedicalInterface:UI/Textures/RAMI_BodyZones/RAMI_Tourniquet.edds.meta'
+16:51:30.030    RESOURCES    : processing files...
+16:51:30.030     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/config.json". Setting null GUID
+16:51:30.030     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_ravage.json". Setting null GUID
+16:51:30.030     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_robots.json". Setting null GUID
+16:51:30.031     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_ravage_as_fia.json". Setting null GUID
+16:51:30.031     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default.json". Setting null GUID
+16:51:30.032     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default_pve.json". Setting null GUID
+16:51:30.032     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/config.json". Setting null GUID
+16:51:30.032     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_02.json". Setting null GUID
+16:51:30.032     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_03.json". Setting null GUID
+16:51:30.032     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_04.json". Setting null GUID
+16:51:30.032     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/playerstats.json". Setting null GUID
+16:51:30.033     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/16e0b884-a2f2-49c5-a722-3b44148f8b26_playerstats.json". Setting null GUID
+16:51:30.033     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemote.json". Setting null GUID
+16:51:30.034     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptions.json". Setting null GUID
+16:51:30.034     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptionsList.json". Setting null GUID
+16:51:30.034     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/OneTimeWipeAllPlayerXP.json". Setting null GUID
+16:51:30.034     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PersistentRanks.json". Setting null GUID
+16:51:30.034     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PlayerStatsSubMenuVisibility.json". Setting null GUID
+16:51:30.035     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PunishAdminsForTeamKills.json". Setting null GUID
+16:51:30.035     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/RemoveVehicleKillsFromKDRatio.json". Setting null GUID
+16:51:30.036     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/SavingMethod.json". Setting null GUID
+16:51:30.036     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerStats.json". Setting null GUID
+16:51:30.036     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerXP.json". Setting null GUID
+16:51:30.036     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ServerStartWipePlayerXP.json". Setting null GUID
+16:51:30.036     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/StatsAreOnlyVisibleInOwnHQ.json". Setting null GUID
+16:51:30.036     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipePlayerStatsExemptions.json". Setting null GUID
+16:51:30.037     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipeXPExemptions.json". Setting null GUID
+16:51:30.037     RESOURCES (W): resource not registered: @"$profile:CMSquadRadioSound/player_ui_settings.json". Setting null GUID
+16:51:30.037     RESOURCES (W): resource not registered: @"$profile:DEH_RealTimeSyncConfig.json". Setting null GUID
+16:51:30.038     RESOURCES (W): resource not registered: @"$profile:GM_Tools/gm_tools_config.json". Setting null GUID
+16:51:30.038     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/grs_atak.json". Setting null GUID
+16:51:30.038     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/players/16e0b884-a2f2-49c5-a722-3b44148f8b26.json". Setting null GUID
+16:51:30.038     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/profile.json". Setting null GUID
+16:51:30.038     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/server_config.json". Setting null GUID
+16:51:30.038     RESOURCES (W): resource not registered: @"$profile:IRRU_RFPropagation.json". Setting null GUID
+16:51:30.039     RESOURCES (W): resource not registered: @"$profile:LAG_server_restarter_config.json". Setting null GUID
+16:51:30.039     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPConfig.json". Setting null GUID
+16:51:30.040     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPProgress.json". Setting null GUID
+16:51:30.040     RESOURCES (W): resource not registered: @"$profile:OpsTrackSettings.json". Setting null GUID
+16:51:30.040     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/PlayerStats.json". Setting null GUID
+16:51:30.040     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WebHook_config.json". Setting null GUID
+16:51:30.041     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_killFeed.json". Setting null GUID
+16:51:30.041     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_livestats.json". Setting null GUID
+16:51:30.041     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_status&chat.json". Setting null GUID
+16:51:30.041     RESOURCES (W): resource not registered: @"$profile:RadioData.json". Setting null GUID
+16:51:30.042     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Drawings_default.json". Setting null GUID
+16:51:30.042     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Markers2_default.json". Setting null GUID
+16:51:30.042     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Config.json". Setting null GUID
+16:51:30.042     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Stats.json". Setting null GUID
+16:51:30.043     RESOURCES (W): resource not registered: @"$profile:ServerRulesQuiz/ServerRulesConfig.json". Setting null GUID
+16:51:30.043     RESOURCES (W): resource not registered: @"$profile:VONData.json". Setting null GUID
+16:51:30.043     RESOURCES (W): resource not registered: @"$profile:VONServerData.json". Setting null GUID
+16:51:30.043     RESOURCES (W): resource not registered: @"$profile:vPad/Settings.json". Setting null GUID
+16:51:30.044     RESOURCES (W): resource not registered: @"$profile:WalkingSpeedIndicator/WalkingSpeedIndicatorConfig.json". Setting null GUID
+16:51:30.120   RESOURCES (E): ResourceDB: could not open cache file
+16:51:30.130   ENGINE       : GameProject load
+16:51:30.130    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECoreDev_65AD7D0D9941A380/dev.gproj"
+16:51:30.131     RESOURCES (E): Wrong GUID/name for resource @"{DE0B68C7B4B0E89C}Language/ACE_localization.st" in property "StringTableSource"
+16:51:30.131    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCoreDev_6586079789278413/dev.gproj"
+16:51:30.131     RESOURCES (E): Wrong GUID/name for resource @"{D393C26C894B1404}Language/ACE_Medical_Core_localization.st" in property "StringTableSource"
+16:51:30.132    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCirculationDev_65AD7D4F994EA327/dev.gproj"
+16:51:30.132     RESOURCES (E): Wrong GUID/name for resource @"{0780D43A82968920}Language/ACE_Medical_Circulation_localization.st" in property "StringTableSource"
+16:51:30.132    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECarryingDev_65AD7C379CBD394D/dev.gproj"
+16:51:30.134     RESOURCES (E): Wrong GUID/name for resource @"{2E272B1D21C4446A}Language/ACE_Carrying_localization.st" in property "StringTableSource"
+16:51:34.772  INIT         : Workbench Create Game
+16:51:34.772   SCRIPT       : Compiling Game scripts
+16:51:34.772    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+16:51:34.998    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+16:51:34.998    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+16:51:35.246    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+16:51:35.277    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+16:51:35.365    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+16:51:35.367    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+16:51:35.367    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+16:51:35.368    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+16:51:35.456    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+16:51:35.456    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+16:51:35.457    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+16:51:35.498    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+16:51:35.499    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+16:51:35.551    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+16:51:35.570    RESOURCES    : GetResourceObject @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+16:51:35.570     WORLD        : Entity prefab load @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+16:51:35.572      WORLD     (E): Unknown class 'SCR_ChimeraCharacter' at offset 21(0x15)
+16:51:35.572      ENGINE    (W): Can't load prefab Prefabs/Characters/Core/Character_Base.et
+16:51:35.572     RESOURCES (E): Failed to load
+16:51:35.888   ENGINE    (E): BackendDebug:: cannot create directory ($logs:.backend/)
+16:51:35.948   PLATFORM  (E): Steamworks: SteamAPI_Init failed. Is Steam running?
+16:51:35.948   PLATFORM  (E): Could not initialize platform services.
+16:56:49.700 INIT         : Workbench startup
+16:56:49.701  INIT         : Workbench Init Engine
+16:56:49.701   RESOURCES    : ResourceDB: full scan
+16:56:49.701    RESOURCES    : processing meta-files...
+16:56:49.701     RESOURCES (E): metafile without corresponding resource: '$RAMI_AdvancedMedicalInterface:UI/Textures/RAMI_BodyZones/RAMI_Tourniquet.edds.meta'
+16:56:49.764    RESOURCES    : processing files...
+16:56:49.764     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/config.json". Setting null GUID
+16:56:49.765     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_ravage.json". Setting null GUID
+16:56:49.765     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_robots.json". Setting null GUID
+16:56:49.765     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_ravage_as_fia.json". Setting null GUID
+16:56:49.765     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default.json". Setting null GUID
+16:56:49.766     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default_pve.json". Setting null GUID
+16:56:49.766     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/config.json". Setting null GUID
+16:56:49.766     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_02.json". Setting null GUID
+16:56:49.766     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_03.json". Setting null GUID
+16:56:49.767     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_04.json". Setting null GUID
+16:56:49.767     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/playerstats.json". Setting null GUID
+16:56:49.767     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/16e0b884-a2f2-49c5-a722-3b44148f8b26_playerstats.json". Setting null GUID
+16:56:49.767     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemote.json". Setting null GUID
+16:56:49.768     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptions.json". Setting null GUID
+16:56:49.768     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptionsList.json". Setting null GUID
+16:56:49.768     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/OneTimeWipeAllPlayerXP.json". Setting null GUID
+16:56:49.768     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PersistentRanks.json". Setting null GUID
+16:56:49.769     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PlayerStatsSubMenuVisibility.json". Setting null GUID
+16:56:49.769     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PunishAdminsForTeamKills.json". Setting null GUID
+16:56:49.769     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/RemoveVehicleKillsFromKDRatio.json". Setting null GUID
+16:56:49.769     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/SavingMethod.json". Setting null GUID
+16:56:49.770     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerStats.json". Setting null GUID
+16:56:49.770     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerXP.json". Setting null GUID
+16:56:49.770     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ServerStartWipePlayerXP.json". Setting null GUID
+16:56:49.770     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/StatsAreOnlyVisibleInOwnHQ.json". Setting null GUID
+16:56:49.771     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipePlayerStatsExemptions.json". Setting null GUID
+16:56:49.771     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipeXPExemptions.json". Setting null GUID
+16:56:49.771     RESOURCES (W): resource not registered: @"$profile:CMSquadRadioSound/player_ui_settings.json". Setting null GUID
+16:56:49.771     RESOURCES (W): resource not registered: @"$profile:DEH_RealTimeSyncConfig.json". Setting null GUID
+16:56:49.772     RESOURCES (W): resource not registered: @"$profile:GM_Tools/gm_tools_config.json". Setting null GUID
+16:56:49.772     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/grs_atak.json". Setting null GUID
+16:56:49.772     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/players/16e0b884-a2f2-49c5-a722-3b44148f8b26.json". Setting null GUID
+16:56:49.772     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/profile.json". Setting null GUID
+16:56:49.772     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/server_config.json". Setting null GUID
+16:56:49.772     RESOURCES (W): resource not registered: @"$profile:IRRU_RFPropagation.json". Setting null GUID
+16:56:49.774     RESOURCES (W): resource not registered: @"$profile:LAG_server_restarter_config.json". Setting null GUID
+16:56:49.774     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPConfig.json". Setting null GUID
+16:56:49.774     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPProgress.json". Setting null GUID
+16:56:49.774     RESOURCES (W): resource not registered: @"$profile:OpsTrackSettings.json". Setting null GUID
+16:56:49.775     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/PlayerStats.json". Setting null GUID
+16:56:49.775     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WebHook_config.json". Setting null GUID
+16:56:49.775     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_killFeed.json". Setting null GUID
+16:56:49.775     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_livestats.json". Setting null GUID
+16:56:49.776     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_status&chat.json". Setting null GUID
+16:56:49.776     RESOURCES (W): resource not registered: @"$profile:RadioData.json". Setting null GUID
+16:56:49.776     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Drawings_default.json". Setting null GUID
+16:56:49.776     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Markers2_default.json". Setting null GUID
+16:56:49.777     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Config.json". Setting null GUID
+16:56:49.777     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Stats.json". Setting null GUID
+16:56:49.777     RESOURCES (W): resource not registered: @"$profile:ServerRulesQuiz/ServerRulesConfig.json". Setting null GUID
+16:56:49.778     RESOURCES (W): resource not registered: @"$profile:VONData.json". Setting null GUID
+16:56:49.778     RESOURCES (W): resource not registered: @"$profile:VONServerData.json". Setting null GUID
+16:56:49.778     RESOURCES (W): resource not registered: @"$profile:vPad/Settings.json". Setting null GUID
+16:56:49.778     RESOURCES (W): resource not registered: @"$profile:WalkingSpeedIndicator/WalkingSpeedIndicatorConfig.json". Setting null GUID
+16:56:49.854   RESOURCES (E): ResourceDB: could not open cache file
+16:56:49.864   ENGINE       : GameProject load
+16:56:49.864    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECoreDev_65AD7D0D9941A380/dev.gproj"
+16:56:49.865     RESOURCES (E): Wrong GUID/name for resource @"{DE0B68C7B4B0E89C}Language/ACE_localization.st" in property "StringTableSource"
+16:56:49.865    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCoreDev_6586079789278413/dev.gproj"
+16:56:49.867     RESOURCES (E): Wrong GUID/name for resource @"{D393C26C894B1404}Language/ACE_Medical_Core_localization.st" in property "StringTableSource"
+16:56:49.867    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCirculationDev_65AD7D4F994EA327/dev.gproj"
+16:56:49.867     RESOURCES (E): Wrong GUID/name for resource @"{0780D43A82968920}Language/ACE_Medical_Circulation_localization.st" in property "StringTableSource"
+16:56:49.868    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECarryingDev_65AD7C379CBD394D/dev.gproj"
+16:56:49.868     RESOURCES (E): Wrong GUID/name for resource @"{2E272B1D21C4446A}Language/ACE_Carrying_localization.st" in property "StringTableSource"
+16:56:54.572  INIT         : Workbench Create Game
+16:56:54.573   SCRIPT       : Compiling Game scripts
+16:56:54.573    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+16:56:54.809    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+16:56:54.809    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+16:56:55.070    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+16:56:55.103    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+16:56:55.205    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+16:56:55.206    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+16:56:55.206    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+16:56:55.206    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+16:56:55.308    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+16:56:55.308    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+16:56:55.310    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+16:56:55.352    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+16:56:55.353    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+16:56:55.407    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+16:56:55.426    RESOURCES    : GetResourceObject @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+16:56:55.426     WORLD        : Entity prefab load @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+16:56:55.426      WORLD     (E): Unknown class 'SCR_ChimeraCharacter' at offset 21(0x15)
+16:56:55.427      ENGINE    (W): Can't load prefab Prefabs/Characters/Core/Character_Base.et
+16:56:55.427     RESOURCES (E): Failed to load
+16:56:55.744   ENGINE    (E): BackendDebug:: cannot create directory ($logs:.backend/)
+16:56:55.799   PLATFORM  (E): Steamworks: SteamAPI_Init failed. Is Steam running?
+16:56:55.799   PLATFORM  (E): Could not initialize platform services.
+17:02:29.362 INIT         : Workbench startup
+17:02:29.362  INIT         : Workbench Init Engine
+17:02:29.364   RESOURCES    : ResourceDB: full scan
+17:02:29.364    RESOURCES    : processing meta-files...
+17:02:29.364     RESOURCES (E): metafile without corresponding resource: '$RAMI_AdvancedMedicalInterface:UI/Textures/RAMI_BodyZones/RAMI_Tourniquet.edds.meta'
+17:02:29.427    RESOURCES    : processing files...
+17:02:29.428     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/config.json". Setting null GUID
+17:02:29.428     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_ravage.json". Setting null GUID
+17:02:29.428     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_robots.json". Setting null GUID
+17:02:29.428     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_ravage_as_fia.json". Setting null GUID
+17:02:29.428     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default.json". Setting null GUID
+17:02:29.429     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default_pve.json". Setting null GUID
+17:02:29.429     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/config.json". Setting null GUID
+17:02:29.429     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_02.json". Setting null GUID
+17:02:29.429     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_03.json". Setting null GUID
+17:02:29.430     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_04.json". Setting null GUID
+17:02:29.430     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/playerstats.json". Setting null GUID
+17:02:29.430     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/16e0b884-a2f2-49c5-a722-3b44148f8b26_playerstats.json". Setting null GUID
+17:02:29.430     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemote.json". Setting null GUID
+17:02:29.431     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptions.json". Setting null GUID
+17:02:29.431     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptionsList.json". Setting null GUID
+17:02:29.431     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/OneTimeWipeAllPlayerXP.json". Setting null GUID
+17:02:29.431     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PersistentRanks.json". Setting null GUID
+17:02:29.432     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PlayerStatsSubMenuVisibility.json". Setting null GUID
+17:02:29.432     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PunishAdminsForTeamKills.json". Setting null GUID
+17:02:29.432     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/RemoveVehicleKillsFromKDRatio.json". Setting null GUID
+17:02:29.432     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/SavingMethod.json". Setting null GUID
+17:02:29.433     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerStats.json". Setting null GUID
+17:02:29.433     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerXP.json". Setting null GUID
+17:02:29.433     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ServerStartWipePlayerXP.json". Setting null GUID
+17:02:29.433     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/StatsAreOnlyVisibleInOwnHQ.json". Setting null GUID
+17:02:29.434     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipePlayerStatsExemptions.json". Setting null GUID
+17:02:29.434     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipeXPExemptions.json". Setting null GUID
+17:02:29.434     RESOURCES (W): resource not registered: @"$profile:CMSquadRadioSound/player_ui_settings.json". Setting null GUID
+17:02:29.434     RESOURCES (W): resource not registered: @"$profile:DEH_RealTimeSyncConfig.json". Setting null GUID
+17:02:29.434     RESOURCES (W): resource not registered: @"$profile:GM_Tools/gm_tools_config.json". Setting null GUID
+17:02:29.434     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/grs_atak.json". Setting null GUID
+17:02:29.434     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/players/16e0b884-a2f2-49c5-a722-3b44148f8b26.json". Setting null GUID
+17:02:29.434     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/profile.json". Setting null GUID
+17:02:29.436     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/server_config.json". Setting null GUID
+17:02:29.436     RESOURCES (W): resource not registered: @"$profile:IRRU_RFPropagation.json". Setting null GUID
+17:02:29.436     RESOURCES (W): resource not registered: @"$profile:LAG_server_restarter_config.json". Setting null GUID
+17:02:29.436     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPConfig.json". Setting null GUID
+17:02:29.437     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPProgress.json". Setting null GUID
+17:02:29.437     RESOURCES (W): resource not registered: @"$profile:OpsTrackSettings.json". Setting null GUID
+17:02:29.437     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/PlayerStats.json". Setting null GUID
+17:02:29.437     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WebHook_config.json". Setting null GUID
+17:02:29.438     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_killFeed.json". Setting null GUID
+17:02:29.438     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_livestats.json". Setting null GUID
+17:02:29.438     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_status&chat.json". Setting null GUID
+17:02:29.438     RESOURCES (W): resource not registered: @"$profile:RadioData.json". Setting null GUID
+17:02:29.439     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Drawings_default.json". Setting null GUID
+17:02:29.439     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Markers2_default.json". Setting null GUID
+17:02:29.439     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Config.json". Setting null GUID
+17:02:29.439     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Stats.json". Setting null GUID
+17:02:29.440     RESOURCES (W): resource not registered: @"$profile:ServerRulesQuiz/ServerRulesConfig.json". Setting null GUID
+17:02:29.440     RESOURCES (W): resource not registered: @"$profile:VONData.json". Setting null GUID
+17:02:29.440     RESOURCES (W): resource not registered: @"$profile:VONServerData.json". Setting null GUID
+17:02:29.440     RESOURCES (W): resource not registered: @"$profile:vPad/Settings.json". Setting null GUID
+17:02:29.441     RESOURCES (W): resource not registered: @"$profile:WalkingSpeedIndicator/WalkingSpeedIndicatorConfig.json". Setting null GUID
+17:02:29.512   RESOURCES (E): ResourceDB: could not open cache file
+17:02:29.523   ENGINE       : GameProject load
+17:02:29.523    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECoreDev_65AD7D0D9941A380/dev.gproj"
+17:02:29.524     RESOURCES (E): Wrong GUID/name for resource @"{DE0B68C7B4B0E89C}Language/ACE_localization.st" in property "StringTableSource"
+17:02:29.524    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCoreDev_6586079789278413/dev.gproj"
+17:02:29.524     RESOURCES (E): Wrong GUID/name for resource @"{D393C26C894B1404}Language/ACE_Medical_Core_localization.st" in property "StringTableSource"
+17:02:29.525    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCirculationDev_65AD7D4F994EA327/dev.gproj"
+17:02:29.525     RESOURCES (E): Wrong GUID/name for resource @"{0780D43A82968920}Language/ACE_Medical_Circulation_localization.st" in property "StringTableSource"
+17:02:29.527    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECarryingDev_65AD7C379CBD394D/dev.gproj"
+17:02:29.527     RESOURCES (E): Wrong GUID/name for resource @"{2E272B1D21C4446A}Language/ACE_Carrying_localization.st" in property "StringTableSource"
+17:02:34.217  INIT         : Workbench Create Game
+17:02:34.217   SCRIPT       : Compiling Game scripts
+17:02:34.217    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+17:02:34.474    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+17:02:34.475    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+17:02:34.743    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+17:02:34.783    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+17:02:34.873    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+17:02:34.873    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+17:02:34.874    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+17:02:34.874    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+17:02:34.965    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+17:02:34.966    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+17:02:34.969    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+17:02:35.011    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+17:02:35.011    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+17:02:35.069    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+17:02:35.087    RESOURCES    : GetResourceObject @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+17:02:35.087     WORLD        : Entity prefab load @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+17:02:35.088      WORLD     (E): Unknown class 'SCR_ChimeraCharacter' at offset 21(0x15)
+17:02:35.088      ENGINE    (W): Can't load prefab Prefabs/Characters/Core/Character_Base.et
+17:02:35.088     RESOURCES (E): Failed to load
+17:02:35.437   ENGINE    (E): BackendDebug:: cannot create directory ($logs:.backend/)
+17:02:35.494   PLATFORM  (E): Steamworks: SteamAPI_Init failed. Is Steam running?
+17:02:35.494   PLATFORM  (E): Could not initialize platform services.
+17:12:40.840 INIT         : Workbench startup
+17:12:40.841  INIT         : Workbench Init Engine
+17:12:40.841   RESOURCES    : ResourceDB: full scan
+17:12:40.841    RESOURCES    : processing meta-files...
+17:12:40.841     RESOURCES (E): metafile without corresponding resource: '$RAMI_AdvancedMedicalInterface:UI/Textures/RAMI_BodyZones/RAMI_Tourniquet.edds.meta'
+17:12:40.906    RESOURCES    : processing files...
+17:12:40.906     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/config.json". Setting null GUID
+17:12:40.907     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_ravage.json". Setting null GUID
+17:12:40.907     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_robots.json". Setting null GUID
+17:12:40.907     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_ravage_as_fia.json". Setting null GUID
+17:12:40.907     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default.json". Setting null GUID
+17:12:40.907     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default_pve.json". Setting null GUID
+17:12:40.908     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/config.json". Setting null GUID
+17:12:40.908     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_02.json". Setting null GUID
+17:12:40.908     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_03.json". Setting null GUID
+17:12:40.908     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_04.json". Setting null GUID
+17:12:40.908     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/playerstats.json". Setting null GUID
+17:12:40.909     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/16e0b884-a2f2-49c5-a722-3b44148f8b26_playerstats.json". Setting null GUID
+17:12:40.909     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemote.json". Setting null GUID
+17:12:40.909     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptions.json". Setting null GUID
+17:12:40.909     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptionsList.json". Setting null GUID
+17:12:40.909     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/OneTimeWipeAllPlayerXP.json". Setting null GUID
+17:12:40.910     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PersistentRanks.json". Setting null GUID
+17:12:40.910     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PlayerStatsSubMenuVisibility.json". Setting null GUID
+17:12:40.910     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PunishAdminsForTeamKills.json". Setting null GUID
+17:12:40.910     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/RemoveVehicleKillsFromKDRatio.json". Setting null GUID
+17:12:40.911     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/SavingMethod.json". Setting null GUID
+17:12:40.911     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerStats.json". Setting null GUID
+17:12:40.911     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerXP.json". Setting null GUID
+17:12:40.911     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ServerStartWipePlayerXP.json". Setting null GUID
+17:12:40.911     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/StatsAreOnlyVisibleInOwnHQ.json". Setting null GUID
+17:12:40.912     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipePlayerStatsExemptions.json". Setting null GUID
+17:12:40.912     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipeXPExemptions.json". Setting null GUID
+17:12:40.912     RESOURCES (W): resource not registered: @"$profile:CMSquadRadioSound/player_ui_settings.json". Setting null GUID
+17:12:40.912     RESOURCES (W): resource not registered: @"$profile:DEH_RealTimeSyncConfig.json". Setting null GUID
+17:12:40.912     RESOURCES (W): resource not registered: @"$profile:GM_Tools/gm_tools_config.json". Setting null GUID
+17:12:40.912     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/grs_atak.json". Setting null GUID
+17:12:40.912     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/players/16e0b884-a2f2-49c5-a722-3b44148f8b26.json". Setting null GUID
+17:12:40.914     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/profile.json". Setting null GUID
+17:12:40.914     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/server_config.json". Setting null GUID
+17:12:40.914     RESOURCES (W): resource not registered: @"$profile:IRRU_RFPropagation.json". Setting null GUID
+17:12:40.914     RESOURCES (W): resource not registered: @"$profile:LAG_server_restarter_config.json". Setting null GUID
+17:12:40.915     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPConfig.json". Setting null GUID
+17:12:40.915     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPProgress.json". Setting null GUID
+17:12:40.915     RESOURCES (W): resource not registered: @"$profile:OpsTrackSettings.json". Setting null GUID
+17:12:40.915     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/PlayerStats.json". Setting null GUID
+17:12:40.915     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WebHook_config.json". Setting null GUID
+17:12:40.915     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_killFeed.json". Setting null GUID
+17:12:40.915     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_livestats.json". Setting null GUID
+17:12:40.915     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_status&chat.json". Setting null GUID
+17:12:40.917     RESOURCES (W): resource not registered: @"$profile:RadioData.json". Setting null GUID
+17:12:40.917     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Drawings_default.json". Setting null GUID
+17:12:40.917     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Markers2_default.json". Setting null GUID
+17:12:40.917     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Config.json". Setting null GUID
+17:12:40.917     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Stats.json". Setting null GUID
+17:12:40.917     RESOURCES (W): resource not registered: @"$profile:ServerRulesQuiz/ServerRulesConfig.json". Setting null GUID
+17:12:40.918     RESOURCES (W): resource not registered: @"$profile:VONData.json". Setting null GUID
+17:12:40.918     RESOURCES (W): resource not registered: @"$profile:VONServerData.json". Setting null GUID
+17:12:40.918     RESOURCES (W): resource not registered: @"$profile:vPad/Settings.json". Setting null GUID
+17:12:40.918     RESOURCES (W): resource not registered: @"$profile:WalkingSpeedIndicator/WalkingSpeedIndicatorConfig.json". Setting null GUID
+17:12:40.994   RESOURCES (E): ResourceDB: could not open cache file
+17:12:41.005   ENGINE       : GameProject load
+17:12:41.005    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECoreDev_65AD7D0D9941A380/dev.gproj"
+17:12:41.005     RESOURCES (E): Wrong GUID/name for resource @"{DE0B68C7B4B0E89C}Language/ACE_localization.st" in property "StringTableSource"
+17:12:41.006    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCoreDev_6586079789278413/dev.gproj"
+17:12:41.006     RESOURCES (E): Wrong GUID/name for resource @"{D393C26C894B1404}Language/ACE_Medical_Core_localization.st" in property "StringTableSource"
+17:12:41.007    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCirculationDev_65AD7D4F994EA327/dev.gproj"
+17:12:41.007     RESOURCES (E): Wrong GUID/name for resource @"{0780D43A82968920}Language/ACE_Medical_Circulation_localization.st" in property "StringTableSource"
+17:12:41.007    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECarryingDev_65AD7C379CBD394D/dev.gproj"
+17:12:41.008     RESOURCES (E): Wrong GUID/name for resource @"{2E272B1D21C4446A}Language/ACE_Carrying_localization.st" in property "StringTableSource"
+17:12:45.734  INIT         : Workbench Create Game
+17:12:45.734   SCRIPT       : Compiling Game scripts
+17:12:45.734    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+17:12:45.985    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+17:12:45.986    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+17:12:46.249    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+17:12:46.282    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+17:12:46.375    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+17:12:46.376    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+17:12:46.376    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+17:12:46.377    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+17:12:46.469    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+17:12:46.469    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+17:12:46.472    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+17:12:46.514    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+17:12:46.515    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+17:12:46.570    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+17:12:46.589    RESOURCES    : GetResourceObject @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+17:12:46.589     WORLD        : Entity prefab load @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+17:12:46.589      WORLD     (E): Unknown class 'SCR_ChimeraCharacter' at offset 21(0x15)
+17:12:46.590      ENGINE    (W): Can't load prefab Prefabs/Characters/Core/Character_Base.et
+17:12:46.590     RESOURCES (E): Failed to load
+17:12:46.932   ENGINE    (E): BackendDebug:: cannot create directory ($logs:.backend/)
+17:12:46.998   PLATFORM  (E): Steamworks: SteamAPI_Init failed. Is Steam running?
+17:12:46.998   PLATFORM  (E): Could not initialize platform services.
+17:27:58.570 INIT         : Workbench startup
+17:27:58.570  INIT         : Workbench Init Engine
+17:27:58.570   RESOURCES    : ResourceDB: full scan
+17:27:58.571    RESOURCES    : processing meta-files...
+17:27:58.571     RESOURCES (E): metafile without corresponding resource: '$RAMI_AdvancedMedicalInterface:UI/Textures/RAMI_BodyZones/RAMI_Tourniquet.edds.meta'
+17:27:58.646    RESOURCES    : processing files...
+17:27:58.647     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/config.json". Setting null GUID
+17:27:58.647     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_ravage.json". Setting null GUID
+17:27:58.647     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_pve_robots.json". Setting null GUID
+17:27:58.648     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/conflict_ravage_as_fia.json". Setting null GUID
+17:27:58.648     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default.json". Setting null GUID
+17:27:58.648     RESOURCES (W): resource not registered: @"$profile:AmbientSpawnConfig/Templates/default_pve.json". Setting null GUID
+17:27:58.648     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/config.json". Setting null GUID
+17:27:58.650     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_02.json". Setting null GUID
+17:27:58.650     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_03.json". Setting null GUID
+17:27:58.650     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/global_2026_04.json". Setting null GUID
+17:27:58.651     RESOURCES (W): resource not registered: @"$profile:ArmaStatsBot/playerstats.json". Setting null GUID
+17:27:58.651     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/16e0b884-a2f2-49c5-a722-3b44148f8b26_playerstats.json". Setting null GUID
+17:27:58.651     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemote.json". Setting null GUID
+17:27:58.651     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptions.json". Setting null GUID
+17:27:58.652     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/AdminCanPromoteDemoteExemptionsList.json". Setting null GUID
+17:27:58.652     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/OneTimeWipeAllPlayerXP.json". Setting null GUID
+17:27:58.652     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PersistentRanks.json". Setting null GUID
+17:27:58.653     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PlayerStatsSubMenuVisibility.json". Setting null GUID
+17:27:58.653     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/PunishAdminsForTeamKills.json". Setting null GUID
+17:27:58.654     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/RemoveVehicleKillsFromKDRatio.json". Setting null GUID
+17:27:58.654     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/SavingMethod.json". Setting null GUID
+17:27:58.654     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerStats.json". Setting null GUID
+17:27:58.655     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ScenarioEndWipePlayerXP.json". Setting null GUID
+17:27:58.655     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/ServerStartWipePlayerXP.json". Setting null GUID
+17:27:58.655     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/StatsAreOnlyVisibleInOwnHQ.json". Setting null GUID
+17:27:58.656     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipePlayerStatsExemptions.json". Setting null GUID
+17:27:58.656     RESOURCES (W): resource not registered: @"$profile:CMPlayerStatsHUD/AdminServerSettings/WipeXPExemptions.json". Setting null GUID
+17:27:58.656     RESOURCES (W): resource not registered: @"$profile:CMSquadRadioSound/player_ui_settings.json". Setting null GUID
+17:27:58.656     RESOURCES (W): resource not registered: @"$profile:DEH_RealTimeSyncConfig.json". Setting null GUID
+17:27:58.657     RESOURCES (W): resource not registered: @"$profile:GM_Tools/gm_tools_config.json". Setting null GUID
+17:27:58.657     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/grs_atak.json". Setting null GUID
+17:27:58.658     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/players/16e0b884-a2f2-49c5-a722-3b44148f8b26.json". Setting null GUID
+17:27:58.658     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/profile.json". Setting null GUID
+17:27:58.658     RESOURCES (W): resource not registered: @"$profile:GRS_ATAK/server_config.json". Setting null GUID
+17:27:58.658     RESOURCES (W): resource not registered: @"$profile:IRRU_RFPropagation.json". Setting null GUID
+17:27:58.659     RESOURCES (W): resource not registered: @"$profile:LAG_server_restarter_config.json". Setting null GUID
+17:27:58.659     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPConfig.json". Setting null GUID
+17:27:58.659     RESOURCES (W): resource not registered: @"$profile:LinearConflictPVEConfig/LCPProgress.json". Setting null GUID
+17:27:58.659     RESOURCES (W): resource not registered: @"$profile:OpsTrackSettings.json". Setting null GUID
+17:27:58.660     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/PlayerStats.json". Setting null GUID
+17:27:58.660     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WebHook_config.json". Setting null GUID
+17:27:58.660     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_killFeed.json". Setting null GUID
+17:27:58.660     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_livestats.json". Setting null GUID
+17:27:58.661     RESOURCES (W): resource not registered: @"$profile:PlayerStatsList/WH_status&chat.json". Setting null GUID
+17:27:58.661     RESOURCES (W): resource not registered: @"$profile:RadioData.json". Setting null GUID
+17:27:58.661     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Drawings_default.json". Setting null GUID
+17:27:58.661     RESOURCES (W): resource not registered: @"$profile:SavingMarkers/SM_Markers2_default.json". Setting null GUID
+17:27:58.662     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Config.json". Setting null GUID
+17:27:58.662     RESOURCES (W): resource not registered: @"$profile:ServerAdminTools_Stats.json". Setting null GUID
+17:27:58.662     RESOURCES (W): resource not registered: @"$profile:ServerRulesQuiz/ServerRulesConfig.json". Setting null GUID
+17:27:58.662     RESOURCES (W): resource not registered: @"$profile:VONData.json". Setting null GUID
+17:27:58.663     RESOURCES (W): resource not registered: @"$profile:VONServerData.json". Setting null GUID
+17:27:58.663     RESOURCES (W): resource not registered: @"$profile:vPad/Settings.json". Setting null GUID
+17:27:58.663     RESOURCES (W): resource not registered: @"$profile:WalkingSpeedIndicator/WalkingSpeedIndicatorConfig.json". Setting null GUID
+17:27:58.834   RESOURCES (E): ResourceDB: could not open cache file
+17:27:58.849   ENGINE       : GameProject load
+17:27:58.850    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECoreDev_65AD7D0D9941A380/dev.gproj"
+17:27:58.850     RESOURCES (E): Wrong GUID/name for resource @"{DE0B68C7B4B0E89C}Language/ACE_localization.st" in property "StringTableSource"
+17:27:58.851    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCoreDev_6586079789278413/dev.gproj"
+17:27:58.851     RESOURCES (E): Wrong GUID/name for resource @"{D393C26C894B1404}Language/ACE_Medical_Core_localization.st" in property "StringTableSource"
+17:27:58.852    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACEMedicalCirculationDev_65AD7D4F994EA327/dev.gproj"
+17:27:58.852     RESOURCES (E): Wrong GUID/name for resource @"{0780D43A82968920}Language/ACE_Medical_Circulation_localization.st" in property "StringTableSource"
+17:27:58.853    INIT         : GameProject load project data @"C:/Users/jaco5/Documents/My Games/ArmaReforger/addons/ACECarryingDev_65AD7C379CBD394D/dev.gproj"
+17:27:58.853     RESOURCES (E): Wrong GUID/name for resource @"{2E272B1D21C4446A}Language/ACE_Carrying_localization.st" in property "StringTableSource"
+17:28:03.535  INIT         : Workbench Create Game
+17:28:03.535   SCRIPT       : Compiling Game scripts
+17:28:03.535    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+17:28:03.771    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+17:28:03.771    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+17:28:04.030    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+17:28:04.064    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+17:28:04.158    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+17:28:04.160    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+17:28:04.160    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+17:28:04.160    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+17:28:04.254    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+17:28:04.254    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+17:28:04.257    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+17:28:04.300    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+17:28:04.301    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+17:28:04.356    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+17:28:04.376    RESOURCES    : GetResourceObject @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+17:28:04.376     WORLD        : Entity prefab load @"{37578B1666981FCE}Prefabs/Characters/Core/Character_Base.et"
+17:28:04.376      WORLD     (E): Unknown class 'SCR_ChimeraCharacter' at offset 21(0x15)
+17:28:04.376      ENGINE    (W): Can't load prefab Prefabs/Characters/Core/Character_Base.et
+17:28:04.377     RESOURCES (E): Failed to load
+17:28:04.715   ENGINE    (E): BackendDebug:: cannot create directory ($logs:.backend/)
+17:28:04.772   PLATFORM  (E): Steamworks: SteamAPI_Init failed. Is Steam running?
+17:28:04.772   PLATFORM  (E): Could not initialize platform services.

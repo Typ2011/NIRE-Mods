@@ -1,0 +1,237 @@
+FrameWidgetClass "{6A03010001000001}" {
+ Name "rootFrame"
+ Slot FrameWidgetSlot "{6A03010001010001}" {
+  Anchor 0 0 1 1
+  PositionX 0
+  OffsetLeft 0
+  PositionY 0
+  OffsetTop 0
+  SizeX 0
+  OffsetRight 0
+  SizeY 0
+  OffsetBottom 0
+ }
+ {
+  TextWidgetClass "{6A03010002000001}" {
+   Name "PageTitle"
+   Slot FrameWidgetSlot "{6A03010002010001}" {
+    Anchor 0 0 1 0.09
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "Triage"
+   "Font Size" 36
+   "Min Font Size" 28
+   "Horizontal Alignment" Center
+  }
+  ButtonWidgetClass "{6A03010004000001}" {
+   Name "TriageLevelNone"
+   Slot FrameWidgetSlot "{6A03010004010001}" {
+    Anchor 0.05 0.21 0.22 0.31
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{6A03010004020001}" {
+     Name "TriageLevelNoneText"
+     Slot ButtonWidgetSlot "{6A03010004030001}" {
+     }
+     Color 0 0 0 1
+     Text "NONE"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{6A03010005000001}" {
+   Name "TriageLevelMinimal"
+   Slot FrameWidgetSlot "{6A03010005010001}" {
+    Anchor 0.24 0.21 0.41 0.31
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{6A03010005020001}" {
+     Name "TriageLevelMinimalText"
+     Slot ButtonWidgetSlot "{6A03010005030001}" {
+     }
+     Color 0 0.45 0 1
+     Text "MINIMAL"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{6A03010006000001}" {
+   Name "TriageLevelDelayed"
+   Slot FrameWidgetSlot "{6A03010006010001}" {
+    Anchor 0.43 0.21 0.60 0.31
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{6A03010006020001}" {
+     Name "TriageLevelDelayedText"
+     Slot ButtonWidgetSlot "{6A03010006030001}" {
+     }
+     Color 0.7 0.55 0 1
+     Text "DELAYED"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{6A03010007000001}" {
+   Name "TriageLevelImmediate"
+   Slot FrameWidgetSlot "{6A03010007010001}" {
+    Anchor 0.62 0.21 0.79 0.31
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{6A03010007020001}" {
+     Name "TriageLevelImmediateText"
+     Slot ButtonWidgetSlot "{6A03010007030001}" {
+     }
+     Color 0.8 0 0 1
+     Text "IMMEDIATE"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{6A03010008000001}" {
+   Name "TriageLevelExpectant"
+   Slot FrameWidgetSlot "{6A03010008010001}" {
+    Anchor 0.81 0.21 0.95 0.31
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{6A03010008020001}" {
+     Name "TriageLevelExpectantText"
+     Slot ButtonWidgetSlot "{6A03010008030001}" {
+     }
+     Color 0 0 0 1
+     Text "DECEASED"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  TextWidgetClass "{6A03010009000001}" {
+   Name "TriageActivityTitle"
+   Slot FrameWidgetSlot "{6A03010009010001}" {
+    Anchor 0.05 0.36 0.95 0.43
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "PATIENT ACTIVITY"
+   "Font Size" 22
+   "Min Font Size" 16
+  }
+  ScrollLayoutWidgetClass "{6A0301000A000001}" {
+   Name "TriageActivityScroll"
+   Slot FrameWidgetSlot "{6A0301000A010001}" {
+    Anchor 0.05 0.44 0.95 0.94
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   components {
+    SCR_GamepadScrollComponent "{7B1401000E000001}" {
+    }
+   }
+   style Small
+   {
+    VerticalLayoutWidgetClass "{6A0301000B000001}" {
+     Name "TriageActivityContent"
+     Slot AlignableSlot "{6A0301000B010001}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+      Padding 0 0 12 0
+     }
+     {
+      TextWidgetClass "{6A0301000C000001}" {
+       Name "TriageActivityLog"
+       Slot LayoutSlot "{6A0301000C010001}" {
+        SizeToContent 1
+       }
+       Text "NO ACTIVITY RECORDED"
+       "Font Size" 14
+       "Min Font Size" 11
+       Wrap 1
+      }
+     }
+    }
+   }
+  }
+  ButtonWidgetClass "{7B1401000D000001}" {
+   Name "TriageActivityFocus"
+   Slot FrameWidgetSlot "{7B1401000D010001}" {
+    Anchor 0.05 0.44 0.95 0.94
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0 0 0 0
+  }
+ }
+}

@@ -1,0 +1,46 @@
+ButtonWidgetClass "{A1E6470C8DBF4101}" {
+ Name "Row"
+ Slot LayoutSlot "{A1E6470C8DBF4102}" {
+  Padding 2 2 2 2
+ }
+ Color 0.16 0.22 0.24 0.95
+ {
+  HorizontalLayoutWidgetClass "{A1E6470C8DBF4103}" {
+   Name "Content"
+   Slot ButtonWidgetSlot "{A1E6470C8DBF4104}" {
+   }
+   {
+    SizeLayoutWidgetClass "{A1E6470C8DBF4105}" {
+     Name "PreviewSize"
+     Slot LayoutSlot "{A1E6470C8DBF4106}" {
+      VerticalAlign 1
+      Padding 4 4 4 4
+     }
+     {
+      ItemPreviewWidgetClass "{A1E6470C8DBF4107}" {
+       Name "Preview"
+       Slot SizeLayoutSlot "{A1E6470C8DBF4108}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+      }
+     }
+    }
+    TextWidgetClass "{A1E6470C8DBF4109}" {
+     Name "Label"
+     Slot LayoutSlot "{A1E6470C8DBF410A}" {
+      VerticalAlign 3
+      Padding 8 0 4 0
+      FillWeight 1
+     }
+     Text "Item"
+     Color 0.95 0.95 0.92 1
+     "Font Size" 18
+     "Min Font Size" 14
+    "Horizontal Alignment" Left
+    "Vertical Alignment" Center
+    }
+   }
+  }
+ }
+}

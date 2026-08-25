@@ -1,0 +1,8 @@
+GameProject {
+ ID "AMI_ACE_Breathing_Compat"
+ GUID "6A2CBB1E9543DD6F"
+ TITLE "AMI ACE Breathing Compat"
+ Dependencies {
+  "58D0FB3206B6F859" "D36C5B996922FFDE" "671F73D99978B4F2"
+ }
+}

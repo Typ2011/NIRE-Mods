@@ -1,0 +1,843 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  TextWidgetClass "{69FD01A334A5EB09}" {
+   Name "PageTitle"
+   Slot FrameWidgetSlot "{69FD0101BF12AF4E}" {
+    Anchor 0 0 0.35 0.1
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY -10.8
+    OffsetBottom 0
+   }
+   Text "Medical Treatment"
+   "Font Size" 32
+   "Min Font Size" 16
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  FrameWidgetClass "{A8D3F21C6B9047E3}" {
+   Name "InventoryFrame"
+   Slot FrameWidgetSlot "{A8D3F21C6B9047E4}" {
+    Anchor 0 0.1 0.35 0.9
+    PositionX 0
+    OffsetLeft 0
+    PositionY -108
+    SizeX -19.2
+    OffsetRight 0
+    SizeY 216
+    OffsetBottom 0
+   }
+  }
+  PanelWidgetClass "{6A4A8D0101000001}" {
+   Name "PatientVitalsBackground"
+   Slot FrameWidgetSlot "{6A4A8D0101000002}" {
+    Anchor 0.71 0.05 0.985 0.47
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.03 0.05 0.07 0.88
+  }
+  TextWidgetClass "{6A4A8D0101000003}" {
+   Name "PatientVitalsHeader"
+   Slot FrameWidgetSlot "{6A4A8D0101000004}" {
+    Anchor 0.73 0.07 0.965 0.12
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.2 0.7 1 1
+   Text "PATIENT VITALS"
+   "Font Size" 26
+   "Min Font Size" 18
+   "Vertical Alignment" Center
+  }
+  PanelWidgetClass "{6A4A8D0101000005}" {
+   Name "PatientVitalsDivider"
+   Slot FrameWidgetSlot "{6A4A8D0101000006}" {
+    Anchor 0.73 0.13 0.965 0.134
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.2 0.7 1 0.65
+  }
+  TextWidgetClass "{69FD01A334A5EB82}" {
+   Name "PatientVitals"
+   Slot FrameWidgetSlot "{69FB751BF12AF4E2}" {
+    Anchor 0.73 0.15 0.965 0.44
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.65 0.73 0.8 1
+   Text "Waiting for ACE patient data..."
+   "Font Size" 16
+   "Min Font Size" 16
+   Wrap 1
+  }
+  TextWidgetClass "{69FD01A334A5EB83}" {
+   Name "PatientVitalValues"
+   Slot FrameWidgetSlot "{69FB751BF12AF4E3}" {
+    Anchor 0.73 0.15 0.965 0.44
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.92 0.97 1 1
+   "Font Size" 16
+   "Min Font Size" 16
+   "Horizontal Alignment" Right
+   Wrap 1
+  }
+  PanelWidgetClass "{6A4A8D0105000001}" {
+   Name "PatientMedicationsBackground"
+   Slot FrameWidgetSlot "{6A4A8D0105000002}" {
+    Anchor 0.71 0.5 0.985 0.93
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.03 0.05 0.07 0.88
+  }
+  TextWidgetClass "{6A4A8D0105000003}" {
+   Name "PatientMedicationsHeader"
+   Slot FrameWidgetSlot "{6A4A8D0105000004}" {
+    Anchor 0.73 0.52 0.965 0.57
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.2 0.7 1 1
+   Text "MEDICATIONS"
+   "Font Size" 24
+   "Min Font Size" 18
+   "Vertical Alignment" Center
+  }
+  PanelWidgetClass "{6A4A8D0105000005}" {
+   Name "PatientMedicationsDivider"
+   Slot FrameWidgetSlot "{6A4A8D0105000006}" {
+    Anchor 0.73 0.58 0.965 0.584
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0.2 0.7 1 0.65
+  }
+  ScrollLayoutWidgetClass "{6A4A8D0105000007}" {
+   Name "PatientMedicationsScroll"
+   Slot FrameWidgetSlot "{6A4A8D0105000008}" {
+    Anchor 0.73 0.6 0.965 0.9
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   components {
+    SCR_GamepadScrollComponent "{6A4A8D0105000009}" {
+    }
+   }
+   style Small
+   {
+    VerticalLayoutWidgetClass "{6A4A8D010500000A}" {
+     Name "PatientMedicationsContent"
+     Slot AlignableSlot "{6A4A8D010500000B}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+     }
+     {
+      OverlayWidgetClass "{6A4A8D0105000012}" {
+       Name "PatientMedicationsColumns"
+       Slot LayoutSlot "{6A4A8D0105000013}" {
+        SizeToContent 1
+        HorizontalAlign 3
+       }
+       {
+        TextWidgetClass "{6A4A8D010500000C}" {
+         Name "PatientMedications"
+         Slot OverlayWidgetSlot "{6A4A8D010500000D}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+         Color 0.65 0.73 0.8 1
+         Text "LOADING..."
+         "Font Size" 16
+         "Min Font Size" 16
+         Wrap 1
+        }
+        TextWidgetClass "{6A4A8D010500000E}" {
+         Name "PatientMedicationValues"
+         Slot OverlayWidgetSlot "{6A4A8D010500000F}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+          Padding 0 0 6 0
+         }
+         Color 0.92 0.97 1 1
+         "Font Size" 16
+         "Min Font Size" 16
+         "Horizontal Alignment" Right
+         Wrap 1
+       }
+       }
+      }
+     }
+    }
+   }
+  }
+  ButtonWidgetClass "{6A4A8D0105000010}" {
+   Name "PatientMedicationsFocus"
+   Slot FrameWidgetSlot "{6A4A8D0105000011}" {
+    Anchor 0.73 0.6 0.965 0.9
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 0 0 0 0
+  }
+  FrameWidgetClass "{69FD01A334A5F531}" {
+   Name "BodyModel"
+   Slot FrameWidgetSlot "{69FC2001E87F6650}" {
+    Anchor 0.351 0 0.698 1
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ImageWidgetClass "{69FD01A334A5F530}" {
+     Name "BodyZoneHead"
+     Slot FrameWidgetSlot "{69FD01A5CFE86D7C}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Texture "{19AAA1C2540968EC}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_Head.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD26D812FAC34F}" {
+     Name "BodyZoneChest"
+     Slot FrameWidgetSlot "{69FD01A5CFE86D7C}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Texture "{CC8B90D891CEA314}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_Chest.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD26D8122D47AE}" {
+     Name "BodyZoneAbdomen"
+     Slot FrameWidgetSlot "{69FD01A5CFE86D7C}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Texture "{AFC04D886C2BC5C7}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_Abdomen.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD26D813E60B97}" {
+     Name "BodyZoneLeftArm"
+     Slot FrameWidgetSlot "{69FD01A5CFE86D7C}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Texture "{2A08094A88E952F8}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_LeftArm.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD26D813BDAE4E}" {
+     Name "BodyZoneRightArm"
+     Slot FrameWidgetSlot "{69FD01A5CFE86D7C}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Texture "{04B0CC6DB75D225E}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_RightArm.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD26D8148E89EE}" {
+     Name "BodyZoneLeftLeg"
+     Slot FrameWidgetSlot "{69FD01A5CFE86D7C}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Texture "{FB637A1D66C7AC24}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_LeftLeg.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD26D817398077}" {
+     Name "BodyZoneRightLeg"
+     Slot FrameWidgetSlot "{69FD01A5CFE86D7C}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Texture "{D5DBBF3A5973DC82}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_RightLeg.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{6A4A8D0104000001}" {
+     Name "BodyZoneOutlineLeft"
+     Slot FrameWidgetSlot "{6A4A8D0104000002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 0.2 0.7 1 1
+     Opacity 0
+     Texture "{CC8B90D891CEA314}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_Chest.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{6A4A8D0104000003}" {
+     Name "BodyZoneOutlineRight"
+     Slot FrameWidgetSlot "{6A4A8D0104000004}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 0.2 0.7 1 1
+     Opacity 0
+     Texture "{CC8B90D891CEA314}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_Chest.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{6A4A8D0104000005}" {
+     Name "BodyZoneOutlineTop"
+     Slot FrameWidgetSlot "{6A4A8D0104000006}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 0.2 0.7 1 1
+     Opacity 0
+     Texture "{CC8B90D891CEA314}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_Chest.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{6A4A8D0104000007}" {
+     Name "BodyZoneOutlineBottom"
+     Slot FrameWidgetSlot "{6A4A8D0104000008}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 0.2 0.7 1 1
+     Opacity 0
+     Texture "{CC8B90D891CEA314}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_Chest.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{6A4A8D0104000009}" {
+     Name "BodyZoneOutlineMask"
+     Slot FrameWidgetSlot "{6A4A8D010400000A}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 1 1 1 1
+     Opacity 0
+     Texture "{CC8B90D891CEA314}UI/Textures/RAMI_BodyZones/RAMI_BodyZone_Chest.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD30A001000004}" {
+     Name "BodyBoneLeftArm"
+     Slot FrameWidgetSlot "{69FD30A001100004}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 1 0 0 1
+     Texture "{060CDF63CDE203E7}UI/Textures/RAMI_BodyBones/RAMI_BodyBone_LeftArm.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD30A001000005}" {
+     Name "BodyBoneRightArm"
+     Slot FrameWidgetSlot "{69FD30A001100005}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 1 0 0 1
+     Texture "{1749BE188F0803E1}UI/Textures/RAMI_BodyBones/RAMI_BodyBone_RightArm.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD30A001000006}" {
+     Name "BodyBoneLeftLeg"
+     Slot FrameWidgetSlot "{69FD30A001100006}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 15
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 1 0 0 1
+     Texture "{D767AC3423CCFD3B}UI/Textures/RAMI_BodyBones/RAMI_BodyBone_LeftLeg.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD30A001000007}" {
+     Name "BodyBoneRightLeg"
+     Slot FrameWidgetSlot "{69FD30A001100007}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 15
+      PositionY 0
+      OffsetTop 0
+      SizeX -295.68
+      OffsetRight 0
+      SizeY -466.56
+      OffsetBottom 0
+     }
+     Color 1 0 0 1
+     Texture "{C622CD4F6126FD3D}UI/Textures/RAMI_BodyBones/RAMI_BodyBone_RightLeg.edds"
+     Size 1024 1536
+    }
+    ImageWidgetClass "{69FD50A001000001}" {
+     Name "BodyTourniquetLeftArm"
+     Slot FrameWidgetSlot "{69FD50A001100001}" {
+      Anchor 0.3 0.29 0.4 0.345
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -0.666
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Rotation 15
+     Texture "{177061F4F0CE8F2C}UI/Textures/RAMI_BodyZones/RAMI_Tourniquet_v2.edds"
+     Size 2172 724
+    }
+    ImageWidgetClass "{69FD50A002000001}" {
+     Name "BodyTourniquetRightArm"
+     Slot FrameWidgetSlot "{69FD50A002100001}" {
+      Anchor 0.594 0.29 0.695 0.345
+      PositionX 0.666
+      PositionY 0
+      OffsetTop 0
+      SizeX -0.666
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Rotation -15
+     Texture "{177061F4F0CE8F2C}UI/Textures/RAMI_BodyZones/RAMI_Tourniquet_v2.edds"
+     Size 2172 724
+    }
+    ImageWidgetClass "{69FD50A003000001}" {
+     Name "BodyTourniquetLeftLeg"
+     Slot FrameWidgetSlot "{69FD50A003100001}" {
+      Anchor 0.354 0.57 0.484 0.625
+      PositionX -0.666
+      PositionY 0
+      OffsetTop 0
+      SizeX 0.666
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Texture "{177061F4F0CE8F2C}UI/Textures/RAMI_BodyZones/RAMI_Tourniquet_v2.edds"
+     Size 2172 724
+    }
+    ImageWidgetClass "{69FD50A004000001}" {
+     Name "BodyTourniquetRightLeg"
+     Slot FrameWidgetSlot "{69FD50A004100001}" {
+      Anchor 0.51 0.57 0.638 0.625
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0.666
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Texture "{177061F4F0CE8F2C}UI/Textures/RAMI_BodyZones/RAMI_Tourniquet_v2.edds"
+     Size 2172 724
+    }
+    ImageWidgetClass "{6A03000001000001}" {
+     Name "BodyInjuryHead"
+     Slot FrameWidgetSlot "{6A03000001010001}" {
+      Anchor 0.58 0.1 0.58 0.1
+      PositionX 0
+      OffsetLeft 0
+      OffsetTop 0
+      SizeX 42
+      OffsetRight -42
+      SizeY 42
+      OffsetBottom -42
+     }
+    }
+    ImageWidgetClass "{6A03000002000001}" {
+     Name "BodyInjuryChest"
+     Slot FrameWidgetSlot "{6A03000002010001}" {
+      Anchor 0.5 0.27 0.5 0.27
+      PositionX -21
+      OffsetLeft -21
+      PositionY 0
+      OffsetTop 0
+      SizeX 42
+      OffsetRight -21
+      SizeY 42
+      OffsetBottom -42
+     }
+    }
+    ImageWidgetClass "{6A03000003000001}" {
+     Name "BodyInjuryAbdomen"
+     Slot FrameWidgetSlot "{6A03000003010001}" {
+      Anchor 0.5 0.41 0.5 0.41
+      PositionX -21
+      OffsetLeft -21
+      OffsetTop 0
+      SizeX 42
+      OffsetRight -21
+      SizeY 42
+      OffsetBottom -42
+     }
+    }
+    ImageWidgetClass "{6A03000004000001}" {
+     Name "BodyInjuryLeftArm"
+     Slot FrameWidgetSlot "{6A03000004010001}" {
+      Anchor 0.26 0.34 0.26 0.34
+      PositionX -42
+      OffsetLeft -42
+      PositionY 0
+      OffsetTop 0
+      SizeX 42
+      OffsetRight 0
+      SizeY 42
+      OffsetBottom -42
+     }
+    }
+    ImageWidgetClass "{6A03000005000001}" {
+     Name "BodyInjuryRightArm"
+     Slot FrameWidgetSlot "{6A03000005010001}" {
+      Anchor 0.73 0.34 0.73 0.34
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 42
+      OffsetRight -42
+      SizeY 42
+      OffsetBottom -42
+     }
+    }
+    ImageWidgetClass "{6A03000006000001}" {
+     Name "BodyInjuryLeftLeg"
+     Slot FrameWidgetSlot "{6A03000006010001}" {
+      Anchor 0.335 0.64 0.335 0.64
+      PositionX -42
+      OffsetLeft -42
+      PositionY 0
+      OffsetTop 0
+      SizeX 42
+      OffsetRight 0
+      SizeY 42
+      OffsetBottom -42
+     }
+    }
+    ImageWidgetClass "{6A03000007000001}" {
+     Name "BodyInjuryRightLeg"
+     Slot FrameWidgetSlot "{6A03000007010001}" {
+      Anchor 0.66 0.64 0.66 0.64
+      PositionX 0
+      OffsetLeft 0
+      OffsetTop 0
+      SizeX 42
+      OffsetRight -42
+      SizeY 42
+      OffsetBottom -42
+     }
+    }
+    ImageWidgetClass "{6A03000008000001}" {
+     Name "BodySalineBag"
+     Slot FrameWidgetSlot "{6A03000008010001}" {
+      Anchor 0.25 0.1 0.25 0.1
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 64
+      OffsetRight -64
+      SizeY 64
+      OffsetBottom -64
+     }
+    }
+    ButtonWidgetClass "{69FD01A334A5F532}" {
+     Name "BodyHead"
+     Slot FrameWidgetSlot "{69FC20111B9D0249}" {
+      Anchor 0.42 0.07 0.58 0.2
+      PositionX 0
+      OffsetLeft 0
+      PositionY -24.828
+      SizeX 0
+      OffsetRight 0
+      SizeY 14.897
+      OffsetBottom 0
+     }
+     Color 1 1 1 0
+    }
+    ButtonWidgetClass "{69FD01A334A52CA1}" {
+     Name "BodyChest"
+     Slot FrameWidgetSlot "{69FC20211B9D0249}" {
+      Anchor 0.39 0.2 0.61 0.375
+      PositionX -35.611
+      PositionY -9.931
+      SizeX 171.223
+      OffsetRight 0
+      SizeY 52.345
+      OffsetBottom 0
+     }
+     Color 1 1 1 0
+    }
+    ButtonWidgetClass "{69FD01A334A52CAC}" {
+     Name "BodyAbdomen"
+     Slot FrameWidgetSlot "{69FC20311B9D0249}" {
+      Anchor 0.37 0.37 0.62 0.48
+      PositionX 0
+      OffsetLeft 0
+      PositionY 10.8
+      SizeX 0
+      OffsetRight 0
+      SizeY -10.8
+      OffsetBottom 0
+     }
+     Color 1 1 1 0
+    }
+    ButtonWidgetClass "{69FD01A334A548B7}" {
+     Name "BodyLeftArm"
+     Slot FrameWidgetSlot "{69FC20411B9D0249}" {
+      Anchor 0.22 0.2 0.39 0.55
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 100
+      OffsetRight 0
+      SizeY 44.897
+      OffsetBottom 0
+     }
+     Color 1 1 1 0
+    }
+    ButtonWidgetClass "{69FD01A334A548B6}" {
+     Name "BodyRightArm"
+     Slot FrameWidgetSlot "{69FC20511B9D0249}" {
+      Anchor 0.61 0.2 0.78 0.55
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 14.897
+      OffsetBottom 0
+     }
+     Color 1 1 1 0
+    }
+    ButtonWidgetClass "{69FD01A334A548B1}" {
+     Name "BodyLeftLeg"
+     Slot FrameWidgetSlot "{69FC20611B9D0249}" {
+      Anchor 0.33 0.47 0.49 0.89
+      PositionX 7.914
+      PositionY 34.759
+      SizeX 92.086
+      OffsetRight 0
+      SizeY 39.931
+      OffsetBottom 0
+     }
+     Color 1 1 1 0
+    }
+    ButtonWidgetClass "{69FD01A334A548B0}" {
+     Name "BodyRightLeg"
+     Slot FrameWidgetSlot "{69FC20711B9D0249}" {
+      Anchor 0.51 0.47 0.665 0.89
+      PositionX 0
+      OffsetLeft 0
+      PositionY 34.759
+      SizeX -5.935
+      OffsetRight 0
+      SizeY 9.931
+      OffsetBottom 0
+     }
+     Color 1 1 1 0
+    }
+   }
+  }
+  TextWidgetClass "{69FD01A334A54849}" {
+   Name "SelectedRegion"
+   Slot FrameWidgetSlot "{69FC2101BF12AF4E}" {
+    Anchor 0.351 0.95 0.698 1
+    PositionX 55.68
+    PositionY -248.4
+    SizeX -105.44
+    OffsetRight 0
+    SizeY 40.8
+    OffsetBottom 0
+   }
+   Text "CHEST"
+   "Font Size" 20
+   "Min Font Size" 16
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  TextWidgetClass "{69FD01A334A54866}" {
+   Name "TreatmentStatus"
+   Slot FrameWidgetSlot "{69FC2111BF12AF4E}" {
+    Anchor 0 0.9 0.35 1
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY -64.8
+    OffsetBottom 0
+   }
+   Text "SELECT BODY REGION TO TREAT"
+   "Font Size" 35
+   "Min Font Size" 30
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+   Wrap 1
+  }
+ }
+}

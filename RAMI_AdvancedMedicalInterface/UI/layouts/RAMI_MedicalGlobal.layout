@@ -1,0 +1,503 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Slot FrameWidgetSlot "{69FB6571CEBDFF28}" {
+  Anchor 0 0 1 1
+  PositionX 0
+  OffsetLeft 0
+  PositionY 0
+  OffsetTop 0
+  SizeX -1820
+  OffsetRight 0
+  SizeY -1050
+  OffsetBottom 0
+ }
+ {
+  FrameWidgetClass "{69FB6571E87F67B2}" {
+   Name "MedicalPanel"
+   Slot FrameWidgetSlot "{69FB6571E87F6650}" {
+    Anchor 0.15 0.1 0.85 0.9
+    PositionX -288
+    PositionY -108
+    SizeX -1244
+    OffsetRight 0
+    SizeY -834
+    OffsetBottom 0
+   }
+   {
+    CanvasWidgetClass "{69FB7CEF9F685A46}" {
+     Name "Background"
+     Slot FrameWidgetSlot "{69FB7CEF9F685A11}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX -1244
+      OffsetRight 0
+      SizeY -834
+      OffsetBottom 0
+     }
+     Opacity 1
+    }
+    FrameWidgetClass "{69FD01A2D8740903}" {
+     Name "ContentArea"
+     Slot FrameWidgetSlot "{69FD01A2D8740966}" {
+      Anchor 0.03 0.18 0.97 0.87
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Clipping True
+    }
+    ButtonWidgetClass "{69FB65711B9D0251}" {
+     Name "CloseButton"
+     Slot FrameWidgetSlot "{69FB65711B9D0249}" {
+      Anchor 0.85 0.9 0.97 0.97
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY -8.64
+      OffsetBottom 0
+     }
+     Color 1 1 1 0.9
+     {
+      TextWidgetClass "{69FB657357FC0514}" {
+       Name "Text0"
+       Slot ButtonWidgetSlot "{69FB657357FC050B}" {
+       }
+       Color 0 0 0 1
+       Text "Close"
+       "Font Size" 30
+       "Min Font Size" 30
+      }
+     }
+    }
+    TextWidgetClass "{69FB657111F5F5C5}" {
+     Name "Title"
+     Slot FrameWidgetSlot "{69FB657111F5F5E0}" {
+      Anchor 0.03 0.02 0.97 0.09
+      PositionX 26.88
+      PositionY 0
+      OffsetTop 0
+      SizeX -53.76
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Text "Advanced Medical Interface"
+     "Font Size" 40
+     "Min Font Size" 40
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    ButtonWidgetClass "{69FD00111B9D0251}" {
+     Name "PageTriage"
+     Slot FrameWidgetSlot "{69FD00111B9D0249}" {
+      Anchor 0.03 0.1 0.08 0.17
+      PositionX 0
+      PositionY 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 0.9
+     {
+      ImageWidgetClass "{69FD001357FC0514}" {
+       Name "PageTriageIcon"
+       Slot ButtonWidgetSlot "{69FD001357FC050B}" {
+        Padding 10 5 10 5
+       }
+       Color 0 0 0 1
+       Texture "{26667B1F6989F240}UI/Textures/RAMI_ACE3PageIcons/RAMI_ACE3_Triage.edds"
+       Size 256 256
+      }
+     }
+    }
+    ButtonWidgetClass "{69FD00211B9D0251}" {
+     Name "PageDiagnose"
+     Slot FrameWidgetSlot "{69FD00211B9D0249}" {
+      Anchor 0.085 0.1 0.135 0.17
+      PositionX 0
+      PositionY 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 0.9
+     {
+      ImageWidgetClass "{69FD002357FC0514}" {
+       Name "PageDiagnoseIcon"
+       Slot ButtonWidgetSlot "{69FD002357FC050B}" {
+        Padding 10 5 10 5
+       }
+       Color 0 0 0 1
+       Texture "{00B03382572DB2BC}UI/Textures/RAMI_ACE3PageIcons/RAMI_ACE3_Advanced.edds"
+       Size 256 256
+      }
+     }
+    }
+    ButtonWidgetClass "{69FD00311B9D0251}" {
+     Name "PageBandages"
+     Slot FrameWidgetSlot "{69FD00311B9D0249}" {
+      Anchor 0.14 0.1 0.19 0.17
+      PositionX 0
+      PositionY 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 0.9
+     {
+      ImageWidgetClass "{69FD003357FC0514}" {
+       Name "PageBandagesIcon"
+       Slot ButtonWidgetSlot "{69FD003357FC050B}" {
+        Padding 10 5 10 5
+       }
+       Color 0 0 0 1
+       Texture "{08F5912370DC673F}UI/Textures/RAMI_ACE3PageIcons/RAMI_ACE3_Bandages.edds"
+       Size 256 256
+      }
+     }
+    }
+    ButtonWidgetClass "{69FD00411B9D0251}" {
+     Name "PageMedication"
+     Slot FrameWidgetSlot "{69FD00411B9D0249}" {
+      Anchor 0.195 0.1 0.245 0.17
+      PositionX 0
+      PositionY 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 0.9
+     {
+      ImageWidgetClass "{69FD004357FC0514}" {
+       Name "PageMedicationIcon"
+       Slot ButtonWidgetSlot "{69FD004357FC050B}" {
+        Padding 10 5 10 5
+       }
+       Color 0 0 0 1
+       Texture "{6E3306DDBA5F3375}UI/Textures/RAMI_ACE3PageIcons/RAMI_ACE3_Medication.edds"
+       Size 256 256
+      }
+     }
+    }
+    ButtonWidgetClass "{69FD00511B9D0251}" {
+     Name "PageAdvanced"
+     Slot FrameWidgetSlot "{69FD00511B9D0249}" {
+      Anchor 0.25 0.1 0.3 0.17
+      PositionX 0
+      PositionY 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 0.9
+     {
+      ImageWidgetClass "{69FD005357FC0514}" {
+       Name "PageAdvancedIcon"
+       Slot ButtonWidgetSlot "{69FD005357FC050B}" {
+        Padding 10 5 10 5
+       }
+       Color 0 0 0 1
+       Texture "{752B7369ACFEF4C0}UI/Textures/RAMI_ACE3PageIcons/RAMI_ACE3_Diagnose.edds"
+       Size 256 256
+      }
+     }
+    }
+    ButtonWidgetClass "{69FD00711B9D0251}" {
+     Name "PageToggleSelf"
+     Slot FrameWidgetSlot "{69FD00711B9D0249}" {
+      Anchor 0.305 0.1 0.355 0.17
+      PositionX 0
+      PositionY 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 1 1 1 0.9
+     {
+      ImageWidgetClass "{69FD007357FC0514}" {
+       Name "PageToggleSelfIcon"
+       Slot ButtonWidgetSlot "{69FD007357FC050B}" {
+        Padding 10 5 10 5
+       }
+       Color 0 0 0 1
+       Texture "{62A3ABF279F639C8}UI/Textures/RAMI_ACE3PageIcons/RAMI_ACE3_TogglePatient.edds"
+       Size 256 256
+      }
+     }
+    }
+    PanelWidgetClass "{6A4A8D0103000001}" {
+     Name "ActivePageHighlight"
+     Slot FrameWidgetSlot "{6A4A8D0103000002}" {
+      Anchor 0.14 0.1 0.19 0.17
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.2 0.7 1 1
+     style outline_4px
+    }
+   }
+  }
+  FrameWidgetClass "{8C21A4F79D6B3101}" {
+   Name "PatientWindow"
+   Slot FrameWidgetSlot "{8C21A4F79D6B3102}" {
+    Anchor 0.855 0.1 0.99 0.9
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    CanvasWidgetClass "{8C21A4F79D6B3103}" {
+     Name "PatientWindowBackground"
+     Slot FrameWidgetSlot "{8C21A4F79D6B3104}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Opacity 1
+    }
+    TextWidgetClass "{8C21A4F79D6B3105}" {
+     Name "PatientWindowTitle"
+     Slot FrameWidgetSlot "{8C21A4F79D6B3106}" {
+      Anchor 0.08 0.025 0.92 0.1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.2 0.7 1 1
+     Text "PATIENTS"
+     "Font Size" 22
+     "Min Font Size" 14
+     "Vertical Alignment" Center
+     Wrap 1
+    }
+    TextWidgetClass "{6A4A8D0102000001}" {
+     Name "PatientWindowSubtitle"
+     Slot FrameWidgetSlot "{6A4A8D0102000002}" {
+      Anchor 0.08 0.095 0.92 0.15
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.65 0.73 0.8 1
+     Text "IN TREATMENT RANGE"
+     "Font Size" 13
+     "Min Font Size" 10
+     "Vertical Alignment" Center
+    }
+    PanelWidgetClass "{6A4A8D0102000003}" {
+     Name "PatientWindowDivider"
+     Slot FrameWidgetSlot "{6A4A8D0102000004}" {
+      Anchor 0.08 0.165 0.92 0.169
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.2 0.7 1 0.65
+    }
+    PanelWidgetClass "{6A4A8D0102000005}" {
+     Name "PatientListSurface"
+     Slot FrameWidgetSlot "{6A4A8D0102000006}" {
+      Anchor 0.05 0.19 0.95 0.97
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.03 0.05 0.07 0.72
+    }
+    TextWidgetClass "{8C21A4F79D6B3107}" {
+     Name "PatientListStatus"
+     Slot FrameWidgetSlot "{8C21A4F79D6B3108}" {
+      Anchor 0.08 0.22 0.92 0.36
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.65 0.73 0.8 1
+     Text "NO PATIENTS IN RANGE"
+     "Font Size" 16
+     "Min Font Size" 12
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+     Wrap 1
+    }
+    ScrollLayoutWidgetClass "{8C21A4F79D6B3109}" {
+     Name "PatientListScroll"
+     Slot FrameWidgetSlot "{8C21A4F79D6B310A}" {
+      Anchor 0.08 0.21 0.92 0.95
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     components {
+      SCR_GamepadScrollComponent "{8C21A4F79D6B310B}" {
+      }
+     }
+     style Small
+     {
+      VerticalLayoutWidgetClass "{8C21A4F79D6B310C}" {
+       Name "PatientList"
+       Slot AlignableSlot "{8C21A4F79D6B310D}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+        Padding 12 0 12 0
+       }
+      }
+     }
+    }
+    FrameWidgetClass "{7B5C9E1201000001}" {
+     Name "PatientActions"
+     Slot FrameWidgetSlot "{7B5C9E1201000002}" {
+      Anchor 0.05 0.69 0.95 0.97
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     {
+      PanelWidgetClass "{7B5C9E1201000003}" {
+       Name "PatientActionsBackground"
+       Slot FrameWidgetSlot "{7B5C9E1201000004}" {
+        Anchor 0 0 1 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 0.03 0.05 0.07 0.96
+      }
+      ButtonWidgetClass "{7B5C9E1201000005}" {
+       Name "PatientActionTreatButton"
+       Slot FrameWidgetSlot "{7B5C9E1201000006}" {
+        Anchor 0.08 0.08 0.92 0.45
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 0.9
+       {
+        TextWidgetClass "{7B5C9E1201000007}" {
+         Name "PatientActionTreatText"
+         Slot ButtonWidgetSlot "{7B5C9E1201000008}" {
+         }
+         Color 0 0 0 1
+         Text "TREAT"
+         "Font Size" 17
+         "Min Font Size" 11
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+         Wrap 1
+        }
+       }
+      }
+      ButtonWidgetClass "{7B5C9E1201000009}" {
+       Name "PatientActionUnloadButton"
+       Slot FrameWidgetSlot "{7B5C9E120100000A}" {
+        Anchor 0.08 0.55 0.92 0.92
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 0.9
+       {
+        TextWidgetClass "{7B5C9E120100000B}" {
+         Name "PatientActionUnloadText"
+         Slot ButtonWidgetSlot "{7B5C9E120100000C}" {
+         }
+         Color 0 0 0 1
+         Text "UNLOAD FROM VEHICLE"
+         "Font Size" 15
+         "Min Font Size" 10
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+         Wrap 1
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

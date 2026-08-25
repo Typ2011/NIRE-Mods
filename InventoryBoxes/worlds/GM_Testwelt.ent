@@ -1,0 +1,3 @@
+SubScene {
+ Parent "{3C0DE8F74D03E39B}worlds/GameMaster/GM_Testwelt2.ent"
+}

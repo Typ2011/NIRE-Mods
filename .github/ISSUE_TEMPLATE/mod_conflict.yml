@@ -1,0 +1,62 @@
+name: Mod conflict
+description: One of these mods breaks, or is broken by, another mod.
+labels: ["bug", "compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this when the problem only appears with a specific other mod loaded.
+        If the problem also happens with no other mods, use the bug report
+        template instead.
+
+  - type: dropdown
+    id: mod
+    attributes:
+      label: Which of our mods
+      options:
+        - DisableGlobalChat
+        - Expanded Saline Bags
+        - Expanded Saline Bags - UK
+        - GMVehicleLock
+        - InventoryBoxes
+        - LogisticMaster
+        - RAMI - Advanced Medical Interface
+        - AMI - ACE Breathing Compat
+    validations:
+      required: true
+
+  - type: input
+    id: other-mod
+    attributes:
+      label: Conflicting mod
+      description: Name and Workshop GUID of the other mod.
+      placeholder: "ACE Medical Core Dev (65AD7D4F994EA327)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: symptom
+    attributes:
+      label: What breaks
+      description: What works with each mod alone, and what breaks with both loaded.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: script.log excerpt
+      description: Compile errors and override warnings are what matter here.
+      render: text
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I confirmed the problem disappears when the other mod is removed.
+          required: true
+        - label: Both mods are on their current version.
+          required: true

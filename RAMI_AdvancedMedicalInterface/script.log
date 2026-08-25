@@ -1,0 +1,168 @@
+16:30:12.865    SCRIPT       : SCRIPT       : Initializing scripts
+16:30:12.865     SCRIPT       : SCRIPT       : ScriptProjectManager init
+16:30:13.218    SCRIPT       : SCRIPT       : Compiling GameLib scripts
+16:30:13.269    SCRIPT       : Module: Workbench; loaded 18x files; 36x classes; used 125K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 90ce0460
+16:30:13.269    SCRIPT       : Module: GameLib; loaded 465x files; 648x classes; used 828K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 4507af04
+16:30:13.270    SCRIPT       : SCRIPT       : Compiling Game scripts
+16:30:14.002   SCRIPT       : Compiling Game scripts
+16:30:14.002    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+16:30:14.221    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+16:30:14.221    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+16:30:14.461    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+16:30:14.491    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+16:30:14.579    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+16:30:14.579    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+16:30:14.579    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+16:30:14.579    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+16:30:14.669    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+16:30:14.669    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+16:30:14.671    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+16:30:14.710    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+16:30:14.712    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+16:30:14.762    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+16:30:15.013    SCRIPT       : Module: WorkbenchGame; loaded 170x files; 615x classes; used 2477K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 8db9d524
+16:30:15.020    SCRIPT       : Module: Game; loaded 5951x files; 11486x classes; used 33050K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE,ENABLE_BASE_DESTRUCTION,BUDGET_OPTIMIZATION_CHECKS,SHOW_DISCLAIMER,DEBUG,RESPAWN_TIMER_COMPONENT_DEBUG,GAME_MODE_DEBUG,DEBUG_CONFIGURABLE_DIALOGS,DISABLE_WEAPON_SWITCHING,SCRIPTED_AIM_MODIFIER_DEBUG"; CRC32: 17f91a1e
+16:31:52.096    SCRIPT       : SCRIPT       : Initializing scripts
+16:31:52.097     SCRIPT       : SCRIPT       : ScriptProjectManager init
+16:31:52.472    SCRIPT       : SCRIPT       : Compiling GameLib scripts
+16:31:52.518    SCRIPT       : Module: Workbench; loaded 18x files; 36x classes; used 125K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 90ce0460
+16:31:52.518    SCRIPT       : Module: GameLib; loaded 465x files; 648x classes; used 828K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 4507af04
+16:31:52.520    SCRIPT       : SCRIPT       : Compiling Game scripts
+16:31:53.270   SCRIPT       : Compiling Game scripts
+16:31:53.271    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+16:31:53.499    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+16:31:53.499    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+16:31:53.804    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+16:31:53.838    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+16:31:53.938    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+16:31:53.938    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+16:31:53.939    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+16:31:53.939    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+16:31:54.040    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+16:31:54.040    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+16:31:54.042    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+16:31:54.088    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+16:31:54.089    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+16:31:54.147    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+16:31:54.409    SCRIPT       : Module: WorkbenchGame; loaded 170x files; 615x classes; used 2477K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 8db9d524
+16:31:54.416    SCRIPT       : Module: Game; loaded 5951x files; 11486x classes; used 33050K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE,ENABLE_BASE_DESTRUCTION,BUDGET_OPTIMIZATION_CHECKS,SHOW_DISCLAIMER,DEBUG,RESPAWN_TIMER_COMPONENT_DEBUG,GAME_MODE_DEBUG,DEBUG_CONFIGURABLE_DIALOGS,DISABLE_WEAPON_SWITCHING,SCRIPTED_AIM_MODIFIER_DEBUG"; CRC32: b93e1344
+16:51:33.619    SCRIPT       : SCRIPT       : Initializing scripts
+16:51:33.620     SCRIPT       : SCRIPT       : ScriptProjectManager init
+16:51:33.980    SCRIPT       : SCRIPT       : Compiling GameLib scripts
+16:51:34.030    SCRIPT       : Module: Workbench; loaded 18x files; 36x classes; used 125K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 90ce0460
+16:51:34.030    SCRIPT       : Module: GameLib; loaded 465x files; 648x classes; used 828K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 4507af04
+16:51:34.032    SCRIPT       : SCRIPT       : Compiling Game scripts
+16:51:34.772   SCRIPT       : Compiling Game scripts
+16:51:34.774    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+16:51:34.998    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+16:51:34.998    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+16:51:35.246    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+16:51:35.277    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+16:51:35.367    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+16:51:35.367    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+16:51:35.367    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+16:51:35.368    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+16:51:35.456    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+16:51:35.456    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+16:51:35.458    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+16:51:35.499    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+16:51:35.499    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+16:51:35.552    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+16:51:35.806    SCRIPT       : Module: WorkbenchGame; loaded 170x files; 615x classes; used 2477K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 8db9d524
+16:51:35.814    SCRIPT       : Module: Game; loaded 5951x files; 11486x classes; used 33051K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE,ENABLE_BASE_DESTRUCTION,BUDGET_OPTIMIZATION_CHECKS,SHOW_DISCLAIMER,DEBUG,RESPAWN_TIMER_COMPONENT_DEBUG,GAME_MODE_DEBUG,DEBUG_CONFIGURABLE_DIALOGS,DISABLE_WEAPON_SWITCHING,SCRIPTED_AIM_MODIFIER_DEBUG"; CRC32: 967fed84
+16:56:53.342    SCRIPT       : SCRIPT       : Initializing scripts
+16:56:53.342     SCRIPT       : SCRIPT       : ScriptProjectManager init
+16:56:53.713    SCRIPT       : SCRIPT       : Compiling GameLib scripts
+16:56:53.772    SCRIPT       : Module: Workbench; loaded 18x files; 36x classes; used 125K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 90ce0460
+16:56:53.772    SCRIPT       : Module: GameLib; loaded 465x files; 648x classes; used 828K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 4507af04
+16:56:53.774    SCRIPT       : SCRIPT       : Compiling Game scripts
+16:56:54.573   SCRIPT       : Compiling Game scripts
+16:56:54.573    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+16:56:54.809    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+16:56:54.811    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+16:56:55.070    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+16:56:55.103    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+16:56:55.205    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+16:56:55.206    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+16:56:55.206    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+16:56:55.207    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+16:56:55.308    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+16:56:55.308    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+16:56:55.310    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+16:56:55.352    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+16:56:55.353    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+16:56:55.407    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+16:56:55.660    SCRIPT       : Module: WorkbenchGame; loaded 170x files; 615x classes; used 2477K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 8db9d524
+16:56:55.667    SCRIPT       : Module: Game; loaded 5951x files; 11486x classes; used 33051K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE,ENABLE_BASE_DESTRUCTION,BUDGET_OPTIMIZATION_CHECKS,SHOW_DISCLAIMER,DEBUG,RESPAWN_TIMER_COMPONENT_DEBUG,GAME_MODE_DEBUG,DEBUG_CONFIGURABLE_DIALOGS,DISABLE_WEAPON_SWITCHING,SCRIPTED_AIM_MODIFIER_DEBUG"; CRC32: cd414c9e
+17:02:32.995    SCRIPT       : SCRIPT       : Initializing scripts
+17:02:32.995     SCRIPT       : SCRIPT       : ScriptProjectManager init
+17:02:33.354    SCRIPT       : SCRIPT       : Compiling GameLib scripts
+17:02:33.412    SCRIPT       : Module: Workbench; loaded 18x files; 36x classes; used 125K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 90ce0460
+17:02:33.412    SCRIPT       : Module: GameLib; loaded 465x files; 648x classes; used 828K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 4507af04
+17:02:33.415    SCRIPT       : SCRIPT       : Compiling Game scripts
+17:02:34.217   SCRIPT       : Compiling Game scripts
+17:02:34.217    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+17:02:34.475    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+17:02:34.475    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+17:02:34.743    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+17:02:34.784    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+17:02:34.873    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+17:02:34.874    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+17:02:34.874    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+17:02:34.874    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+17:02:34.965    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+17:02:34.966    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+17:02:34.969    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+17:02:35.011    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+17:02:35.011    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+17:02:35.069    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+17:02:35.327    SCRIPT       : Module: WorkbenchGame; loaded 170x files; 615x classes; used 2477K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 8db9d524
+17:02:35.334    SCRIPT       : Module: Game; loaded 5951x files; 11486x classes; used 33051K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE,ENABLE_BASE_DESTRUCTION,BUDGET_OPTIMIZATION_CHECKS,SHOW_DISCLAIMER,DEBUG,RESPAWN_TIMER_COMPONENT_DEBUG,GAME_MODE_DEBUG,DEBUG_CONFIGURABLE_DIALOGS,DISABLE_WEAPON_SWITCHING,SCRIPTED_AIM_MODIFIER_DEBUG"; CRC32: 4460061c
+17:12:44.479    SCRIPT       : SCRIPT       : Initializing scripts
+17:12:44.479     SCRIPT       : SCRIPT       : ScriptProjectManager init
+17:12:44.841    SCRIPT       : SCRIPT       : Compiling GameLib scripts
+17:12:44.895    SCRIPT       : Module: Workbench; loaded 18x files; 36x classes; used 125K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 90ce0460
+17:12:44.895    SCRIPT       : Module: GameLib; loaded 465x files; 648x classes; used 828K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 4507af04
+17:12:44.896    SCRIPT       : SCRIPT       : Compiling Game scripts
+17:12:45.734   SCRIPT       : Compiling Game scripts
+17:12:45.734    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+17:12:45.985    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+17:12:45.986    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+17:12:46.249    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+17:12:46.282    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+17:12:46.376    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+17:12:46.376    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+17:12:46.377    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+17:12:46.377    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+17:12:46.469    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+17:12:46.471    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+17:12:46.472    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+17:12:46.514    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+17:12:46.515    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+17:12:46.570    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+17:12:46.846    SCRIPT       : Module: WorkbenchGame; loaded 170x files; 615x classes; used 2477K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 8db9d524
+17:12:46.852    SCRIPT       : Module: Game; loaded 5951x files; 11486x classes; used 33051K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE,ENABLE_BASE_DESTRUCTION,BUDGET_OPTIMIZATION_CHECKS,SHOW_DISCLAIMER,DEBUG,RESPAWN_TIMER_COMPONENT_DEBUG,GAME_MODE_DEBUG,DEBUG_CONFIGURABLE_DIALOGS,DISABLE_WEAPON_SWITCHING,SCRIPTED_AIM_MODIFIER_DEBUG"; CRC32: a07294dc
+17:28:02.352    SCRIPT       : SCRIPT       : Initializing scripts
+17:28:02.352     SCRIPT       : SCRIPT       : ScriptProjectManager init
+17:28:02.721    SCRIPT       : SCRIPT       : Compiling GameLib scripts
+17:28:02.773    SCRIPT       : Module: Workbench; loaded 18x files; 36x classes; used 125K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 90ce0460
+17:28:02.773    SCRIPT       : Module: GameLib; loaded 465x files; 648x classes; used 828K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 4507af04
+17:28:02.774    SCRIPT       : SCRIPT       : Compiling Game scripts
+17:28:03.535   SCRIPT       : Compiling Game scripts
+17:28:03.536    SCRIPT    (W): @"Scripts/Game/ACE_Core/FSM/ACE_FSM_Machine.c,187": Implicit conversion of 'ACE_FSM_IState<ACE_Medical_CharacterContext>' to 'int' yields a conditional expression result of either 0 or 1.
+17:28:03.771    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,785": 'GetPlayerPlatformKind' is obsolete
+17:28:03.771    SCRIPT    (W): @"Scripts/Game/Editor/Components/EditableEntity/SCR_EditableEntityComponent.c,786": 'GetPlayerPlatformId' is obsolete
+17:28:04.031    SCRIPT    (W): @"Scripts/Game/Workshop/SCR_AddonManager.c,876": 'GetRefCount' is obsolete: Will be removed
+17:28:04.064    SCRIPT    (W): @"Scripts/Game/Campaign/SCR_PlayerProfileManagerComponent.c,142": 'PlayerData' is obsolete
+17:28:04.158    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,159": 'GetDSSession' is obsolete
+17:28:04.160    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,162": 'RoomID' is obsolete
+17:28:04.160    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,197": 'GetDSSession' is obsolete
+17:28:04.161    SCRIPT    (W): @"Scripts/Game/UI/Backend/CareerBackend.c,201": 'RoomID' is obsolete
+17:28:04.254    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,481": 'GetStorage' is obsolete
+17:28:04.254    SCRIPT    (W): @"Scripts/Game/DataCollection/SCR_DataCollectorComponent.c,483": 'GetOnlineWritePrivilege' is obsolete
+17:28:04.257    SCRIPT    (W): @"Scripts/Game/Utilities/SCR_PlayerIdentityUtils.c,20": 'GetPlayerIdentityId' is obsolete
+17:28:04.300    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,643": 'GetNotifyCount' is obsolete: Will be substitued by Notification Api.
+17:28:04.301    SCRIPT    (W): @"Scripts/Game/UI/Menu/MainMenuUI.c,645": 'GetNotifyItem' is obsolete: Will be substitued by Notification Api.
+17:28:04.356    SCRIPT    (W): @"Scripts/Game/DataCollection/PlayerData/SCR_PlayerData.c,210": 'PlayerData' is obsolete
+17:28:04.624    SCRIPT       : Module: WorkbenchGame; loaded 170x files; 615x classes; used 2477K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE"; CRC32: 8db9d524
+17:28:04.631    SCRIPT       : Module: Game; loaded 5951x files; 11486x classes; used 33052K of static memory; defines: "ENF_WB,WORKBENCH,PLATFORM_WINDOWS,ENABLE_DIAG,ENF_ENABLE_VHC_OVERRIDE,ENF_ENABLE_RPLCOMPONENT_IN_GAMECODE,ENABLE_BASE_DESTRUCTION,BUDGET_OPTIMIZATION_CHECKS,SHOW_DISCLAIMER,DEBUG,RESPAWN_TIMER_COMPONENT_DEBUG,GAME_MODE_DEBUG,DEBUG_CONFIGURABLE_DIALOGS,DISABLE_WEAPON_SWITCHING,SCRIPTED_AIM_MODIFIER_DEBUG"; CRC32: 33ec58c6

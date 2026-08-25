@@ -1,0 +1,56 @@
+name: Feature request
+description: Suggest a new feature or a change to an existing one.
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: mod
+    attributes:
+      label: Which mod
+      options:
+        - DisableGlobalChat
+        - Expanded Saline Bags
+        - Expanded Saline Bags - UK
+        - GMVehicleLock
+        - InventoryBoxes
+        - LogisticMaster
+        - RAMI - Advanced Medical Interface
+        - AMI - ACE Breathing Compat
+        - A new mod
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation on the server that the feature would improve. Please describe the problem, not only the solution you have in mind.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+      description: What should happen, from the point of view of a player, a Game Master or a server admin.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Existing settings, other mods, or a workaround you are using today.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This needs server-authoritative logic (it changes what a client is allowed to do).
+          required: false
+        - label: This needs new UI.
+          required: false
+        - label: This needs new or changed localization strings.
+          required: false

@@ -1,0 +1,1 @@
+MetaFileClass { Name "{A91608F7621043F7}Language/DGC_localization.ko_kr.conf" Configurations { CONFResourceClass PC {} CONFResourceClass XBOX_ONE : PC {} CONFResourceClass XBOX_SERIES : PC {} CONFResourceClass PS4 : PC {} CONFResourceClass PS5 : PC {} CONFResourceClass HEADLESS : PC {} } }

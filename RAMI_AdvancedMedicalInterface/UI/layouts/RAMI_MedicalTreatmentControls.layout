@@ -1,0 +1,564 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Slot FrameWidgetSlot "{A8D3F21C6B9047E2}" {
+  Anchor 0 0 1 1
+  PositionX 0
+  OffsetLeft 0
+  PositionY 0
+  OffsetTop 0
+  SizeX 0
+  OffsetRight 0
+  SizeY 0
+  OffsetBottom 0
+ }
+ {
+  TextWidgetClass "{69FD591933B37727}" {
+   Name "SelfinventoryTitle"
+   Slot FrameWidgetSlot "{69FD591933B37701}" {
+    Anchor 0 0 1 0.068493
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "Self Inventory"
+   "Font Size" 28
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  FrameWidgetClass "{69FD40A001000001}" {
+   Name "BandageRow"
+   Slot FrameWidgetSlot "{69FD40A001100001}" {
+    Anchor 0 0.082192 1 0.212329
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD40A001000002}" {
+     Name "BandageButton"
+     Slot FrameWidgetSlot "{69FD40A001100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    FrameWidgetClass "{69FD40A001200001}" {
+     Name "BandageButtonContent"
+     Slot FrameWidgetSlot "{69FD40A001300001}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     {
+      ItemPreviewWidgetClass "{69FD40A001400001}" {
+       Name "BandageIcon"
+       Slot FrameWidgetSlot "{69FD40A001500001}" {
+        Anchor 0 0 0.26 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+      }
+      TextWidgetClass "{69FD40A001600001}" {
+       Name "BandageLabel"
+       Slot FrameWidgetSlot "{69FD40A001700001}" {
+        Anchor 0.26 0 0.76 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "Bandage"
+       "Font Size" 35
+       "Min Font Size" 15
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+      TextWidgetClass "{69FD40A001800001}" {
+       Name "BandageCount"
+       Slot FrameWidgetSlot "{69FD40A001900001}" {
+        Anchor 0.76 0 1 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "0"
+       "Font Size" 30
+       "Min Font Size" 16
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+   }
+  }
+  FrameWidgetClass "{69FD40A002000001}" {
+   Name "TourniquetRow"
+   Slot FrameWidgetSlot "{69FD40A002100001}" {
+    Anchor 0 0.232877 1 0.363014
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD40A002000002}" {
+     Name "TourniquetButton"
+     Slot FrameWidgetSlot "{69FD40A002100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    FrameWidgetClass "{69FD40A002200001}" {
+     Name "TourniquetButtonContent"
+     Slot FrameWidgetSlot "{69FD40A002300001}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     {
+      ItemPreviewWidgetClass "{69FD40A002400001}" {
+       Name "TourniquetIcon"
+       Slot FrameWidgetSlot "{69FD40A002500001}" {
+        Anchor 0 0 0.26 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+      }
+      TextWidgetClass "{69FD40A002600001}" {
+       Name "TourniquetLabel"
+       Slot FrameWidgetSlot "{69FD40A002700001}" {
+        Anchor 0.26 0 0.76 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "Tourniquet"
+       "Font Size" 35
+       "Min Font Size" 11
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+       Wrap 1
+      }
+      TextWidgetClass "{69FD40A002800001}" {
+       Name "TourniquetCount"
+       Slot FrameWidgetSlot "{69FD40A002900001}" {
+        Anchor 0.76 0 1 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "0"
+       "Font Size" 30
+       "Min Font Size" 16
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+   }
+  }
+  FrameWidgetClass "{6A03280C01000001}" {
+   Name "MedicalKitRow"
+   Slot FrameWidgetSlot "{6A03280C01000002}" {
+    Anchor 0 0.383562 1 0.513699
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{6A03280C01000003}" {
+     Name "MedicalKitButton"
+     Slot FrameWidgetSlot "{6A03280C01000004}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    FrameWidgetClass "{6A03280C01000005}" {
+     Name "MedicalKitButtonContent"
+     Slot FrameWidgetSlot "{6A03280C01000006}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     {
+      ItemPreviewWidgetClass "{6A03280C01000007}" {
+       Name "MedicalKitIcon"
+       Slot FrameWidgetSlot "{6A03280C01000008}" {
+        Anchor 0 0 0.26 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+      }
+      TextWidgetClass "{6A03280C01000009}" {
+       Name "MedicalKitLabel"
+       Slot FrameWidgetSlot "{6A03280C0100000A}" {
+        Anchor 0.26 0 0.76 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "Medical Kit"
+       "Font Size" 35
+       "Min Font Size" 13
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+      TextWidgetClass "{6A03280C0100000B}" {
+       Name "MedicalKitCount"
+       Slot FrameWidgetSlot "{6A03280C0100000C}" {
+        Anchor 0.76 0 1 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "0"
+       "Font Size" 30
+       "Min Font Size" 16
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+   }
+  }
+  TextWidgetClass "{69FD5918AF6414EB}" {
+   Name "ForeigninventoryTitle"
+   Slot FrameWidgetSlot "{69FD591933B37701}" {
+    Anchor 0 0.547945 1 0.616438
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "Foreign Inventory"
+   "Font Size" 28
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  FrameWidgetClass "{69FD59063EC4294C}" {
+   Name "BandageRowForeign"
+   Slot FrameWidgetSlot "{69FD40A001100001}" {
+    Anchor 0 0.643836 1 0.808219
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD59063EC4294F}" {
+     Name "BandageButtonForeign"
+     Slot FrameWidgetSlot "{69FD40A001100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    FrameWidgetClass "{69FD59063EC42975}" {
+     Name "BandageButtonContentForeign"
+     Slot FrameWidgetSlot "{69FD40A001300001}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     {
+      ItemPreviewWidgetClass "{69FD59063EC427D7}" {
+       Name "BandageIconForeign"
+       Slot FrameWidgetSlot "{69FD40A001500001}" {
+        Anchor 0 0 0.26 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+      }
+      TextWidgetClass "{69FD59063EC427D5}" {
+       Name "BandageLabelForeign"
+       Slot FrameWidgetSlot "{69FD40A001700001}" {
+        Anchor 0.26 0 0.76 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "Bandage"
+       "Font Size" 35
+       "Min Font Size" 15
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+      TextWidgetClass "{69FD59063EC427D4}" {
+       Name "BandageCountForeign"
+       Slot FrameWidgetSlot "{69FD40A001900001}" {
+        Anchor 0.76 0 1 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "0"
+       "Font Size" 30
+       "Min Font Size" 16
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+   }
+  }
+  FrameWidgetClass "{69FD59063EC674AA}" {
+   Name "TourniquetRowForeign"
+   Slot FrameWidgetSlot "{69FD40A002100001}" {
+    Anchor 0 0.835616 1 1
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   {
+    ButtonWidgetClass "{69FD59063EC674A9}" {
+     Name "TourniquetButtonForeign"
+     Slot FrameWidgetSlot "{69FD40A002100002}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     Color 0.35 0.35 0.35 0.9
+    }
+    FrameWidgetClass "{69FD59063EC67496}" {
+     Name "TourniquetButtonContentForeign"
+     Slot FrameWidgetSlot "{69FD40A002300001}" {
+      Anchor 0 0 1 1
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 0
+      OffsetRight 0
+      SizeY 0
+      OffsetBottom 0
+     }
+     {
+      ItemPreviewWidgetClass "{69FD59063EC67495}" {
+       Name "TourniquetIconForeign"
+       Slot FrameWidgetSlot "{69FD40A002500001}" {
+        Anchor 0 0 0.26 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+      }
+      TextWidgetClass "{69FD59063EC68593}" {
+       Name "TourniquetLabelForeign"
+       Slot FrameWidgetSlot "{69FD40A002700001}" {
+        Anchor 0.26 0 0.76 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "Tourniquet"
+       "Font Size" 35
+       "Min Font Size" 11
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+       Wrap 1
+      }
+      TextWidgetClass "{69FD59063EC68592}" {
+       Name "TourniquetCountForeign"
+       Slot FrameWidgetSlot "{69FD40A002900001}" {
+        Anchor 0.76 0 1 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 0
+        OffsetRight 0
+        SizeY 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+       Text "0"
+       "Font Size" 30
+       "Min Font Size" 16
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+   }
+  }
+ }
+}

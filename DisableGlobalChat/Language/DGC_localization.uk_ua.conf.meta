@@ -1,0 +1,1 @@
+MetaFileClass { Name "{E891BDE7DE854813}Language/DGC_localization.uk_ua.conf" Configurations { CONFResourceClass PC {} CONFResourceClass XBOX_ONE : PC {} CONFResourceClass XBOX_SERIES : PC {} CONFResourceClass PS4 : PC {} CONFResourceClass PS5 : PC {} CONFResourceClass HEADLESS : PC {} } }

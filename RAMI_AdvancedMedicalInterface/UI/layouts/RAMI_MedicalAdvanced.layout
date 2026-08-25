@@ -1,0 +1,218 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Slot FrameWidgetSlot "{69FD01A62A9A83BE}" {
+  Anchor 0 0 1 1
+  PositionX 0
+  OffsetLeft 0
+  PositionY 0
+  OffsetTop 0
+  SizeX 0
+  OffsetRight 0
+  SizeY 0
+  OffsetBottom 0
+ }
+ {
+  TextWidgetClass "{69FD01A62A9A83BF}" {
+   Name "PageTitle"
+   Slot FrameWidgetSlot "{69FD01A62A9A83C0}" {
+    Anchor 0 0 1 0.12
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Text "Actions"
+   "Font Size" 36
+   "Min Font Size" 28
+   "Horizontal Alignment" Center
+   "Vertical Alignment" Center
+  }
+  ButtonWidgetClass "{69FD01A62A9A83C3}" {
+   Name "AdvancedCPRButton"
+   Slot FrameWidgetSlot "{69FD01A62A9A83C4}" {
+    Anchor 0.3 0.27 0.7 0.38
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A62A9A83C5}" {
+     Name "AdvancedCPRText"
+     Slot ButtonWidgetSlot "{69FD01A62A9A83C6}" {
+     }
+     Color 0 0 0 1
+     Text "START CPR"
+     "Font Size" 24
+     "Min Font Size" 18
+    }
+   }
+  }
+  ButtonWidgetClass "{69FD01A62A9A83CF}" {
+   Name "AdvancedBackButton"
+   Slot FrameWidgetSlot "{69FD01A62A9A83D0}" {
+    Anchor 0.15 0.44 0.37 0.55
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A62A9A83D1}" {
+     Name "AdvancedBackText"
+     Slot ButtonWidgetSlot "{69FD01A62A9A83D2}" {
+     }
+     Color 0 0 0 1
+     Text "BACK"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{69FD01A62A9A83D3}" {
+   Name "AdvancedRightSideButton"
+   Slot FrameWidgetSlot "{69FD01A62A9A83D4}" {
+    Anchor 0.39 0.44 0.61 0.55
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A62A9A83D5}" {
+     Name "AdvancedRightSideText"
+     Slot ButtonWidgetSlot "{69FD01A62A9A83D6}" {
+     }
+     Color 0 0 0 1
+     Text "RIGHT SIDE"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{69FD01A62A9A83D7}" {
+   Name "AdvancedLeftSideButton"
+   Slot FrameWidgetSlot "{69FD01A62A9A83D8}" {
+    Anchor 0.63 0.44 0.85 0.55
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A62A9A83D9}" {
+     Name "AdvancedLeftSideText"
+     Slot ButtonWidgetSlot "{69FD01A62A9A83DA}" {
+     }
+     Color 0 0 0 1
+     Text "LEFT SIDE"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{69FD01A62A9A83C7}" {
+   Name "AdvancedCarryButton"
+   Slot FrameWidgetSlot "{69FD01A62A9A83C8}" {
+    Anchor 0.15 0.61 0.37 0.72
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A62A9A83C9}" {
+     Name "AdvancedCarryText"
+     Slot ButtonWidgetSlot "{69FD01A62A9A83CA}" {
+     }
+     Color 0 0 0 1
+     Text "CARRY"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{69FD01A62A9A83CB}" {
+   Name "AdvancedDragButton"
+   Slot FrameWidgetSlot "{69FD01A62A9A83CC}" {
+    Anchor 0.39 0.61 0.61 0.72
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A62A9A83CD}" {
+     Name "AdvancedDragText"
+     Slot ButtonWidgetSlot "{69FD01A62A9A83CE}" {
+     }
+     Color 0 0 0 1
+     Text "DRAG"
+     "Font Size" 20
+     "Min Font Size" 14
+    }
+   }
+  }
+  ButtonWidgetClass "{69FD01A62A9A83DB}" {
+   Name "AdvancedLoadVehicleButton"
+   Slot FrameWidgetSlot "{69FD01A62A9A83DC}" {
+    Anchor 0.63 0.61 0.85 0.72
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 0
+    OffsetRight 0
+    SizeY 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass "{69FD01A62A9A83DD}" {
+     Name "AdvancedLoadVehicleText"
+     Slot ButtonWidgetSlot "{69FD01A62A9A83DE}" {
+     }
+     Color 0 0 0 1
+     Text "LOAD INTO VEHICLE"
+     "Font Size" 18
+     "Min Font Size" 12
+     Wrap 1
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,25 @@
+GenericEntity : "{8AF07D321C44DDC4}Prefabs/Items/Medicine/SalineBag_01/SalineBag_USSR_01_base.et" {
+ ID "508AB2013EEE1E00"
+ components {
+  InventoryItemComponent "{5222EB4D0C73006B}" {
+   Attributes SCR_ItemAttributeCollection "{5222EB4D0A2B466B}" {
+    ItemDisplayName SCR_InventoryUIInfo "{5222EB4D07D865FA}" {
+     Name "Saline 250"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes PhysicalAttributes {
+     Weight 0.25
+     ItemDimensions 10 10 10
+     ItemVolume 125
+    }
+   }
+  }
+  SCR_ConsumableItemComponent "{59E68C4DC131E9FC}" {
+   m_ConsumableEffect SCR_ConsumableSalineBag "{59E68C4DDD8B416A}" {
+    m_fApplyToSelfDuration 6
+    m_fApplyToOtherDuration 6
+    m_fItemRegenerationDuration 15
+    m_fItemAbsoluteRegenerationAmount 250
+   }
+  }
+ }
+}

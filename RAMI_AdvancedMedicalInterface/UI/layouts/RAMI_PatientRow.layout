@@ -1,0 +1,43 @@
+ButtonWidgetClass {
+ Name "PatientEntry"
+ Slot LayoutSlot "{8C21A4F79D6B3201}" {
+  Padding 0 5 0 5
+  HorizontalAlign 3
+ }
+ Color 1 1 1 0.9
+ {
+  OverlayWidgetClass "{6A4A8D0106000003}" {
+   Name "PatientOverlay"
+   Slot ButtonWidgetSlot "{6A4A8D0106000004}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   {
+    TextWidgetClass "{8C21A4F79D6B3202}" {
+     Name "PatientName"
+     Slot OverlayWidgetSlot "{8C21A4F79D6B3203}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+      Padding 14 14 14 14
+     }
+     Color 0 0 0 1
+     Text "PATIENT"
+     "Font Size" 17
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+     Wrap 1
+    }
+    PanelWidgetClass "{6A4A8D0106000001}" {
+     Name "PatientCareOutline"
+     Slot OverlayWidgetSlot "{6A4A8D0106000002}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+     }
+     Color 1 0 0 1
+     style outline_4px
+    }
+   }
+  }
+ }
+}

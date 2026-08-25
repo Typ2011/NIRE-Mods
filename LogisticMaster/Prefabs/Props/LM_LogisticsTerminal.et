@@ -1,0 +1,57 @@
+GenericEntity {
+ ID "673FA6322DF15E21"
+ components {
+  MeshObject "{074F746E973E1628}" {
+   Object "{E535C6A8397ACFE0}Assets/Props/Military/SupplyBox/SupplyCrate/SupplyCrate_01_item.xob"
+  }
+  RigidBody "{FE05B99A682D32A2}" {
+   Mass 10
+   Gravity 1
+   ModelGeometry 1
+   Static 1
+  }
+  InventoryStorageManagerComponent "{A1E6470C8DBF3955}" {
+  }
+  SCR_UniversalInventoryStorageComponent "{A1E6470C8DBF3956}" {
+   Attributes SCR_ItemAttributeCollection "{A1E6470C8DBF395E}" {
+    ItemDisplayName SCR_InventoryUIInfo "{A1E6470C8DBF395F}" {
+     Name "LogisticMaster Lager"
+     Description "Physischer Bestand des zentralen Logistikterminals"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{A1E6470C8DBF3960}" {
+     Weight 10
+     SizeSetupStrategy 3
+     ItemDimensions 100 50 50
+     ItemVolume 25000
+    }
+    m_Size 3
+    m_bDraggable 0
+    m_bVisible 1
+    m_bStackable 0
+   }
+   MaxCumulativeVolume 10000000
+   MaxItemSize 200 200 200
+   m_fMaxWeight 1000
+   MultiSlots {
+    MultiSlotConfiguration "{A1E6470C8DBF3961}" {
+     SlotTemplate InventoryStorageSlot GeneralItems {
+     }
+     NumSlots 100
+    }
+   }
+  }
+  RplComponent "{065A8C377552B056}" {
+  }
+  LM_LogisticsTerminalComponent "{D5EC02825D0FB0FC}" {
+   m_bManagementTerminal 1
+  }
+  SCR_EditableEntityComponent "{D2F7183FE9D5968F}" {
+   m_UIInfo SCR_EditableEntityUIInfo "{D2F7183FE9D59690}" {
+    Name "LogisticMaster Terminal"
+    Description "Zentrales Lager- und Anforderungsterminal"
+   }
+   m_bAutoRegister ALWAYS
+   m_Flags 769
+  }
+ }
+}

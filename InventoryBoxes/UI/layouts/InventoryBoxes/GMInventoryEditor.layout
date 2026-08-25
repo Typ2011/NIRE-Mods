@@ -1,0 +1,83 @@
+FrameWidgetClass {
+ Name "Root"
+ Slot FrameWidgetSlot "{A1E6470C8DBF4202}" {
+  Anchor 0 0 1 1
+ }
+ {
+  FrameWidgetClass "{A1E6470C8DBF4203}" {
+   Name "Backdrop"
+   Slot FrameWidgetSlot "{A1E6470C8DBF4204}" {
+    Anchor 0 0 1 1
+   }
+   Color 0 0 0 0.72
+  }
+  FrameWidgetClass "{A1E6470C8DBF4205}" {
+   Name "Panel"
+   Slot FrameWidgetSlot "{A1E6470C8DBF4206}" {
+    Anchor 0.08 0.07 0.92 0.93
+    OffsetRight 0
+    OffsetBottom 0
+   }
+   Color 0 0 0 0
+   {
+    FrameWidgetClass "{A1E6470C8DBF4255}" {
+     Name "MikesUIHost"
+     Slot FrameWidgetSlot "{A1E6470C8DBF4256}" {
+      Anchor 0 0 1 1
+      OffsetRight 0
+      OffsetBottom 0
+     }
+    }
+    ScrollLayoutWidgetClass "{A1E6470C8DBF4211}" {
+     Name "ArsenalScroll"
+     Slot FrameWidgetSlot "{A1E6470C8DBF4212}" {
+      Anchor 0 0 0 0
+      OffsetRight 100
+      OffsetBottom 100
+     }
+     style Small
+     {
+      VerticalLayoutWidgetClass "{A1E6470C8DBF4213}" {
+       Name "ArsenalList"
+       Slot AlignableSlot "{A1E6470C8DBF4214}" {
+        HorizontalAlign 3
+        VerticalAlign 0
+        Padding 0 0 10 0
+       }
+      }
+     }
+    }
+    ScrollLayoutWidgetClass "{A1E6470C8DBF4217}" {
+     Name "CurrentScroll"
+     Slot FrameWidgetSlot "{A1E6470C8DBF4218}" {
+      Anchor 0 0 0 0
+      OffsetRight 100
+      OffsetBottom 100
+     }
+     style Small
+     {
+      VerticalLayoutWidgetClass "{A1E6470C8DBF4219}" {
+       Name "CurrentList"
+       Slot AlignableSlot "{A1E6470C8DBF421A}" {
+        HorizontalAlign 3
+        VerticalAlign 0
+        Padding 0 0 10 0
+       }
+      }
+     }
+    }
+    EditBoxWidgetClass "{A1E6470C8DBF420F}" {
+     Name "ModalFocus"
+     Slot FrameWidgetSlot "{A1E6470C8DBF4210}" {
+      Anchor 0 0 0 0
+      OffsetLeft -2
+      OffsetTop -2
+      OffsetRight -1
+      OffsetBottom -1
+     }
+     Color 0 0 0 0
+    }
+   }
+  }
+ }
+}

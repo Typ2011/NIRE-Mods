@@ -1,0 +1,31 @@
+# Advanced Medical Interface Update — 23 August 2026
+
+AMI received a major patient-selection, vehicle-treatment, and interface update.
+
+## Patient Selection
+- Open a dedicated patient list containing yourself, patients within **5 m**, and every occupant of your vehicle.
+- Select a patient directly by name and choose **TREAT**.
+- Treat occupants while driving, riding, or operating a turret.
+- Unload unconscious occupants through the native **UNLOAD FROM VEHICLE** action.
+- See bleeding, unconscious, and deceased states directly in the patient list.
+
+## Medical Information
+- Exact vitals and Diagnose graphs now require a **medical kit**. Without one, AMI shows qualitative readings.
+- Diagnose readings appear immediately after starting a monitor.
+- Saline now uses one inventory-aware menu ordered **500 ml, vanilla 750 ml, 1000 ml, and 1500 ml**.
+- Active saline appears on both Treatment and Medication with a bright-yellow body indicator.
+- Vitals and active medications use separate compact cards; long medication lists support scrolling.
+
+## Interface Improvements
+- Added compact ACE3 medical icons to all page tabs.
+- Added clear active-page and selected-body-zone outlines without hiding medical-state colors.
+- Improved patient-list, button, hover, selection, and card styling throughout AMI.
+- Actions such as CPR, carry, drag, positioning, vehicle loading, and unloading keep AMI open.
+- Standardized remaining visible interface text to English.
+- Fixed controller navigation from a selected patient to **TREAT**, then to enabled **UNLOAD FROM VEHICLE** or **CLOSE**.
+
+## Fixes
+- Fixed saline-menu null pointers during page setup.
+- Fixed casualty unloading from the wrong vehicle compartment.
+
+> AMI development is feature-complete for this phase. Final visual checks, dedicated-server regression testing, localization, and Workshop packaging remain pending.

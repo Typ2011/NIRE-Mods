@@ -1,0 +1,25 @@
+SCR_EditorModeEntity : "{E56F54E533ACE527}Prefabs/Editor/Modes/EditorModeBase.et" {
+ ID "518A34314C7CB324"
+ components {
+  SCR_CampaignBuildingPlacingEditorComponent "{5A0ACCCCDF0C0F65}" {
+   m_Registries {
+    SCR_PlaceableEntitiesRegistry "{A1E6470C8DBF3A00}" : "{5500189E8072CD5B}Configs/Editor/InventoryBoxes.conf" {
+    }
+   }
+  }
+  SCR_ContentBrowserEditorComponent "{597071D8310A282F}" {
+   m_aContentBrowserTabStates {
+    SCR_EditorContentBrowserSaveStateDataUI "{A1E6470C8DBF3A01}" {
+     m_iSavedLabels {
+      IBX_INVENTORY_BOXES
+     }
+     m_BrowserStateUIInfo SCR_UIInfo "{A1E6470C8DBF3A02}" {
+      Name "Inventory Boxes"
+      Description "Finite inventory crates"
+      Icon "{8067B9056CADF1E4}UI/Textures/Editor/Attributes/FreeRoamBuilding/Single_objects_Tab-64.edds"
+     }
+    }
+   }
+  }
+ }
+}

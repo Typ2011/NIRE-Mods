@@ -1,0 +1,44 @@
+GameProject {
+ ID "DisableGlobalChat"
+ GUID "CA1692B7508A4E1E"
+ TITLE "Disable Global Chat"
+ Dependencies {
+  "58D0FB3206B6F859"
+ }
+ Configurations {
+  GameProjectConfig PC {
+   WidgetManagerSettings WidgetManagerSettings "{18E7C0DB6F284068}" {
+    StringTables {
+     StringTableDefinition "{18E7C0DB6F284068}" {
+      StringTableSource "{C6B96273DD6C4AF9}Language/DGC_localization.st"
+      Languages {
+       LanguageDefinition "{755FAD6D760B4300}" { Code "cs_cz" StringTableRuntime "{6CF862F429904F44}Language/DGC_localization.cs_cz.conf" }
+       LanguageDefinition "{4A58D1BDC0AF4C95}" { Code "de_de" StringTableRuntime "{67D4602CD04D4A76}Language/DGC_localization.de_de.conf" }
+       LanguageDefinition "{A20B13EAADEC493F}" { Code "en_us" StringTableRuntime "{CB060C9D64824173}Language/DGC_localization.en_us.conf" }
+       LanguageDefinition "{93649FB148FF45F4}" { Code "es_es" StringTableRuntime "{E188D9B5642D43CF}Language/DGC_localization.es_es.conf" }
+       LanguageDefinition "{5BAF5175AC734384}" { Code "fr_fr" StringTableRuntime "{A739C2937C214765}Language/DGC_localization.fr_fr.conf" }
+       LanguageDefinition "{9A08E82DDC4D4D80}" { Code "it_it" StringTableRuntime "{6B626D8692BF48B4}Language/DGC_localization.it_it.conf" }
+       LanguageDefinition "{A1AEACF7D6D7481E}" { Code "ja_jp" StringTableRuntime "{9665BFCFCAE34403}Language/DGC_localization.ja_jp.conf" }
+       LanguageDefinition "{8BA075C7E3C14343}" { Code "ko_kr" StringTableRuntime "{A91608F7621043F7}Language/DGC_localization.ko_kr.conf" }
+       LanguageDefinition "{2A3035B651944F8F}" { Code "pl_pl" StringTableRuntime "{AEA1C632FA1E42F1}Language/DGC_localization.pl_pl.conf" }
+       LanguageDefinition "{866E4EDDA57A499B}" { Code "pt_br" StringTableRuntime "{BCBBB2F9976A4640}Language/DGC_localization.pt_br.conf" }
+       LanguageDefinition "{BA4C8D1D42DE4C2F}" { Code "ru_ru" StringTableRuntime "{0A58D10C173346AE}Language/DGC_localization.ru_ru.conf" }
+       LanguageDefinition "{2FB634F5D0FB40B0}" { Code "uk_ua" StringTableRuntime "{E891BDE7DE854813}Language/DGC_localization.uk_ua.conf" }
+       LanguageDefinition "{BE9D2CFF1CAA4EFB}" { Code "zh_cn" StringTableRuntime "{1828008F2CCD405F}Language/DGC_localization.zh_cn.conf" }
+      }
+     }
+    }
+   }
+  }
+  GameProjectConfig XBOX_ONE {
+  }
+  GameProjectConfig XBOX_SERIES {
+  }
+  GameProjectConfig PS4 {
+  }
+  GameProjectConfig PS5 {
+  }
+  GameProjectConfig HEADLESS {
+  }
+ }
+}

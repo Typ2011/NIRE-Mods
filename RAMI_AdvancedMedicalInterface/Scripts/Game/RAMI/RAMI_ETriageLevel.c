@@ -1,0 +1,8 @@
+enum RAMI_ETriageLevel
+{
+	NONE,
+	MINIMAL,
+	DELAYED,
+	IMMEDIATE,
+	EXPECTANT
+}

@@ -1,0 +1,212 @@
+GenericEntity : "{B4764656D8C07441}Prefabs/Props/Military/AmmoBoxes/EquipmentBoxStack/US/EquipmentBoxStack_US_01_V2_covered.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  SCR_DestructionMultiPhaseComponent "{58F89684469E44B1}" {
+   Enabled 1
+  }
+  InventoryStorageManagerComponent "{A1E6470C8DBF3955}" {
+  }
+  ActionsManagerComponent "{5476B36C403D4CC0}" {
+   Enabled 1
+   ActionContexts {
+    UserActionContext "{5476B36C47B0461A}" {
+     ContextName "default"
+     Position PointInfo "{5476B36C45ADDA89}" {
+      Offset 0 0.5 0
+     }
+     Radius 2.5
+     Height 1.5
+    }
+   }
+   additionalActions {
+    SCR_OpenStorageAction "{5476DE57AA50402F}" {
+     VisibilityRange 10
+     "Sort Priority" 1
+    }
+   IBX_CarryCrateAction "{A1E6470C8DBF3971}" {
+    VisibilityRange 6
+    "Sort Priority" 2
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3973}" {
+     Name "Carry Crate"
+    }
+   }
+   IBX_DragCrateAction "{A1E6470C8DBF3972}" {
+    VisibilityRange 2
+    "Sort Priority" 3
+    Duration -1
+    PerformPerFrame 1
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3974}" {
+     Name "Drag Crate"
+    }
+   }
+   IBX_DropCrateAction "{A1E6470C8DBF3980}" {
+    VisibilityRange 6
+    "Sort Priority" 4
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3981}" {
+     Name "Drop Crate"
+    }
+   }
+   IBX_RaiseCrateAction "{A1E6470C8DBF3982}" {
+    VisibilityRange 6
+    "Sort Priority" 5
+    Duration -1
+    PerformPerFrame 1
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3983}" {
+     Name "Raise Crate"
+    }
+   }
+   IBX_LowerCrateAction "{A1E6470C8DBF3984}" {
+    VisibilityRange 6
+    "Sort Priority" 6
+    Duration -1
+    PerformPerFrame 1
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3985}" {
+     Name "Lower Crate"
+    }
+   }
+   IBX_RotateCrateLeftAction "{A1E6470C8DBF3986}" {
+    VisibilityRange 6
+    "Sort Priority" 7
+    Duration -1
+    PerformPerFrame 1
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3987}" {
+     Name "Rotate Crate Left"
+    }
+   }
+   IBX_RotateCrateRightAction "{A1E6470C8DBF3988}" {
+    VisibilityRange 6
+    "Sort Priority" 8
+    Duration -1
+    PerformPerFrame 1
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3989}" {
+     Name "Rotate Crate Right"
+    }
+   }
+   IBX_RenameCrateAction "{A1E6470C8DBF398A}" {
+    VisibilityRange 6
+    "Sort Priority" 9
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF398B}" {
+     Name "Name Crate"
+    }
+   }   }
+  }
+  SCR_UniversalInventoryStorageComponent "{5476A2F100DF4EFF}" {
+   Enabled 0
+  }
+  SCR_UniversalInventoryStorageComponent "{A1E6470C8DBF3956}" {
+   Attributes SCR_ItemAttributeCollection "{A1E6470C8DBF395E}" {
+    ItemDisplayName IBX_CrateInventoryUIInfo "{A1E6470C8DBF395F}" {
+     Name "Finite Inventory Crate"
+     Description "Finite item storage"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{A1E6470C8DBF3960}" {
+     Weight 54
+     SizeSetupStrategy 3
+     ItemDimensions 130 113 83
+     ItemVolume 152100
+    }
+    m_Size SLOT_2x2
+    m_bDraggable 1
+    m_bVisible 1
+    m_bStackable 0
+   }
+   UseCapacityCoefficient 0
+   MaxCumulativeVolume 243100
+   MaxItemSize 40 40 40
+   m_fMaxWeight 1000
+   MultiSlots {
+    MultiSlotConfiguration "{A1E6470C8DBF3961}" {
+     SlotTemplate InventoryStorageSlot GeneralItems {
+     }
+     NumSlots 100
+    }
+   }
+  }
+  IBX_GMInventoryEditorComponent "{A1E6470C8DBF3964}" {
+  }
+  IBX_CrateCarryComponent "{A1E6470C8DBF3970}" {
+  }
+  RigidBody "{5872F0EB7DFB5A9D}" {
+   ResponseIndex "MediumDestructible"
+  }
+  SCR_EditableEntityComponent "{58EEFD4A698C5759}" : "{996046FE206C699A}Prefabs/Editor/Components/Default_SCR_EditableEntityComponent.ct" {
+   m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
+    Name "Finite Inventory Crate - US Equipment Stack V2 Covered"
+    Description "Crate with finite physical inventory"
+    m_Image "{EB4C3D77410E1586}UI/Textures/EditorPreviews/Auto/Props/Military/AmmoBoxes/EquipmentBoxStack/E_EquipmentBoxStack_US_01_V2_covered.edds"
+    m_sFaction "US"
+    m_aAuthoredLabels {
+     CONTENT_MODDED ENTITYTYPE_OBJECT FACTION_NONE IBX_INVENTORY_BOXES FACTION_US FACTION_USSR FACTION_FIA
+     FACTION_US
+    }
+    m_aAutoLabels {
+     THEME_MILITARY ENTITYTYPE_OBJECT SIZE_S
+    }
+    m_EntityBudgetCost {
+     SCR_EntityBudgetValue "{A1E6470C8DBF3A10}" {
+      m_BudgetType CAMPAIGN
+      m_Value 25
+     }
+    }
+    m_EntityChildrenBudgetCost {
+     SCR_EntityBudgetValue "{A1E6470C8DBF3A11}" {
+      m_BudgetType PROPS
+      m_Value 1
+     }
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{58EEFD4A698D0F93}" : "{6CADA7A88A6265FD}Prefabs/Editor/Components/PreviewEntityComponentClass.ct" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{6A132BF465C9FF81}" {
+     m_iParentID -1
+     m_Mesh "{C86C1F784CE41386}Assets/Props/Military/AmmoBox/EquipmentBoxStack/EquipmentBoxStack_01_V2.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vScale 1 1 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{6A132BF465C9FF8A}" {
+     m_iParentID 0
+     m_Mesh "{9D1DB9F275B8257B}Assets/Props/Military/AmmoBox/EquipmentBoxStack/EquipmentBoxStack_01_V2_cover.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vScale 1 1 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  RplComponent "{5476B36C54387F41}" {
+   Enabled 1
+  }
+ }
+}

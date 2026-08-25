@@ -1,0 +1,14 @@
+# Enfusion Workbench local caches and generated data
+resourceDatabase.rdb
+UserMaps.desc
+**/Scripts/WorkbenchGame/
+*.bak
+
+# Python tooling
+__pycache__/
+*.pyc
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,17 @@
+MetaFileClass {
+ Name "{DEDB1E8616B31772}PrefabsEditable/Auto/Props/Military/AmmoBoxes/E_AmmoBox_556x45_1680rnd.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass PS5 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}
