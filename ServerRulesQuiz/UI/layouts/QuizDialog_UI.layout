@@ -1,0 +1,193 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Slot FrameWidgetSlot "{68D8E4187E134200}" {
+  Anchor 0 0 1 1
+  OffsetLeft 0
+  OffsetTop 0
+  OffsetRight 0
+  OffsetBottom 0
+ }
+ "Z Order" 999
+ {
+  FrameWidgetClass "{68D8E4187E134201}" {
+   Name "Panel"
+   Slot FrameWidgetSlot "{68D8E4187E134202}" {
+    Anchor 0.5 0.5 0.5 0.5
+    OffsetLeft -350
+    OffsetTop -290
+    OffsetRight 350
+    OffsetBottom 290
+   }
+   {
+    TextWidgetClass "{68D8E418BA3FEE61}" {
+     Name "TitleText"
+     Slot FrameWidgetSlot "{68D8E418BA3FEE46}" {
+      OffsetLeft 12
+      OffsetTop 10
+      OffsetRight -392
+      OffsetBottom -38
+     }
+    }
+    TextWidgetClass "{68D8E418BF3788E0}" {
+     Name "ProgressText"
+     Slot FrameWidgetSlot "{68D8E418BF3788DC}" {
+      OffsetLeft 400
+      OffsetTop 10
+      OffsetRight -685
+      OffsetBottom -38
+     }
+    }
+    RichTextWidgetClass "{68D8E418A763DF4F}" {
+     Name "RulesText"
+     Slot FrameWidgetSlot "{68D8E418A763DF39}" {
+      OffsetLeft 15
+      OffsetTop 55
+      OffsetRight -685
+      OffsetBottom -510
+     }
+    }
+    RichTextWidgetClass "{68D8E418A4A91684}" {
+     Name "ContentText"
+     Slot FrameWidgetSlot "{68D8E418A4A90973}" {
+      OffsetLeft 15
+      OffsetTop 55
+      OffsetRight -685
+      OffsetBottom -175
+     }
+    }
+    ImageWidgetClass "{68D8E418AE58B973}" {
+     Name "FeedbackBanner"
+     Slot FrameWidgetSlot "{68D8E418AE58B957}" {
+      OffsetLeft 15
+      OffsetTop 180
+      OffsetRight -685
+      OffsetBottom -220
+     }
+    }
+    TextWidgetClass "{68D8E418BC12A5C2}" {
+     Name "FeedbackText"
+     Slot FrameWidgetSlot "{68D8E418BC12A5B3}" {
+      OffsetLeft 20
+      OffsetTop 186
+      OffsetRight -680
+      OffsetBottom -214
+     }
+    }
+    ButtonWidgetClass "{68D8E418D470D949}" {
+     Name "Answer0"
+     Slot FrameWidgetSlot "{68D8E418D470D922}" {
+      OffsetLeft 15
+      OffsetTop 225
+      OffsetRight -685
+      OffsetBottom -267
+     }
+     {
+      TextWidgetClass "{68D8E418D470D923}" {
+       Name "Text"
+       Slot FrameWidgetSlot "{68D8E418D470D924}" {
+        Anchor 0 0 1 1
+        OffsetLeft 8
+        OffsetTop 6
+        OffsetRight -8
+        OffsetBottom -6
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{68D8E418D5FC1806}" {
+     Name "Answer1"
+     Slot FrameWidgetSlot "{68D8E418D5FC18F2}" {
+      OffsetLeft 15
+      OffsetTop 272
+      OffsetRight -685
+      OffsetBottom -314
+     }
+     {
+      TextWidgetClass "{68D8E418D5FC18F3}" {
+       Name "Text"
+       Slot FrameWidgetSlot "{68D8E418D5FC18F4}" {
+        Anchor 0 0 1 1
+        OffsetLeft 8
+        OffsetTop 6
+        OffsetRight -8
+        OffsetBottom -6
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{68D8E418D86E3FE6}" {
+     Name "Answer2"
+     Slot FrameWidgetSlot "{68D8E418D86E3FD3}" {
+      OffsetLeft 15
+      OffsetTop 319
+      OffsetRight -685
+      OffsetBottom -361
+     }
+     {
+      TextWidgetClass "{68D8E418D86E3FD4}" {
+       Name "Text"
+       Slot FrameWidgetSlot "{68D8E418D86E3FD5}" {
+        Anchor 0 0 1 1
+        OffsetLeft 8
+        OffsetTop 6
+        OffsetRight -8
+        OffsetBottom -6
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{68D8E418D91FD4A4}" {
+     Name "Answer3"
+     Slot FrameWidgetSlot "{68D8E418D91FD491}" {
+      OffsetLeft 15
+      OffsetTop 366
+      OffsetRight -685
+      OffsetBottom -408
+     }
+     {
+      TextWidgetClass "{68D8E418D91FD492}" {
+       Name "Text"
+       Slot FrameWidgetSlot "{68D8E418D91FD493}" {
+        Anchor 0 0 1 1
+        OffsetLeft 8
+        OffsetTop 6
+        OffsetRight -8
+        OffsetBottom -6
+       }
+      }
+     }
+    }
+    TextWidgetClass "{68D8E418BD6CF0AF}" {
+     Name "ScoreText"
+     Slot FrameWidgetSlot "{68D8E418BD6CF09A}" {
+      OffsetLeft 15
+      OffsetTop 516
+      OffsetRight -395
+      OffsetBottom -552
+     }
+    }
+    ButtonWidgetClass "{68D8E418DEB2E469}" {
+     Name "ConfirmButton"
+     Slot FrameWidgetSlot "{68D8E418DEB2E442}" {
+      OffsetLeft 420
+      OffsetTop 516
+      OffsetRight -685
+      OffsetBottom -552
+     }
+     {
+      TextWidgetClass "{68D8E418DEB2E443}" {
+       Name "Text"
+       Slot FrameWidgetSlot "{68D8E418DEB2E444}" {
+        Anchor 0 0 1 1
+        OffsetLeft 8
+        OffsetTop 6
+        OffsetRight -8
+        OffsetBottom -6
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

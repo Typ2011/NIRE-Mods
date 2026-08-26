@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/assets/cover.png" alt="NIRE Mods" width="100%">
+</p>
+
 # NIRE-Mods
 
 Source code for the Arma Reforger mods published by NIRE. Every mod in this
@@ -14,14 +18,14 @@ who receives the mod.
 | --- | --- | --- | --- |
 | [`DisableGlobalChat`](DisableGlobalChat) | `DisableGlobalChat` | `CA1692B7508A4E1E` | Server-authoritative text chat control. Game Masters and admins enable or disable individual chat channels; voice chat is untouched. |
 | [`Expanded Saline Bags`](Expanded%20Saline%20Bags) | `ExpandedSalineBags` | `6A05287AF042071B` | US and USSR saline bags from 250 ml to 1500 ml, with interruptible transfusion and reusable remainders in 250 ml steps. |
-| [`Expanded Saline Bags - UK`](Expanded%20Saline%20Bags%20-%20UK) | `ExpandedSalineBagsUK` | `6A0D3D1BA4CE288F` | UK faction entity catalog for Expanded Saline Bags. |
 | [`GMVehicleLock`](GMVehicleLock) | `GMVehicleLock` | `A83D91C74F2E6B50` | Lets a Game Master lock and unlock vehicles. Locked vehicles cannot be entered on any seat; the state is replicated to clients and to late joiners. |
 | [`InventoryBoxes`](InventoryBoxes) | `InventoryBoxes` | `A1E6470C8DBF3952` | Physical crates with finite inventories. Crates are filled by Game Masters, opened by players, carried, dragged and loaded into vehicles, all validated server-side. |
-| [`LogisticMaster`](LogisticMaster) | `LogisticMaster` | `67DDBBB35B9D2CD1` | Logistics terminal UI with server-side stock management, role-based access for group leads, logistics groups and Game Masters. Depends on InventoryBoxes. |
 | [`RAMI_AdvancedMedicalInterface`](RAMI_AdvancedMedicalInterface) | `RAMI_AdvancedMedicalInterface` | `D36C5B996922FFDE` | Controller-ready UI layer for ACE Medical. Shows ACE patient data and delegates treatment to existing ACE and engine actions; ACE stays authoritative. |
 | [`AMI - ACE Breathing Compat`](AMI%20-%20ACE%20Breathing%20Compat) | `AMI_ACE_Breathing_Compat` | `6A2CBB1E9543DD6F` | Compatibility addon between Advanced Medical Interface and ACE Medical Breathing. |
+| [`ServerRulesQuiz`](ServerRulesQuiz) | `ServerRulesQuiz` | `5C3B9E8A7D1F4C2B` | Server rules gate. Players read the configured rules and pass a JSON-defined multiple-choice quiz before they clear server access, with persistent per-player tracking, admin chat commands and configurable retry limits. |
+| [`WalkingSpeedIndicator`](WalkingSpeedIndicator) | `WalkingSpeedIndicator` | `6A1E9F43B2C74D18` | Snaps mouse-wheel walking speed to three fixed tiers and shows the active pace in a small fading HUD indicator, so a squad can hold a common speed. |
 
-Each mod folder carries its own changelog, and several carry a README or a
+Most mod folders carry their own changelog, and several carry a README or a
 Workshop description with the full feature list and the mod dependencies.
 
 ## Building a mod

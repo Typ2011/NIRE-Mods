@@ -1,8 +1,0 @@
-GameProject {
- ID "ExpandedSalineBagsUK"
- GUID "6A0D3D1BA4CE288F"
- TITLE "Expanded Saline Bags - UK"
- Dependencies {
-  "5AE50EC5B8D6F4AE" "6A05287AF042071B" "58D0FB3206B6F859"
- }
-}
