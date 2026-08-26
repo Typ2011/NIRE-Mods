@@ -1,0 +1,308 @@
+FrameWidgetClass : "{E6B607B27BCC1477}UI/layouts/Menus/Dialogs/ConfigurableDialog.layout" {
+ Name "basicDialog"
+ {
+  SizeLayoutWidgetClass "{5CC296FE0BE2ED39}" {
+   Prefab "{5CC296FE0BE2ED39}"
+   WidthOverride 1284
+   AllowMinDesiredHeight 1
+   MinDesiredHeight 951
+   AllowMaxDesiredHeight 1
+   MaxDesiredHeight 951
+   {
+    OverlayWidgetClass "{5CC296FBD8B6CA52}" {
+     Prefab "{5CC296FBD8B6CA52}"
+     {
+      VerticalLayoutWidgetClass "{5CC296FBD8B6CA68}" {
+       Prefab "{5CC296FBD8B6CA68}"
+       {
+        HorizontalLayoutWidgetClass "{5CC296FE665361F7}" {
+         Prefab "{5CC296FE665361F7}"
+         Slot LayoutSlot "{5CC296FE6653602F}" {
+          Padding 38 30 0 0
+         }
+         {
+          SizeLayoutWidgetClass "{5CDCC55754F81B7E}" {
+           Prefab "{5CDCC55754F81B7E}"
+           {
+            ImageWidgetClass "{5CC296FBD8B6CA6E}" {
+             Prefab "{5CC296FBD8B6CA6E}"
+             Slot AlignableSlot "{5CDCD741AF600F00}" {
+             }
+            }
+           }
+          }
+          SizeLayoutWidgetClass "{5CECDEAA2B312BCD}" {
+           Prefab "{5CECDEAA2B312BCD}"
+           WidthOverride 1142
+          }
+         }
+        }
+        OverlayWidgetClass "{5CC296FBD8B6CA6D}" {
+         Prefab "{5CC296FBD8B6CA6D}"
+         Slot LayoutSlot "{5510B6ACD309D020}" {
+          Padding 48 12 48 0
+         }
+         {
+          SizeLayoutWidgetClass "{5CC296F8389B4B68}" {
+           Prefab "{5CC296F8389B4B68}"
+           AllowMinDesiredHeight 1
+           MinDesiredHeight 790
+           AllowMaxDesiredHeight 0
+           {
+            VerticalLayoutWidgetClass "{5CC296F8389B4B6E}" {
+             Prefab "{5CC296F8389B4B6E}"
+             {
+              OverlayWidgetClass "{5CC296F8389B4B62}" {
+               Prefab "{5CC296F8389B4B62}"
+               {
+                FrameWidgetClass "{68EF1A5E9054D206}" {
+                 Name "Panel"
+                 Slot OverlayWidgetSlot "{68EF1A5E9054DC32}" {
+                  HorizontalAlign 3
+                  VerticalAlign 3
+                 }
+                 {
+                  TextWidgetClass "{68EF1A5E9054D200}" {
+                   Name "TitleText"
+                   Slot FrameWidgetSlot "{68D8E418BA3FEE46}" {
+                    Anchor 0 0 0 0
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 10
+                    OffsetTop 10
+                    SizeX 670
+                    OffsetRight -685
+                    SizeY 28
+                    OffsetBottom -38
+                   }
+                  }
+                  TextWidgetClass "{68EF1A5E9054D201}" {
+                   Name "ProgressText"
+                   Slot FrameWidgetSlot "{68D8E418BF3788DC}" {
+                    PositionX 700
+                    OffsetLeft 700
+                    PositionY 10
+                    OffsetTop 10
+                    SizeX 475
+                    OffsetRight -1175
+                    SizeY 28
+                    OffsetBottom -38
+                   }
+                   "Horizontal Alignment" Right
+                  }
+                  RichTextWidgetClass "{68EF1A5E9054D20C}" {
+                   Name "RulesText"
+                   Slot FrameWidgetSlot "{68D8E418A763DF39}" {
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 55
+                    OffsetTop 55
+                    SizeX 1160
+                    OffsetRight -1175
+                    SizeY 660
+                    OffsetBottom -715
+                   }
+                  }
+                  RichTextWidgetClass "{68EF1A5E9054D20D}" {
+                   Name "ContentText"
+                   Slot FrameWidgetSlot "{68D8E418A4A90973}" {
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 55
+                    OffsetTop 55
+                    SizeX 1160
+                    OffsetRight -1175
+                    SizeY 395
+                    OffsetBottom -450
+                   }
+                  }
+                  ImageWidgetClass "{68EF1A5E9054D20A}" {
+                   Name "FeedbackBanner"
+                   Slot FrameWidgetSlot "{68D8E418AE58B957}" {
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 460
+                    OffsetTop 460
+                    SizeX 1160
+                    OffsetRight -1175
+                    SizeY 40
+                    OffsetBottom -500
+                   }
+                  }
+                  TextWidgetClass "{68EF1A5E9054D20B}" {
+                   Name "FeedbackText"
+                   Slot FrameWidgetSlot "{68D8E418BC12A5B3}" {
+                    PositionX 20
+                    OffsetLeft 20
+                    PositionY 466
+                    OffsetTop 466
+                    SizeX 1150
+                    OffsetRight -1170
+                    SizeY 28
+                    OffsetBottom -494
+                   }
+                  }
+                  ButtonWidgetClass "{68EF1A5E9054D208}" {
+                   Name "Answer0"
+                   Slot FrameWidgetSlot "{68D8E418D470D922}" {
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 510
+                    OffsetTop 510
+                    SizeX 1160
+                    OffsetRight -1175
+                    SizeY 42
+                    OffsetBottom -552
+                   }
+                   {
+                    TextWidgetClass "{68EF1A5E9054D209}" {
+                     Name "Text"
+                     Slot FrameWidgetSlot "{68D8E418D470D924}" {
+                      Anchor 0 0 1 1
+                      OffsetLeft 8
+                      OffsetTop 6
+                      OffsetRight -8
+                      OffsetBottom -6
+                     }
+                    }
+                   }
+                  }
+                  ButtonWidgetClass "{68EF1A5E905549A0}" {
+                   Name "Answer1"
+                   Slot FrameWidgetSlot "{68D8E418D5FC18F2}" {
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 560
+                    OffsetTop 560
+                    SizeX 1160
+                    OffsetRight -1175
+                    SizeY 42
+                    OffsetBottom -602
+                   }
+                   {
+                    TextWidgetClass "{68EF1A5E9055495E}" {
+                     Name "Text"
+                     Slot FrameWidgetSlot "{68D8E418D5FC18F4}" {
+                      Anchor 0 0 1 1
+                      OffsetLeft 8
+                      OffsetTop 6
+                      OffsetRight -8
+                      OffsetBottom -6
+                     }
+                    }
+                   }
+                  }
+                  ButtonWidgetClass "{68EF1A5E905583B3}" {
+                   Name "Answer2"
+                   Slot FrameWidgetSlot "{68D8E418D86E3FD3}" {
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 610
+                    OffsetTop 610
+                    SizeX 1160
+                    OffsetRight -1175
+                    SizeY 42
+                    OffsetBottom -652
+                   }
+                   {
+                    TextWidgetClass "{68EF1A5E905583B0}" {
+                     Name "Text"
+                     Slot FrameWidgetSlot "{68D8E418D86E3FD5}" {
+                      Anchor 0 0 1 1
+                      OffsetLeft 8
+                      OffsetTop 6
+                      OffsetRight -8
+                      OffsetBottom -6
+                     }
+                    }
+                   }
+                  }
+                  ButtonWidgetClass "{68EF1A5E905583B1}" {
+                   Name "Answer3"
+                   Slot FrameWidgetSlot "{68D8E418D91FD491}" {
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 660
+                    OffsetTop 660
+                    SizeX 1160
+                    OffsetRight -1175
+                    SizeY 42
+                    OffsetBottom -702
+                   }
+                   {
+                    TextWidgetClass "{68EF1A5E90520F74}" {
+                     Name "Text"
+                     Slot FrameWidgetSlot "{68D8E418D91FD493}" {
+                      Anchor 0 0 1 1
+                      OffsetLeft 8
+                      OffsetTop 6
+                      OffsetRight -8
+                      OffsetBottom -6
+                     }
+                    }
+                   }
+                  }
+                  TextWidgetClass "{68EF1A5E90520F73}" {
+                   Name "ScoreText"
+                   Slot FrameWidgetSlot "{68D8E418BD6CF09A}" {
+                    PositionX 15
+                    OffsetLeft 15
+                    PositionY 730
+                    OffsetTop 730
+                    SizeX 670
+                    OffsetRight -685
+                    SizeY 36
+                    OffsetBottom -766
+                   }
+                  }
+                  ButtonWidgetClass "{68EF1A5E90520F72}" {
+                   Name "ConfirmButton"
+                   Slot FrameWidgetSlot "{68D8E418DEB2E442}" {
+                    PositionX 700
+                    OffsetLeft 700
+                    PositionY 730
+                    OffsetTop 730
+                    SizeX 475
+                    OffsetRight -1175
+                    SizeY 36
+                    OffsetBottom -766
+                   }
+                   {
+                    TextWidgetClass "{68EF1A5E90520F71}" {
+                     Name "Text"
+                     Slot FrameWidgetSlot "{68D8E418DEB2E444}" {
+                      Anchor 0 0 1 1
+                      OffsetLeft 8
+                      OffsetTop 6
+                      OffsetRight -8
+                      OffsetBottom -6
+                     }
+                    }
+                   }
+                  }
+                 }
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+        HorizontalLayoutWidgetClass "{5CC296FBD8B6CA62}" {
+         Prefab "{5CC296FBD8B6CA62}"
+         Slot LayoutSlot "{5510B6AC9B6E1FA4}" {
+          VerticalAlign 2
+          Padding 48 32 48 20
+          SizeMode Fill
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

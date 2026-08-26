@@ -1,0 +1,14 @@
+GameProject {
+ ID "ServerRulesQuiz"
+ GUID "5C3B9E8A7D1F4C2B"
+ TITLE "Server Rules Quiz"
+ Dependencies {
+  "58D0FB3206B6F859"
+ }
+ Configurations {
+  GameProjectConfig PC {
+  }
+  GameProjectConfig HEADLESS {
+  }
+ }
+}

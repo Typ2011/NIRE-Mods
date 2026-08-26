@@ -1,0 +1,32 @@
+{
+  "dedicatedServerId": "",
+  "region": "US",
+  "gameHostBindAddress": "",
+  "gameHostBindPort": 2001,
+  "gameHostRegisterBindAddress": "",
+  "gameHostRegisterPort": 2001,
+  "a2s": {
+    "address": "",
+    "port": 17777
+  },
+  "game": {
+    "name": "Server Rules Quiz Local Test",
+    "password": "",
+    "scenarioId": "",
+    "maxPlayers": 8,
+    "visible": false,
+    "gameProperties": {
+      "serverMaxViewDistance": 1600,
+      "serverMinGrassDistance": 50,
+      "fastValidation": true,
+      "battlEye": false
+    },
+    "mods": [
+      {
+        "modId": "5C3B9E8A7D1F4C2B",
+        "name": "ServerRulesQuiz",
+        "version": ""
+      }
+    ]
+  }
+}

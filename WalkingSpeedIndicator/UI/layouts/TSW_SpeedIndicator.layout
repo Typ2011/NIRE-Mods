@@ -1,0 +1,35 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Slot FrameWidgetSlot "{68EF07C784E9E546}" {
+  Anchor 0 0 1 1
+  PositionX 0
+  OffsetLeft 0
+  PositionY 0
+  OffsetTop 0
+  SizeX 0
+  OffsetRight 0
+  SizeY 0
+  OffsetBottom 0
+  Alignment 0 0
+ }
+ {
+  TextWidgetClass "{68EF07C614BFEE8F}" {
+   Name "SpeedValue"
+   Slot FrameWidgetSlot "{68EF07C614BFE17C}" {
+    Anchor 0 0 0 0
+    PositionX 10
+    OffsetLeft 10
+    PositionY 926
+    OffsetTop 926
+    SizeX 350
+    OffsetRight -360
+    SizeY 28
+    OffsetBottom -954
+    Alignment 0 0
+   }
+   Text "Walk Speed: 50% - Standard"
+   "Font Size" 22
+   "Min Font Size" 22
+  }
+ }
+}

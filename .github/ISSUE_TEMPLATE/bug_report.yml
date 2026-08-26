@@ -15,12 +15,12 @@ body:
       options:
         - DisableGlobalChat
         - Expanded Saline Bags
-        - Expanded Saline Bags - UK
         - GMVehicleLock
         - InventoryBoxes
-        - LogisticMaster
         - RAMI - Advanced Medical Interface
         - AMI - ACE Breathing Compat
+        - Server Rules Quiz
+        - WalkingSpeedIndicator
         - More than one / not sure
     validations:
       required: true
