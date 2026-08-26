@@ -1,9 +1,0 @@
-enum LM_EStockCategory
-{
-	WEAPONS,
-	AMMUNITION,
-	CLOTHING,
-	MEDICAL,
-	EXPLOSIVES,
-	EQUIPMENT
-}

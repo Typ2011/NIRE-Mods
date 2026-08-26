@@ -1,0 +1,46 @@
+{
+	"rules": [
+		"1. Be respectful to all players.",
+		"2. No teamkilling or griefing.",
+		"3. Follow orders from squad leaders.",
+		"4. No cheating or exploiting bugs.",
+		"5. Use appropriate language in chat.",
+		"6. Do not block spawn points or vehicles.",
+		"7. Report issues to admins, do not retaliate."
+	],
+	"passingScore": 2,
+	"maxAttemptsBeforeKick": 3,
+	"showQuizOnEveryConnect": false,
+	"questions": [
+		{
+			"question": "Is teamkilling allowed on this server?",
+			"answers": [
+				"Yes, always",
+				"Only if they deserve it",
+				"No, never",
+				"Only in self-defense"
+			],
+			"correctIndex": 2
+		},
+		{
+			"question": "What should you do if someone breaks the rules?",
+			"answers": [
+				"Teamkill them",
+				"Report to admins",
+				"Leave the server",
+				"Ignore it"
+			],
+			"correctIndex": 1
+		},
+		{
+			"question": "Should you follow squad leader orders?",
+			"answers": [
+				"No, play however you want",
+				"Only if you agree with them",
+				"Yes, follow orders",
+				"Squad leaders have no authority"
+			],
+			"correctIndex": 2
+		}
+	]
+}

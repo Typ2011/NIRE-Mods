@@ -1,0 +1,123 @@
+GameProject {
+ ID "WalkingSpeedIndicator"
+ GUID "6A1E9F43B2C74D18"
+ TITLE "WalkingSpeedIndicator"
+ Dependencies {
+  "58D0FB3206B6F859"
+ }
+ Configurations {
+  GameProjectConfig PC {
+  }
+  GameProjectConfig XBOX_ONE : PC {
+   PlatformHardware XBOX_ONE
+   DefaultSettings EngineUserSettings "{5702F087A7816DCA}" {
+    DisplayUserSettings DisplayUserSettings "{F1B1E6EA2D4A7B39}" {
+     PPQuality PPEffectsSettings "{54D6A197983B8089}" {
+      HBAO 0
+      SSDO 0
+      SSR 0
+      PPAA 1
+      Rain 0
+     }
+    }
+    GraphicsQualitySettings GraphicsQualitySettings "{528CB84499298D6C}" {
+    }
+    GrassMaterialSettings GrassMaterialSettings "{5B0BA6FFAB8F597C}" {
+     Distance 85
+     Lod 2
+    }
+    MaterialSystemUserSettings MaterialSystemUserSettings "{5B0BA6FF9D6730FE}" {
+     TextureFilter 1
+     MaxAniso 4
+    }
+    PipelineUserSettings PipelineUserSettings "{B272A67D8DFAC7D2}" {
+     ShadowQuality Medium
+    }
+    PostprocessUserSettings PostprocessUserSettings "{B272A67DF850DADD}" {
+     Postprocess 0
+    }
+    TerrainGenMaterialSettings TerrainGenMaterialSettings "{BBABE688B9061B69}" {
+     Detail 1
+    }
+    VideoUserSettings VideoUserSettings "{B272A67DB18E04F9}" {
+     WindowMode FULLSCREEN
+     ScreenWidth 1280
+     ScreenHeight 720
+     ResolutionScale 0.667
+     Ratio3d 1
+     Fsaa NONE
+     RenderFormat STANDARD
+     DistantShadowsQuality LOW
+     EnvironmentQuality LOW
+     Atoc NONE
+    }
+   }
+   ChimeraGlobalConfig ChimeraGlobalConfig "{6F12664687156A7B}" {
+    "Maximum View Distance" 1600
+    "Minimum View Distance" 100
+   }
+  }
+  GameProjectConfig XBOX_SERIES : PC {
+   PlatformHardware XBOX_SERIES
+   DefaultSettings EngineUserSettings "{5702F087A781A9FC}" {
+    DisplayUserSettings DisplayUserSettings "{F1B1E6EA2D4A7B39}" {
+     PPQuality PPEffectsSettings "{54D6A197983B8089}" {
+      HBAO 0
+      PPAA 3
+     }
+    }
+    GraphicsQualitySettings GraphicsQualitySettings "{52E103D890868E2C}" {
+     ObjectDrawDistanceScale Medium
+    }
+    GrassMaterialSettings GrassMaterialSettings "{7441A756719A8542}" {
+     Distance 80
+     Lod 1
+    }
+    PipelineUserSettings PipelineUserSettings "{B272A67D8DFAC7D2}" {
+     ShadowQuality Low
+    }
+    ResourceManagerUserSettings ResourceManagerUserSettings "{589EBA81512FC37F}" {
+     TextureDetail 2
+    }
+    VideoUserSettings VideoUserSettings "{B272A67DB18E04F9}" {
+     ResolutionScale 0.5
+     DistantShadowsQuality LOW
+     EnvironmentQuality LOW
+     Atoc NONE
+     FsrEnabled 1
+    }
+   }
+   ChimeraGlobalConfig ChimeraGlobalConfig "{6F12664687156A7B}" {
+    "Maximum View Distance" 2000
+    "Minimum View Distance" 2000
+   }
+  }
+  GameProjectConfig PS4 : PC {
+   PlatformHardware PS4
+   DefaultSettings EngineUserSettings "{5702F087A781615B}" {
+    VideoUserSettings VideoUserSettings "{B272A67DB18E04F9}" {
+     DistantShadowsQuality LOW
+     EnvironmentQuality LOW
+    }
+   }
+   ChimeraGlobalConfig ChimeraGlobalConfig "{6F12664687156A7B}" {
+    "Maximum View Distance" 1600
+    "Minimum View Distance" 100
+   }
+  }
+  GameProjectConfig PS5 : PC {
+   PlatformHardware PS5
+   DefaultSettings EngineUserSettings "{5702F087A781A9FC}" {
+    VideoUserSettings VideoUserSettings "{B272A67DB18E04F9}" {
+     FsrEnabled 1
+    }
+   }
+   ChimeraGlobalConfig ChimeraGlobalConfig "{6F12664687156A7B}" {
+    "Maximum View Distance" 2000
+    "Minimum View Distance" 2000
+   }
+  }
+  GameProjectConfig HEADLESS {
+  }
+ }
+}
