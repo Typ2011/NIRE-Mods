@@ -105,12 +105,12 @@ modded class SCR_InventoryMenuUI
 			sourceStorage = parentSlot.GetStorage();
 
 		bool unload = IBX_IsVehicleStorage(sourceStorage);
-		SCR_InventoryStorageBaseUI vehicleUI = IBX_FindVehicleStorageUI();
+		SCR_InventoryStorageBaseUI vehicleUI;
+		BaseInventoryStorageComponent targetStorage;
 		if (unload)
 			vehicleUI = slot.GetStorageUI();
-		BaseInventoryStorageComponent targetStorage;
-		if (vehicleUI)
-			targetStorage = vehicleUI.GetCurrentNavigationStorage();
+		else
+			targetStorage = IBX_FindVehicleStorage(vehicleUI);
 
 		if ((!unload && (parentSlot || !targetStorage)) || (unload && !sourceStorage))
 			return;
@@ -156,7 +156,8 @@ modded class SCR_InventoryMenuUI
 		if (m_IBXPendingUnload)
 			return currentSource == m_IBXPendingSource && IBX_IsVehicleUIOpen(m_IBXPendingVehicleUI) && m_IBXPendingVehicleUI.GetCurrentNavigationStorage() == m_IBXPendingSource;
 
-		return !parentSlot && IBX_IsVehicleUIOpen(m_IBXPendingVehicleUI) && m_IBXPendingVehicleUI.GetCurrentNavigationStorage() == m_IBXPendingTarget;
+		SCR_InventoryStorageBaseUI vehicleUI;
+		return !parentSlot && IBX_FindVehicleStorage(vehicleUI) == m_IBXPendingTarget && IBX_IsVehicleUIOpen(vehicleUI);
 	}
 
 	protected void IBX_CancelCrateTransfer()
@@ -186,8 +187,9 @@ modded class SCR_InventoryMenuUI
 		if (parentSlot)
 			sourceStorage = parentSlot.GetStorage();
 
+		SCR_InventoryStorageBaseUI vehicleUI;
 		bool unload = IBX_IsVehicleStorage(sourceStorage);
-		if (unload || (!parentSlot && IBX_FindVehicleStorageUI()))
+		if (unload || (!parentSlot && IBX_FindVehicleStorage(vehicleUI)))
 		{
 			m_pNavigationBar.SetButtonEnabled(BUTTON_USE, false);
 			m_pNavigationBar.SetButtonEnabled(IBX_CRATE_TRANSFER_BUTTON, true);
@@ -218,16 +220,47 @@ modded class SCR_InventoryMenuUI
 		return item && item.FindComponent(IBX_GMInventoryEditorComponent);
 	}
 
-	protected SCR_InventoryStorageBaseUI IBX_FindVehicleStorageUI()
+	protected BaseInventoryStorageComponent IBX_FindVehicleStorage(out SCR_InventoryStorageBaseUI vehicleUI)
 	{
+		vehicleUI = null;
+
 		SCR_InventoryStorageBaseUI lootUI = GetLootStorage();
 		if (lootUI && IBX_IsVehicleStorage(lootUI.GetCurrentNavigationStorage()))
-			return lootUI;
+		{
+			vehicleUI = lootUI;
+			return lootUI.GetCurrentNavigationStorage();
+		}
 
 		foreach (SCR_InventoryOpenedStorageUI openedStorage : m_aOpenedStoragesUI)
 		{
 			if (openedStorage && IBX_IsVehicleStorage(openedStorage.GetCurrentNavigationStorage()))
-				return openedStorage;
+			{
+				vehicleUI = openedStorage;
+				return openedStorage.GetCurrentNavigationStorage();
+			}
+		}
+
+		// Opening a vehicle's inventory only traverses the loot UI into its storage when
+		// SCR_InventoryMenuUI.SetOpenStorage finds that storage among the vicinity slots, and stepping
+		// back out of it clears the traversal again. In both cases the vehicle is still listed in the
+		// vicinity, so take the storage from there instead of requiring the navigation to sit on it.
+		if (!lootUI)
+			return null;
+
+		array<SCR_InventorySlotUI> slots = {};
+		lootUI.GetSlots(slots);
+		foreach (SCR_InventorySlotUI slot : slots)
+		{
+			if (!slot)
+				continue;
+
+			// ponytail: first vehicle in the vicinity wins; add a picker if crates near two vehicles becomes a real complaint.
+			BaseInventoryStorageComponent storage = slot.GetStorageComponent();
+			if (IBX_IsVehicleStorage(storage))
+			{
+				vehicleUI = lootUI;
+				return storage;
+			}
 		}
 
 		return null;

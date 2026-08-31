@@ -23,6 +23,15 @@ class IBX_CrateCarryComponent : ScriptComponent
 	protected static const float DRAG_BACKWARD_TOLERANCE = 70;
 	protected static const float DRAG_MAX_RANGE = 2.5;
 	protected static const int HOLD_REBROADCAST_TICKS = 40;
+	// Vertical span of the support trace, measured from the crate's current position. The
+	// up-clearance lets a dragged crate climb onto a doorstep or a floor edge instead of only ever
+	// falling, and keeps the trace from starting flush with the surface it is already resting on.
+	// The downward reach covers a crate dropped over a railing or off a roof.
+	protected static const float SUPPORT_TRACE_UP = 0.5;
+	protected static const float SUPPORT_TRACE_DOWN = 20;
+	// Steeper than this and the surface is a wall or a rock face rather than something to set a
+	// crate on, so the crate stays upright instead of standing on its side. cos(40 degrees).
+	protected static const float SUPPORT_MAX_TILT_COS = 0.766;
 
 	protected static ref map<IEntity, IBX_CrateCarryComponent> s_HeldByCharacter = new map<IEntity, IBX_CrateCarryComponent>();
 
@@ -109,8 +118,39 @@ class IBX_CrateCarryComponent : ScriptComponent
 		}
 
 		m_bWasParented = parented;
+		ApplyStoredVisibility(owner, parented);
 		if (!parented)
 			RestoreWorldSimulationState();
+	}
+
+	// A crate inside a vehicle storage must not be drawn in the world, and vanilla only half
+	// does that for these prefabs:
+	//
+	// - SCR_UniversalInventoryStorageComponent.OnAddedToSlot deliberately calls ShowOwner()
+	//   again for any item whose volume reaches MIN_VOLUME_TO_SHOW_ITEM_IN_SLOT (200,000 cm3),
+	//   so the four crates above that line - V3 (221,500), V3 covered (302,700), V4 (283,800)
+	//   and V4 covered (415,000) - stayed fully visible inside the truck.
+	// - The engine's own hide covers only the item entity. The covered stacks keep their cover
+	//   in a child entity (vanilla EquipmentBoxStack_*_covered is a Hierarchy: stack root plus
+	//   cover child), so the cover kept floating in the middle of the truck once the root went
+	//   away.
+	//
+	// Clearing the flag recursively covers both, and SetVisible() takes the crate's Game Master
+	// icon down with it - GM has no business showing a world icon for a crate that is cargo.
+	//
+	// ponytail: rides the same 500 ms poll as the physics restore, so a big crate can stay drawn
+	// for up to one tick after it is loaded. Move both onto InventoryItemComponent's parent-slot
+	// invoker if its init timing ever gets pinned down.
+	protected void ApplyStoredVisibility(notnull IEntity owner, bool stored)
+	{
+		if (stored)
+			owner.ClearFlags(EntityFlags.VISIBLE, true);
+		else
+			owner.SetFlags(EntityFlags.VISIBLE, true);
+
+		SCR_EditableEntityComponent editable = SCR_EditableEntityComponent.Cast(owner.FindComponent(SCR_EditableEntityComponent));
+		if (editable)
+			editable.SetVisible(!stored);
 	}
 
 	protected void CaptureWorldSimulationState()
@@ -746,7 +786,7 @@ class IBX_CrateCarryComponent : ScriptComponent
 	// follows at a constant offset, so it can never lag behind regardless of movement speed. It
 	// detaches and stays put once backward movement stops or the crate ends up behind, and
 	// re-attaches when both conditions hold again. While attached, its height is re-snapped to the
-	// terrain under its own position every tick, or it drifts underground crossing a slope.
+	// surface under its own position every tick, or it drifts underground crossing a slope.
 	protected void TickDragServer()
 	{
 		IEntity owner = GetOwner();
@@ -828,15 +868,84 @@ class IBX_CrateCarryComponent : ScriptComponent
 		return (toBox[0] * forward[0] + toBox[1] * forward[1] + toBox[2] * forward[2]) > 0;
 	}
 
+	// Height of the first solid surface under a position - a building floor, a bridge deck, a
+	// container roof - falling back to the terrain height only when the trace finds nothing at all.
+	//
+	// SCR_TerrainHelper only ever answers with the heightmap, so every crate dropped inside or on
+	// top of a building was teleported down to the ground underneath it. Same trace setup vanilla
+	// item placement uses (SCR_ItemPlacementComponent): world plus entities, projectile layer mask.
+	protected static float GetSupportY(vector pos, notnull IEntity owner, IEntity ignore = null, out vector surfaceNormal = vector.Up)
+	{
+		surfaceNormal = vector.Up;
+
+		BaseWorld world = owner.GetWorld();
+		if (!world)
+			return pos[1];
+
+		TraceParam trace = new TraceParam();
+		trace.Start = pos + Vector(0, SUPPORT_TRACE_UP, 0);
+		trace.End = pos - Vector(0, SUPPORT_TRACE_DOWN, 0);
+		trace.Flags = TraceFlags.WORLD | TraceFlags.ENTS;
+		trace.LayerMask = EPhysicsLayerPresets.Projectile;
+
+		// The trace starts inside the crate's own collider, so it has to ignore the crate or every
+		// snap lands it on itself. Filtering the whole hierarchy rather than just the root matters:
+		// the covered stacks keep their tarp in a child entity with its own collider.
+		trace.Exclude = ignore;
+		SCR_Global.g_TraceFilterEnt = owner;
+		float traveled = world.TraceMove(trace, SCR_Global.FilterCallback_IgnoreEntityWithChildren);
+		SCR_Global.g_TraceFilterEnt = null;
+		if (traveled < 1)
+		{
+			surfaceNormal = trace.TraceNorm;
+			return trace.Start[1] + (trace.End[1] - trace.Start[1]) * traveled;
+		}
+
+		return SCR_TerrainHelper.GetTerrainY(pos, world);
+	}
+
+	// Tilts a transform so its up axis matches the surface it is resting on, keeping the yaw it
+	// already has. SCR_EntityHelper.OrientUpToVector is the vanilla helper for this, but it rebuilds
+	// the whole basis out of the normal alone and throws the yaw away, which would spin every
+	// dropped crate to some arbitrary new facing.
+	protected static void OrientToSurface(inout vector mat[4], vector surfaceNormal)
+	{
+		// Normalized before anything reads it: an unscaled basis is what keeps SetWorldTransform
+		// from resizing the crate, and the tilt limit below is a cosine.
+		vector up = surfaceNormal;
+		if (up.LengthSq() < 0.0001)
+			return;
+
+		up.Normalize();
+		if (up[1] < SUPPORT_MAX_TILT_COS)
+			return;
+
+		// Degenerate only if the crate is somehow already facing straight along the normal, which
+		// the tilt limit above all but rules out - the guard is here so a zero-length basis can
+		// never reach SetWorldTransform.
+		vector right = up * mat[2];
+		if (right.LengthSq() < 0.0001)
+			return;
+
+		right.Normalize();
+
+		vector forward = right * up;
+		forward.Normalize();
+
+		mat[0] = right;
+		mat[1] = up;
+		mat[2] = forward;
+	}
+
 	protected void ResnapDragHeight(notnull IEntity owner)
 	{
 		vector mat[4];
 		owner.GetWorldTransform(mat);
-		float groundY = SCR_TerrainHelper.GetTerrainY(mat[3], owner.GetWorld());
-		if (Math.AbsFloat(mat[3][1] - groundY) < 0.02)
+		float supportY = GetSupportY(mat[3], owner, m_HolderCharacter);
+		if (Math.AbsFloat(mat[3][1] - supportY) < 0.02)
 			return;
 
-		mat[3][1] = groundY;
+		mat[3][1] = supportY;
 		SyncCrateTransform(mat);
 	}
 
@@ -882,7 +991,10 @@ class IBX_CrateCarryComponent : ScriptComponent
 
 		vector mat[4];
 		owner.GetWorldTransform(mat);
-		SCR_TerrainHelper.SnapToTerrain(mat, owner.GetWorld());
+		vector surfaceNormal;
+		float supportY = GetSupportY(mat[3], owner, user, surfaceNormal);
+		mat[3][1] = supportY;
+		OrientToSurface(mat, surfaceNormal);
 		SyncCrateTransform(mat);
 		ResyncPhysics(owner);
 	}
@@ -917,13 +1029,16 @@ class IBX_CrateCarryComponent : ScriptComponent
 		BroadcastHoldChanged(IBX_ECrateCarryMode.NONE, holder);
 
 		// A crate that ended up inside a storage (loaded into a vehicle from the inventory screen)
-		// has no world position to be dropped at - snapping it to terrain would yank it straight
+		// has no world position to be dropped at - snapping it to a surface would yank it straight
 		// back out of the vehicle.
 		if (!owner.GetParent())
 		{
 			vector mat[4];
 			owner.GetWorldTransform(mat);
-			SCR_TerrainHelper.SnapToTerrain(mat, owner.GetWorld());
+			vector surfaceNormal;
+			float supportY = GetSupportY(mat[3], owner, holder, surfaceNormal);
+			mat[3][1] = supportY;
+			OrientToSurface(mat, surfaceNormal);
 			SyncCrateTransform(mat);
 			ResyncPhysics(owner);
 		}
