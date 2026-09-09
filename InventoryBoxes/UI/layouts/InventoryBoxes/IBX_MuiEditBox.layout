@@ -1,0 +1,12 @@
+EditBoxWidgetClass {
+ Name "IBX_MuiEditBox"
+ Slot FrameWidgetSlot "{A1E6470C8DBF4301}" {
+  Anchor 0 0 0 0
+  OffsetRight 100
+  OffsetBottom 100
+ }
+ "Is Visible" 0
+ "Ignore Cursor" 1
+ Color 0.92 0.95 0.98 1
+ "Font Size" 20
+}
