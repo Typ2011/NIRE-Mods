@@ -1,0 +1,128 @@
+FrameWidgetClass {
+ Name "Root"
+ Slot FrameWidgetSlot "{7A1C000000000001}" {
+  Anchor 0 0 1 1
+  OffsetLeft 0
+  OffsetTop 0
+  OffsetRight 0
+  OffsetBottom 0
+ }
+ {
+  FrameWidgetClass "{7A1C000000000002}" {
+   Name "Backdrop"
+   Slot FrameWidgetSlot "{7A1C000000000003}" {
+    Anchor 0 0 1 1
+    OffsetRight 0
+    OffsetBottom 0
+   }
+   Color 0 0 0 0.72
+  }
+  FrameWidgetClass "{7A1C000000000004}" {
+   Name "Panel"
+   Slot FrameWidgetSlot "{7A1C000000000005}" {
+    Anchor 0.02 0.035 0.98 0.965
+    OffsetRight 0
+    OffsetBottom 0
+   }
+   Color 0 0 0 0
+   {
+    FrameWidgetClass "{7A1C000000000006}" {
+     Name "MikesUIHost"
+     Slot FrameWidgetSlot "{7A1C000000000007}" {
+      Anchor 0 0 1 1
+      OffsetRight 0
+      OffsetBottom 0
+     }
+    }
+    ScrollLayoutWidgetClass "{7A1C000000000008}" {
+     Name "RequestScroll"
+     Slot FrameWidgetSlot "{7A1C000000000009}" {
+      Anchor 0 0 0 0
+      OffsetRight 100
+      OffsetBottom 100
+     }
+     style Small
+     {
+      VerticalLayoutWidgetClass "{7A1C00000000000A}" {
+       Name "RequestList"
+       Slot AlignableSlot "{7A1C00000000000B}" {
+        HorizontalAlign 3
+        VerticalAlign 0
+        Padding 0 0 10 0
+       }
+      }
+     }
+    }
+    ScrollLayoutWidgetClass "{7A1C00000000000C}" {
+     Name "ArsenalScroll"
+     Slot FrameWidgetSlot "{7A1C00000000000D}" {
+      Anchor 0 0 0 0
+      OffsetRight 100
+      OffsetBottom 100
+     }
+     style Small
+     {
+      VerticalLayoutWidgetClass "{7A1C00000000000E}" {
+       Name "ArsenalList"
+       Slot AlignableSlot "{7A1C00000000000F}" {
+        HorizontalAlign 3
+        VerticalAlign 0
+        Padding 0 0 10 0
+       }
+      }
+     }
+    }
+    ScrollLayoutWidgetClass "{7A1C000000000010}" {
+     Name "ContentsScroll"
+     Slot FrameWidgetSlot "{7A1C000000000011}" {
+      Anchor 0 0 0 0
+      OffsetRight 100
+      OffsetBottom 100
+     }
+     style Small
+     {
+      VerticalLayoutWidgetClass "{7A1C000000000012}" {
+       Name "ContentsList"
+       Slot AlignableSlot "{7A1C000000000013}" {
+        HorizontalAlign 3
+        VerticalAlign 0
+        Padding 0 0 10 0
+       }
+      }
+     }
+    }
+    ScrollLayoutWidgetClass "{7A1C000000000014}" {
+     Name "CrateScroll"
+     Slot FrameWidgetSlot "{7A1C000000000015}" {
+      Anchor 0 0 0 0
+      OffsetRight 100
+      OffsetBottom 100
+     }
+     style Small
+     "Is Visible" 0
+     {
+      VerticalLayoutWidgetClass "{7A1C000000000016}" {
+       Name "CrateList"
+       Slot AlignableSlot "{7A1C000000000017}" {
+        HorizontalAlign 3
+        VerticalAlign 0
+        Padding 0 0 10 0
+       }
+      }
+     }
+    }
+    EditBoxWidgetClass "{7A1C000000000018}" {
+     Name "ModalFocus"
+     Slot FrameWidgetSlot "{7A1C000000000019}" {
+      Anchor 0 0 0 0
+      OffsetLeft -2
+      OffsetTop -2
+      OffsetRight -1
+      OffsetBottom -1
+     }
+     Color 0 0 0 0
+    }
+   }
+  }
+ }
+}

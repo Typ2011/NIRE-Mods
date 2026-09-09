@@ -1,0 +1,58 @@
+ButtonWidgetClass "{2A7C19E4B6D830F2}" {
+ Name "MissionRow"
+ Slot LayoutSlot "{2A7C19E4B6D830F3}" {
+  Padding 1 1 1 1
+ }
+ Color 0.14 0.14 0.14 0.94
+ {
+  HorizontalLayoutWidgetClass "{8D02B4399E3F2A70}" {
+   Name "MissionRowColumns"
+   Slot ButtonWidgetSlot "{8D02B4399E3F2A71}" {
+   }
+   {
+    TextWidgetClass "{2A7C19E4B6D830F4}" {
+     Name "MissionRowText"
+     Slot LayoutSlot "{2A7C19E4B6D830F5}" {
+      VerticalAlign 3
+      Padding 6 0 4 0
+      FillWeight 1
+     }
+     Color 0.96 0.96 0.96 1
+     Text "#NIRE-List_Entry"
+     "Font Size" 14
+     "Min Font Size" 10
+     "Horizontal Alignment" Left
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{8D02B4399E3F2A74}" {
+     Name "MissionRowDivider"
+     Slot LayoutSlot "{8D02B4399E3F2A75}" {
+      VerticalAlign 3
+      FillWeight 0.08
+     }
+     "Is Visible" 0
+     Color 0.55 0.55 0.55 1
+     Text "|"
+     "Font Size" 16
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    TextWidgetClass "{8D02B4399E3F2A72}" {
+     Name "MissionRowStatus"
+     Slot LayoutSlot "{8D02B4399E3F2A73}" {
+      VerticalAlign 3
+      Padding 4 0 6 0
+      FillWeight 1
+     }
+     "Is Visible" 0
+     Color 0.96 0.96 0.96 1
+     Text "STATUS"
+     "Font Size" 12
+     "Min Font Size" 8
+     "Horizontal Alignment" Right
+     "Vertical Alignment" Center
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,1 @@
+MetaFileClass { Name "{9A44D783C1B2E615}Language/NIRE_localization.ko_kr.conf" Configurations { CONFResourceClass PC {} CONFResourceClass XBOX_ONE : PC {} CONFResourceClass XBOX_SERIES : PC {} CONFResourceClass PS4 : PC {} CONFResourceClass PS5 : PC {} CONFResourceClass HEADLESS : PC {} } }

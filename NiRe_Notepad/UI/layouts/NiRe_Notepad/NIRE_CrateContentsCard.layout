@@ -1,0 +1,55 @@
+SizeLayoutWidgetClass "{8D02B4399E3F2A60}" {
+ Name "CrateContentsCard"
+ Slot LayoutSlot "{8D02B4399E3F2A61}" {
+  HorizontalAlign 3
+  Padding 4 4 4 8
+ }
+ AllowHeightOverride 1
+ HeightOverride 280
+ {
+  PanelWidgetClass "{8D02B4399E3F2A62}" {
+   Name "CrateContentsCardPanel"
+   Slot AlignableSlot "{8D02B4399E3F2A63}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   Color 0.08 0.08 0.08 0.96
+ style outline_4px
+   {
+    TextWidgetClass "{8D02B4399E3F2A64}" {
+     Name "CrateContentsCardTitle"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A65}" {
+      Anchor 0.04 0.03 0.96 0.18
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.96 0.96 0.96 1
+     Text "CRATE"
+     "Font Size" 16
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    ScrollLayoutWidgetClass "{8D02B4399E3F2A66}" {
+     Name "CrateContentsCardScroll"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A67}" {
+      Anchor 0.04 0.2 0.96 0.96
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     style Small
+     {
+      VerticalLayoutWidgetClass "{8D02B4399E3F2A68}" {
+       Name "CrateContentsCardList"
+       Slot AlignableSlot "{8D02B4399E3F2A69}" {
+        HorizontalAlign 3
+        VerticalAlign 0
+        Padding 0 0 8 0
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

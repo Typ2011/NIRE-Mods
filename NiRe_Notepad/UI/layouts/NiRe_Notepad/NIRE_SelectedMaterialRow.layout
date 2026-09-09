@@ -1,0 +1,77 @@
+SizeLayoutWidgetClass {
+ Name "SelectedMaterialRow"
+ Slot LayoutSlot "{8D02B4399E3F2A12}" {
+  HorizontalAlign 3
+  Padding 1 1 1 0
+ }
+ AllowHeightOverride 1
+ HeightOverride 48
+ {
+  FrameWidgetClass "{8D02B4399E3F2A13}" {
+   Name "SelectedMaterialContent"
+   Slot AlignableSlot "{8D02B4399E3F2A14}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   {
+    TextWidgetClass "{8D02B4399E3F2A15}" {
+     Name "SelectedMaterialName"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A16}" {
+      Anchor 0 0.18 0.75 0.82
+      OffsetLeft 6
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.96 0.96 0.96 1
+     Text "MATERIAL"
+     "Font Size" 18
+     "Min Font Size" 14
+     "Horizontal Alignment" Left
+     "Vertical Alignment" Center
+    }
+    PanelWidgetClass "{8D02B4399E3F2A1B}" {
+     Name "SelectedMaterialQuantityHighlight"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A1C}" {
+      Anchor 0.78 0.2 0.9 0.8
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Ignore Cursor" 1
+     Color 0.43 0.43 0.43 0.7
+     style outline_1px
+    }
+    EditBoxWidgetClass "{8D02B4399E3F2A1D}" {
+     Name "SelectedMaterialQuantity"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A1E}" {
+      Anchor 0.79 0.24 0.89 0.76
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.97 0.97 0.97 1
+     "Font Size" 16
+    }
+    ButtonWidgetClass "{8D02B4399E3F2A31}" {
+     Name "SelectedMaterialRemove"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A32}" {
+      Anchor 0.92 0.32 0.995 0.68
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.42 0.08 0.06 1
+     {
+      TextWidgetClass "{8D02B4399E3F2A33}" {
+       Name "SelectedMaterialRemoveText"
+       Slot ButtonWidgetSlot "{8D02B4399E3F2A34}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "×"
+       "Font Size" 18
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+   }
+  }
+ }
+}

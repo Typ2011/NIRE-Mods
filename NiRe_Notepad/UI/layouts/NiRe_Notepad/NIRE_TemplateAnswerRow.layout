@@ -1,0 +1,88 @@
+SizeLayoutWidgetClass {
+ Name "TemplateAnswerRow"
+ Slot LayoutSlot "{8D02B4399E3F2A91}" {
+  HorizontalAlign 3
+  Padding 0 0 8 0
+ }
+ AllowHeightOverride 1
+ HeightOverride 40
+ {
+  FrameWidgetClass "{8D02B4399E3F2A92}" {
+   Name "TemplateAnswerContent"
+   Slot AlignableSlot "{8D02B4399E3F2A93}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   {
+    PanelWidgetClass "{8D02B4399E3F2A94}" {
+     Name "TemplatePromptFocus"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A95}" {
+      Anchor 0 0 0.485 1
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Ignore Cursor" 1
+     Color 0.47 0.47 0.47 0.82
+     style outline_4px
+    }
+    PanelWidgetClass "{8D02B4399E3F2A96}" {
+     Name "TemplatePromptBackground"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A97}" {
+      Anchor 0.006 0.04 0.479 0.96
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Ignore Cursor" 1
+     Color 0.1 0.1 0.1 0.96
+    }
+    MultilineEditBoxWidgetClass "{8D02B4399E3F2A98}" {
+     Name "TemplatePrompt"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A99}" {
+      Anchor 0.02 0.12 0.465 0.88
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.96 0.96 0.96 1
+     "Font Size" 20
+     "Min Font Size" 15
+     "Vertical Alignment" Center
+     Wrap 1
+    }
+    PanelWidgetClass "{8D02B4399E3F2A9A}" {
+     Name "TemplateAnswerFocus"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A9B}" {
+      Anchor 0.5 0 1 1
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Ignore Cursor" 1
+     Color 0.47 0.47 0.47 0.82
+     style outline_4px
+    }
+    PanelWidgetClass "{8D02B4399E3F2A9C}" {
+     Name "TemplateAnswerBackground"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A9D}" {
+      Anchor 0.506 0.04 0.994 0.96
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Ignore Cursor" 1
+     Color 0.06 0.06 0.06 0.94
+    }
+    MultilineEditBoxWidgetClass "{8D02B4399E3F2A9E}" {
+     Name "TemplateAnswer"
+     Slot FrameWidgetSlot "{8D02B4399E3F2A9F}" {
+      Anchor 0.52 0.12 0.98 0.88
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.97 0.97 0.97 1
+     "Font Size" 20
+     "Min Font Size" 15
+     "Vertical Alignment" Center
+     Wrap 1
+    }
+   }
+  }
+ }
+}
