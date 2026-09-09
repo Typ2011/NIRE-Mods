@@ -494,12 +494,31 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 
 		m_MikesUI.Tick(0.016);
 		SyncNativeViewports();
-		string search = m_Search.GetText();
+		string search = StripLeadingSpaces(m_Search.GetText());
+		if (search != m_Search.GetText())
+			m_Search.SetText(search);
+
 		if (search != m_LastSearch)
 		{
 			m_LastSearch = search;
 			RefreshArsenalList();
+			ScrollArsenalToTop();
 		}
+	}
+
+	//! The keystroke that activates the field can also land inside it, so the first character typed
+	//! ends up behind a stray space and the filter then matches nothing. Only the leading spaces are
+	//! removed - spaces inside a query such as "5 56" are still part of the search.
+	protected static string StripLeadingSpaces(string text)
+	{
+		int index;
+		while (index < text.Length() && text.Substring(index, 1) == " ")
+			index++;
+
+		if (index == 0)
+			return text;
+
+		return text.Substring(index, text.Length() - index);
 	}
 
 	protected void SyncNativeViewports()
@@ -608,6 +627,7 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 		m_FactionFilter.SetText(m_FactionLabels[index]);
 		m_FactionMenu.SetVisible(false);
 		RefreshArsenalList();
+		ScrollArsenalToTop();
 	}
 
 	void SelectPreset(int index)
@@ -633,14 +653,26 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 		m_ArsenalModes.Set(prefab, item.GetItemMode());
 		UIInfo info = GetItemInfo(item);
 		if (info)
-			m_ArsenalLabels.Set(prefab, info.GetName());
+			m_ArsenalLabels.Set(prefab, ResolveName(info));
+	}
+
+	//! UIInfo.GetName returns a string table key. A TextWidget translates one on the way to the
+	//! screen, so the row reads "Bandage" while the cached label is still "#AR-Item_Bandage_Name" -
+	//! the search then matches against the key instead of the name on screen, and a label embedded in
+	//! a longer string such as "%1  x%2" never gets translated at all. Resolve it once, here.
+	protected static string ResolveName(UIInfo info)
+	{
+		if (!info)
+			return "";
+
+		return WidgetManager.Translate(info.GetName());
 	}
 
 	protected void RefreshArsenalList()
 	{
 		ClearChildren(m_ArsenalList);
-		string filter = m_Search.GetText();
-		filter.ToLower();
+		array<string> searchTerms = {};
+		BuildSearchTerms(m_Search.GetText(), searchTerms);
 
 		foreach (ResourceName prefab : m_ArsenalPrefabs)
 		{
@@ -648,9 +680,7 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 				continue;
 
 			string label = GetLabel(prefab);
-			string searchable = label;
-			searchable.ToLower();
-			if (!filter.IsEmpty() && !searchable.Contains(filter))
+			if (!MatchesSearchTerms(label, searchTerms))
 				continue;
 
 			bool compatible = m_SelectedTab == IBX_EArsenalTab.AMMUNITION && m_CompatibleAmmunition.Contains(prefab);
@@ -665,6 +695,47 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 				}
 			}
 		}
+	}
+
+	//! Every whitespace-separated term has to appear somewhere in the name, in any order, so
+	//! "m16 olive" finds "M16 Carbine - Olive" without the words being adjacent or in that order.
+	protected static void BuildSearchTerms(string search, notnull array<string> terms)
+	{
+		terms.Clear();
+		string lower = search;
+		lower.ToLower();
+		array<string> words = {};
+		lower.Split(" ", words, true);
+		foreach (string word : words)
+		{
+			if (!word.IsEmpty())
+				terms.Insert(word);
+		}
+	}
+
+	protected static bool MatchesSearchTerms(string label, notnull array<string> terms)
+	{
+		if (terms.IsEmpty())
+			return true;
+
+		string lower = label;
+		lower.ToLower();
+		foreach (string term : terms)
+		{
+			if (!lower.Contains(term))
+				return false;
+		}
+
+		return true;
+	}
+
+	//! A tab, faction or search change replaces the whole list, so the old scroll offset points at
+	//! nothing. Selecting a row also rebuilds the list and deliberately keeps its position, otherwise
+	//! expanding a weapon's ammunition would throw the Game Master back to the top.
+	protected void ScrollArsenalToTop()
+	{
+		if (m_ArsenalScroll)
+			m_ArsenalScroll.SetSliderPos(0, 0);
 	}
 
 	protected void RefreshCurrentList()
@@ -693,7 +764,7 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 					info = inventoryItem.GetUIInfo();
 
 				if (info && !info.GetName().IsEmpty())
-					m_ArsenalLabels.Set(prefab, info.GetName());
+					m_ArsenalLabels.Set(prefab, ResolveName(info));
 			}
 
 			int count = 0;
@@ -1011,6 +1082,7 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 
 		m_TabButtons[tab].MakeAccent();
 		RefreshArsenalList();
+		ScrollArsenalToTop();
 		if (tab == IBX_EArsenalTab.AMMUNITION)
 		{
 			if (m_CompatibleAmmunition.IsEmpty())
@@ -1189,7 +1261,7 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 
 	protected int GetQuantity()
 	{
-		return Math.ClampInt(m_Quantity.GetText().ToInt(), 1, IBX_GMInventoryEditorComponent.MAX_MUTATION_QUANTITY);
+		return Math.ClampInt(StripLeadingSpaces(m_Quantity.GetText()).ToInt(), 1, IBX_GMInventoryEditorComponent.MAX_MUTATION_QUANTITY);
 	}
 
 	protected void FinishAdd()

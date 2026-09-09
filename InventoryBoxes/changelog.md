@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-09-09 - Mikes UI text field caret fixed from here instead of forking the dependency
+
+`MUI_TextField` paints its own value text and then a caret placed after the measured width of the whole string, so the caret sits at the end of the text however far left the cursor has actually been moved. The cursor itself is fine - it lives in `MUI_EditBridge`'s hidden native `EditBoxWidget` and the arrow keys move it - but nothing on screen follows it, and it cannot be drawn correctly either: `EditBoxWidget` is `sealed` and exposes neither a cursor position nor a selection to script.
+
+`IBX_MuiEditBridgeFix.c` holds both halves. A `modded class MUI_EditBridge` shows the native box in place rather than hiding it at 2% opacity, so the engine renders the text, the caret and the selection itself, all correct by construction; `IBX_MuiEditBox.layout` supplies that box, because `EditBoxWidget` has no `SetFontSize` and one built by `CreateWidget` cannot be made to match `FONT_BODY`. A `modded class MUI_TextField` then repaints the value area in `theme.Field` at the end of `PaintForeground`, covering the text and fake caret MUI has just drawn.
+
+Covering on MUI's own surface rather than layering an opaque widget over it: a widget has to win a z-order argument against `MUI_RenderSurface`, and an opaque fill behind the native box did not reliably hide the caret. Repainting happens in the same surface, immediately after the thing being covered, so ordering cannot come into it. Only the inner text rect is repainted - the accent bar at the box's left edge, the border stroke and the rounded corners are all outside it and stay MUI's.
+
+`PaintForeground` is extended, never replaced. Suppressing the value would have meant copying its body into this addon, where it would drift silently from upstream's; covering needs nothing from it but the geometry of its input box, mirrored in five named constants.
+
+Two details worth keeping in mind. The box is put at z-order 20 explicitly - the stock bridge passes that same sort order to `CreateWidget`, `CreateWidgets` takes none, and below it the field chrome paints straight over the box. And the placeholder space `Attach` seeds an empty field with is dropped as soon as write mode is live: invisible it only ever leaked into the value, but a visible box would show a space the player never typed.
+
+NiRe Notepad depends on this addon, so it inherits the fix; there is no second copy there. The `StripLeadingSpaces` guards in both addons stay as they are, since a fix that fails to load should not take the search with it.
+
+## 2026-09-09 - Crate editor arsenal search matched string table keys, not the names on screen
+
+Typing a name into the arsenal search found nothing, or found rows whose visible name did not contain the term at all.
+
+`UIInfo.GetName()` returns a string table key, not a name. `AddCatalogItem` and `RefreshCurrentList` cached that key straight into `m_ArsenalLabels`, and `CreateRow` passed it to `TextWidget.SetText`, which translates a leading `#` key on the way to the screen. So the row read `Bandage` while the cached label was still `#AR-Item_Bandage_Name`, and the filter compared the typed text against the key. The crate contents list had the same fault in a quieter form: its label goes through `string.Format("%1  x%2", ...)`, and a key embedded in a longer string is not a key any more, so those rows showed the raw text.
+
+Both cache sites now go through `ResolveName`, which resolves the key once with `WidgetManager.Translate`. `GetLabel` therefore returns something that is both what the row displays and what the search matches.
+
+The search itself is now term-based: `BuildSearchTerms` splits the query on spaces and `MatchesSearchTerms` requires every term to appear somewhere in the name, in any order, so `m16 olive` finds `M16 Carbine - Olive`. It replaces a single `Contains` over the whole query, which could only match an unbroken substring.
+
+Two smaller fixes in the same menu. Changing the arsenal tab, faction filter or search text now calls `ScrollArsenalToTop`, because the list is rebuilt underneath a scroll offset that no longer points at anything; selecting a row deliberately keeps its position, since expanding a weapon's compatible ammunition rebuilds the list too and jumping to the top there would throw the Game Master away from the item just clicked. And `StripLeadingSpaces` guards the search and quantity reads against the stray leading space a Mikes UI text field leaves behind when it takes focus - the quantity was the quieter half of that one, since `" 5".ToInt()` is `0` and clamped back up to `1`, silently turning a typed amount into a single item.
+
+The leading space has since been fixed at its source in Mikes UI, but the guard stays: anyone running this addon against the published Mikes UI still needs it.
+
 ## 2026-08-31 - Load Crate no longer needs the vehicle storage to be the navigated one
 
 Reported on Discord: opening a vehicle's inventory with middle mouse and hovering a crate sometimes shows no `Load Crate` entry.

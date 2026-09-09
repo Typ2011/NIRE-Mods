@@ -1,0 +1,51 @@
+SizeLayoutWidgetClass {
+ Name "NoteLineRow"
+ Slot LayoutSlot "{8D02B4399E3F2AB1}" {
+  HorizontalAlign 3
+  Padding 0 0 0 0
+ }
+ AllowHeightOverride 1
+ HeightOverride 34
+ {
+  FrameWidgetClass "{8D02B4399E3F2AB2}" {
+   Name "NoteLineContent"
+   Slot AlignableSlot "{8D02B4399E3F2AB3}" {
+    HorizontalAlign 3
+    VerticalAlign 3
+   }
+   {
+    PanelWidgetClass "{8D02B4399E3F2AB4}" {
+     Name "NoteLineFocus"
+     Slot FrameWidgetSlot "{8D02B4399E3F2AB5}" {
+      Anchor 0 0 1 1
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Ignore Cursor" 1
+     Color 0.47 0.47 0.47 0.82
+     style outline_4px
+    }
+    PanelWidgetClass "{8D02B4399E3F2AB6}" {
+     Name "NoteLineBackground"
+     Slot FrameWidgetSlot "{8D02B4399E3F2AB7}" {
+      Anchor 0.008 0.08 0.992 0.92
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Ignore Cursor" 1
+     Color 0.06 0.06 0.06 0.94
+    }
+    EditBoxWidgetClass "{8D02B4399E3F2AB8}" {
+     Name "NoteLine"
+     Slot FrameWidgetSlot "{8D02B4399E3F2AB9}" {
+      Anchor 0.018 0.12 0.982 0.88
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.97 0.97 0.97 1
+     "Font Size" 15
+    }
+   }
+  }
+ }
+}

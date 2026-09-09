@@ -1,0 +1,20 @@
+ButtonWidgetClass {
+ Name "SelectorRow"
+ Slot LayoutSlot "{7A17000000000001}" {
+  Padding 1 1 1 1
+ }
+ Color 0.14 0.14 0.14 0.94
+ {
+  TextWidgetClass "{7A17000000000002}" {
+   Name "SelectorRowText"
+   Slot ButtonWidgetSlot "{7A17000000000003}" {
+   }
+   Color 0.96 0.96 0.96 1
+   "Font Size" 14
+   "Min Font Size" 10
+   "Horizontal Alignment" Left
+   "Vertical Alignment" Center
+   Padding 10 0 10 0
+  }
+ }
+}

@@ -13,6 +13,21 @@ Progress is shown at the bottom of the screen, in the control hints bar. Releasi
 
 Important: loading and unloading only work when the vehicle inventory was opened with a middle-click ("Open New Inventory"), or the controller equivalent. It is not available through the normal vehicle inventory view.
 
+9 SEPTEMBER 2026 - ARSENAL SEARCH AND TEXT FIELD FIXES
+
+Arsenal Search
+
+- Searching the arsenal now matches the item names shown on the rows. Typing a name used to find nothing, or find rows whose visible name did not contain the typed text at all.
+- Every typed word is matched separately and in any order, so "m16 olive" finds "M16 Carbine - Olive".
+- Crate contents rows show real item names instead of raw text like #AR-Item_Bandage_Name.
+- Changing the category tab, the faction filter or the search text scrolls the arsenal list back to the top. Selecting a row keeps its position, so expanding a weapon's compatible ammunition no longer jumps away from the item just clicked.
+- A typed quantity is read as typed. A stray leading space made "5" parse as zero, which was then raised back to one item.
+
+Text Fields
+
+- The text cursor in the inventory editor's fields now sits where you are actually typing. It used to be drawn at the end of the text however far left the cursor had been moved with the arrow keys, and selecting text showed nothing.
+- This is fixed for the whole Mikes UI text field, so NiRe Notepad gets the same fix through its dependency on this mod.
+
 31 AUGUST 2026 - PLACEMENT AND DISPLAY FIXES
 
 Placing Crates

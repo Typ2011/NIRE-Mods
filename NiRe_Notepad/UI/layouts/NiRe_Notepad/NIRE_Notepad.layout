@@ -1,0 +1,743 @@
+FrameWidgetClass {
+ Name "Root"
+ Slot FrameWidgetSlot "{C22631CB3A324BD1}" {
+  Anchor 0 0 1 1
+  OffsetLeft 0
+  OffsetTop 0
+  OffsetRight 0
+  OffsetBottom 0
+ }
+ "Ignore Cursor" 1
+ Color 0 0 0 0
+ {
+  FrameWidgetClass "{FC49601A552240CD}" {
+   Name "NotepadPanel"
+   Slot FrameWidgetSlot "{7B39899B7C6B4EC7}" {
+    Anchor 1 1 1 1
+    OffsetLeft -36
+    OffsetTop -36
+    SizeX 980
+    OffsetRight -980
+    SizeY 650
+    OffsetBottom -650
+    Alignment 1 1
+   }
+   {
+    CanvasWidgetClass "{87943E039DC84B2B}" {
+     Name "NotepadBackground"
+     Slot FrameWidgetSlot "{A0AB07A70A694563}" {
+      Anchor 0 0 1 1
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Opacity 1
+     "Ignore Cursor" 1
+    }
+    PanelWidgetClass "{3A7147B1B1894E9D}" {
+     Name "Border"
+     Slot FrameWidgetSlot "{C383C9CE02FA44E1}" {
+      Anchor 0 0 1 1
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+     Color 0 0 0 1
+     style outline_4px
+    }
+    TextWidgetClass "{08366E4D67F14F14}" {
+     Name "Title"
+     Slot FrameWidgetSlot "{5F920C14286C4AAA}" {
+      Anchor 0.04 0.025 0.96 0.105
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.96 0.96 0.96 1
+     Text "#NIRE-Title"
+     "Font Size" 34
+     "Min Font Size" 24
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    ButtonWidgetClass "{E566EC7E1BF742D6}" {
+     Name "CloseButton"
+     Slot FrameWidgetSlot "{BD469DF4332C423A}" {
+      Anchor 0.81 0.915 0.96 0.975
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.14 0.14 0.14 0.94
+     {
+      TextWidgetClass "{BCF724D6942144CC}" {
+       Name "CloseText"
+       Slot ButtonWidgetSlot "{7808B959068E4612}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Button_Done"
+       "Font Size" 19
+       "Min Font Size" 14
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{834ECFEB0B6E4C15}" {
+     Name "TabGeneral"
+     Slot FrameWidgetSlot "{535EDCF535624131}" {
+      Anchor 0.04 0.13 0.19 0.215
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.67 0.49 0.12 1
+     {
+      TextWidgetClass "{6E082555D167478D}" {
+       Name "TabGeneralText"
+       Slot ButtonWidgetSlot "{E504602DB9004CBB}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Tab_General"
+       "Font Size" 17
+       "Min Font Size" 12
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{9C4517445EA74AD4}" {
+     Name "TabCAS"
+     Slot FrameWidgetSlot "{EA53B1D8642B4153}" {
+      Anchor 0.2 0.13 0.335 0.215
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.14 0.14 0.14 0.94
+     {
+      TextWidgetClass "{3CC9F3AF593A4B22}" {
+       Name "TabCASText"
+       Slot ButtonWidgetSlot "{429D642DE2A84A77}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Tab_CAS"
+       "Font Size" 18
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{A484FC6B055F4A27}" {
+     Name "TabArtillery"
+     Slot FrameWidgetSlot "{0121C0159F6B4699}" {
+      Anchor 0.345 0.13 0.49 0.215
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.14 0.14 0.14 0.94
+     {
+      TextWidgetClass "{4F15CB64276843A6}" {
+       Name "TabArtilleryText"
+       Slot ButtonWidgetSlot "{8C1FF60C02114A2E}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Tab_Artillery"
+       "Font Size" 16
+       "Min Font Size" 11
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{52B63C8664F848D8}" {
+     Name "TabLogistics"
+     Slot FrameWidgetSlot "{9C13700966B249A7}" {
+      Anchor 0.5 0.13 0.645 0.215
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.14 0.14 0.14 0.94
+     {
+      TextWidgetClass "{103D708BCC754DF8}" {
+       Name "TabLogisticsText"
+       Slot ButtonWidgetSlot "{D628E421004A4659}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Tab_Logistics"
+       "Font Size" 16
+       "Min Font Size" 11
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{DA1F2722746E405C}" {
+     Name "TabMedevac"
+     Slot FrameWidgetSlot "{D968FF6FDD494610}" {
+      Anchor 0.655 0.13 0.8 0.215
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.14 0.14 0.14 0.94
+     {
+      TextWidgetClass "{7A0E7A9339234685}" {
+       Name "TabMedevacText"
+       Slot ButtonWidgetSlot "{827CE80099ED4449}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Tab_MEDEVAC"
+       "Font Size" 16
+       "Min Font Size" 11
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{D4A2F4696F2B4C1A}" {
+     Name "TabEvacTransport"
+     Slot FrameWidgetSlot "{D4A2F4696F2B4C1B}" {
+      Anchor 0.81 0.13 0.96 0.215
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.14 0.14 0.14 0.94
+     {
+      TextWidgetClass "{D4A2F4696F2B4C1C}" {
+       Name "TabEvacTransportText"
+       Slot ButtonWidgetSlot "{D4A2F4696F2B4C1D}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Tab_EvacTransport"
+       "Font Size" 14
+       "Min Font Size" 10
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    TextWidgetClass "{C0CC55C252E243E5}" {
+     Name "ActiveTabTitle"
+     Slot FrameWidgetSlot "{4C56B9F9EE084203}" {
+      Anchor 0.05 0.245 0.95 0.305
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.96 0.96 0.96 1
+     Text "#NIRE-Title_General"
+     "Font Size" 22
+     "Min Font Size" 16
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+    }
+    PanelWidgetClass "{67135A8402494F01}" {
+     Name "MissionPanel"
+     Slot FrameWidgetSlot "{67135A8402494F02}" {
+       Anchor 0.035 0.245 0.335 0.895
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+     Color 0.47 0.47 0.47 0.82
+     style outline_4px
+     {
+      TextWidgetClass "{67135A8402494F03}" {
+       Name "MissionPanelTitle"
+       Slot FrameWidgetSlot "{67135A8402494F04}" {
+        Anchor 0.04 0.025 0.96 0.1
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-List_FireMissions"
+       "Font Size" 15
+       "Min Font Size" 12
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+      ButtonWidgetClass "{67135A8402494F05}" {
+       Name "NewMission"
+       Slot FrameWidgetSlot "{67135A8402494F06}" {
+        Anchor 0.04 0.115 0.48 0.21
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.67 0.49 0.12 1
+       {
+        TextWidgetClass "{67135A8402494F07}" {
+         Name "NewMissionText"
+         Slot ButtonWidgetSlot "{67135A8402494F08}" {
+         }
+         Color 0.96 0.96 0.96 1
+         Text "#NIRE-Button_New"
+         "Font Size" 15
+         "Min Font Size" 12
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{D4A2F4696F2B4C20}" {
+       Name "DeleteMission"
+       Slot FrameWidgetSlot "{D4A2F4696F2B4C21}" {
+        Anchor 0.52 0.115 0.96 0.21
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.42 0.08 0.06 1
+       {
+        TextWidgetClass "{D4A2F4696F2B4C22}" {
+         Name "DeleteMissionText"
+         Slot ButtonWidgetSlot "{D4A2F4696F2B4C23}" {
+         }
+         Color 0.96 0.96 0.96 1
+         Text "#NIRE-Button_Delete"
+         "Font Size" 15
+         "Min Font Size" 11
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      EditBoxWidgetClass "{67135A8402494F09}" {
+       Name "MissionName"
+       Slot FrameWidgetSlot "{67135A8402494F0A}" {
+        Anchor 0.05 0.245 0.95 0.35
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.97 0.97 0.97 1
+       "Font Size" 18
+      }
+      ScrollLayoutWidgetClass "{67135A8402494F0B}" {
+       Name "MissionScroll"
+       Slot FrameWidgetSlot "{67135A8402494F0C}" {
+        Anchor 0.05 0.39 0.95 0.84
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       style Small
+       {
+        VerticalLayoutWidgetClass "{67135A8402494F0D}" {
+         Name "MissionList"
+         Slot AlignableSlot "{67135A8402494F0E}" {
+          HorizontalAlign 3
+          VerticalAlign 0
+          Padding 0 0 8 0
+         }
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass "{1DF11C0F09A942A4}" {
+     Name "EditorFocus"
+     Slot FrameWidgetSlot "{9DA14182F10448F7}" {
+      Anchor 0.035 0.315 0.965 0.895
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.47 0.47 0.47 0.82
+     style outline_4px
+    }
+    PanelWidgetClass "{AD02C853CD65475E}" {
+     Name "EditorBackground"
+     Slot FrameWidgetSlot "{1F622786C6434476}" {
+      Anchor 0.04 0.32 0.96 0.89
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.06 0.06 0.06 0.94
+    }
+    ScrollLayoutWidgetClass "{8D02B4399E3F2AA0}" {
+     Name "TemplateRowsScroll"
+     Slot FrameWidgetSlot "{8D02B4399E3F2AA1}" {
+      Anchor 0.355 0.25 0.96 0.89
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+     "Clipping" 1
+     style Small
+     {
+      VerticalLayoutWidgetClass "{8D02B4399E3F2AA2}" {
+       Name "TemplateRowsList"
+       Slot AlignableSlot "{8D02B4399E3F2AA3}" {
+        HorizontalAlign 3
+        VerticalAlign 0
+       }
+      }
+     }
+    }
+    ScrollLayoutWidgetClass "{E10B2A1B4CB04FF9}" {
+     Name "EditorScroll"
+     Slot FrameWidgetSlot "{1833BC1770814F84}" {
+      Anchor 0.06 0.34 0.94 0.87
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Clipping" 1
+     style Small
+     {
+      MultilineEditBoxWidgetClass "{7A16000000000003}" {
+       Name "NoteEditor"
+       Slot AlignableSlot "{7A16000000000004}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+        Padding 0 0 24 0
+       }
+       Color 0.97 0.97 0.97 1
+       "Font Size" 18
+       "Min Font Size" 18
+       "Vertical Alignment" Top
+       Wrap 1
+      }
+     }
+    }
+    VerticalLayoutWidgetClass "{8D02B4399E3F2ABA}" {
+     Name "LineEditors"
+     Slot FrameWidgetSlot "{8D02B4399E3F2ABB}" {
+      Anchor 0.04 0.25 0.96 0.55
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+    }
+    PanelWidgetClass "{7A11000000000005}" {
+     Name "TerrainPanel"
+     Slot FrameWidgetSlot "{7A11000000000006}" {
+      Anchor 0.035 0.245 0.965 0.895
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+     {
+      ButtonWidgetClass "{7A11000000000007}" {
+       Name "TerrainPen"
+       Slot FrameWidgetSlot "{7A11000000000008}" {
+        Anchor 0.02 0.02 0.12 0.11
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.67 0.49 0.12 1
+       {
+        TextWidgetClass "{7A11000000000009}" {
+         Name "TerrainPenText"
+         Slot ButtonWidgetSlot "{7A1100000000000A}" {
+         }
+         Color 0.96 0.96 0.96 1
+         Text "#NIRE-Tool_Pen"
+         "Font Size" 14
+         "Min Font Size" 10
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{7A1100000000000B}" {
+       Name "TerrainEraser"
+       Slot FrameWidgetSlot "{7A1100000000000C}" {
+        Anchor 0.13 0.02 0.26 0.11
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.14 0.14 0.14 0.94
+       {
+        TextWidgetClass "{7A1100000000000D}" {
+         Name "TerrainEraserText"
+         Slot ButtonWidgetSlot "{7A1100000000000E}" {
+         }
+         Color 0.96 0.96 0.96 1
+         Text "#NIRE-Tool_Eraser"
+         "Font Size" 12
+         "Min Font Size" 9
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{7A14000000000001}" {
+       Name "TerrainClear"
+       Slot FrameWidgetSlot "{7A14000000000002}" {
+        Anchor 0.27 0.02 0.42 0.11
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.42 0.08 0.06 1
+       {
+        TextWidgetClass "{7A14000000000003}" {
+         Name "TerrainClearText"
+         Slot ButtonWidgetSlot "{7A14000000000004}" {
+         }
+         Color 0.96 0.96 0.96 1
+         Text "#NIRE-Tool_Clear"
+         "Font Size" 12
+         "Min Font Size" 9
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{7A14000000000005}" {
+       Name "TerrainColorWhite"
+       Slot FrameWidgetSlot "{7A14000000000006}" {
+        Anchor 0.48 0.025 0.57 0.105
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 1 1 1 1
+      }
+      ButtonWidgetClass "{7A14000000000007}" {
+       Name "TerrainColorRed"
+       Slot FrameWidgetSlot "{7A14000000000008}" {
+        Anchor 0.58 0.025 0.67 0.105
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.88 0.12 0.12 1
+      }
+      ButtonWidgetClass "{7A14000000000009}" {
+       Name "TerrainColorBlue"
+       Slot FrameWidgetSlot "{7A1400000000000A}" {
+        Anchor 0.68 0.025 0.77 0.105
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.12 0.45 0.95 1
+      }
+      ButtonWidgetClass "{7A1400000000000B}" {
+       Name "TerrainColorGreen"
+       Slot FrameWidgetSlot "{7A1400000000000C}" {
+        Anchor 0.78 0.025 0.87 0.105
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.1 0.8 0.28 1
+      }
+      ButtonWidgetClass "{7A1400000000000D}" {
+       Name "TerrainColorYellow"
+       Slot FrameWidgetSlot "{7A1400000000000E}" {
+        Anchor 0.88 0.025 0.97 0.105
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 1 0.82 0.08 1
+      }
+      PanelWidgetClass "{7A1100000000000F}" {
+       Name "TerrainCanvasBackground"
+       Slot FrameWidgetSlot "{7A11000000000010}" {
+        Anchor 0.02 0.13 0.98 0.98
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.06 0.06 0.06 1
+       style outline_4px
+      }
+      CanvasWidgetClass "{7A11000000000011}" {
+       Name "TerrainCanvas"
+       Slot FrameWidgetSlot "{7A11000000000012}" {
+        Anchor 0.02 0.13 0.98 0.98
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       "Ignore Cursor" 1
+      }
+      ButtonWidgetClass "{7A12000000000007}" {
+       Name "TerrainInput"
+       Slot FrameWidgetSlot "{7A12000000000008}" {
+        Anchor 0.02 0.13 0.98 0.98
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0 0 0 0
+      }
+     }
+    }
+    PanelWidgetClass "{0C6BF659E6B84B93}" {
+     Name "TemplateMenu"
+     Slot FrameWidgetSlot "{5F3C4BFC658F4717}" {
+      Anchor 0.15 0.245 0.85 0.46
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+     Color 0.06 0.06 0.06 0.96
+     style outline_4px
+     {
+      TextWidgetClass "{B7211F12BF7F4D20}" {
+       Name "TemplateMenuLabel"
+       Slot FrameWidgetSlot "{E7B7E64DC89549C0}" {
+        Anchor 0.04 0.08 0.96 0.36
+        OffsetLeft 0
+        OffsetTop 0
+        OffsetRight 0
+        OffsetBottom 0
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Template_Select"
+       "Font Size" 16
+       "Min Font Size" 12
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{23EF83FA48334D9B}" {
+     Name "Template5"
+     Slot FrameWidgetSlot "{7144B29DA5954456}" {
+      Anchor 0.18 0.34 0.37 0.43
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+     Color 0.67 0.49 0.12 1
+     {
+      TextWidgetClass "{D11D2F5B39294EDA}" {
+       Name "Template5Text"
+       Slot ButtonWidgetSlot "{49371DA85F294A6C}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Template_5Liner"
+       "Font Size" 22
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{82DC9CD0C6F6489B}" {
+     Name "Template9"
+     Slot FrameWidgetSlot "{5E1A52D13073444E}" {
+      Anchor 0.405 0.34 0.595 0.43
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+     Color 0.67 0.49 0.12 1
+     {
+      TextWidgetClass "{6361C12AB0E943AC}" {
+       Name "Template9Text"
+       Slot ButtonWidgetSlot "{A4B766D06CB74A3B}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Template_9Liner"
+       "Font Size" 22
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{82DC9CD0C6F648A1}" {
+     Name "TemplateFree"
+     Slot FrameWidgetSlot "{5E1A52D1307344A2}" {
+      Anchor 0.63 0.34 0.82 0.43
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     "Is Visible" 0
+     Color 0.67 0.49 0.12 1
+     {
+      TextWidgetClass "{6361C12AB0E943A3}" {
+       Name "TemplateFreeText"
+       Slot ButtonWidgetSlot "{A4B766D06CB74AA4}" {
+       }
+       Color 0.96 0.96 0.96 1
+       Text "#NIRE-Template_FreeText"
+       "Font Size" 20
+       "Min Font Size" 14
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    TextWidgetClass "{D38A5155B0994DC6}" {
+     Name "Status"
+     Slot FrameWidgetSlot "{C876034B04964B7E}" {
+      Anchor 0.05 0.915 0.78 0.975
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 0.95 0.76 0.25 1
+     Text "#NIRE-Status_FreeText"
+     "Font Size" 15
+     "Min Font Size" 11
+     "Horizontal Alignment" Center
+     "Vertical Alignment" Center
+     Wrap 1
+    }
+   }
+  }
+ }
+}

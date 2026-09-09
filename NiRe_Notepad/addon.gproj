@@ -1,0 +1,47 @@
+GameProject {
+ ID "NiReNotepad"
+ GUID "24B93F548304474B"
+ TITLE "NiRe Notepad"
+ Dependencies {
+  "58D0FB3206B6F859"
+  "B3F91C6A4E275D08"
+  "A1E6470C8DBF3952"
+  "6A05287AF042071B"
+ }
+ Configurations {
+  GameProjectConfig PC {
+   WidgetManagerSettings WidgetManagerSettings "{9A44D783C1B2E608}" {
+    StringTables {
+     StringTableDefinition "{9A44D783C1B2E609}" {
+      StringTableSource "{9A44D783C1B2E605}Language/NIRE_localization.st"
+      Languages {
+       LanguageDefinition "{9A44D783C1B2E620}" { Code "cs_cz" StringTableRuntime "{9A44D783C1B2E610}Language/NIRE_localization.cs_cz.conf" }
+       LanguageDefinition "{9A44D783C1B2E60A}" { Code "de_de" StringTableRuntime "{9A44D783C1B2E607}Language/NIRE_localization.de_de.conf" }
+       LanguageDefinition "{9A44D783C1B2E60B}" { Code "en_us" StringTableRuntime "{9A44D783C1B2E606}Language/NIRE_localization.en_us.conf" }
+       LanguageDefinition "{9A44D783C1B2E621}" { Code "es_es" StringTableRuntime "{9A44D783C1B2E611}Language/NIRE_localization.es_es.conf" }
+       LanguageDefinition "{9A44D783C1B2E622}" { Code "fr_fr" StringTableRuntime "{9A44D783C1B2E612}Language/NIRE_localization.fr_fr.conf" }
+       LanguageDefinition "{9A44D783C1B2E623}" { Code "it_it" StringTableRuntime "{9A44D783C1B2E613}Language/NIRE_localization.it_it.conf" }
+       LanguageDefinition "{9A44D783C1B2E624}" { Code "ja_jp" StringTableRuntime "{9A44D783C1B2E614}Language/NIRE_localization.ja_jp.conf" }
+       LanguageDefinition "{9A44D783C1B2E625}" { Code "ko_kr" StringTableRuntime "{9A44D783C1B2E615}Language/NIRE_localization.ko_kr.conf" }
+       LanguageDefinition "{9A44D783C1B2E626}" { Code "pl_pl" StringTableRuntime "{9A44D783C1B2E616}Language/NIRE_localization.pl_pl.conf" }
+       LanguageDefinition "{9A44D783C1B2E627}" { Code "pt_br" StringTableRuntime "{9A44D783C1B2E617}Language/NIRE_localization.pt_br.conf" }
+       LanguageDefinition "{9A44D783C1B2E628}" { Code "ru_ru" StringTableRuntime "{9A44D783C1B2E618}Language/NIRE_localization.ru_ru.conf" }
+       LanguageDefinition "{9A44D783C1B2E629}" { Code "uk_ua" StringTableRuntime "{9A44D783C1B2E619}Language/NIRE_localization.uk_ua.conf" }
+       LanguageDefinition "{9A44D783C1B2E62A}" { Code "zh_cn" StringTableRuntime "{9A44D783C1B2E61A}Language/NIRE_localization.zh_cn.conf" }
+      }
+     }
+    }
+   }
+  }
+  GameProjectConfig XBOX_ONE {
+  }
+  GameProjectConfig XBOX_SERIES {
+  }
+  GameProjectConfig PS4 {
+  }
+  GameProjectConfig PS5 {
+  }
+  GameProjectConfig HEADLESS {
+  }
+ }
+}
