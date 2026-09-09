@@ -1,5 +1,135 @@
 # Changelog
 
+## 2026-08-31 - Load Crate no longer needs the vehicle storage to be the navigated one
+
+Reported on Discord: opening a vehicle's inventory with middle mouse and hovering a crate sometimes shows no `Load Crate` entry.
+
+`IBX_FindVehicleStorageUI` accepted a vehicle only while its storage was the *current navigation storage* of the loot UI or of an opened storage container. That is narrower than "the vehicle's inventory is open". `SCR_InventoryMenuUI.SetOpenStorage` traverses the loot UI into the vehicle's storage only if `GetStorageUIFromVicinity` already finds a vicinity slot for it; it is called once from `OnMenuOpen`, its failure is silent, and the menu then opens on the plain vicinity list with the vehicle merely listed in it. Stepping back out of the vehicle storage clears the traversal the same way.
+
+In both states the vehicle is still in the vicinity, so the resolver is now `IBX_FindVehicleStorage`: the two navigation-storage checks unchanged, then a fallback to the first vehicle storage among the loot UI's own slots. It returns the storage as well as its UI, so `IBX_IsPendingTransferValid` re-resolves and compares the target instead of asserting the navigation still sits on it - that assertion would have rejected every transfer coming from the fallback at the end of the five-second hold. The unload check keeps only "the crate is still in the same storage".
+
+Known ceiling, marked `ponytail:` in the source: when the fallback runs and two vehicles are in the vicinity, the first one wins.
+
+Rejected on the way: also walking up the parent chain in `IBX_IsVehicleStorage`, on the theory that a cargo storage might sit on an entity attached to the vehicle rather than on the vehicle root. It is not needed - vanilla puts the storage on the root (`M923A1.et:480`) and `Vehicle_Base.et` is the only prefab declaring `SCR_VehicleInventoryStorageManagerComponent` - and in play it removed the `Load Crate` entry outright. Reverted; that function is unchanged.
+
+## 2026-08-31 - Workshop changelog entry and Discord post for the placement round
+
+`Workshop_Changelog.md` gained a `31 AUGUST 2026 - PLACEMENT AND DISPLAY FIXES` section covering the four entries below it: the surface snap, the tilt, the crates staying drawn inside vehicles, and the fill display. Plain text with no Markdown, matching the rest of that file - the Workshop renders none.
+
+`Discord_Update_Placement.md` is the announcement, same shape as `Discord_Update_Fixes.md`: title, Workshop link, a one-line summary, then a section per area - Placing Crates, Crates in Vehicles, Crate Fill. It covers all four of the day's entries rather than only the placement pair, since they ship together. No feature walkthrough section: the round adds nothing new to explain.
+
+## 2026-08-31 - A dropped crate lies on the slope it lands on
+
+Follow-up to the surface-snap fix below. With the crate landing on the right surface, it was still always set down dead upright, so on any slope it floated at one corner and cut into the ground at the other.
+
+The trace that already finds the surface also reports its normal, so `GetSupportY` now hands it back through an `out` parameter and the two places a crate comes to rest - `StopServer` and `DetachDrag` - tilt to it through a new `OrientToSurface`.
+
+`SCR_EntityHelper.OrientUpToVector` is the vanilla helper for this and is not usable here: it rebuilds the entire basis out of the normal alone, via `newUp.Perpend()`, which throws the crate's yaw away and would spin every dropped crate to an arbitrary new facing. `OrientToSurface` keeps the yaw instead, rebuilding the basis as `right = up x forward`, `forward = right x up` from the crate's own current forward axis.
+
+Two guards on it:
+
+- The normal is normalized before use. A non-unit basis reaching `SetWorldTransform` would resize the crate.
+- Nothing steeper than 40 degrees from level is matched (`SUPPORT_MAX_TILT_COS`). That surface is a wall or a rock face rather than something to set a crate on, and matching it would stand the crate on its side; those crates stay upright.
+
+`ResnapDragHeight` deliberately does not orient. It runs every tick while a drag is attached, right after `ApplyDragOffset` has set the crate's rotation from the character's facing, so any tilt written there would be overwritten on the next tick and flicker. A dragged crate stays upright while it is moving and settles onto the surface when the drag detaches.
+
+Confirmed working in play.
+
+## 2026-08-31 - Crates stay where they are put down, including inside buildings
+
+Reported: a crate cannot be placed on a building - it drops to the ground underneath instead. Reproduced from the clip: carry a crate onto a floor above ground level, drop it, and it teleports down to the terrain.
+
+Every one of the three places the carry/drag system settles a crate onto a surface asked `SCR_TerrainHelper`, and `SCR_TerrainHelper` only ever answers with the heightmap. A building floor, a bridge deck, a container roof and a flatbed are all invisible to it, so "put the crate down" meant "put the crate on the ground below wherever you are standing". The three call sites were `IBX_CrateCarryComponent.StopServer` (the drop that ends a carry), `DetachDrag` (the crate coming to rest at the end of a drag step) and `ResnapDragHeight` (the per-tick height correction while dragging).
+
+All three now go through one new `GetSupportY`, which traces straight down from the crate's position and returns the first solid surface it finds, falling back to the terrain height only when the trace finds nothing at all. The trace setup is the one vanilla item placement uses in `SCR_ItemPlacementComponent`: `TraceFlags.WORLD | TraceFlags.ENTS` with `EPhysicsLayerPresets.Projectile`.
+
+Two details the trace needs to get right:
+
+- It starts 0.5 m above the crate rather than at it. A trace starting flush with the surface a crate is already resting on can report zero distance travelled, and the clearance also lets a dragged crate climb a doorstep or a floor edge instead of only ever falling. It reaches 20 m down, which covers dropping a crate over a railing or off a roof.
+- It filters out the crate *and its children* through `SCR_Global.FilterCallback_IgnoreEntityWithChildren`, not just the crate entity. The trace starts inside the crate's own collider, and the covered equipment stacks keep their cover in a separate child entity with a collider of its own - excluding only the root would have landed those crates on their own tarp, a little higher on every drop.
+
+The holder character is excluded too, through `TraceParam.Exclude`, which applies on top of the callback.
+
+Carrying itself never needed a fix: a carried crate is positioned relative to the holder's own origin, so it already followed the player up a staircase. Only the moment of setting it down was wrong.
+
+Compile-verified in the Workbench (Game module CRC32 `520ed27f`, no errors). The in-play check - carry a crate onto an upper floor and drop it - is still outstanding.
+
+## 2026-08-31 - One fill number for a crate, on every screen that shows one
+
+Reported: a crate whose own inventory slot draws a full red bar shows its storage header bar at about half, and the Game Master inventory editor gave no fill reading at all.
+
+The item bar was the honest one. Measured in play on a crate holding 43 rounds: `GetOccupiedSpace()` 4300 against a `GetMaxVolumeCapacity()` of 4300 - the crate was exactly full, and the bar said so. The header bar was never updated at all. Vanilla asks for a percentage in `SCR_InventoryStorageBaseUI.Init` and `Refresh`, and the crate panel, a `SCR_InventoryOpenedStorageUI`, reaches neither in the path the world Open action creates it through. An unasked `ProgressBarWidget` keeps its layout default, which is a full bar - and `SCR_InventoryProgressBar` flips its palette, so the header sat at a fixed fraction no matter what the crate held. Confirmed by log: the percentage call fired for the backpack, vest and hitzone panels and never once for the crate.
+
+`IBX_CrateFill` is the single source now, and every surface is driven rather than asked:
+
+- The opened crate's header bar is set from the modded `SCR_InventoryStorageBaseUI.Refresh` and `HandlerAttached` (in `IBX_CrateRename.c`, where that class is already modded). `GetOccupiedVolumePercentage` is still overridden so the insert preview colours from the same number; its `occupiedSpace` preview argument stays vanilla.
+- The crate's own inventory slot bar is set from `SCR_InventorySlotUI.Refresh` and `SetSlotVisible` after vanilla has run, looking the widget up rather than using vanilla's cached `m_ProgressBar`, which is only filled in when the slot's own `BaseInventoryStorageComponent.Cast(m_pItem)` resolves.
+- Both report the fuller of the two limits `SCR_UniversalInventoryStorageComponent.CanStoreItem` enforces - cumulative volume and contents weight against `m_fMaxWeight` - rather than vanilla's volume alone, so a crate reads full when it starts refusing items on either. Free slots are left out: `UniversalInventoryStorage` scales its slots dynamically, so `GetSlotsCount()` cannot be trusted to mean the configured 100 rather than the slots in use.
+- The storage is always resolved through `IBX_GMInventoryEditorComponent.GetStorage()`, which is public for this, so no call site can land on the disabled inherited `SCR_UniversalInventoryStorageComponent {5476A2F100DF4EFF}` the 41 vanilla-derived prefabs still carry.
+- The Game Master editor gained a fill line under `CRATE CONTENTS`, reading `100% FULL - 4/1000 KG - 4300/4300 VOLUME`. It takes the top half of the 52 px spacer that was already there, so the column keeps its height. On a server the line comes from the server, travelling as a string with the snapshot in `IBX_RpcDo_InventoryMutationResult`: the item entities a mutation creates arrive at the client after the reply does, so reading the crate locally left the line one step behind, which looked like it never changed. The local reading remains for the listen-server path, where this machine is the authority.
+
+The percent sign in that line is concatenated rather than written into the format string: `string.Format` eats a `%` that follows a placeholder, so `"%1%"` printed the bare number.
+
+## 2026-08-31 - Crates loaded into a vehicle stay drawn in the world
+
+Reported against V1-V5 of the equipment box stacks: loading a covered V1, V2 or V5 into a truck left the cover hanging in the middle of the cargo bed and kept the crate's Game Master icon on screen, while V3 and V4 stayed visible in full. Two separate causes, both fixed at one hook.
+
+`SCR_UniversalInventoryStorageComponent.OnAddedToSlot` calls `ShowOwner()` again for any item whose volume reaches `MIN_VOLUME_TO_SHOW_ITEM_IN_SLOT`, a hard-coded 200,000 cm3 - vanilla's "a big item rides visibly in the trunk" rule. Exactly four crates are above that line and they are exactly the ones reported: V3 (221,500), V3 covered (302,700), V4 (283,800) and V4 covered (415,000). Nothing about those prefabs is wrong; the volumes are what `Tools/crate_sizes.py` measures off the meshes, and lowering them to duck under the threshold would corrupt the cargo cost they exist for.
+
+The second cause is the covers. The engine's own hide covers the item entity only, and the vanilla `EquipmentBoxStack_*_covered` prefabs are a hierarchy - stack root plus a separate cover child entity carrying its own `MeshObject`. The root went away, the child did not. That is why it hit V1, V2 and V5 covered but not their bare twins, and it applies to V6 covered too, which simply was not tested.
+
+`IBX_CrateCarryComponent.ApplyStoredVisibility` now runs on the storage-parent transition the component already polls for the physics restore: `ClearFlags(EntityFlags.VISIBLE, true)` on store and `SetFlags` on retrieve, recursive so the cover child follows the root, plus `SCR_EditableEntityComponent.SetVisible(!stored)` so the Game Master icon goes with it. Recursive flags beat any per-prefab change - one edit covers all 42 crates and both causes, and the poll runs on every machine, which is what visibility needs.
+
+Known ceiling, marked `ponytail:` in the source: the poll is the existing 500 ms one, so a crate above the volume threshold can stay drawn for up to one tick after it is loaded.
+
+## 2026-08-27 - GPLv2 license file and a GitHub wiki page
+
+`license.txt` copied from `AMI - ACE Breathing Compat/license.txt`, which is byte-identical in body to `RAMI_AdvancedMedicalInterface/license.txt` - the two sibling addons in this repo that already ship one. Only the first two lines differ: the mod name, and `Copyright (C) 2026 NIRE-Mods contributors`, matching the wording the NIRE-Mods README uses rather than the "Advanced Medical Interface contributors" the source file carried. Nothing third-party is bundled here, so this mod needs no equivalent of RAMI's `THIRD_PARTY_NOTICES.md` paragraph.
+
+`Wiki_Inventory-Boxes.md` is the wiki page, to be created by hand as `Inventory-Boxes` in the GitHub wiki - the wiki is a separate git repository and is not written from here. It is the long-form home the Workshop description no longer has room for, and it carries the preset-authoring walkthrough that the previous entry cut from the description and promised to GitHub. Markdown stays, since the wiki renders it.
+
+Content is the union of the Workshop description and the changelog's player-facing surface, plus the addon ID, GUID and the Mike's UI dependency (`B3F91C6A4E275D08`), which appear nowhere player-facing today. Structured after `GMVehicleLock/README.md` - what it is, install, feature sections, multiplayer, limitations - rather than inventing a new shape.
+
+## 2026-08-27 - Workshop description trimmed to the 5,000 character limit
+
+The description had grown to 6,766 characters with the sizing/naming/depot features and the links section; the Workshop caps it at 5,000. It now sits at 4,997.
+
+Cut rather than compressed everywhere it was possible. The four-step preset authoring walkthrough is gone and points at GitHub instead - it is developer instructions on a player-facing page, and the longest single block in the file. `MULTIPLAYER AND PERFORMANCE` and `DEVELOPMENT STATUS` merged into one section, since both were saying "pre-alpha, feedback welcome". The `FEATURES` list dropped the bullets that only restated a section heading below them.
+
+The rest is wording: limits stated once instead of in both the feature list and the section that explains them, and no sentence repeating what the heading above it already says. Every feature the mod has is still named.
+
+Worth checking before the next update: `Workshop_Description.md` is now within 3 characters of the cap, so anything added has to displace something. The preset walkthrough it now defers to is not yet in the GitHub repository README.
+
+## 2026-08-27 - Workshop description points at GitHub and the Discord thread
+
+`Workshop_Description.md` gains a `LINKS AND FEEDBACK` section above `DEVELOPMENT STATUS`: the https://github.com/Typ2011/NIRE-Mods repository, and the "NIRE Mods" thread on the official Arma Discord.
+
+Placed above the status section rather than at the very end, because the status section already asks for feedback and now has somewhere to send it. Plain text, matching the rest of the file - the Workshop does not render Markdown links.
+
+## 2026-08-27 - Discord post for the sizing, naming and depot round
+
+`Discord_Update_Sizes_Names_Depot.md`, following the shape of `Discord_Update_Fixes.md`: workshop link under the title, one bold lead line, bullet sections, pre-alpha feedback note at the end. Three sections mirroring the Workshop changelog entry - crate size, crate names, depot requests.
+
+Markdown stays here on purpose. Discord renders it, unlike the Workshop text stripped in the entry above, so headings and bold are the format rather than literal characters on the page.
+
+## 2026-08-27 - Workshop text stripped of Markdown
+
+The Reforger Workshop renders description and changelog as plain text, so every `#` heading, `**bold**` and backtick was showing up literally on the mod page.
+
+`Workshop_Changelog.md` and `Workshop_Description.md` are now plain text: headings are uppercase lines, sub-headings plain title-case lines, bullets stay as `-`, em dashes are flattened to hyphens, and no inline emphasis or code spans remain. Both keep the `.md` extension - they are source files in this repo, and the extension is what the editors here read, not what the Workshop reads.
+
+`Workshop_Description.md` also gained the three features added on 2026-08-24 while it was being rewritten - crate size scaling, crate names and depot requests - which it had never mentioned.
+
+The other `.md` files are untouched: `changelog.md`, `PROJECT_CONTEXT.md`, `CLAUDE.md` and `AGENTS.md` are read as Markdown, and the Discord posts go to Discord, which supports it.
+
+## 2026-08-27 - Workshop changelog entry for the sizing, naming and depot round
+
+Player-facing writeup of everything landed on 2026-08-24, condensed into one `24 August 2026 - Crate Sizes, Crate Names, and Player Requests` section above the 23 August entry in `Workshop_Changelog.md`.
+
+Three subsections rather than one bullet list per changelog entry, because the sixteen entries collapse into three things a player notices: crate size now drives capacity, transport cost, grid footprint and weight; crates can be named from both the Game Master editor and a world action, and the name shows in all four places it is drawn; and crates can be requested at a Conflict light vehicle depot for 25 supplies.
+
+The internal entries with no player-visible surface are folded into the fix bullets they caused - the missing resource database overrides read as "worked in the editor, missing on a live server", and the `UseCapacityCoefficient` flag reads as volume limits being ignored. No Discord post this round; the 23 August round has `Discord_Update_Fixes.md` and nothing has asked for a new one.
+
 ## 2026-08-24 - Crates are exempt from the vehicle depot cooldown
 
 Reported from the first play test of the previous entry: crates placed fine until a vehicle was requested at the same depot, and every crate after that failed. The log agrees - two crates spawned, then `M998_covered_MERDC.et`, then a run of `Entity budget exceeded for player!` followed by `Error when creating entity from prefab ... E_EquipmentBoxStack_US_01_V2.et`.

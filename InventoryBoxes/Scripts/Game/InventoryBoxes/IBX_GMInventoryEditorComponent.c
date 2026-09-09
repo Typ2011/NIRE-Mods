@@ -500,7 +500,9 @@ class IBX_GMInventoryEditorComponent : ScriptComponent
 		return InventoryStorageManagerComponent.Cast(GetOwner().FindComponent(InventoryStorageManagerComponent));
 	}
 
-	protected BaseInventoryStorageComponent GetStorage()
+	//! Public because the fill indicators in IBX_CrateFill need the same storage this component
+	//! mutates, rather than whichever storage component a UI happens to find first on the crate.
+	BaseInventoryStorageComponent GetStorage()
 	{
 		return BaseInventoryStorageComponent.Cast(GetOwner().FindComponent(SCR_UniversalInventoryStorageComponent));
 	}

@@ -92,6 +92,7 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 	protected MUI_Panel m_ExportOverlay;
 	protected MUI_Label m_ExportText;
 	protected MUI_Label m_CurrentTitle;
+	protected MUI_Label m_CurrentFill;
 	protected MUI_Label m_Status;
 	protected MUI_Panel m_ArsenalViewport;
 	protected MUI_Panel m_CurrentViewport;
@@ -322,9 +323,14 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 		m_CurrentTitle.SetBold(true);
 		m_CurrentTitle.SetHeight(28);
 		current.AddChild(m_CurrentTitle);
+		// Takes the top half of what used to be a 52px spacer, so the column keeps its height.
+		m_CurrentFill = m_MikesUI.CreateLabel("", "CurrentFill");
+		m_CurrentFill.SetMuted(true);
+		m_CurrentFill.SetHeight(28);
+		current.AddChild(m_CurrentFill);
 		MUI_Panel currentTopSpacer = m_MikesUI.CreatePanel("CurrentTopSpacer");
 		currentTopSpacer.SetFill(Color.FromInt(0));
-		currentTopSpacer.SetHeight(52);
+		currentTopSpacer.SetHeight(24);
 		current.AddChild(currentTopSpacer);
 		MUI_Row presetRow = m_MikesUI.CreateRow("PresetRow");
 		presetRow.SetFillWidth();
@@ -698,10 +704,10 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 		foreach (ResourceName prefab, int count : counts)
 			CreateRow(m_CurrentList, prefab, string.Format("%1  x%2", GetLabel(prefab), count), true);
 
-		m_CurrentTitle.SetText(string.Format("CRATE CONTENTS (%1/100 TYPES, %2 ITEMS)", counts.Count(), items.Count()));
+		SetCurrentTitle(counts.Count(), items.Count());
 	}
 
-	protected void RefreshCurrentListFromSnapshot(notnull array<ResourceName> prefabs, notnull array<int> counts)
+	protected void RefreshCurrentListFromSnapshot(notnull array<ResourceName> prefabs, notnull array<int> counts, string fill = string.Empty)
 	{
 		if (!m_Root || !m_Component)
 			return;
@@ -715,7 +721,25 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 			CreateRow(m_CurrentList, prefab, string.Format("%1  x%2", GetLabel(prefab), count), true);
 		}
 
-		m_CurrentTitle.SetText(string.Format("CRATE CONTENTS (%1/100 TYPES, %2 ITEMS)", prefabs.Count(), totalItems));
+		SetCurrentTitle(prefabs.Count(), totalItems, fill);
+	}
+
+	//! Contents header plus the fill line under it, so a Game Master can see when the crate is full.
+	//! The fill is the same number IBX_CrateFill draws on the crate's inventory bars, read from the
+	//! local storage component - a snapshot refresh can therefore be one replication step ahead of it.
+	protected void SetCurrentTitle(int types, int totalItems, string fill = string.Empty)
+	{
+		m_CurrentTitle.SetText(string.Format("CRATE CONTENTS (%1/100 TYPES, %2 ITEMS)", types, totalItems));
+
+		if (!m_CurrentFill)
+			return;
+
+		// The server sends its own reading along with every snapshot; the local one is only for the
+		// listen-server path, where this machine is the authority anyway.
+		if (fill.IsEmpty())
+			fill = IBX_CrateFill.GetSummary(m_Component.GetStorage());
+
+		m_CurrentFill.SetText(fill);
 	}
 
 	protected void CreateRow(notnull VerticalLayoutWidget parent, ResourceName prefab, string label, bool isCurrentItem, bool highlight = false)
@@ -877,11 +901,11 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 			s_Instance.m_Status.SetText(message);
 	}
 
-	static void ReportMutationResult(string message, bool hasSnapshot, notnull array<ResourceName> prefabs, notnull array<int> counts)
+	static void ReportMutationResult(string message, bool hasSnapshot, notnull array<ResourceName> prefabs, notnull array<int> counts, string fill = string.Empty)
 	{
 		ReportMutationStatus(message);
 		if (hasSnapshot && s_Instance)
-			s_Instance.RefreshCurrentListFromSnapshot(prefabs, counts);
+			s_Instance.RefreshCurrentListFromSnapshot(prefabs, counts, fill);
 	}
 
 	static void ReportInventoryExport(notnull array<ResourceName> prefabs, notnull array<int> counts)

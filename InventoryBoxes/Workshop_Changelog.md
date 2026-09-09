@@ -13,6 +13,25 @@ Progress is shown at the bottom of the screen, in the control hints bar. Releasi
 
 Important: loading and unloading only work when the vehicle inventory was opened with a middle-click ("Open New Inventory"), or the controller equivalent. It is not available through the normal vehicle inventory view.
 
+31 AUGUST 2026 - PLACEMENT AND DISPLAY FIXES
+
+Placing Crates
+
+- Crates now come to rest on whatever is actually beneath them - a building floor, a bridge, a flatbed - instead of dropping through to the ground below.
+- A crate set down on a slope lies flat against it instead of standing dead upright.
+
+Crates in Vehicles
+
+- Fixed crates loaded into a vehicle still being drawn out in the world. The four largest stacks stayed fully visible, and the covered stacks left their cover hanging in the cargo bed.
+- A loaded crate's Game Master icon is now hidden along with the crate.
+- Fixed the Load Crate option sometimes missing when hovering a crate after opening a vehicle's inventory.
+
+Crate Fill Display
+
+- The fill bar on an opened crate now shows how full that crate really is. It was stuck at a fixed amount no matter what the crate held.
+- Fill counts weight as well as volume, so a crate reads full as soon as it starts refusing items on either limit.
+- The Game Master inventory editor shows a fill line under the crate contents, reading like 100% FULL - 4/1000 KG - 4300/4300 VOLUME.
+
 24 AUGUST 2026 - CRATE SIZES, CRATE NAMES, AND PLAYER REQUESTS
 
 Crate Size Now Matters

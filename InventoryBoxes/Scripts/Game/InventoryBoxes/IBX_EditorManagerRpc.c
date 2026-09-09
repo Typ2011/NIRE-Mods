@@ -162,15 +162,24 @@ modded class SCR_EditorManagerEntity
 	{
 		array<ResourceName> prefabs = {};
 		array<int> counts = {};
+		string fill;
 		if (inventoryEditor)
+		{
 			inventoryEditor.GetInventorySnapshot(prefabs, counts);
-		Rpc(IBX_RpcDo_InventoryMutationResult, message, inventoryEditor != null, prefabs, counts);
+
+			// The fill travels with the snapshot rather than being read from the crate on the client:
+			// the item entities a mutation creates reach the client after this reply does, so a
+			// client-side reading is one step behind and looks like it never changes.
+			fill = IBX_CrateFill.GetSummary(inventoryEditor.GetStorage());
+		}
+
+		Rpc(IBX_RpcDo_InventoryMutationResult, message, inventoryEditor != null, prefabs, counts, fill);
 	}
 
 	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
-	protected void IBX_RpcDo_InventoryMutationResult(string message, bool hasSnapshot, array<ResourceName> prefabs, array<int> counts)
+	protected void IBX_RpcDo_InventoryMutationResult(string message, bool hasSnapshot, array<ResourceName> prefabs, array<int> counts, string fill)
 	{
-		IBX_GMInventoryEditorUI.ReportMutationResult(message, hasSnapshot, prefabs, counts);
+		IBX_GMInventoryEditorUI.ReportMutationResult(message, hasSnapshot, prefabs, counts, fill);
 	}
 
 	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]

@@ -154,6 +154,46 @@ modded class SCR_InventoryStorageBaseUI
 			titleNameWidget.SetText(name);
 	}
 
+	//! The header bar of an opened crate. Vanilla reports occupied volume only; a crate is equally
+	//! full once its weight limit is gone, and the bar on the crate's own inventory slot reports the
+	//! same number through IBX_CrateFill. The preview value the inventory menu passes in through
+	//! occupiedSpace stays vanilla.
+	override float GetOccupiedVolumePercentage(BaseInventoryStorageComponent storage, float occupiedSpace = 0)
+	{
+		if (occupiedSpace == 0)
+		{
+			float cratePercentage = IBX_CrateFill.GetPercentage(storage);
+			if (cratePercentage >= 0)
+				return cratePercentage;
+		}
+
+		return super.GetOccupiedVolumePercentage(storage, occupiedSpace);
+	}
+
+	override void Refresh()
+	{
+		super.Refresh();
+		IBX_UpdateCrateFillBar();
+	}
+
+	override event void HandlerAttached(Widget w)
+	{
+		super.HandlerAttached(w);
+		IBX_UpdateCrateFillBar();
+	}
+
+	//! Sets the header bar itself rather than trusting vanilla to ask for a percentage: the opened
+	//! crate panel does not reach the UpdateVolumePercentage call in every path it is created
+	//! through, and an unasked bar keeps its layout default, which is a full one.
+	protected void IBX_UpdateCrateFillBar()
+	{
+		float percentage = IBX_CrateFill.GetPercentage(m_Storage);
+		if (percentage < 0)
+			return;
+
+		UpdateVolumePercentage(percentage);
+	}
+
 	protected static string IBX_GetCrateName(notnull BaseInventoryStorageComponent storage)
 	{
 		IBX_GMInventoryEditorComponent crate = IBX_GMInventoryEditorComponent.Get(storage.GetOwner());
