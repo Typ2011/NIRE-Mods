@@ -1,0 +1,59 @@
+=== Workshop text - GMVehicleLock ===
+
+--- SUMMARY (max 200 characters) ---
+
+Lock and unlock vanilla vehicles from the Game Master. Locked vehicles cannot be entered on any seat, turrets included. Server-side and replicated, join in progress included. No vanilla overrides.
+
+--- DESCRIPTION (max 5000 characters) ---
+
+[h1]GM Vehicle Lock[/h1]
+
+Give the Game Master direct control over which vehicles players are allowed to use. Select a vehicle, lock it, and nobody gets in - on any seat.
+
+[h2]What it does[/h2]
+[list]
+[*]Adds the context actions [b]Lock Vehicle[/b] and [b]Unlock Vehicle[/b] to selected vehicles in the Game Master.
+[*]Adds a [b]Vehicle Locked[/b] checkbox to the Game Master attribute window, in the [i]Vehicle[/i] category.
+[*]Blocks the Get In action on every compartment: driver, passenger, cargo and turret seats.
+[*]Shows a reason on the blocked action instead of an action that silently does nothing.
+[*]Works on multiple vehicles at once - select them all and lock them in one click.
+[/list]
+
+[h2]Multiplayer[/h2]
+
+The lock is applied on the server and replicated to every client, so the change is visible immediately and there is no desync between what the Game Master sees and what players can do. Players who join in progress receive the current lock state of every vehicle, including vehicles that were locked long before they connected.
+
+[h2]How to use it[/h2]
+[list]
+[*]Open the Game Master and select one or more vehicles.
+[*]Right click and choose [b]Lock Vehicle[/b] or [b]Unlock Vehicle[/b], or
+[*]open the attribute window and toggle [b]Vehicle Locked[/b] under [i]Vehicle[/i].
+[/list]
+
+[h2]Compatible by design[/h2]
+
+No vanilla prefab and no vanilla config is overridden. The two Game Master entries are appended to the editor component prefab data at runtime, which keeps every vanilla context action and attribute intact and avoids conflicts with other Game Master mods. Vehicle prefabs are untouched, so the mod works with vanilla vehicles and with vehicles from other mods that inherit from the vanilla vehicle base.
+
+[h2]Installation[/h2]
+
+Load the mod on the server and on all clients.
+
+[h2]Good for[/h2]
+[list]
+[*]Staging a scenario: keep vehicles parked until the mission actually starts.
+[*]Reserving assets for a specific group, such as a helicopter for the pilots only.
+[*]Roleplay and training servers where the Game Master decides who drives what.
+[*]Stopping players from taking a vehicle that belongs to a set piece.
+[/list]
+
+[h2]Current limitations[/h2]
+[list]
+[*]Locks do not survive a server restart.
+[*]Occupants who are already seated when the vehicle is locked stay in and keep control of it.
+[*]No keys, owners or permission lists - locking is a Game Master action.
+[*]Vehicles are not locked automatically when they are placed.
+[/list]
+
+[h2]Feedback[/h2]
+
+Bug reports and suggestions are welcome. Tell me the vehicle, the seat and whether it happened in singleplayer or on a dedicated server, that makes it far easier to reproduce.
