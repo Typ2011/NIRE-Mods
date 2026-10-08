@@ -6,6 +6,16 @@ All notable changes to NiRe Notepad are documented here.
 
 ### Added
 
+- Submitting a Logistics request with a name over 32 characters now shows a specific error.
+- Logistics now has a Delete button beside New and Copy. Deletion needs a second click, and the server removes the request from all authorized viewers.
+- New Request now asks for confirmation when the current Logistics form contains a name, items, coordinate, note, or changed delivery mode. Cancel or Escape keeps the form intact.
+- Logistics requests now have a required name of up to 32 characters. The name appears in the shared request list; copied drafts start with an empty name, while older unnamed requests still show their numbered label.
+- Logistics has a Copy button beside New Request. It opens a new editable draft with the selected request's items, quantities, delivery mode, coordinate, and note; submitting creates a separate request.
+- The Logistics crate picker shows each crate's preview image and a count with minus and plus buttons, so one request can be packed into several crates, including more than one of the same crate (up to 20 per order).
+- The crate picker has an optional crate name field. Every crate of the order gets that name, numbered from 1 when more than one crate is created; the name is shortened so the number always fits the crate's 32-character limit.
+- The crate picker shows the selected crates' total volume and weight against the request and warns, blocking creation, when the contents cannot fit. If the server's real fill still leaves items over, it deletes every crate it spawned and shows the same warning instead of dropping the rest.
+- Hovering a Logistics arsenal item image shows a larger, non-interactive preview beside the list.
+- Logistics arsenal items can be favorited with the game's star icon at the right edge of each item row. A star beside search shows only favorites within the current category and faction filter; favorites save immediately in local profile version 7.
 - Full-screen Logistics workspace built on Mikes UI, laid out like the InventoryBoxes Game Master crate editor: a supply request column, an arsenal column with categories, search and faction filter, and a request-contents column.
 - Mikes UI as a project dependency of NiRe Notepad.
 - Separate requester and logistician roles with two Game Master character context actions.
@@ -32,6 +42,11 @@ All notable changes to NiRe Notepad are documented here.
 
 ### Changed
 
+- The Request Name field replaces Check Crate below New Request. The nearby-crate comparison overlay is removed.
+- The Logistics Submit button is hidden for completed requests.
+- Server crate rules (`MaxCount=ItemPrefab`) now limit what one crate carries rather than the whole request: a request is accepted when every item has some allowed crate, and larger amounts are split across more crates.
+- The Logistics favorites filter now uses a Mikes UI button beside search, matching the faction button's height and showing the game's favorite icon.
+- The Logistics hover preview widens the camera field of view only in Weapons, using a separate copy of the item's attributes so long weapons fit without changing other tabs or row thumbnails.
 - The Logistics tab no longer opens inside the corner notepad; its button opens the full-screen supply request workspace, so item names have roughly three times the row width they had before.
 - Request selection, material selection, per-item quantity, pickup/delivery, coordinate, the four 45-character NOTE lines, submit, accept/hold/reject and crate creation all moved from the notepad into that workspace.
 - Check Crate opens a full-screen card overlay instead of taking over the notepad picker.
@@ -97,6 +112,15 @@ All notable changes to NiRe Notepad are documented here.
 
 ### Fixed
 
+- Fixed the Logistics hover preview's negative frame size by explicitly sizing it to 240 pixels beside the hovered thumbnail. The small in-row image is 40 pixels.
+- Replaced an invalid arsenal-row layout slot that prevented the row resource, including its favorite control and hover preview target, from loading in Workbench.
+- The Logistics faction filter and crate pickers open as centred overlay cards with their own scroll view, so a long list no longer runs behind the request fields below it and every entry can be reached.
+- The Logistics workspace is hidden while the faction or crate picker is open, so labels such as Delivery no longer show through the picker card.
+- Supply request rows in the Logistics workspace use a 20px name and a 16px status, set on the screen rather than in the shared row resource so the corner notepad keeps its own size.
+- Logistics pickup and delivery coordinates are masked to `XXX-XXX`: only digits are kept and the dash is inserted after the third one.
+- The Logistics request column stacks its two buttons vertically, so the longer German labels no longer paint over the arsenal column next to them.
+- The Logistics coordinate caption is the field's own label rather than a separate one beside it, so caption and input box line up in every language.
+- `Tests/NIRE_Notepad.test.ps1` reads project files as UTF-8, so the localization checks no longer fail on umlauts under Windows PowerShell.
 - VON transmit, direct-speech toggle, transceiver cycle, and long-range toggle stay usable while the notepad is open, including while a note is being typed, because `VONContext` is raised above the blocking text-edit and active-widget menu contexts.
 - Removed unsupported `Min Font Size` property from the single-line note editor, preventing its GUI layout parser error.
 - General rows five through ten are re-enabled when leaving Logistics, instead of retaining the hidden Logistics-row state.

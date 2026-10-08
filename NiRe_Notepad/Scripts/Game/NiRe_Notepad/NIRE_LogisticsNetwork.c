@@ -30,6 +30,7 @@ class NIRE_LogisticsRequest
 	int m_iRequesterPlayerId;
 	int m_iHandlerPlayerId = -1;
 	string m_sFactionKey;
+	string m_sName;
 	string m_sMaterialData;
 	string m_sMaterialName;
 	int m_iQuantity;
@@ -47,6 +48,8 @@ modded class SCR_PlayerController
 	protected static const int NIRE_LOGISTICS_MAX_QUANTITY = 999;
 	protected static const int NIRE_LOGISTICS_MAX_ITEM_TYPES = 100;
 	protected static const int NIRE_LOGISTICS_MAX_TOTAL_ITEMS = 10000;
+	protected static const int NIRE_LOGISTICS_MAX_CRATES = 20;
+	protected static const float NIRE_LOGISTICS_CRATE_SPACING = 1.6;
 	protected static ref array<ref NIRE_LogisticsRequest> s_aNIRE_ServerRequests = {};
 	protected static ref map<int, NIRE_ELogisticsRole> s_mNIRE_LogisticsRoles = new map<int, NIRE_ELogisticsRole>();
 	protected static int s_iNIRE_NextRequestId = 1;
@@ -113,9 +116,14 @@ modded class SCR_PlayerController
 		Rpc(RpcAsk_NIRE_LogisticsSnapshot);
 	}
 
-	void NIRE_SubmitLogisticsRequest(int requestId, string materialData, NIRE_ELogisticsDeliveryMode deliveryMode, string coordinate, string note)
+	void NIRE_SubmitLogisticsRequest(int requestId, string materialData, NIRE_ELogisticsDeliveryMode deliveryMode, string coordinate, string note, string name)
 	{
-		Rpc(RpcAsk_NIRE_SubmitLogisticsRequest, requestId, materialData, deliveryMode, coordinate, note);
+		Rpc(RpcAsk_NIRE_SubmitLogisticsRequest, requestId, materialData, deliveryMode, coordinate, note, name);
+	}
+
+	void NIRE_DeleteLogisticsRequest(int requestId)
+	{
+		Rpc(RpcAsk_NIRE_DeleteLogisticsRequest, requestId);
 	}
 
 	void NIRE_ManageLogisticsRequest(int requestId, NIRE_ELogisticsRequestStatus status)
@@ -123,9 +131,11 @@ modded class SCR_PlayerController
 		Rpc(RpcAsk_NIRE_ManageLogisticsRequest, requestId, status);
 	}
 
-	void NIRE_CreateLogisticsCrate(int requestId, ResourceName cratePrefab)
+	//! crateData uses the material format, Count=CratePrefab;Count=CratePrefab. An empty crateName
+	//! keeps the crates' own names.
+	void NIRE_CreateLogisticsCrates(int requestId, string crateData, string crateName)
 	{
-		Rpc(RpcAsk_NIRE_CreateLogisticsCrate, requestId, cratePrefab);
+		Rpc(RpcAsk_NIRE_CreateLogisticsCrates, requestId, crateData, crateName);
 	}
 
 	protected static bool NIRE_IsGameMaster(int playerId)
@@ -185,7 +195,7 @@ modded class SCR_PlayerController
 	}
 
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_NIRE_SubmitLogisticsRequest(int requestId, string materialData, NIRE_ELogisticsDeliveryMode deliveryMode, string coordinate, string note)
+	protected void RpcAsk_NIRE_SubmitLogisticsRequest(int requestId, string materialData, NIRE_ELogisticsDeliveryMode deliveryMode, string coordinate, string note, string name)
 	{
 		int playerId = NIRE_GetOwnerPlayerId();
 		if (!NIRE_HasServerLogisticsAccess(playerId))
@@ -194,7 +204,10 @@ modded class SCR_PlayerController
 		string factionKey = NIRE_GetPlayerFactionKey(playerId);
 		coordinate = coordinate.Trim();
 		note = note.Trim();
+		name = name.Trim();
 		if (factionKey.IsEmpty() || materialData.Length() > 32768 || coordinate.Length() > 64 || note.Length() > 1024)
+			return;
+		if (name.IsEmpty() || name.Length() > 32 || name.Contains("\n") || name.Contains("\r"))
 			return;
 		if (deliveryMode == NIRE_ELogisticsDeliveryMode.DELIVERY && coordinate.IsEmpty())
 			return;
@@ -205,7 +218,7 @@ modded class SCR_PlayerController
 		if (!NIRE_ParseLogisticsMaterials(materialData, materialPrefabs, materialCounts, totalItems))
 			return;
 		NIRE_LogisticsServerConfig serverConfig = NIRE_LogisticsServerConfig.Load();
-		if (serverConfig && !serverConfig.AllowsAnyCrateContents(materialPrefabs, materialCounts))
+		if (serverConfig && !serverConfig.AllowsAnyCrateContents(materialPrefabs))
 			return;
 
 		NIRE_LogisticsRequest request;
@@ -227,6 +240,7 @@ modded class SCR_PlayerController
 			s_aNIRE_ServerRequests.Insert(request);
 		}
 
+		request.m_sName = name;
 		request.m_sMaterialData = materialData;
 		request.m_iQuantity = totalItems;
 		if (request.m_eStatus == NIRE_ELogisticsRequestStatus.PICKUP_READY && deliveryMode == NIRE_ELogisticsDeliveryMode.DELIVERY)
@@ -264,7 +278,34 @@ modded class SCR_PlayerController
 	}
 
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_NIRE_CreateLogisticsCrate(int requestId, ResourceName cratePrefab)
+	protected void RpcAsk_NIRE_DeleteLogisticsRequest(int requestId)
+	{
+		int playerId = NIRE_GetOwnerPlayerId();
+		NIRE_LogisticsRequest request = NIRE_FindServerLogisticsRequest(requestId);
+		if (!request || !NIRE_CanReceiveLogisticsRequest(playerId, request))
+			return;
+
+		PlayerManager players = GetGame().GetPlayerManager();
+		array<int> playerIds = {};
+		players.GetPlayers(playerIds);
+		foreach (int recipientId : playerIds)
+		{
+			if (!NIRE_CanReceiveLogisticsRequest(recipientId, request))
+				continue;
+
+			SCR_PlayerController controller = SCR_PlayerController.Cast(players.GetPlayerController(recipientId));
+			if (controller)
+				controller.NIRE_SendLogisticsRequestDeleted(requestId);
+		}
+		s_aNIRE_ServerRequests.Remove(s_aNIRE_ServerRequests.Find(request));
+	}
+
+	//! Spawns every selected crate side by side in front of the logistician and fills them in turn.
+	//! It is all or nothing: when anything of the request is left over, every crate is deleted again
+	//! and the logistician is told to add crates, so no requested item is silently dropped. Crates the
+	//! request did not need end up empty and are deleted.
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_NIRE_CreateLogisticsCrates(int requestId, string crateData, string crateName)
 	{
 		int playerId = NIRE_GetOwnerPlayerId();
 		NIRE_LogisticsRequest request = NIRE_FindServerLogisticsRequest(requestId);
@@ -272,17 +313,14 @@ modded class SCR_PlayerController
 			return;
 
 		array<ResourceName> materialPrefabs = {};
-		array<int> materialCounts = {};
+		array<int> remaining = {};
 		int totalItems;
-		if (!NIRE_ParseLogisticsMaterials(request.m_sMaterialData, materialPrefabs, materialCounts, totalItems))
+		if (!NIRE_ParseLogisticsMaterials(request.m_sMaterialData, materialPrefabs, remaining, totalItems))
 			return;
 
 		NIRE_LogisticsServerConfig serverConfig = NIRE_LogisticsServerConfig.Load();
-		if (serverConfig && !serverConfig.AllowsCrateContents(cratePrefab, materialPrefabs, materialCounts))
-			return;
-
-		Resource resource = Resource.Load(cratePrefab);
-		if (!resource || !resource.IsValid() || !SCR_BaseContainerTools.FindComponentSource(resource, IBX_GMInventoryEditorComponent))
+		array<ResourceName> cratePrefabs = {};
+		if (crateData.Length() > 4096 || crateName.Length() > 256 ||!NIRE_ParseLogisticsCrates(crateData, serverConfig, cratePrefabs))
 			return;
 
 		IEntity player = NIRE_GetPlayerEntity(playerId);
@@ -294,26 +332,39 @@ modded class SCR_PlayerController
 		player.GetWorldTransform(spawnParams.Transform);
 		spawnParams.TransformMode = ETransformMode.WORLD;
 		float yaw = player.GetYawPitchRoll()[0] * Math.DEG2RAD;
-		vector spawnPosition = player.GetOrigin() + Vector(Math.Sin(yaw) * 2, 0, Math.Cos(yaw) * 2);
-		spawnPosition[1] = world.GetSurfaceY(spawnPosition[0], spawnPosition[2]);
-		spawnParams.Transform[3] = spawnPosition;
-		IEntity crate = GetGame().SpawnEntityPrefab(resource, world, spawnParams);
-		if (!crate)
-			return;
-
-		IBX_GMInventoryEditorComponent inventoryEditor = IBX_GMInventoryEditorComponent.Cast(crate.FindComponent(IBX_GMInventoryEditorComponent));
-		if (!inventoryEditor)
+		vector front = player.GetOrigin() + Vector(Math.Sin(yaw) * 2.5, 0, Math.Cos(yaw) * 2.5);
+		vector side = Vector(Math.Cos(yaw), 0, -Math.Sin(yaw));
+		array<IEntity> crates = {};
+		bool leftOver;
+		foreach (int crateIndex, ResourceName cratePrefab : cratePrefabs)
 		{
-			SCR_EntityHelper.DeleteEntityAndChildren(crate);
+			vector spawnPosition = front + side * ((crateIndex - (cratePrefabs.Count() - 1) * 0.5) * NIRE_LOGISTICS_CRATE_SPACING);
+			spawnPosition[1] = world.GetSurfaceY(spawnPosition[0], spawnPosition[2]);
+			spawnParams.Transform[3] = spawnPosition;
+			IEntity crate = GetGame().SpawnEntityPrefab(Resource.Load(cratePrefab), world, spawnParams);
+			if (!crate)
+			{
+				leftOver = true;
+				break;
+			}
+
+			if (NIRE_FillLogisticsCrate(crate, cratePrefab, materialPrefabs, remaining, serverConfig) > 0)
+				crates.Insert(crate);
+			else
+				SCR_EntityHelper.DeleteEntityAndChildren(crate);
+		}
+
+		foreach (int count : remaining)
+			leftOver = leftOver || count > 0;
+		if (leftOver)
+		{
+			foreach (IEntity crate : crates)
+				SCR_EntityHelper.DeleteEntityAndChildren(crate);
+			Rpc(RpcDo_NIRE_LogisticsCratesDoNotFit);
 			return;
 		}
 
-		if (!NIRE_FillLogisticsCrate(crate, materialPrefabs, materialCounts))
-		{
-			SCR_EntityHelper.DeleteEntityAndChildren(crate);
-			return;
-		}
-
+		NIRE_NameLogisticsCrates(crates, crateName);
 		request.m_iHandlerPlayerId = playerId;
 		if (request.m_eDeliveryMode == NIRE_ELogisticsDeliveryMode.DELIVERY)
 			request.m_eStatus = NIRE_ELogisticsRequestStatus.READY;
@@ -406,8 +457,13 @@ modded class SCR_PlayerController
 
 	protected void NIRE_SendLogisticsRequest(notnull NIRE_LogisticsRequest request)
 	{
-		Rpc(RpcDo_NIRE_UpsertLogisticsRequestHeader, request.m_iId, request.m_iRequesterPlayerId, request.m_iHandlerPlayerId, request.m_sFactionKey, request.m_sMaterialData, request.m_iQuantity);
+		Rpc(RpcDo_NIRE_UpsertLogisticsRequestHeader, request.m_iId, request.m_iRequesterPlayerId, request.m_iHandlerPlayerId, request.m_sFactionKey, request.m_sMaterialData, request.m_iQuantity, request.m_sName);
 		Rpc(RpcDo_NIRE_UpsertLogisticsRequestDetails, request.m_iId, request.m_eDeliveryMode, request.m_sCoordinate, request.m_sNote, request.m_eStatus);
+	}
+
+	protected void NIRE_SendLogisticsRequestDeleted(int requestId)
+	{
+		Rpc(RpcDo_NIRE_DeleteLogisticsRequest, requestId);
 	}
 
 	protected void NIRE_SendLogisticsStatus(notnull NIRE_LogisticsRequest request)
@@ -428,12 +484,13 @@ modded class SCR_PlayerController
 	}
 
 	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
-	protected void RpcDo_NIRE_UpsertLogisticsRequestHeader(int id, int requesterId, int handlerId, string factionKey, string materialData, int quantity)
+	protected void RpcDo_NIRE_UpsertLogisticsRequestHeader(int id, int requesterId, int handlerId, string factionKey, string materialData, int quantity, string name)
 	{
 		NIRE_LogisticsRequest request = NIRE_GetOrCreateClientLogisticsRequest(id);
 		request.m_iRequesterPlayerId = requesterId;
 		request.m_iHandlerPlayerId = handlerId;
 		request.m_sFactionKey = factionKey;
+		request.m_sName = name;
 		request.m_sMaterialData = materialData;
 		int totalItems;
 		NIRE_ParseLogisticsMaterials(materialData, request.m_aMaterialPrefabs, request.m_aMaterialQuantities, totalItems);
@@ -463,6 +520,20 @@ modded class SCR_PlayerController
 		NIRE_LogisticsScreen.RefreshIfOpen();
 	}
 
+	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
+	protected void RpcDo_NIRE_DeleteLogisticsRequest(int requestId)
+	{
+		foreach (int index, NIRE_LogisticsRequest request : m_aNIRE_LogisticsRequests)
+		{
+			if (request.m_iId != requestId)
+				continue;
+
+			m_aNIRE_LogisticsRequests.Remove(index);
+			NIRE_LogisticsScreen.RefreshIfOpen();
+			return;
+		}
+	}
+
 	protected NIRE_LogisticsRequest NIRE_GetOrCreateClientLogisticsRequest(int id)
 	{
 		foreach (NIRE_LogisticsRequest request : m_aNIRE_LogisticsRequests)
@@ -475,6 +546,12 @@ modded class SCR_PlayerController
 		request.m_iId = id;
 		m_aNIRE_LogisticsRequests.Insert(request);
 		return request;
+	}
+
+	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
+	protected void RpcDo_NIRE_LogisticsCratesDoNotFit()
+	{
+		NIRE_LogisticsScreen.ShowCratesDoNotFit();
 	}
 
 	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
@@ -541,37 +618,101 @@ modded class SCR_PlayerController
 		return !prefabs.IsEmpty() && prefabs.Count() <= NIRE_LOGISTICS_MAX_ITEM_TYPES && totalItems <= NIRE_LOGISTICS_MAX_TOTAL_ITEMS;
 	}
 
-	protected static bool NIRE_FillLogisticsCrate(notnull IEntity crate, notnull array<ResourceName> prefabs, notnull array<int> counts)
+	//! Gives every crate of one order the same name, numbered from 1 when there is more than one.
+	//! The name is cut short before the number is added, so the number survives the crate's own
+	//! length limit.
+	protected static void NIRE_NameLogisticsCrates(notnull array<IEntity> crates, string crateName)
+	{
+		crateName = crateName.Trim();
+		if (crateName.IsEmpty())
+			return;
+
+		foreach (int index, IEntity crate : crates)
+		{
+			IBX_GMInventoryEditorComponent component = IBX_GMInventoryEditorComponent.Get(crate);
+			if (!component)
+				continue;
+
+			string suffix;
+			if (crates.Count() > 1)
+				suffix = string.Format(" %1", index + 1);
+			string name = crateName;
+			int length = IBX_GMInventoryEditorComponent.MAX_NAME_LENGTH - suffix.Length();
+			if (name.Length() > length)
+				name = name.Substring(0, length).Trim();
+			component.RenameServer(name + suffix);
+		}
+	}
+
+	//! Expands Count=CratePrefab entries into one entry per crate, in the order they were selected.
+	protected static bool NIRE_ParseLogisticsCrates(string crateData, NIRE_LogisticsServerConfig serverConfig, notnull array<ResourceName> cratePrefabs)
+	{
+		array<string> entries = {};
+		crateData.Split(";", entries, true);
+		foreach (string entry : entries)
+		{
+			array<string> fields = {};
+			entry.Split("=", fields, false);
+			if (fields.Count() != 2)
+				return false;
+
+			int count = fields[0].ToInt();
+			ResourceName prefab = fields[1].Trim();
+			Resource resource = Resource.Load(prefab);
+			if (count < 1 || cratePrefabs.Count() + count > NIRE_LOGISTICS_MAX_CRATES || !resource || !resource.IsValid() || !SCR_BaseContainerTools.FindComponentSource(resource, IBX_GMInventoryEditorComponent))
+				return false;
+			if (serverConfig && !serverConfig.AllowsCrate(prefab))
+				return false;
+
+			for (int index = 0; index < count; index++)
+				cratePrefabs.Insert(prefab);
+		}
+
+		return !cratePrefabs.IsEmpty();
+	}
+
+	//! Moves as much of what is still outstanding into one crate as it takes and lowers remaining by
+	//! that amount. A refused item only ends that item type, since a smaller one may still fit.
+	protected static int NIRE_FillLogisticsCrate(notnull IEntity crate, ResourceName cratePrefab, notnull array<ResourceName> prefabs, notnull array<int> remaining, NIRE_LogisticsServerConfig serverConfig)
 	{
 		InventoryStorageManagerComponent manager = InventoryStorageManagerComponent.Cast(crate.FindComponent(InventoryStorageManagerComponent));
-		BaseInventoryStorageComponent storage = BaseInventoryStorageComponent.Cast(crate.FindComponent(SCR_UniversalInventoryStorageComponent));
+		BaseInventoryStorageComponent storage = IBX_CrateFill.GetStorage(crate);
 		if (!manager || !storage)
-			return false;
+			return 0;
 
 		int added;
 		foreach (int materialIndex, ResourceName prefab : prefabs)
 		{
+			int count = remaining[materialIndex];
+			if (serverConfig)
+			{
+				int maximum = serverConfig.GetMaximumCount(cratePrefab, prefab);
+				if (maximum >= 0 && maximum < count)
+					count = maximum;
+			}
+
 			Resource itemResource = Resource.Load(prefab);
-			if (!itemResource || !itemResource.IsValid())
-				return false;
-			for (int itemIndex = 0; itemIndex < counts[materialIndex]; itemIndex++)
+			if (count < 1 || !itemResource || !itemResource.IsValid())
+				continue;
+
+			for (int itemIndex = 0; itemIndex < count; itemIndex++)
 			{
 				IEntity item = GetGame().SpawnEntityPrefab(itemResource, GetGame().GetWorld());
 				if (!item)
 					break;
 
-				if (manager.TryInsertItemInStorage(item, storage))
+				if (!manager.TryInsertItemInStorage(item, storage))
 				{
-					added++;
-					continue;
+					SCR_EntityHelper.DeleteEntityAndChildren(item);
+					break;
 				}
 
-				SCR_EntityHelper.DeleteEntityAndChildren(item);
-				break;
+				added++;
+				remaining[materialIndex] = remaining[materialIndex] - 1;
 			}
 		}
 
-		return added > 0;
+		return added;
 	}
 
 	protected static bool NIRE_FindArsenalItem(ResourceName prefab, out string displayName)

@@ -13,9 +13,13 @@ class NIRE_LogisticsArsenalRowHandler : ScriptedWidgetEventHandler
 
 	override bool OnClick(Widget w, int x, int y, int button)
 	{
-		m_Screen.SelectArsenalItem(m_iIndex);
+		if (w.GetName() == "FavoriteButton")
+			m_Screen.ToggleFavoriteItem(m_iIndex);
+		else
+			m_Screen.SelectArsenalItem(m_iIndex);
 		return true;
 	}
+
 }
 
 //! Click handler for one entry in the request list on the left.
@@ -127,7 +131,26 @@ class NIRE_LogisticsFactionHandler
 	}
 }
 
-//! One crate prefab offered while a logistician fulfils an accepted request.
+//! Mikes UI label drawn vertically centred in its own box, optionally also horizontally. The stock
+//! label draws from the top left of a box measured before the row hands out its width, so beside
+//! centred buttons its text sat high and a second wrapped line was cut off.
+class NIRE_CenteredLabel : MUI_Label
+{
+	protected bool m_bCenterX;
+
+	void SetCenterX(bool center)
+	{
+		m_bCenterX = center;
+		InvalidatePaint();
+	}
+
+	override void PaintForeground(MUI_RenderSurface surface)
+	{
+		surface.DrawText(DrawX(), DrawY(), m_World.m_fW, m_World.m_fH, m_sText, m_Style.m_iFontSize, MUI_ColorUtil.Fade(m_Style.m_Text, GetDrawOpacity()), m_Style.m_bBold, m_bCenterX, true, true);
+	}
+}
+
+//! Count buttons of one crate prefab offered while a logistician fulfils an accepted request.
 class NIRE_LogisticsCrateHandler
 {
 	protected NIRE_LogisticsScreen m_Screen;
@@ -139,9 +162,14 @@ class NIRE_LogisticsCrateHandler
 		m_iIndex = index;
 	}
 
-	void Select()
+	void Increase()
 	{
-		m_Screen.CreateCrate(m_iIndex);
+		m_Screen.ChangeCrateCount(m_iIndex, 1);
+	}
+
+	void Decrease()
+	{
+		m_Screen.ChangeCrateCount(m_iIndex, -1);
 	}
 }
 
@@ -168,16 +196,19 @@ class NIRE_LogisticsScreenMenu : MenuBase
 //! Everything is client-side; the shared state still travels through the SCR_PlayerController RPCs.
 class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 {
-	protected static const ResourceName ARSENAL_ROW_LAYOUT = "{C1E02C785E02616D}UI/layouts/InventoryBoxes/GMInventoryEditorRow.layout";
+	protected static const ResourceName ARSENAL_ROW_LAYOUT = "{8D02B4399E3F2AE0}UI/layouts/NiRe_Notepad/NIRE_FavoriteArsenalRow.layout";
 	protected static const ResourceName REQUEST_ROW_LAYOUT = "{2A7C19E4B6D830F1}UI/layouts/NiRe_Notepad/NIRE_MissionRow.layout";
 	protected static const ResourceName CONTENTS_ROW_LAYOUT = "{8D02B4399E3F2A10}UI/layouts/NiRe_Notepad/NIRE_SelectedMaterialRow.layout";
-	protected static const ResourceName CRATE_CARD_LAYOUT = "{8D02B4399E3F2A5F}UI/layouts/NiRe_Notepad/NIRE_CrateContentsCard.layout";
 	protected static const ResourceName INVENTORY_BOXES_REGISTRY = "{5500189E8072CD5B}Configs/Editor/InventoryBoxes.conf";
+	protected static const ResourceName FAVORITE_ICON_SET = "{D17288006833490F}UI/Textures/Icons/icons_wrapperUI-32.imageset";
 	protected static const int MAX_QUANTITY = 999;
+	protected static const int MAX_CRATES = 20;
 	protected static const int NOTE_LINE_COUNT = 4;
 	protected static const int NOTE_LINE_LENGTH = 45;
-	protected static const int COORDINATE_LENGTH = 7;
-	protected static const float CRATE_RANGE = 5.0;
+	protected static const int COORDINATE_DIGITS = 6;
+	protected static const int REQUEST_ROW_FONT_SIZE = 20;
+	protected static const int REQUEST_ROW_STATUS_FONT_SIZE = 16;
+	protected static const float HOVER_PREVIEW_SIZE = 240;
 
 	protected static ref NIRE_LogisticsScreen s_Instance;
 	protected static bool s_bSuppressPauseMenu;
@@ -194,27 +225,33 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	protected VerticalLayoutWidget m_ArsenalList;
 	protected ScrollLayoutWidget m_ContentsScroll;
 	protected VerticalLayoutWidget m_ContentsList;
-	protected ScrollLayoutWidget m_CrateScroll;
-	protected VerticalLayoutWidget m_CrateList;
 	protected EditBoxWidget m_ModalFocus;
+	protected ref MUI_Button m_FavoritesButton;
+	protected ImageWidget m_FavoritesIcon;
+	protected Widget m_HoverPreviewPanel;
+	protected ItemPreviewWidget m_HoverPreview;
+	protected ref SCR_ItemAttributeCollection m_HoverAttributeCollection;
+	protected PreviewRenderAttributes m_HoverRenderAttributes;
 
 	protected MUI_Panel m_ScreenFrame;
 	protected MUI_Panel m_RequestViewport;
 	protected MUI_Panel m_ArsenalViewport;
 	protected MUI_Panel m_ContentsViewport;
-	protected MUI_Panel m_CrateViewport;
-	protected MUI_Panel m_CrateOverlay;
 	protected MUI_Panel m_FactionMenu;
 	protected MUI_Panel m_CrateMenu;
+	protected MUI_Panel m_NewRequestConfirm;
+	protected MUI_ScrollView m_FactionItems;
+	protected MUI_ScrollView m_CrateItems;
 	protected MUI_Label m_ContentsTitle;
-	protected MUI_Label m_CoordinateLabel;
 	protected MUI_Label m_Status;
 	protected MUI_TextField m_Search;
 	protected MUI_TextField m_Quantity;
 	protected MUI_TextField m_Coordinate;
 	protected MUI_Button m_FactionFilter;
 	protected MUI_Button m_NewRequestButton;
-	protected MUI_Button m_CheckCrateButton;
+	protected MUI_Button m_CopyRequestButton;
+	protected MUI_Button m_DeleteRequestButton;
+	protected MUI_TextField m_RequestName;
 	protected MUI_Button m_AddButton;
 	protected MUI_Button m_PickupButton;
 	protected MUI_Button m_DeliveryButton;
@@ -228,6 +265,8 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 
 	protected ref array<ResourceName> m_aArsenalPrefabs = {};
 	protected ref array<string> m_aArsenalLabels = {};
+	protected ref array<Widget> m_aArsenalPreviews = {};
+	protected ref array<int> m_aArsenalPreviewIndices = {};
 	protected ref array<SCR_EArsenalItemType> m_aArsenalTypes = {};
 	protected ref array<SCR_EArsenalItemMode> m_aArsenalModes = {};
 	protected ref set<ResourceName> m_GeneralPrefabs = new set<ResourceName>();
@@ -235,9 +274,18 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	protected ref array<string> m_aFactionLabels = {};
 	protected ref array<ref NIRE_LogisticsFactionHandler> m_aFactionHandlers = {};
 	protected ref array<ResourceName> m_aCratePrefabs = {};
-	protected ref array<MUI_Button> m_aCrateButtons = {};
+	protected ref array<MUI_Row> m_aCrateRows = {};
+	protected ref array<MUI_Image> m_aCrateImages = {};
+	protected ref array<MUI_Label> m_aCrateCountLabels = {};
+	protected ref array<MUI_Button> m_aCrateDecreaseButtons = {};
+	protected ref array<int> m_aCrateCounts = {};
+	protected ref array<float> m_aCrateVolumes = {};
+	protected ref array<float> m_aCrateWeights = {};
 	protected ref array<ref NIRE_LogisticsCrateHandler> m_aCrateHandlers = {};
-	protected ref array<IEntity> m_aNearbyCrates = {};
+	protected MUI_TextField m_CrateName;
+	protected MUI_Label m_CrateLoad;
+	protected MUI_Label m_CrateWarning;
+	protected MUI_Button m_CreateCratesButton;
 
 	protected ref array<ResourceName> m_aMaterialPrefabs = {};
 	protected ref array<string> m_aMaterialNames = {};
@@ -247,15 +295,16 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	protected IBX_EArsenalTab m_eCategory;
 	protected int m_iFaction;
 	protected int m_iSelectedRequestId = -1;
+	protected int m_iPendingDeleteRequestId = -1;
 	protected int m_iSelectedArsenalIndex = -1;
+	protected int m_iHoverPreviewIndex = -1;
 	protected NIRE_ELogisticsDeliveryMode m_eDeliveryMode;
 	protected ResourceName m_SelectedWeaponPrefab;
 	protected ref set<ResourceName> m_SelectedWeaponAmmunition = new set<ResourceName>();
-	protected IEntity m_CrateSearchPlayer;
-	protected vector m_vCrateSearchOrigin;
 	protected bool m_bDraft = true;
 	protected bool m_bUpdatingWidgets;
 	protected string m_sLastSearch;
+	protected bool m_bFavoritesOnly;
 
 	//------------------------------------------------------------------------------------------------
 	static void Open()
@@ -426,13 +475,19 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		m_RequestScroll = ScrollLayoutWidget.Cast(m_Root.FindAnyWidget("RequestScroll"));
 		m_RequestList = VerticalLayoutWidget.Cast(m_Root.FindAnyWidget("RequestList"));
 		m_ArsenalScroll = ScrollLayoutWidget.Cast(m_Root.FindAnyWidget("ArsenalScroll"));
+		m_FavoritesIcon = ImageWidget.Cast(m_Root.FindAnyWidget("FavoritesFilterIcon"));
+		m_HoverPreviewPanel = m_Root.FindAnyWidget("HoverPreviewPanel");
+		m_HoverPreview = ItemPreviewWidget.Cast(m_Root.FindAnyWidget("HoverPreview"));
 		m_ArsenalList = VerticalLayoutWidget.Cast(m_Root.FindAnyWidget("ArsenalList"));
 		m_ContentsScroll = ScrollLayoutWidget.Cast(m_Root.FindAnyWidget("ContentsScroll"));
 		m_ContentsList = VerticalLayoutWidget.Cast(m_Root.FindAnyWidget("ContentsList"));
-		m_CrateScroll = ScrollLayoutWidget.Cast(m_Root.FindAnyWidget("CrateScroll"));
-		m_CrateList = VerticalLayoutWidget.Cast(m_Root.FindAnyWidget("CrateList"));
 		m_ModalFocus = EditBoxWidget.Cast(m_Root.FindAnyWidget("ModalFocus"));
-		if (!m_RequestScroll || !m_RequestList || !m_ArsenalScroll || !m_ArsenalList || !m_ContentsScroll || !m_ContentsList || !m_CrateScroll || !m_CrateList || !m_ModalFocus)
+		if (!m_RequestScroll || !m_RequestList || !m_ArsenalScroll || !m_ArsenalList || !m_ContentsScroll || !m_ContentsList || !m_ModalFocus)
+		{
+			Print("NIRE: Logistics screen layout is incomplete", LogLevel.ERROR);
+			return false;
+		}
+		if (!m_FavoritesIcon || !m_HoverPreviewPanel || !m_HoverPreview)
 		{
 			Print("NIRE: Logistics screen layout is incomplete", LogLevel.ERROR);
 			return false;
@@ -502,7 +557,28 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		m_Status.SetHeight(28);
 		card.AddChild(m_Status);
 
-		BuildCrateOverlay(root);
+		MUI_Button closeFactions;
+		m_FactionMenu = BuildPickerOverlay(root, "Faction", m_FactionItems, closeFactions);
+		closeFactions.GetOnClicked().Insert(CloseFactionMenu);
+		MUI_Panel crateHeader = m_MikesUI.CreatePanel("CratePickerHeader");
+		crateHeader.SetFill(Color.FromInt(0));
+		crateHeader.SetGap(4);
+		m_CrateName = m_MikesUI.CreateTextField(Translate("#NIRE-Logistics_CrateName"), "CrateName");
+		m_CrateName.SetFillWidth();
+		crateHeader.AddChild(m_CrateName);
+		m_CrateLoad =m_MikesUI.CreateLabel(string.Empty, "CrateLoad");
+		m_CrateLoad.SetBold(true);
+		crateHeader.AddChild(m_CrateLoad);
+		m_CrateWarning = m_MikesUI.CreateLabel(Translate("#NIRE-Logistics_CratesDoNotFit"), "CrateWarning");
+		m_CrateWarning.SetColor(MUI_Theme.DangerHover);
+		crateHeader.AddChild(m_CrateWarning);
+		m_CreateCratesButton = m_MikesUI.CreateButton(Translate("#NIRE-Logistics_CreateCrate"), "CreateCrates");
+		m_CreateCratesButton.MakeAccent();
+		m_CreateCratesButton.GetOnClicked().Insert(CreateSelectedCrates);
+		MUI_Button closeCrates;
+		m_CrateMenu = BuildPickerOverlay(root, "Crate", m_CrateItems, closeCrates, crateHeader, m_CreateCratesButton);
+		closeCrates.GetOnClicked().Insert(CloseCrateMenu);
+		BuildNewRequestConfirm(root);
 
 		m_MikesUI.SetRoot(root);
 		m_MikesUI.GetOnBack().Insert(HandleBack);
@@ -562,20 +638,41 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		requests.AddChild(requestTitle);
 		m_RequestViewport = CreateViewport("RequestViewport");
 		requests.AddChild(m_RequestViewport);
-		MUI_Row requestActions = m_MikesUI.CreateRow("RequestActions");
+		// Stacked, not a row: a horizontal Mikes UI stack clamps its leftover width at zero and never
+		// shrinks a child below its own text width, so in German the two labels grew past this narrow
+		// column and painted over the arsenal column beside it.
+		MUI_Panel requestActions = m_MikesUI.CreatePanel("RequestActions");
+		requestActions.SetFill(Color.FromInt(0));
 		requestActions.SetFillWidth();
-		requestActions.SetHeight(56);
+		requestActions.SetHeight(128);
+		requestActions.SetGrow(0);
 		requestActions.SetGap(10);
 		requests.AddChild(requestActions);
-		m_NewRequestButton = m_MikesUI.CreateButton(Translate("#NIRE-Button_NewRequest"), "NewRequest");
+		MUI_Row newRequestActions = m_MikesUI.CreateRow("NewRequestActions");
+		newRequestActions.SetFillWidth();
+		newRequestActions.SetHeight(44);
+		newRequestActions.SetGap(6);
+		requestActions.AddChild(newRequestActions);
+		m_NewRequestButton = m_MikesUI.CreateButton(Translate("#NIRE-Button_New"), "NewRequest");
 		m_NewRequestButton.MakeAccent();
+		m_NewRequestButton.SetFillWidth();
 		m_NewRequestButton.SetGrow(1);
-		m_NewRequestButton.GetOnClicked().Insert(StartDraft);
-		requestActions.AddChild(m_NewRequestButton);
-		m_CheckCrateButton = m_MikesUI.CreateButton(Translate("#NIRE-Button_CompareCrate"), "CheckCrate");
-		m_CheckCrateButton.SetGrow(1);
-		m_CheckCrateButton.GetOnClicked().Insert(ShowNearbyCrates);
-		requestActions.AddChild(m_CheckCrateButton);
+		m_NewRequestButton.GetOnClicked().Insert(RequestNewDraft);
+		newRequestActions.AddChild(m_NewRequestButton);
+		m_CopyRequestButton = m_MikesUI.CreateButton(Translate("#NIRE-Button_CopyRequest"), "CopyRequest");
+		m_CopyRequestButton.SetWidth(70);
+		m_CopyRequestButton.SetGrow(0);
+		m_CopyRequestButton.GetOnClicked().Insert(CopySelectedRequest);
+		newRequestActions.AddChild(m_CopyRequestButton);
+		m_DeleteRequestButton = m_MikesUI.CreateButton(Translate("#NIRE-Button_Delete"), "DeleteRequest");
+		m_DeleteRequestButton.MakeDanger();
+		m_DeleteRequestButton.SetWidth(85);
+		m_DeleteRequestButton.SetGrow(0);
+		m_DeleteRequestButton.GetOnClicked().Insert(DeleteSelectedRequest);
+		newRequestActions.AddChild(m_DeleteRequestButton);
+		m_RequestName = m_MikesUI.CreateTextField(Translate("#NIRE-Logistics_RequestName"), "RequestName");
+		m_RequestName.SetFillWidth();
+		requestActions.AddChild(m_RequestName);
 
 		MUI_Label arsenalTitle = m_MikesUI.CreateLabel(Translate("#NIRE-Logistics_Material"), "ArsenalTitle");
 		arsenalTitle.SetBold(true);
@@ -609,16 +706,18 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		m_Search.SetFillWidth();
 		m_Search.SetGrow(1);
 		filters.AddChild(m_Search);
+		m_FavoritesButton = m_MikesUI.CreateButton(string.Empty, "FavoritesFilter");
+		m_FavoritesButton.SetWidth(58);
+		m_FavoritesButton.SetGrow(0);
+		m_FavoritesButton.SetAlign(0, 1);
+		m_FavoritesButton.GetOnClicked().Insert(ToggleFavoritesFilter);
+		filters.AddChild(m_FavoritesButton);
 		m_FactionFilter = m_MikesUI.CreateButton(Translate("#NIRE-Selector_AllFactions"), "FactionFilter");
 		m_FactionFilter.SetWidth(220);
 		m_FactionFilter.SetGrow(0);
 		m_FactionFilter.SetAlign(0, 1);
 		m_FactionFilter.GetOnClicked().Insert(ToggleFactionMenu);
 		filters.AddChild(m_FactionFilter);
-
-		m_FactionMenu = m_MikesUI.CreatePanel("FactionMenu");
-		m_FactionMenu.SetVisible(false);
-		arsenal.AddChild(m_FactionMenu);
 
 		m_ArsenalViewport = CreateViewport("ArsenalViewport");
 		arsenal.AddChild(m_ArsenalViewport);
@@ -643,9 +742,6 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		m_ContentsTitle.SetBold(true);
 		m_ContentsTitle.SetHeight(28);
 		contents.AddChild(m_ContentsTitle);
-		m_CrateMenu = m_MikesUI.CreatePanel("CrateMenu");
-		m_CrateMenu.SetVisible(false);
-		contents.AddChild(m_CrateMenu);
 		m_ContentsViewport = CreateViewport("ContentsViewport");
 		contents.AddChild(m_ContentsViewport);
 	}
@@ -668,15 +764,11 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		m_DeliveryButton.SetAlign(0, 1);
 		m_DeliveryButton.GetOnClicked().Insert(SelectDelivery);
 		detail.AddChild(m_DeliveryButton);
-		// The caption sits in its own label because pickup and delivery name the grid differently and
-		// a field's own caption is fixed once it is created.
-		m_CoordinateLabel = m_MikesUI.CreateLabel(Translate("#NIRE-Logistics_PickupCoordinate"), "CoordinateLabel");
-		m_CoordinateLabel.SetWidth(260);
-		m_CoordinateLabel.SetGrow(0);
-		m_CoordinateLabel.SetAlign(0, 1);
-		detail.AddChild(m_CoordinateLabel);
-		m_Coordinate = m_MikesUI.CreateTextField(string.Empty, "Coordinate");
-		m_Coordinate.SetWidth(280);
+		// The caption is the field's own and is set again on every mode switch. A separate label sat
+		// on the row baseline while the field paints its box 22px lower, so the two never lined up,
+		// and its fixed 260px pushed the row past its width once the labels were German.
+		m_Coordinate = m_MikesUI.CreateTextField(Translate("#NIRE-Logistics_PickupCoordinate"), "Coordinate");
+		m_Coordinate.SetWidth(360);
 		m_Coordinate.SetGrow(0);
 		detail.AddChild(m_Coordinate);
 
@@ -726,38 +818,92 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void BuildCrateOverlay(notnull MUI_Panel root)
+	//! The faction and crate pickers are overlay cards rather than panels in their column. A panel in
+	//! the flow is painted before every row under it, so a long list ended up behind the request
+	//! fields, and it never scrolls, so anything past the column height could not be reached at all.
+	//! The native item lists paint above the whole Mikes UI canvas, so SyncNativeViewports hides them
+	//! while a picker is open. header sits above the list and action left of Done.
+	//------------------------------------------------------------------------------------------------
+	protected MUI_Panel BuildPickerOverlay(notnull MUI_Panel root, string name, out MUI_ScrollView list, out MUI_Button close, MUI_Node header = null, MUI_Button action = null)
 	{
-		m_CrateOverlay = m_MikesUI.CreatePanel("CrateOverlay");
-		m_CrateOverlay.MakeOverlay();
-		m_CrateOverlay.SetVisible(false);
-		root.AddChild(m_CrateOverlay);
+		MUI_Panel overlay = m_MikesUI.CreatePanel(name + "Overlay");
+		overlay.MakeOverlay();
+		overlay.SetVisible(false);
+		root.AddChild(overlay);
 
-		MUI_Panel crateCard = m_MikesUI.CreatePanel("CrateCard");
-		crateCard.SetFill(MUI_Theme.DeepFrost);
-		crateCard.SetWidth(1100);
-		crateCard.SetHeight(760);
-		crateCard.SetAlign(0.5, 0.5);
-		crateCard.SetRadius(16);
-		crateCard.SetPadding(24);
-		crateCard.SetGap(12);
-		m_CrateOverlay.AddChild(crateCard);
+		MUI_Panel card = m_MikesUI.CreatePanel(name + "PickerCard");
+		card.SetFill(MUI_Theme.DeepFrost);
+		card.SetWidth(680);
+		card.SetGrow(0);
+		card.SetAlign(0.5, 0.5);
+		card.SetRadius(16);
+		card.SetPadding(24);
+		card.SetGap(12);
+		overlay.AddChild(card);
+		if (header)
+			card.AddChild(header);
 
-		MUI_Label title = m_MikesUI.CreateLabel(Translate("#NIRE-Crate_Contents"), "CrateTitle");
-		title.SetFontSize(MUI_Theme.FONT_TITLE);
-		title.SetBold(true);
-		title.SetHeight(42);
-		crateCard.AddChild(title);
+		list = m_MikesUI.CreateScrollView(name + "PickerList");
+		list.SetMaxViewportHeight(560);
+		list.SetPadding(12);
+		card.AddChild(list);
 
-		m_CrateViewport = CreateViewport("CrateViewport");
-		crateCard.AddChild(m_CrateViewport);
+		MUI_Row actions = m_MikesUI.CreateRow(name + "PickerActions");
+		actions.SetFillWidth();
+		actions.SetHeight(54);
+		actions.SetGap(10);
+		card.AddChild(actions);
+		if (action)
+		{
+			action.SetGrow(1);
+			actions.AddChild(action);
+		}
 
-		MUI_Button close = m_MikesUI.CreateButton(Translate("#NIRE-Button_Done"), "CloseCrates");
-		close.SetHeight(54);
-		close.SetGrow(0);
-		close.SetFillWidth();
-		close.GetOnClicked().Insert(HideNearbyCrates);
-		crateCard.AddChild(close);
+		close = m_MikesUI.CreateButton(Translate("#NIRE-Button_Done"), name + "PickerClose");
+		close.SetGrow(1);
+		actions.AddChild(close);
+		return overlay;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void BuildNewRequestConfirm(notnull MUI_Panel root)
+	{
+		m_NewRequestConfirm = m_MikesUI.CreatePanel("NewRequestConfirm");
+		m_NewRequestConfirm.MakeOverlay();
+		m_NewRequestConfirm.SetVisible(false);
+		root.AddChild(m_NewRequestConfirm);
+
+		MUI_Panel dialog = m_MikesUI.CreatePanel("NewRequestConfirmDialog");
+		dialog.SetFill(MUI_Theme.DeepFrost);
+		dialog.SetWidth(600);
+		dialog.SetHeight(210);
+		dialog.SetAlign(0.5, 0.5);
+		dialog.SetRadius(16);
+		dialog.SetPadding(24);
+		dialog.SetGap(16);
+		m_NewRequestConfirm.AddChild(dialog);
+
+		MUI_Label prompt = m_MikesUI.CreateLabel(Translate("#NIRE-Status_ConfirmNewRequest"), "NewRequestConfirmPrompt");
+		prompt.SetFillWidth();
+		prompt.SetHeight(70);
+		dialog.AddChild(prompt);
+
+		MUI_Row actions = m_MikesUI.CreateRow("NewRequestConfirmActions");
+		actions.SetFillWidth();
+		actions.SetHeight(54);
+		actions.SetGap(10);
+		dialog.AddChild(actions);
+
+		MUI_Button cancel = m_MikesUI.CreateButton(Translate("#NIRE-Button_Cancel"), "CancelNewRequest");
+		cancel.SetGrow(1);
+		cancel.GetOnClicked().Insert(CancelNewRequest);
+		actions.AddChild(cancel);
+
+		MUI_Button confirm = m_MikesUI.CreateButton(Translate("#NIRE-Button_NewRequest"), "ConfirmNewRequest");
+		confirm.MakeAccent();
+		confirm.SetGrow(1);
+		confirm.GetOnClicked().Insert(ConfirmNewRequest);
+		actions.AddChild(confirm);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -806,11 +952,23 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		if (!m_MikesUI)
 			return;
 
+		// Mikes UI paints all text in one layer above all shapes, so an overlay card cannot cover the
+		// labels under it. The screen behind any overlay is hidden instead, before the frame is painted.
+		bool overlay = m_FactionMenu.IsVisible() || m_CrateMenu.IsVisible() || m_NewRequestConfirm.IsVisible();
+		m_ScreenFrame.SetVisible(!overlay);
+		// A crate image is a native widget that only checks its own flag. Once the picker or its row
+		// is hidden it would be put back on the screen at its last position, so it follows both.
+		foreach (int index, MUI_Image image : m_aCrateImages)
+			image.SetVisible(m_CrateMenu.IsVisible() && m_aCrateRows[index].IsVisible());
 		m_MikesUI.Tick(0.016);
 		SyncNativeViewports();
 		string search = StripLeadingSpaces(m_Search.GetText());
 		if (search != m_Search.GetText())
 			m_Search.SetText(search);
+
+		string coordinate = FormatCoordinate(m_Coordinate.GetText());
+		if (coordinate != m_Coordinate.GetText())
+			m_Coordinate.SetText(coordinate);
 
 		if (search != m_sLastSearch)
 		{
@@ -818,6 +976,27 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 			RefreshArsenalList();
 			ScrollArsenalToTop();
 		}
+		UpdateHoverPreview();
+	}
+
+	//! Grid references are "XXX-XXX". Only digits survive, so a pasted "123 456" and a hand-typed
+	//! "123-456" both land in one format, and the dash is put back as soon as the field is left.
+	//------------------------------------------------------------------------------------------------
+	protected static string FormatCoordinate(string text)
+	{
+		string source = "0123456789";
+		string digits;
+		for (int index = 0; index < text.Length() && digits.Length() < COORDINATE_DIGITS; index++)
+		{
+			string character = text.Substring(index, 1);
+			if (source.Contains(character))
+				digits += character;
+		}
+
+		if (digits.Length() <= 3)
+			return digits;
+
+		return digits.Substring(0, 3) + "-" + digits.Substring(3, digits.Length() - 3);
 	}
 
 	//! The keystroke that activates a Mikes UI text field can also land inside it, so the first
@@ -839,11 +1018,19 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	//------------------------------------------------------------------------------------------------
 	protected void SyncNativeViewports()
 	{
-		bool crates = m_CrateOverlay && m_CrateOverlay.IsVisible();
-		SyncNativeViewport(m_RequestScroll, m_RequestViewport, !crates);
-		SyncNativeViewport(m_ArsenalScroll, m_ArsenalViewport, !crates);
-		SyncNativeViewport(m_ContentsScroll, m_ContentsViewport, !crates);
-		SyncNativeViewport(m_CrateScroll, m_CrateViewport, crates);
+		bool picker = (m_FactionMenu && m_FactionMenu.IsVisible()) || (m_CrateMenu && m_CrateMenu.IsVisible()) || (m_NewRequestConfirm && m_NewRequestConfirm.IsVisible());
+		if (picker)
+			HideHoverPreview(m_iHoverPreviewIndex);
+		SyncNativeViewport(m_RequestScroll, m_RequestViewport, !picker);
+		SyncNativeViewport(m_ArsenalScroll, m_ArsenalViewport, !picker);
+		SyncNativeViewport(m_FavoritesIcon, m_FavoritesButton, !picker);
+		if (!picker)
+		{
+			MUI_Rect favoriteRect = m_FavoritesButton.GetWorldRect();
+			FrameSlot.SetPos(m_FavoritesIcon, favoriteRect.m_fX + (favoriteRect.m_fW - 32) * 0.5, favoriteRect.m_fY + (favoriteRect.m_fH - 32) * 0.5);
+			FrameSlot.SetSize(m_FavoritesIcon, 32, 32);
+		}
+		SyncNativeViewport(m_ContentsScroll, m_ContentsViewport, !picker);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -885,7 +1072,8 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
 		bool hasAccess = controller && controller.NIRE_HasLogisticsAccess();
 		m_NewRequestButton.SetEnabled(hasAccess);
-		m_CheckCrateButton.SetEnabled(controller && controller.NIRE_IsLogistician());
+		m_CopyRequestButton.SetEnabled(hasAccess && !m_bDraft && GetSelectedRequest());
+		m_DeleteRequestButton.SetEnabled(hasAccess && !m_bDraft && GetSelectedRequest());
 		if (!hasAccess)
 		{
 			ClearChildren(m_RequestList);
@@ -937,7 +1125,19 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 			if (!row || !text || !divider || !statusText)
 				continue;
 
-			text.SetText(WidgetManager.Translate("#NIRE-Name_SupplyRequest", string.Format("%1", request.m_iId)));
+			// The row layout is shared with the corner notepad, which is a fraction of this screen's
+			// width, so the larger sizes are set here rather than in the resource.
+			// SetExactFontSize also raises the minimum, which would clip a long localized status
+			// instead of shrinking it, so the minimums are put back afterwards.
+			text.SetExactFontSize(REQUEST_ROW_FONT_SIZE);
+			text.SetMinFontSize(REQUEST_ROW_STATUS_FONT_SIZE);
+			divider.SetExactFontSize(REQUEST_ROW_FONT_SIZE);
+			statusText.SetExactFontSize(REQUEST_ROW_STATUS_FONT_SIZE);
+			statusText.SetMinFontSize(12);
+			if (request.m_sName.IsEmpty())
+				text.SetText(WidgetManager.Translate("#NIRE-Name_SupplyRequest", string.Format("%1", request.m_iId)));
+			else
+				text.SetText(request.m_sName);
 			divider.SetVisible(true);
 			statusText.SetText(Translate(GetStatusLabel(request.m_eStatus)));
 			statusText.SetVisible(true);
@@ -994,6 +1194,7 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 			return;
 
 		NIRE_LogisticsRequest request = requests[index];
+		m_iPendingDeleteRequestId = -1;
 		m_bDraft = false;
 		m_iSelectedRequestId = request.m_iId;
 		m_iSelectedArsenalIndex = -1;
@@ -1010,6 +1211,7 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		}
 		m_eDeliveryMode = request.m_eDeliveryMode;
 		m_bUpdatingWidgets = true;
+		m_RequestName.SetText(request.m_sName);
 		m_Coordinate.SetText(request.m_sCoordinate);
 		SetNoteText(request.m_sNote);
 		m_bUpdatingWidgets = false;
@@ -1034,6 +1236,37 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	}
 
 	//------------------------------------------------------------------------------------------------
+	protected void RequestNewDraft()
+	{
+		m_iPendingDeleteRequestId = -1;
+		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
+		if (!controller || !controller.NIRE_HasLogisticsAccess())
+			return;
+
+		if (!m_RequestName.GetText().Trim().IsEmpty() || !m_aMaterialPrefabs.IsEmpty() || !m_Coordinate.GetText().Trim().IsEmpty() || !GetNoteText().Trim().IsEmpty() || m_eDeliveryMode != NIRE_ELogisticsDeliveryMode.PICKUP)
+		{
+			m_NewRequestConfirm.SetVisible(true);
+			return;
+		}
+
+		StartDraft();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void CancelNewRequest()
+	{
+		m_NewRequestConfirm.SetVisible(false);
+		Refresh();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void ConfirmNewRequest()
+	{
+		m_NewRequestConfirm.SetVisible(false);
+		StartDraft();
+	}
+
+	//------------------------------------------------------------------------------------------------
 	void StartDraft()
 	{
 		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
@@ -1042,6 +1275,7 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 
 		m_bDraft = true;
 		m_iSelectedRequestId = -1;
+		m_iPendingDeleteRequestId = -1;
 		m_iSelectedArsenalIndex = -1;
 		m_SelectedWeaponPrefab = string.Empty;
 		m_SelectedWeaponAmmunition.Clear();
@@ -1050,13 +1284,51 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		m_aMaterialQuantities.Clear();
 		m_eDeliveryMode = NIRE_ELogisticsDeliveryMode.PICKUP;
 		m_bUpdatingWidgets = true;
+		m_RequestName.SetText(string.Empty);
 		m_Coordinate.SetText(string.Empty);
 		SetNoteText(string.Empty);
 		m_bUpdatingWidgets = false;
-		HideNearbyCrates();
 		m_CrateMenu.SetVisible(false);
 		RefreshArsenalList();
 		Refresh();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void CopySelectedRequest()
+	{
+		if (m_bDraft || !GetSelectedRequest())
+			return;
+
+		m_bDraft = true;
+		m_iSelectedRequestId = -1;
+		m_iPendingDeleteRequestId = -1;
+		m_RequestName.SetText(string.Empty);
+		m_iSelectedArsenalIndex = -1;
+		m_SelectedWeaponPrefab = string.Empty;
+		m_SelectedWeaponAmmunition.Clear();
+		m_CrateMenu.SetVisible(false);
+		RefreshArsenalList();
+		Refresh();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void DeleteSelectedRequest()
+	{
+		NIRE_LogisticsRequest request = GetSelectedRequest();
+		if (m_bDraft || !request)
+			return;
+
+		if (m_iPendingDeleteRequestId != request.m_iId)
+		{
+			m_iPendingDeleteRequestId = request.m_iId;
+			Refresh();
+			return;
+		}
+
+		m_iPendingDeleteRequestId = -1;
+		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
+		if (controller)
+			controller.NIRE_DeleteLogisticsRequest(request.m_iId);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -1077,7 +1349,7 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	protected void ShowRequest(notnull NIRE_LogisticsRequest request)
 	{
 		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
-		bool editable = controller && controller.NIRE_IsLogistician();
+		bool editable = controller && controller.NIRE_IsLogistician() && request.m_eStatus != NIRE_ELogisticsRequestStatus.COMPLETED;
 		SetRequestFieldsEnabled(editable);
 		m_SubmitButton.SetVisible(editable);
 		m_SubmitButton.SetEnabled(editable);
@@ -1089,7 +1361,15 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		UpdateCoordinateCaption();
 		RefreshContentsList();
 		UpdateRequestRowColors();
-		m_Status.SetText(Translate(GetStatusLabel(request.m_eStatus)));
+		if (m_iPendingDeleteRequestId == request.m_iId)
+		{
+			string requestName = request.m_sName;
+			if (requestName.IsEmpty())
+				requestName = WidgetManager.Translate("#NIRE-Name_SupplyRequest", string.Format("%1", request.m_iId));
+			m_Status.SetText(WidgetManager.Translate("#NIRE-Status_ConfirmDelete", requestName));
+		}
+		else
+			m_Status.SetText(Translate(GetStatusLabel(request.m_eStatus)));
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -1102,6 +1382,7 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	//------------------------------------------------------------------------------------------------
 	protected void SetRequestFieldsEnabled(bool enabled)
 	{
+		m_RequestName.SetEnabled(enabled);
 		m_AddButton.SetEnabled(enabled);
 		m_Quantity.SetEnabled(enabled);
 		m_PickupButton.SetEnabled(enabled);
@@ -1206,9 +1487,9 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	protected void UpdateCoordinateCaption()
 	{
 		if (m_eDeliveryMode == NIRE_ELogisticsDeliveryMode.DELIVERY)
-			m_CoordinateLabel.SetText(Translate("#NIRE-Logistics_Coordinate"));
+			m_Coordinate.SetLabel(Translate("#NIRE-Logistics_Coordinate"));
 		else
-			m_CoordinateLabel.SetText(Translate("#NIRE-Logistics_PickupCoordinate"));
+			m_Coordinate.SetLabel(Translate("#NIRE-Logistics_PickupCoordinate"));
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -1393,6 +1674,9 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	//------------------------------------------------------------------------------------------------
 	protected void RefreshArsenalList()
 	{
+		HideHoverPreview(m_iHoverPreviewIndex);
+		m_aArsenalPreviews.Clear();
+		m_aArsenalPreviewIndices.Clear();
 		ClearChildren(m_ArsenalList);
 		WorkspaceWidget workspace = GetGame().GetWorkspace();
 		if (!workspace)
@@ -1402,7 +1686,7 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		BuildSearchTerms(m_Search.GetText(), searchTerms);
 		foreach (int index, string label : m_aArsenalLabels)
 		{
-			if (!MatchesCategory(index) || !MatchesFaction(index))
+			if (!MatchesCategory(index) || !MatchesFaction(index) || (m_bFavoritesOnly && !NIRE_NotepadController.IsFavoriteItem(m_aArsenalPrefabs[index])))
 				continue;
 
 			if (!MatchesSearchTerms(label, searchTerms))
@@ -1415,7 +1699,7 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 			foreach (ResourceName ammunition : m_SelectedWeaponAmmunition)
 			{
 				int ammunitionIndex = m_aArsenalPrefabs.Find(ammunition);
-				if (ammunitionIndex >= 0 && MatchesFaction(ammunitionIndex))
+				if (ammunitionIndex >= 0 && MatchesFaction(ammunitionIndex) && (!m_bFavoritesOnly || NIRE_NotepadController.IsFavoriteItem(ammunition)))
 					CreateArsenalRow(ammunitionIndex, "    " + Translate("#NIRE-Selector_Ammunition") + ": " + m_aArsenalLabels[ammunitionIndex], workspace, true);
 			}
 		}
@@ -1433,6 +1717,14 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 			return;
 
 		text.SetText(label);
+		ButtonWidget favorite = ButtonWidget.Cast(widget.FindAnyWidget("FavoriteButton"));
+		ImageWidget icon = ImageWidget.Cast(widget.FindAnyWidget("FavoriteIcon"));
+		if (favorite && icon)
+		{
+			if (NIRE_NotepadController.IsFavoriteItem(m_aArsenalPrefabs[index]))
+				icon.LoadImageFromSet(0, FAVORITE_ICON_SET, "favourite");
+			favorite.AddHandler(new NIRE_LogisticsArsenalRowHandler(this, index));
+		}
 		if (index == m_iSelectedArsenalIndex)
 			row.SetColor(Color.FromSRGBA(170, 126, 30, 255));
 		else if (m_aMaterialPrefabs.Contains(m_aArsenalPrefabs[index]))
@@ -1441,7 +1733,132 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 			row.SetColor(Color.FromSRGBA(82, 107, 56, 255));
 
 		SetRowPreview(widget, m_aArsenalPrefabs[index]);
+		SizeLayoutWidget previewSize = SizeLayoutWidget.Cast(widget.FindAnyWidget("PreviewSize"));
+		if (previewSize)
+		{
+			previewSize.SetWidthOverride(40);
+			previewSize.SetHeightOverride(40);
+		}
+		Widget preview = previewSize;
+		if (preview)
+		{
+			m_aArsenalPreviews.Insert(preview);
+			m_aArsenalPreviewIndices.Insert(index);
+		}
 		row.AddHandler(new NIRE_LogisticsArsenalRowHandler(this, index));
+	}
+
+	protected void UpdateHoverPreview()
+	{
+		if (!m_ArsenalScroll.IsVisible())
+		{
+			HideHoverPreview(m_iHoverPreviewIndex);
+			return;
+		}
+
+		int mouseX, mouseY;
+		WidgetManager.GetMousePos(mouseX, mouseY);
+		float scrollX, scrollY, scrollWidth, scrollHeight;
+		m_ArsenalScroll.GetScreenPos(scrollX, scrollY);
+		m_ArsenalScroll.GetScreenSize(scrollWidth, scrollHeight);
+		if (mouseX < scrollX || mouseX >= scrollX + scrollWidth || mouseY < scrollY || mouseY >= scrollY + scrollHeight)
+		{
+			HideHoverPreview(m_iHoverPreviewIndex);
+			return;
+		}
+
+		foreach (int rowIndex, Widget preview : m_aArsenalPreviews)
+		{
+			float previewX, previewY, previewWidth, previewHeight;
+			preview.GetScreenPos(previewX, previewY);
+			preview.GetScreenSize(previewWidth, previewHeight);
+			if (mouseX < previewX || mouseX >= previewX + previewWidth || mouseY < previewY || mouseY >= previewY + previewHeight)
+				continue;
+
+			int index = m_aArsenalPreviewIndices[rowIndex];
+			if (index != m_iHoverPreviewIndex)
+				ShowHoverPreview(index, preview);
+			return;
+		}
+		HideHoverPreview(m_iHoverPreviewIndex);
+	}
+
+	void ShowHoverPreview(int index, Widget preview)
+	{
+		if (index < 0 || index >= m_aArsenalPrefabs.Count() || !preview || !m_HoverPreviewPanel || !m_HoverPreview)
+			return;
+
+		WorkspaceWidget workspace = GetGame().GetWorkspace();
+		ChimeraWorld world = GetGame().GetWorld();
+		ItemPreviewManagerEntity previewManager;
+		if (world)
+			previewManager = world.GetItemPreviewManager();
+		if (!workspace || !previewManager)
+			return;
+
+		Widget parent = m_HoverPreviewPanel.GetParent();
+		if (!parent)
+			return;
+		float previewX, previewY, previewWidth, previewHeight;
+		float parentX, parentY, parentWidth, parentHeight;
+		preview.GetScreenPos(previewX, previewY);
+		preview.GetScreenSize(previewWidth, previewHeight);
+		parent.GetScreenPos(parentX, parentY);
+		parent.GetScreenSize(parentWidth, parentHeight);
+		float popupX = Math.Clamp(workspace.DPIUnscale(previewX + previewWidth - parentX) + 12, 0, workspace.DPIUnscale(parentWidth) - HOVER_PREVIEW_SIZE);
+		float popupY = Math.Clamp(workspace.DPIUnscale(previewY - parentY), 0, workspace.DPIUnscale(parentHeight) - HOVER_PREVIEW_SIZE);
+		FrameSlot.SetPos(m_HoverPreviewPanel, popupX, popupY);
+		FrameSlot.SetSize(m_HoverPreviewPanel, HOVER_PREVIEW_SIZE, HOVER_PREVIEW_SIZE);
+		m_HoverPreviewPanel.SetVisible(true);
+		m_HoverAttributeCollection = null;
+		m_HoverRenderAttributes = null;
+		if (m_eCategory == IBX_EArsenalTab.WEAPONS)
+		{
+			Resource resource = Resource.Load(m_aArsenalPrefabs[index]);
+			if (resource && resource.IsValid())
+			{
+				IEntitySource entitySource = SCR_BaseContainerTools.FindEntitySource(resource);
+				IEntityComponentSource componentSource = SCR_ComponentHelper.GetInventoryItemComponentSource(entitySource);
+				if (componentSource)
+					m_HoverAttributeCollection = SCR_ComponentHelper.GetInventoryItemInfo(componentSource);
+				if (m_HoverAttributeCollection)
+					m_HoverRenderAttributes = PreviewRenderAttributes.Cast(m_HoverAttributeCollection.FindAttribute(PreviewRenderAttributes));
+				if (m_HoverRenderAttributes)
+					m_HoverRenderAttributes.ZoomCamera(20);
+			}
+		}
+		previewManager.SetPreviewItemFromPrefab(m_HoverPreview, m_aArsenalPrefabs[index], m_HoverRenderAttributes);
+		m_iHoverPreviewIndex = index;
+	}
+
+	void HideHoverPreview(int index)
+	{
+		if (index != m_iHoverPreviewIndex || !m_HoverPreviewPanel)
+			return;
+		m_HoverPreviewPanel.SetVisible(false);
+		m_iHoverPreviewIndex = -1;
+	}
+
+	void ToggleFavoriteItem(int index)
+	{
+		if (index < 0 || index >= m_aArsenalPrefabs.Count())
+			return;
+		NIRE_NotepadController.ToggleFavoriteItem(m_aArsenalPrefabs[index]);
+		if (m_bFavoritesOnly && !NIRE_NotepadController.IsFavoriteItem(m_aArsenalPrefabs[index]) && m_iSelectedArsenalIndex == index)
+			m_iSelectedArsenalIndex = -1;
+		RefreshArsenalList();
+	}
+
+	protected void ToggleFavoritesFilter()
+	{
+		m_bFavoritesOnly = !m_bFavoritesOnly;
+		m_iSelectedArsenalIndex = -1;
+		if (m_bFavoritesOnly)
+			m_FavoritesIcon.LoadImageFromSet(0, FAVORITE_ICON_SET, "favourite");
+		else
+			m_FavoritesIcon.LoadImageFromSet(0, FAVORITE_ICON_SET, "favouriteOff");
+		RefreshArsenalList();
+		ScrollArsenalToTop();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -1577,6 +1994,18 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	}
 
 	//------------------------------------------------------------------------------------------------
+	protected void CloseFactionMenu()
+	{
+		m_FactionMenu.SetVisible(false);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void CloseCrateMenu()
+	{
+		m_CrateMenu.SetVisible(false);
+	}
+
+	//------------------------------------------------------------------------------------------------
 	void SelectFaction(int index)
 	{
 		if (index < 0 || index >= m_aFactionLabels.Count())
@@ -1677,8 +2106,9 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 			m_aFactionHandlers.Insert(handler);
 			MUI_Button button = m_MikesUI.CreateButton(label);
 			button.SetFillWidth();
+			button.SetGrow(0);
 			button.GetOnClicked().Insert(handler.Select);
-			m_FactionMenu.AddChild(button);
+			m_FactionItems.AddChild(button);
 		}
 		m_FactionMenu.SetVisible(false);
 		m_FactionFilter.SetText(m_aFactionLabels[0]);
@@ -1785,20 +2215,27 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 	protected void SubmitRequest()
 	{
 		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
-		string coordinate = m_Coordinate.GetText().Trim();
-		if (coordinate.Length() > COORDINATE_LENGTH)
-			coordinate = coordinate.Substring(0, COORDINATE_LENGTH);
+		// Formatted here as well as in the tick: the tick cannot touch the field while the native edit
+		// box still owns its text, so a request sent straight from the keyboard would carry the raw
+		// digits.
+		string coordinate = FormatCoordinate(m_Coordinate.GetText());
 
 		string materialData = BuildMaterialData();
 		NIRE_LogisticsServerConfig serverConfig = NIRE_LogisticsServerConfig.Load();
-		bool allowedContents = !serverConfig || serverConfig.AllowsAnyCrateContents(m_aMaterialPrefabs, m_aMaterialQuantities);
-		if (!controller || !CanEditRequest() || !allowedContents || materialData.IsEmpty() || (m_eDeliveryMode == NIRE_ELogisticsDeliveryMode.DELIVERY && coordinate.IsEmpty()))
+		bool allowedContents = !serverConfig || serverConfig.AllowsAnyCrateContents(m_aMaterialPrefabs);
+		string name = StripLeadingSpaces(m_RequestName.GetText()).Trim();
+		if (name.Length() > 32)
+		{
+			m_Status.SetText(Translate("#NIRE-Logistics_RequestNameTooLong"));
+			return;
+		}
+		if (!controller || !CanEditRequest() || !allowedContents || materialData.IsEmpty() || name.IsEmpty() || (m_eDeliveryMode == NIRE_ELogisticsDeliveryMode.DELIVERY && coordinate.IsEmpty()))
 		{
 			m_Status.SetText(Translate("#NIRE-Logistics_InvalidRequest"));
 			return;
 		}
 
-		controller.NIRE_SubmitLogisticsRequest(m_iSelectedRequestId, materialData, m_eDeliveryMode, coordinate, GetNoteText());
+		controller.NIRE_SubmitLogisticsRequest(m_iSelectedRequestId, materialData, m_eDeliveryMode, coordinate, GetNoteText(), name);
 		m_Status.SetText(Translate("#NIRE-Logistics_RequestSent"));
 	}
 
@@ -1854,9 +2291,9 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 			controller.NIRE_ManageLogisticsRequest(m_iSelectedRequestId, status);
 	}
 
-	//! The crate list is a dropdown under the contents column rather than a second full screen: an
-	//! accepted request already names the contents, so only the crate prefab is still open.
-	//! Every candidate button is built once and the server rules only decide which of them are shown,
+	//! The crate list is an overlay card rather than a second full screen: an accepted request
+	//! already names the contents, so only which crates and how many of each are still open.
+	//! Every candidate row is built once and the server rules only decide which of them are shown,
 	//! so the menu never has to remove Mikes UI children while it is mounted.
 	//------------------------------------------------------------------------------------------------
 	protected void ToggleCrateMenu()
@@ -1870,17 +2307,31 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		bool anyAllowed;
 		NIRE_LogisticsRequest request = GetSelectedRequest();
 		NIRE_LogisticsServerConfig serverConfig = NIRE_LogisticsServerConfig.Load();
-		foreach (int index, MUI_Button button : m_aCrateButtons)
+		foreach (int index, MUI_Row row : m_aCrateRows)
 		{
-			bool allowed = !request || !serverConfig || serverConfig.AllowsCrateContents(m_aCratePrefabs[index], request.m_aMaterialPrefabs, request.m_aMaterialQuantities);
-			button.SetVisible(allowed);
-			button.SetEnabled(allowed);
+			bool allowed = !request || !serverConfig || serverConfig.AllowsCrate(m_aCratePrefabs[index]) && CarriesAnyItem(serverConfig, m_aCratePrefabs[index], request);
+			row.SetVisible(allowed);
+			ChangeCrateCount(index, -m_aCrateCounts[index]);
 			anyAllowed = anyAllowed || allowed;
 		}
 
+		m_CrateName.SetText(string.Empty);
+		UpdateCrateLoad();
 		m_CrateMenu.SetVisible(anyAllowed);
 		if (!anyAllowed)
 			m_Status.SetText(Translate("#NIRE-Logistics_InvalidRequest"));
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected static bool CarriesAnyItem(notnull NIRE_LogisticsServerConfig serverConfig, ResourceName cratePrefab, notnull NIRE_LogisticsRequest request)
+	{
+		foreach (ResourceName itemPrefab : request.m_aMaterialPrefabs)
+		{
+			if (serverConfig.GetMaximumCount(cratePrefab, itemPrefab) != 0)
+				return true;
+		}
+
+		return false;
 	}
 
 	//! Union of the InventoryBoxes placeable registry and every crate the server configuration names,
@@ -1914,6 +2365,8 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		}
 	}
 
+	//! One picker row: the crate's editor preview, its name and a count. Fixed widths everywhere but
+	//! the name, because a Mikes UI row never shrinks its children.
 	//------------------------------------------------------------------------------------------------
 	protected void AddCrateOption(ResourceName prefab)
 	{
@@ -1925,176 +2378,253 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		if (info && !info.GetName().IsEmpty())
 			label = Translate(info.GetName());
 
+		float volume;
+		float weight;
+		GetCrateCapacity(prefab, volume, weight);
 		int index = m_aCratePrefabs.Count();
 		m_aCratePrefabs.Insert(prefab);
+		m_aCrateCounts.Insert(0);
+		m_aCrateVolumes.Insert(volume);
+		m_aCrateWeights.Insert(weight);
 		NIRE_LogisticsCrateHandler handler = new NIRE_LogisticsCrateHandler(this, index);
 		m_aCrateHandlers.Insert(handler);
-		MUI_Button button = m_MikesUI.CreateButton(label);
-		button.SetFillWidth();
-		button.GetOnClicked().Insert(handler.Select);
-		m_CrateMenu.AddChild(button);
-		m_aCrateButtons.Insert(button);
+
+		MUI_Row row = m_MikesUI.CreateRow();
+		row.SetFillWidth();
+		row.SetHeight(72);
+		row.SetGap(10);
+		m_CrateItems.AddChild(row);
+		m_aCrateRows.Insert(row);
+
+		MUI_Image image = m_MikesUI.CreateImage();
+		image.SetWidth(96);
+		image.SetHeight(64);
+		image.SetAlign(0, 0.5);
+		if (info)
+			image.SetImage(info.GetImage());
+		row.AddChild(image);
+		m_aCrateImages.Insert(image);
+
+		MUI_Label name = CreateCenteredLabel(label, false);
+		name.SetWidth(1);
+		name.SetGrow(1);
+		row.AddChild(name);
+
+		MUI_Button decrease = m_MikesUI.CreateButton("-");
+		decrease.SetWidth(56);
+		decrease.SetGrow(0);
+		decrease.SetAlign(0, 0.5);
+		decrease.SetEnabled(false);
+		decrease.GetOnClicked().Insert(handler.Decrease);
+		row.AddChild(decrease);
+		m_aCrateDecreaseButtons.Insert(decrease);
+
+		MUI_Label count = CreateCenteredLabel("0", true);
+		count.SetWidth(48);
+		count.SetGrow(0);
+		count.SetBold(true);
+		row.AddChild(count);
+		m_aCrateCountLabels.Insert(count);
+
+		MUI_Button increase = m_MikesUI.CreateButton("+");
+		increase.SetWidth(56);
+		increase.SetGrow(0);
+		increase.SetAlign(0, 0.5);
+		increase.GetOnClicked().Insert(handler.Increase);
+		row.AddChild(increase);
 	}
 
+	//! Fills the whole row height, so two wrapped lines of a long crate name still fit.
 	//------------------------------------------------------------------------------------------------
-	void CreateCrate(int index)
+	protected MUI_Label CreateCenteredLabel(string text, bool centerX)
 	{
-		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
-		if (!controller || !controller.NIRE_IsLogistician() || index < 0 || index >= m_aCratePrefabs.Count())
+		ref NIRE_CenteredLabel label = new NIRE_CenteredLabel();
+		m_MikesUI.Adopt(label);
+		label.SetCenterX(centerX);
+		label.SetText(text);
+		label.SetHeight(72);
+		return label;
+	}
+
+	//! The server refuses more than MAX_CRATES crates per order, so the total stops there.
+	//------------------------------------------------------------------------------------------------
+	void ChangeCrateCount(int index, int delta)
+	{
+		if (index < 0 || index >= m_aCrateCounts.Count())
 			return;
 
-		controller.NIRE_CreateLogisticsCrate(m_iSelectedRequestId, m_aCratePrefabs[index]);
-		m_CrateMenu.SetVisible(false);
+		int total;
+		foreach (int selected : m_aCrateCounts)
+			total += selected;
+		if (delta > 0 && total >= MAX_CRATES)
+			return;
+
+		int count = Math.ClampInt(m_aCrateCounts[index] + delta, 0, MAX_CRATES);
+		m_aCrateCounts[index] = count;
+		m_aCrateCountLabels[index].SetText(count.ToString());
+		m_aCrateDecreaseButtons[index].SetEnabled(count > 0);
+		UpdateCrateLoad();
+	}
+
+	//! An estimate from the prefabs alone: pooled volume and weight against the request, plus the
+	//! per-crate limits of the server rules. Pooling can only overrate the selection, so "does not
+	//! fit" here is certain and blocks creation; otherwise the server's real fill has the final word.
+	//------------------------------------------------------------------------------------------------
+	protected void UpdateCrateLoad()
+	{
+		NIRE_LogisticsRequest request = GetSelectedRequest();
+		NIRE_LogisticsServerConfig serverConfig = NIRE_LogisticsServerConfig.Load();
+		int crates;
+		float maxVolume;
+		float maxWeight;
+		bool unlimitedVolume;
+		bool unlimitedWeight;
+		foreach (int index, int count : m_aCrateCounts)
+		{
+			if (count < 1)
+				continue;
+
+			crates += count;
+			maxVolume += m_aCrateVolumes[index] * count;
+			maxWeight += m_aCrateWeights[index] * count;
+			unlimitedVolume = unlimitedVolume || m_aCrateVolumes[index] <= 0;
+			unlimitedWeight = unlimitedWeight || m_aCrateWeights[index] <= 0;
+		}
+
+		float volume;
+		float weight;
+		bool fits = request && crates > 0;
+		if (request)
+		{
+			foreach (int materialIndex, ResourceName itemPrefab : request.m_aMaterialPrefabs)
+			{
+				int quantity = request.m_aMaterialQuantities[materialIndex];
+				float itemVolume;
+				float itemWeight;
+				GetItemSize(itemPrefab, itemVolume, itemWeight);
+				volume += itemVolume * quantity;
+				weight += itemWeight * quantity;
+				if (serverConfig && GetSelectedCrateLimit(serverConfig, itemPrefab) < quantity)
+					fits = false;
+			}
+		}
+
+		if (!unlimitedVolume && volume > maxVolume)
+			fits = false;
+		if (!unlimitedWeight && weight > maxWeight)
+			fits = false;
+
+		m_CrateLoad.SetText(WidgetManager.Translate("#NIRE-Logistics_CrateLoad", crates.ToString(), FormatAmount(volume / 1000), FormatAmount(maxVolume / 1000), FormatAmount(weight), FormatAmount(maxWeight)));
+		m_CrateWarning.SetVisible(crates > 0 && !fits);
+		m_CreateCratesButton.SetEnabled(fits);
+	}
+
+	//! How many of one item the selected crates may carry together under the server rules.
+	//------------------------------------------------------------------------------------------------
+	protected int GetSelectedCrateLimit(notnull NIRE_LogisticsServerConfig serverConfig, ResourceName itemPrefab)
+	{
+		int limit;
+		foreach (int index, int count : m_aCrateCounts)
+		{
+			if (count < 1)
+				continue;
+
+			int maximum = serverConfig.GetMaximumCount(m_aCratePrefabs[index], itemPrefab);
+			if (maximum < 0)
+				return int.MAX;
+
+			limit += maximum * count;
+		}
+
+		return limit;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void ShowNearbyCrates()
+	protected static string FormatAmount(float value)
+	{
+		int rounded = Math.Ceil(value);
+		return rounded.ToString();
+	}
+
+	//! Volume and weight limit of a crate prefab's own storage. These crates carry a disabled vanilla
+	//! storage next to the addon's one, so the first enabled universal storage is the one read.
+	//------------------------------------------------------------------------------------------------
+	protected static void GetCrateCapacity(ResourceName prefab, out float volume, out float weight)
+	{
+		Resource resource = Resource.Load(prefab);
+		if (!resource || !resource.IsValid())
+			return;
+
+		IEntitySource source = resource.GetResource().ToEntitySource();
+		if (!source)
+			return;
+
+		for (int index = 0; index < source.GetComponentCount(); index++)
+		{
+			IEntityComponentSource component = source.GetComponent(index);
+			typename type = component.GetClassName().ToType();
+			bool enabled = true;
+			component.Get("Enabled", enabled);
+			if (!enabled || !type || !type.IsInherited(SCR_UniversalInventoryStorageComponent))
+				continue;
+
+			component.Get("MaxCumulativeVolume", volume);
+			component.Get("m_fMaxWeight", weight);
+			return;
+		}
+	}
+
+	//! Volume and weight of one item, read from its prefab so nothing has to be spawned.
+	//------------------------------------------------------------------------------------------------
+	protected static void GetItemSize(ResourceName prefab, out float volume, out float weight)
+	{
+		Resource resource = Resource.Load(prefab);
+		if (!resource || !resource.IsValid())
+			return;
+
+		IEntityComponentSource item = SCR_BaseContainerTools.FindComponentSource(resource, InventoryItemComponent);
+		BaseContainer attributes;
+		if (item)
+			attributes = item.GetObject("Attributes");
+		BaseContainer physical;
+		if (attributes)
+			physical = attributes.GetObject("ItemPhysAttributes");
+		if (!physical)
+			return;
+
+		physical.Get("ItemVolume", volume);
+		physical.Get("Weight", weight);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void CreateSelectedCrates()
 	{
 		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
 		if (!controller || !controller.NIRE_IsLogistician())
 			return;
 
-		m_aNearbyCrates.Clear();
-		IEntity player = controller.GetControlledEntity();
-		if (player)
+		string crateData;
+		foreach (int index, int count : m_aCrateCounts)
 		{
-			m_CrateSearchPlayer = player;
-			m_vCrateSearchOrigin = player.GetOrigin();
-			player.GetWorld().QueryEntitiesBySphere(m_vCrateSearchOrigin, CRATE_RANGE, FindNearbyCrate);
-		}
-
-		RefreshCrateCards();
-		m_CrateOverlay.SetVisible(true);
-		m_ScreenFrame.SetVisible(false);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void HideNearbyCrates()
-	{
-		if (!m_CrateOverlay)
-			return;
-
-		m_CrateOverlay.SetVisible(false);
-		m_ScreenFrame.SetVisible(true);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected bool FindNearbyCrate(IEntity entity)
-	{
-		if (!entity)
-			return true;
-
-		IEntity root = entity.GetRootParent();
-		if (entity == m_CrateSearchPlayer || root == m_CrateSearchPlayer || ChimeraCharacter.Cast(entity) || ChimeraCharacter.Cast(root))
-			return true;
-
-		IBX_GMInventoryEditorComponent inventoryBox = IBX_GMInventoryEditorComponent.Cast(entity.FindComponent(IBX_GMInventoryEditorComponent));
-		if (!inventoryBox || m_aNearbyCrates.Contains(entity))
-			return true;
-
-		m_aNearbyCrates.Insert(entity);
-
-		return true;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void RefreshCrateCards()
-	{
-		ClearChildren(m_CrateList);
-		WorkspaceWidget workspace = GetGame().GetWorkspace();
-		if (!workspace)
-			return;
-
-		if (m_aNearbyCrates.IsEmpty())
-		{
-			CreateCrateContentRow(m_CrateList, string.Empty, Translate("#NIRE-Status_NoNearbyCrate"), workspace);
-			return;
-		}
-
-		foreach (IEntity crate : m_aNearbyCrates)
-		{
-			if (!crate)
+			if (count < 1)
 				continue;
 
-			Widget card = workspace.CreateWidgets(CRATE_CARD_LAYOUT, m_CrateList);
-			TextWidget title;
-			VerticalLayoutWidget itemList;
-			if (card)
-			{
-				title = TextWidget.Cast(card.FindAnyWidget("CrateContentsCardTitle"));
-				itemList = VerticalLayoutWidget.Cast(card.FindAnyWidget("CrateContentsCardList"));
-			}
-			if (!title || !itemList)
-				continue;
-
-			title.SetText(GetCrateDisplayName(crate));
-			array<IEntity> items = {};
-			BaseInventoryStorageComponent storage = BaseInventoryStorageComponent.Cast(crate.FindComponent(SCR_UniversalInventoryStorageComponent));
-			if (storage)
-				storage.GetAll(items, false);
-
-			map<ResourceName, int> counts = new map<ResourceName, int>();
-			map<ResourceName, string> labels = new map<ResourceName, string>();
-			foreach (IEntity item : items)
-			{
-				EntityPrefabData prefabData = item.GetPrefabData();
-				if (!prefabData)
-					continue;
-
-				ResourceName prefab = prefabData.GetPrefabName();
-				string label = Translate("#NIRE-Name_UnnamedItem");
-				InventoryItemComponent inventoryItem = InventoryItemComponent.Cast(item.FindComponent(InventoryItemComponent));
-				UIInfo info;
-				if (inventoryItem)
-					info = inventoryItem.GetUIInfo();
-				if (info && !info.GetName().IsEmpty())
-					label = Translate(info.GetName());
-
-				int count;
-				counts.Find(prefab, count);
-				counts.Set(prefab, count + 1);
-				labels.Set(prefab, label);
-			}
-
-			if (counts.Count() == 0)
-			{
-				CreateCrateContentRow(itemList, string.Empty, Translate("#NIRE-Crate_Empty"), workspace);
-				continue;
-			}
-
-			foreach (ResourceName prefab, int count : counts)
-				CreateCrateContentRow(itemList, prefab, string.Format("%1  x%2", labels[prefab], count), workspace);
+			if (!crateData.IsEmpty())
+				crateData += ";";
+			crateData += string.Format("%1=%2", count, m_aCratePrefabs[index]);
 		}
+
+		if (!crateData.IsEmpty())
+			controller.NIRE_CreateLogisticsCrates(m_iSelectedRequestId, crateData, StripLeadingSpaces(m_CrateName.GetText()));
 	}
 
+	//! The server's answer when the selected crates could not take the whole request. The picker
+	//! stays open, so another crate can be added straight away.
 	//------------------------------------------------------------------------------------------------
-	protected static string GetCrateDisplayName(notnull IEntity crate)
+	static void ShowCratesDoNotFit()
 	{
-		EntityPrefabData prefabData = crate.GetPrefabData();
-		if (!prefabData)
-			return WidgetManager.Translate("#NIRE-Name_UnnamedItem");
-
-		ResourceName prefab = prefabData.GetPrefabName();
-		string label = FilePath.StripExtension(FilePath.StripPath(prefab));
-		SCR_EditableEntityUIInfo info = SCR_EditableEntityUIInfo.ExtractEditableUIInfoFromPrefab(prefab);
-		if (info && !info.GetName().IsEmpty())
-			label = WidgetManager.Translate(info.GetName());
-
-		return label;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected static void CreateCrateContentRow(notnull VerticalLayoutWidget list, ResourceName prefab, string label, notnull WorkspaceWidget workspace)
-	{
-		Widget widget = workspace.CreateWidgets(ARSENAL_ROW_LAYOUT, list);
-		TextWidget text;
-		if (widget)
-			text = TextWidget.Cast(widget.FindAnyWidget("Label"));
-		if (!text)
-			return;
-
-		text.SetText(label);
-		SetRowPreview(widget, prefab);
+		if (s_Instance && s_Instance.m_CrateWarning)
+			s_Instance.m_CrateWarning.SetVisible(true);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -2139,9 +2669,19 @@ class NIRE_LogisticsScreen : ScriptedWidgetEventHandler
 		GetGame().GetCallqueue().CallLater(ClearPauseSuppression, 250, false);
 		GetGame().GetCallqueue().Remove(ClearConsumedBack);
 		GetGame().GetCallqueue().CallLater(ClearConsumedBack, 250, false);
-		if (m_CrateOverlay && m_CrateOverlay.IsVisible())
+		if (m_NewRequestConfirm && m_NewRequestConfirm.IsVisible())
 		{
-			HideNearbyCrates();
+			CancelNewRequest();
+			return;
+		}
+		if (m_FactionMenu && m_FactionMenu.IsVisible())
+		{
+			CloseFactionMenu();
+			return;
+		}
+		if (m_CrateMenu && m_CrateMenu.IsVisible())
+		{
+			CloseCrateMenu();
 			return;
 		}
 

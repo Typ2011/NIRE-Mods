@@ -20,32 +20,59 @@ class NIRE_LogisticsServerConfig : ScriptAndConfig
 		return !m_aCrates.IsEmpty();
 	}
 
-	bool AllowsCrateContents(ResourceName cratePrefab, notnull array<ResourceName> itemPrefabs, notnull array<int> itemCounts)
+	bool AllowsCrate(ResourceName cratePrefab)
 	{
 		if (!HasCrateRules())
 			return true;
 
+		NIRE_LogisticsCrateRule rule = FindRule(cratePrefab);
+		return rule && rule.IsValid();
+	}
+
+	//! How many of one item a single crate of this prefab may carry: -1 for any amount, 0 for none.
+	int GetMaximumCount(ResourceName cratePrefab, ResourceName itemPrefab)
+	{
+		if (!HasCrateRules())
+			return -1;
+
+		NIRE_LogisticsCrateRule rule = FindRule(cratePrefab);
+		if (!rule || !rule.IsValid())
+			return 0;
+
+		return rule.GetMaximumCount(itemPrefab);
+	}
+
+	//! A request is only refused when one of its items has no crate that may carry it. Quantities no
+	//! longer matter here, because a large request is split over as many crates as it needs.
+	bool AllowsAnyCrateContents(notnull array<ResourceName> itemPrefabs)
+	{
+		if (!HasCrateRules())
+			return true;
+
+		foreach (ResourceName itemPrefab : itemPrefabs)
+		{
+			bool allowed = false;
+			foreach (NIRE_LogisticsCrateRule rule : m_aCrates)
+			{
+				if (rule && rule.IsValid() && rule.GetMaximumCount(itemPrefab) != 0)
+					allowed = true;
+			}
+			if (!allowed)
+				return false;
+		}
+
+		return true;
+	}
+
+	protected NIRE_LogisticsCrateRule FindRule(ResourceName cratePrefab)
+	{
 		foreach (NIRE_LogisticsCrateRule rule : m_aCrates)
 		{
 			if (rule && rule.m_sCratePrefab == cratePrefab)
-				return rule.IsValid() && rule.AllowsContents(itemPrefabs, itemCounts);
+				return rule;
 		}
 
-		return false;
-	}
-
-	bool AllowsAnyCrateContents(notnull array<ResourceName> itemPrefabs, notnull array<int> itemCounts)
-	{
-		if (!HasCrateRules())
-			return true;
-
-		foreach (NIRE_LogisticsCrateRule rule : m_aCrates)
-		{
-			if (rule && rule.IsValid() && rule.AllowsContents(itemPrefabs, itemCounts))
-				return true;
-		}
-
-		return false;
+		return null;
 	}
 }
 
@@ -64,39 +91,29 @@ class NIRE_LogisticsCrateRule
 		return resource && resource.IsValid() && SCR_BaseContainerTools.FindComponentSource(resource, IBX_GMInventoryEditorComponent);
 	}
 
-	bool AllowsContents(notnull array<ResourceName> itemPrefabs, notnull array<int> itemCounts)
+	//! -1 when the rule allows any amount of the item, 0 when it does not allow it at all.
+	int GetMaximumCount(ResourceName itemPrefab)
 	{
 		string allowedItems = m_sAllowedItems.Trim();
 		if (allowedItems.IsEmpty())
-			return true;
+			return -1;
 
-		map<ResourceName, int> maximumCounts = new map<ResourceName, int>();
 		array<string> entries = {};
 		allowedItems.Split(";", entries, true);
 		foreach (string entry : entries)
 		{
 			array<string> fields = {};
 			entry.Split("=", fields, false);
-			if (fields.Count() != 2)
-				return false;
+			if (fields.Count() == 2 && fields[1].Trim() == itemPrefab)
+			{
+				int maximum = fields[0].ToInt();
+				if (maximum < 0)
+					return 0;
 
-			int maximum = fields[0].ToInt();
-			ResourceName prefab = fields[1].Trim();
-			if (maximum < 1 || prefab.IsEmpty() || maximumCounts.Contains(prefab))
-				return false;
-
-			maximumCounts.Insert(prefab, maximum);
+				return maximum;
+			}
 		}
 
-		if (itemPrefabs.Count() != itemCounts.Count())
-			return false;
-		foreach (int index, ResourceName prefab : itemPrefabs)
-		{
-			int maximum;
-			if (!maximumCounts.Find(prefab, maximum) || itemCounts[index] > maximum)
-				return false;
-		}
-
-		return true;
+		return 0;
 	}
 }
