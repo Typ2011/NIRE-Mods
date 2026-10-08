@@ -15,7 +15,7 @@ class IBX_EditInventoryContextAction : SCR_BaseContextAction
 	override SCR_UIInfo GetInfo()
 	{
 		if (!m_IBXInfo)
-			m_IBXInfo = SCR_UIInfo.CreateInfo("Edit Inventory", "Manage finite crate inventory");
+			m_IBXInfo = SCR_UIInfo.CreateInfo("Edit Inventory", "Manage finite crate inventory", "{277300864BEEE11B}Assets/images/ibx-icon-size.edds");
 
 		return m_IBXInfo;
 	}
@@ -63,7 +63,7 @@ class IBX_ExportInventoryPresetContextAction : IBX_EditInventoryContextAction
 	override SCR_UIInfo GetInfo()
 	{
 		if (!m_IBXInfo)
-			m_IBXInfo = SCR_UIInfo.CreateInfo("Export Inventory Preset", "Copy crate contents as a preset config entry");
+			m_IBXInfo = SCR_UIInfo.CreateInfo("Export Inventory Preset", "Copy crate contents as a preset config entry", "{277300864BEEE11B}Assets/images/ibx-icon-size.edds");
 
 		return m_IBXInfo;
 	}
@@ -81,7 +81,7 @@ class IBX_PasteInventoryContextAction : IBX_EditInventoryContextAction
 	override SCR_UIInfo GetInfo()
 	{
 		if (!m_IBXInfo)
-			m_IBXInfo = SCR_UIInfo.CreateInfo("Paste Inventory", "Replace crate contents from copied inventory text");
+			m_IBXInfo = SCR_UIInfo.CreateInfo("Paste Inventory", "Replace crate contents from copied inventory text", "{277300864BEEE11B}Assets/images/ibx-icon-size.edds");
 
 		return m_IBXInfo;
 	}

@@ -1,18 +1,18 @@
 GenericEntity : "{7007B975BEC018D9}Prefabs/Props/Military/AmmoBoxes/AmmoBox_50cal_100rnd.et" {
  ID "F0DBA538AC2A0552"
  components {
-  SCR_DestructionMultiPhaseComponent "{58F89684469E44B1}" {
-   Enabled 1
+  IBX_CrateCarryComponent "{A1E6470C8DBF3970}" {
   }
   IBX_GMInventoryEditorComponent "{A1E6470C8DBF3964}" {
   }
-  IBX_CrateCarryComponent "{A1E6470C8DBF3970}" {
+  SCR_DestructionMultiPhaseComponent "{58F89684469E44B1}" {
+   Enabled 1
   }
   SCR_EditableEntityComponent "{6656C2B0C996EAD7}" : "{996046FE206C699A}Prefabs/Editor/Components/Default_SCR_EditableEntityComponent.ct" {
    m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
     Name "Finite Inventory Crate - .50 Cal, 100 Rounds"
     Description "Crate with finite physical inventory"
-    m_Image ""
+    m_Image "{2550DF64EF733A71}UI/Textures/EditorPreviews/Auto/Props/Military/AmmoBoxes/E_AmmoBox_556x45_840rnd.edds"
     m_aAuthoredLabels {
      CONTENT_MODDED ENTITYTYPE_OBJECT FACTION_NONE IBX_INVENTORY_BOXES FACTION_US FACTION_USSR FACTION_FIA
     }
@@ -61,7 +61,7 @@ GenericEntity : "{7007B975BEC018D9}Prefabs/Props/Military/AmmoBoxes/AmmoBox_50ca
      Weight 2
      SizeSetupStrategy Manual
      ItemDimensions 30 19 16
-     ItemVolume 1100
+     ItemVolume 300
     }
     m_Size SLOT_1x1
     m_bDraggable 1
@@ -99,96 +99,108 @@ GenericEntity : "{7007B975BEC018D9}Prefabs/Props/Military/AmmoBoxes/AmmoBox_50ca
      VisibilityRange 10
      "Sort Priority" 1
     }
-   IBX_CarryCrateAction "{A1E6470C8DBF3971}" {
-    VisibilityRange 6
-    "Sort Priority" 2
-    ParentContextList {
-     "default"
+    IBX_CarryCrateAction "{A1E6470C8DBF3971}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3973}" {
+      Name "Carry Crate"
+     }
+     VisibilityRange 6
+     "Sort Priority" 2
     }
-    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3973}" {
-     Name "Carry Crate"
+    IBX_DragCrateAction "{A1E6470C8DBF3972}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3974}" {
+      Name "Drag Crate"
+     }
+     VisibilityRange 2
+     Duration -1
+     PerformPerFrame 1
+     "Sort Priority" 3
+    }
+    IBX_DropCrateAction "{A1E6470C8DBF3980}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3981}" {
+      Name "Drop Crate"
+     }
+     VisibilityRange 6
+     "Sort Priority" 4
+    }
+    IBX_RaiseCrateAction "{A1E6470C8DBF3982}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3983}" {
+      Name "Raise Crate"
+     }
+     VisibilityRange 6
+     Duration -1
+     PerformPerFrame 1
+     "Sort Priority" 5
+    }
+    IBX_LowerCrateAction "{A1E6470C8DBF3984}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3985}" {
+      Name "Lower Crate"
+     }
+     VisibilityRange 6
+     Duration -1
+     PerformPerFrame 1
+     "Sort Priority" 6
+    }
+    IBX_RotateCrateLeftAction "{A1E6470C8DBF3986}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3987}" {
+      Name "Rotate Crate Left"
+     }
+     VisibilityRange 6
+     Duration -1
+     PerformPerFrame 1
+     "Sort Priority" 7
+    }
+    IBX_RotateCrateRightAction "{A1E6470C8DBF3988}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3989}" {
+      Name "Rotate Crate Right"
+     }
+     VisibilityRange 6
+     Duration -1
+     PerformPerFrame 1
+     "Sort Priority" 8
+    }
+    IBX_DeleteCrateAction "{A1E6470C8DBF398C}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF398D}" {
+      Name "Delete Crate"
+     }
+     VisibilityRange 6
+     Duration 3
+     "Sort Priority" 10
+    }
+    IBX_RenameCrateAction "{A1E6470C8DBF398A}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF398B}" {
+      Name "Name Crate"
+     }
+     VisibilityRange 6
+     "Sort Priority" 9
     }
    }
-   IBX_DragCrateAction "{A1E6470C8DBF3972}" {
-    VisibilityRange 2
-    "Sort Priority" 3
-    Duration -1
-    PerformPerFrame 1
-    ParentContextList {
-     "default"
-    }
-    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3974}" {
-     Name "Drag Crate"
-    }
-   }
-   IBX_DropCrateAction "{A1E6470C8DBF3980}" {
-    VisibilityRange 6
-    "Sort Priority" 4
-    ParentContextList {
-     "default"
-    }
-    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3981}" {
-     Name "Drop Crate"
-    }
-   }
-   IBX_RaiseCrateAction "{A1E6470C8DBF3982}" {
-    VisibilityRange 6
-    "Sort Priority" 5
-    Duration -1
-    PerformPerFrame 1
-    ParentContextList {
-     "default"
-    }
-    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3983}" {
-     Name "Raise Crate"
-    }
-   }
-   IBX_LowerCrateAction "{A1E6470C8DBF3984}" {
-    VisibilityRange 6
-    "Sort Priority" 6
-    Duration -1
-    PerformPerFrame 1
-    ParentContextList {
-     "default"
-    }
-    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3985}" {
-     Name "Lower Crate"
-    }
-   }
-   IBX_RotateCrateLeftAction "{A1E6470C8DBF3986}" {
-    VisibilityRange 6
-    "Sort Priority" 7
-    Duration -1
-    PerformPerFrame 1
-    ParentContextList {
-     "default"
-    }
-    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3987}" {
-     Name "Rotate Crate Left"
-    }
-   }
-   IBX_RotateCrateRightAction "{A1E6470C8DBF3988}" {
-    VisibilityRange 6
-    "Sort Priority" 8
-    Duration -1
-    PerformPerFrame 1
-    ParentContextList {
-     "default"
-    }
-    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3989}" {
-     Name "Rotate Crate Right"
-    }
-   }
-   IBX_RenameCrateAction "{A1E6470C8DBF398A}" {
-    VisibilityRange 6
-    "Sort Priority" 9
-    ParentContextList {
-     "default"
-    }
-    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF398B}" {
-     Name "Name Crate"
-    }
-   }   }
   }
  }
  angles 0 0 0

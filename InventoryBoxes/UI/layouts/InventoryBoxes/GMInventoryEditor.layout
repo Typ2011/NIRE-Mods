@@ -28,6 +28,18 @@ FrameWidgetClass {
       OffsetBottom 0
      }
     }
+    ImageWidgetClass "{A1E6470C8DBF4260}" {
+     Name "FavoritesFilterIcon"
+     Slot FrameWidgetSlot "{A1E6470C8DBF4261}" {
+      Anchor 0 0 0 0
+      OffsetRight 32
+      OffsetBottom 32
+     }
+     "Ignore Cursor" 1
+     Texture "{D17288006833490F}UI/Textures/Icons/icons_wrapperUI-32.imageset"
+     Image "favouriteOff"
+     Size 32 32
+    }
     ScrollLayoutWidgetClass "{A1E6470C8DBF4211}" {
      Name "ArsenalScroll"
      Slot FrameWidgetSlot "{A1E6470C8DBF4212}" {
@@ -62,6 +74,30 @@ FrameWidgetClass {
         HorizontalAlign 3
         VerticalAlign 0
         Padding 0 0 10 0
+       }
+      }
+     }
+    }
+    FrameWidgetClass "{A1E6470C8DBF4262}" {
+     Name "HoverPreviewPanel"
+     Slot FrameWidgetSlot "{A1E6470C8DBF4263}" {
+      Anchor 0 0 0 0
+      OffsetRight 240
+      OffsetBottom 240
+     }
+     "Is Visible" 0
+     "Ignore Cursor" 1
+     "Z Order" 100
+     Color 0.07 0.09 0.1 0.98
+     {
+      ItemPreviewWidgetClass "{A1E6470C8DBF4264}" {
+       Name "HoverPreview"
+       Slot FrameWidgetSlot "{A1E6470C8DBF4265}" {
+        Anchor 0 0 1 1
+        OffsetLeft 12
+        OffsetTop 12
+        OffsetRight -12
+        OffsetBottom -12
        }
       }
      }

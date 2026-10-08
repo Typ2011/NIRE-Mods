@@ -103,6 +103,17 @@ GenericEntity : "{20902DC3C035E9F2}Prefabs/Props/Military/AmmoBoxes/EquipmentBox
      Name "Rotate Crate Right"
     }
    }
+   IBX_DeleteCrateAction "{A1E6470C8DBF398C}" {
+    VisibilityRange 6
+    "Sort Priority" 10
+    Duration 3
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF398D}" {
+     Name "Delete Crate"
+    }
+   }
    IBX_RenameCrateAction "{A1E6470C8DBF398A}" {
     VisibilityRange 6
     "Sort Priority" 9
@@ -127,7 +138,7 @@ GenericEntity : "{20902DC3C035E9F2}Prefabs/Props/Military/AmmoBoxes/EquipmentBox
      Weight 85
      SizeSetupStrategy 3
      ItemDimensions 143 141 120
-     ItemVolume 302700
+     ItemVolume 67800
     }
     m_Size SLOT_3x3
     m_bDraggable 1

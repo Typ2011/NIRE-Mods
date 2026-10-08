@@ -57,6 +57,42 @@ class IBX_GMInventoryEditorComponent : ScriptComponent
 			storage.GetAll(items, false);
 	}
 
+	void RequestDelete()
+	{
+		IEntity owner = GetOwner();
+		if (!owner)
+			return;
+
+		SCR_PlayerController controller = SCR_PlayerController.Cast(GetGame().GetPlayerController());
+		RplComponent rpl = RplComponent.Cast(owner.FindComponent(RplComponent));
+		if (controller && rpl)
+			controller.IBX_RequestCrateDelete(rpl.Id());
+	}
+
+	//! True means occupied storage needs the player's explicit confirmation.
+	bool DeleteServer(notnull IEntity user, bool confirmedWithItems)
+	{
+		IEntity owner = GetOwner();
+		if (!IsAuthority() || !owner || owner.GetParent() || !GetStorage())
+			return false;
+
+		vector delta = owner.GetOrigin() - user.GetOrigin();
+		if (delta.LengthSq() > 36)
+			return false;
+
+		IBX_CrateCarryComponent carry = IBX_CrateCarryComponent.Get(owner);
+		if (carry && carry.GetMode() != IBX_ECrateCarryMode.NONE)
+			return false;
+
+		array<IEntity> items = {};
+		GetInventoryItems(items);
+		if (!confirmedWithItems && !items.IsEmpty())
+			return true;
+
+		SCR_EntityHelper.DeleteEntityAndChildren(owner);
+		return false;
+	}
+
 	void GetInventorySnapshot(out notnull array<ResourceName> prefabs, out notnull array<int> counts)
 	{
 		map<ResourceName, int> itemCounts = new map<ResourceName, int>();

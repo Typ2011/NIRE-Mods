@@ -1,3 +1,74 @@
+class IBX_GMInventoryFavorites
+{
+	protected static const string PROFILE_FILE = "$profile:InventoryBoxes_Favorites.json";
+	protected static const string PROFILE_TEMP = "$profile:InventoryBoxes_Favorites.tmp.json";
+	protected static const string PROFILE_BACKUP = "$profile:InventoryBoxes_Favorites.backup.json";
+	protected static ref array<string> s_Favorites = {};
+	protected static bool s_Loaded;
+	protected static bool s_PrimaryValid;
+
+	protected static void Load()
+	{
+		if (s_Loaded)
+			return;
+		s_Loaded = true;
+		if (LoadFile(PROFILE_FILE))
+		{
+			s_PrimaryValid = true;
+			return;
+		}
+		if (LoadFile(PROFILE_TEMP))
+		{
+			FileIO.CopyFile(PROFILE_TEMP, PROFILE_BACKUP);
+			return;
+		}
+		LoadFile(PROFILE_BACKUP);
+	}
+
+	protected static bool LoadFile(string path)
+	{
+		JsonLoadContext context = new JsonLoadContext();
+		if (!context.LoadFromFile(path))
+			return false;
+		ref array<string> favorites = {};
+		if (!context.ReadValue("favorites", favorites))
+			return false;
+		s_Favorites = favorites;
+		return true;
+	}
+
+	static bool Contains(ResourceName prefab)
+	{
+		Load();
+		return s_Favorites.Contains(prefab);
+	}
+
+	static void Toggle(ResourceName prefab)
+	{
+		Load();
+		if (prefab.IsEmpty())
+			return;
+		int index = s_Favorites.Find(prefab);
+		if (index >= 0)
+			s_Favorites.Remove(index);
+		else
+			s_Favorites.Insert(prefab);
+
+		JsonSaveContext context = new JsonSaveContext();
+		if (!context.WriteValue("favorites", s_Favorites) || !context.SaveToFile(PROFILE_TEMP))
+			return;
+		if (s_PrimaryValid && FileIO.FileExists(PROFILE_FILE) && !FileIO.CopyFile(PROFILE_FILE, PROFILE_BACKUP))
+			return;
+		if (!FileIO.CopyFile(PROFILE_TEMP, PROFILE_FILE))
+		{
+			s_PrimaryValid = false;
+			return;
+		}
+		s_PrimaryValid = true;
+		FileIO.DeleteFile(PROFILE_TEMP);
+	}
+}
+
 class IBX_GMInventoryEditorRowHandler : ScriptedWidgetEventHandler
 {
 	protected IBX_GMInventoryEditorUI m_UI;
@@ -13,7 +84,10 @@ class IBX_GMInventoryEditorRowHandler : ScriptedWidgetEventHandler
 
 	override bool OnClick(Widget w, int x, int y, int button)
 	{
-		m_UI.SelectItem(m_Prefab, m_IsCurrentItem);
+		if (!m_IsCurrentItem && w.GetName() == "FavoriteButton")
+			m_UI.ToggleFavoriteItem(m_Prefab);
+		else
+			m_UI.SelectItem(m_Prefab, m_IsCurrentItem);
 		return true;
 	}
 }
@@ -66,6 +140,8 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 {
 	protected const ResourceName LAYOUT = "{6F2FC06861E41600}UI/layouts/InventoryBoxes/GMInventoryEditor.layout";
 	protected const ResourceName ROW_LAYOUT = "{C1E02C785E02616D}UI/layouts/InventoryBoxes/GMInventoryEditorRow.layout";
+	protected const ResourceName FAVORITE_ICON_SET = "{D17288006833490F}UI/Textures/Icons/icons_wrapperUI-32.imageset";
+	protected const float HOVER_PREVIEW_SIZE = 240;
 
 	protected static ref IBX_GMInventoryEditorUI s_Instance;
 	protected static string s_CopiedInventory;
@@ -80,6 +156,12 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 	protected VerticalLayoutWidget m_CurrentList;
 	protected EditBoxWidget m_ModalFocus;
 	protected MUI_TextField m_Search;
+	protected MUI_Button m_FavoritesButton;
+	protected ImageWidget m_FavoritesIcon;
+	protected Widget m_HoverPreviewPanel;
+	protected ItemPreviewWidget m_HoverPreview;
+	protected ref SCR_ItemAttributeCollection m_HoverAttributeCollection;
+	protected PreviewRenderAttributes m_HoverRenderAttributes;
 	protected MUI_TextField m_Quantity;
 	protected MUI_TextField m_CrateName;
 	protected MUI_Button m_FactionFilter;
@@ -100,6 +182,8 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 	protected ResourceName m_SelectedCurrentPrefab;
 	protected ResourceName m_SelectedWeaponPrefab;
 	protected ref array<ResourceName> m_ArsenalPrefabs = {};
+	protected ref array<Widget> m_ArsenalPreviews = {};
+	protected ref array<ResourceName> m_PreviewPrefabs = {};
 	protected ref map<ResourceName, SCR_EArsenalItemType> m_ArsenalTypes = new map<ResourceName, SCR_EArsenalItemType>();
 	protected ref map<ResourceName, SCR_EArsenalItemMode> m_ArsenalModes = new map<ResourceName, SCR_EArsenalItemMode>();
 	protected ref map<ResourceName, string> m_ArsenalLabels = new map<ResourceName, string>();
@@ -118,6 +202,8 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 	protected IBX_EArsenalTab m_SelectedTab;
 	protected bool m_AddPending;
 	protected string m_LastSearch;
+	protected bool m_FavoritesOnly;
+	protected ResourceName m_HoverPreviewPrefab;
 
 	static void Open(notnull IBX_GMInventoryEditorComponent component)
 	{
@@ -156,6 +242,14 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 		m_CurrentScroll = ScrollLayoutWidget.Cast(m_Root.FindAnyWidget("CurrentScroll"));
 		m_CurrentList = VerticalLayoutWidget.Cast(m_Root.FindAnyWidget("CurrentList"));
 		m_ModalFocus = EditBoxWidget.Cast(m_Root.FindAnyWidget("ModalFocus"));
+		m_FavoritesIcon = ImageWidget.Cast(m_Root.FindAnyWidget("FavoritesFilterIcon"));
+		m_HoverPreviewPanel = m_Root.FindAnyWidget("HoverPreviewPanel");
+		m_HoverPreview = ItemPreviewWidget.Cast(m_Root.FindAnyWidget("HoverPreview"));
+		if (!m_FavoritesIcon || !m_HoverPreviewPanel || !m_HoverPreview)
+		{
+			Close();
+			return;
+		}
 		InitMikesUI();
 		if (!m_MikesUI)
 		{
@@ -290,6 +384,12 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 		m_Search.SetFillWidth();
 		m_Search.SetGrow(1);
 		filters.AddChild(m_Search);
+		m_FavoritesButton = m_MikesUI.CreateButton(string.Empty, "FavoritesFilter");
+		m_FavoritesButton.SetWidth(58);
+		m_FavoritesButton.SetGrow(0);
+		m_FavoritesButton.SetAlign(0, 1);
+		m_FavoritesButton.GetOnClicked().Insert(ToggleFavoritesFilter);
+		filters.AddChild(m_FavoritesButton);
 		m_FactionFilter = m_MikesUI.CreateButton("ALL FACTIONS", "FactionFilter");
 		m_FactionFilter.SetWidth(190);
 		m_FactionFilter.SetGrow(0);
@@ -504,6 +604,7 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 			RefreshArsenalList();
 			ScrollArsenalToTop();
 		}
+		UpdateHoverPreview();
 	}
 
 	//! The keystroke that activates the field can also land inside it, so the first character typed
@@ -525,6 +626,16 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 	{
 		SyncNativeViewport(m_ArsenalScroll, m_ArsenalViewport);
 		SyncNativeViewport(m_CurrentScroll, m_CurrentViewport);
+		bool showFavorite = !m_FactionMenu.IsVisible() && !m_ExportOverlay.IsVisible();
+		m_FavoritesIcon.SetVisible(showFavorite);
+		if (!showFavorite)
+			HideHoverPreview();
+		else
+		{
+			MUI_Rect rect = m_FavoritesButton.GetWorldRect();
+			FrameSlot.SetPos(m_FavoritesIcon, rect.m_fX + (rect.m_fW - 32) * 0.5, rect.m_fY + (rect.m_fH - 32) * 0.5);
+			FrameSlot.SetSize(m_FavoritesIcon, 32, 32);
+		}
 	}
 
 	protected static void SyncNativeViewport(Widget widget, MUI_Node viewport)
@@ -670,13 +781,16 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 
 	protected void RefreshArsenalList()
 	{
+		HideHoverPreview();
+		m_ArsenalPreviews.Clear();
+		m_PreviewPrefabs.Clear();
 		ClearChildren(m_ArsenalList);
 		array<string> searchTerms = {};
 		BuildSearchTerms(m_Search.GetText(), searchTerms);
 
 		foreach (ResourceName prefab : m_ArsenalPrefabs)
 		{
-			if (!MatchesSelectedTab(prefab) || !MatchesSelectedFaction(prefab))
+			if (!MatchesSelectedTab(prefab) || !MatchesSelectedFaction(prefab) || (m_FavoritesOnly && !IBX_GMInventoryFavorites.Contains(prefab)))
 				continue;
 
 			string label = GetLabel(prefab);
@@ -690,7 +804,7 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 			{
 				foreach (ResourceName ammunition : m_ArsenalPrefabs)
 				{
-					if (m_SelectedWeaponAmmunition.Contains(ammunition) && MatchesSelectedFaction(ammunition))
+					if (m_SelectedWeaponAmmunition.Contains(ammunition) && MatchesSelectedFaction(ammunition) && (!m_FavoritesOnly || IBX_GMInventoryFavorites.Contains(ammunition)))
 						CreateRow(m_ArsenalList, ammunition, "    Ammunition: " + GetLabel(ammunition), false, true);
 				}
 			}
@@ -838,11 +952,129 @@ class IBX_GMInventoryEditorUI : ScriptedWidgetEventHandler
 			previewManager.SetPreviewItemFromPrefab(preview, prefab);
 		else
 			preview.SetVisible(false);
+		if (!isCurrentItem)
+		{
+			ButtonWidget favorite = ButtonWidget.Cast(row.FindAnyWidget("FavoriteButton"));
+			ImageWidget icon = ImageWidget.Cast(row.FindAnyWidget("FavoriteIcon"));
+			if (favorite && icon)
+			{
+				favorite.SetVisible(true);
+				if (IBX_GMInventoryFavorites.Contains(prefab))
+					icon.LoadImageFromSet(0, FAVORITE_ICON_SET, "favourite");
+				favorite.AddHandler(new IBX_GMInventoryEditorRowHandler(this, prefab, false));
+			}
+			m_ArsenalPreviews.Insert(previewSize);
+			m_PreviewPrefabs.Insert(prefab);
+		}
 
 		if (highlight)
 			row.SetColorInt(0xFF526B38);
 
 		row.AddHandler(new IBX_GMInventoryEditorRowHandler(this, prefab, isCurrentItem));
+	}
+
+	void ToggleFavoriteItem(ResourceName prefab)
+	{
+		IBX_GMInventoryFavorites.Toggle(prefab);
+		if (m_FavoritesOnly && !IBX_GMInventoryFavorites.Contains(prefab) && m_SelectedArsenalPrefab == prefab)
+			m_SelectedArsenalPrefab = string.Empty;
+		RefreshArsenalList();
+	}
+
+	protected void ToggleFavoritesFilter()
+	{
+		m_FavoritesOnly = !m_FavoritesOnly;
+		m_SelectedArsenalPrefab = string.Empty;
+		if (m_FavoritesOnly)
+			m_FavoritesIcon.LoadImageFromSet(0, FAVORITE_ICON_SET, "favourite");
+		else
+			m_FavoritesIcon.LoadImageFromSet(0, FAVORITE_ICON_SET, "favouriteOff");
+		RefreshArsenalList();
+		ScrollArsenalToTop();
+	}
+
+	protected void UpdateHoverPreview()
+	{
+		if (!m_ArsenalScroll.IsVisible() || m_FactionMenu.IsVisible() || m_ExportOverlay.IsVisible())
+		{
+			HideHoverPreview();
+			return;
+		}
+
+		int mouseX, mouseY;
+		WidgetManager.GetMousePos(mouseX, mouseY);
+		float scrollX, scrollY, scrollWidth, scrollHeight;
+		m_ArsenalScroll.GetScreenPos(scrollX, scrollY);
+		m_ArsenalScroll.GetScreenSize(scrollWidth, scrollHeight);
+		if (mouseX < scrollX || mouseX >= scrollX + scrollWidth || mouseY < scrollY || mouseY >= scrollY + scrollHeight)
+		{
+			HideHoverPreview();
+			return;
+		}
+
+		foreach (int index, Widget preview : m_ArsenalPreviews)
+		{
+			float previewX, previewY, previewWidth, previewHeight;
+			preview.GetScreenPos(previewX, previewY);
+			preview.GetScreenSize(previewWidth, previewHeight);
+			if (mouseX < previewX || mouseX >= previewX + previewWidth || mouseY < previewY || mouseY >= previewY + previewHeight)
+				continue;
+
+			ResourceName prefab = m_PreviewPrefabs[index];
+			if (prefab != m_HoverPreviewPrefab)
+				ShowHoverPreview(prefab, preview);
+			return;
+		}
+		HideHoverPreview();
+	}
+
+	protected void ShowHoverPreview(ResourceName prefab, Widget preview)
+	{
+		WorkspaceWidget workspace = GetGame().GetWorkspace();
+		ChimeraWorld world = GetGame().GetWorld();
+		ItemPreviewManagerEntity previewManager;
+		if (world)
+			previewManager = world.GetItemPreviewManager();
+		Widget parent = m_HoverPreviewPanel.GetParent();
+		if (!workspace || !previewManager || !parent)
+			return;
+
+		float previewX, previewY, previewWidth, previewHeight;
+		float parentX, parentY, parentWidth, parentHeight;
+		preview.GetScreenPos(previewX, previewY);
+		preview.GetScreenSize(previewWidth, previewHeight);
+		parent.GetScreenPos(parentX, parentY);
+		parent.GetScreenSize(parentWidth, parentHeight);
+		float popupX = Math.Clamp(workspace.DPIUnscale(previewX + previewWidth - parentX) + 12, 0, workspace.DPIUnscale(parentWidth) - HOVER_PREVIEW_SIZE);
+		float popupY = Math.Clamp(workspace.DPIUnscale(previewY - parentY), 0, workspace.DPIUnscale(parentHeight) - HOVER_PREVIEW_SIZE);
+		FrameSlot.SetPos(m_HoverPreviewPanel, popupX, popupY);
+		FrameSlot.SetSize(m_HoverPreviewPanel, HOVER_PREVIEW_SIZE, HOVER_PREVIEW_SIZE);
+		m_HoverPreviewPanel.SetVisible(true);
+		m_HoverAttributeCollection = null;
+		m_HoverRenderAttributes = null;
+		if (m_SelectedTab == IBX_EArsenalTab.WEAPONS)
+		{
+			Resource resource = Resource.Load(prefab);
+			if (resource && resource.IsValid())
+			{
+				IEntitySource entitySource = SCR_BaseContainerTools.FindEntitySource(resource);
+				IEntityComponentSource componentSource = SCR_ComponentHelper.GetInventoryItemComponentSource(entitySource);
+				if (componentSource)
+					m_HoverAttributeCollection = SCR_ComponentHelper.GetInventoryItemInfo(componentSource);
+				if (m_HoverAttributeCollection)
+					m_HoverRenderAttributes = PreviewRenderAttributes.Cast(m_HoverAttributeCollection.FindAttribute(PreviewRenderAttributes));
+				if (m_HoverRenderAttributes)
+					m_HoverRenderAttributes.ZoomCamera(20);
+			}
+		}
+		previewManager.SetPreviewItemFromPrefab(m_HoverPreview, prefab, m_HoverRenderAttributes);
+		m_HoverPreviewPrefab = prefab;
+	}
+
+	protected void HideHoverPreview()
+	{
+		m_HoverPreviewPanel.SetVisible(false);
+		m_HoverPreviewPrefab = string.Empty;
 	}
 
 	void SelectItem(ResourceName prefab, bool isCurrentItem)
