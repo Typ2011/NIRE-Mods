@@ -72,6 +72,18 @@ FrameWidgetClass {
       }
      }
     }
+    ImageWidgetClass "{8D02B4399E3F2AE7}" {
+     Name "FavoritesFilterIcon"
+     Slot FrameWidgetSlot "{8D02B4399E3F2AE8}" {
+      Anchor 0 0 0 0
+      OffsetRight 32
+      OffsetBottom 32
+     }
+     "Ignore Cursor" 1
+     Texture "{D17288006833490F}UI/Textures/Icons/icons_wrapperUI-32.imageset"
+     Image "favouriteOff"
+     Size 32 32
+    }
     ScrollLayoutWidgetClass "{7A1C000000000010}" {
      Name "ContentsScroll"
      Slot FrameWidgetSlot "{7A1C000000000011}" {
@@ -91,22 +103,26 @@ FrameWidgetClass {
       }
      }
     }
-    ScrollLayoutWidgetClass "{7A1C000000000014}" {
-     Name "CrateScroll"
-     Slot FrameWidgetSlot "{7A1C000000000015}" {
+    FrameWidgetClass "{8D02B4399E3F2AE9}" {
+     Name "HoverPreviewPanel"
+     Slot FrameWidgetSlot "{8D02B4399E3F2AEA}" {
       Anchor 0 0 0 0
-      OffsetRight 100
-      OffsetBottom 100
+      OffsetRight 240
+      OffsetBottom 240
      }
-     style Small
      "Is Visible" 0
+     "Ignore Cursor" 1
+     "Z Order" 100
+     Color 0.07 0.09 0.1 0.98
      {
-      VerticalLayoutWidgetClass "{7A1C000000000016}" {
-       Name "CrateList"
-       Slot AlignableSlot "{7A1C000000000017}" {
-        HorizontalAlign 3
-        VerticalAlign 0
-        Padding 0 0 10 0
+      ItemPreviewWidgetClass "{8D02B4399E3F2AEB}" {
+       Name "HoverPreview"
+       Slot FrameWidgetSlot "{8D02B4399E3F2AEC}" {
+        Anchor 0 0 1 1
+        OffsetLeft 12
+        OffsetTop 12
+        OffsetRight -12
+        OffsetBottom -12
        }
       }
      }

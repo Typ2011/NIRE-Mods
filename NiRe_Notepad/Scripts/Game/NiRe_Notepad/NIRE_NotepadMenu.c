@@ -216,7 +216,7 @@ class NIRE_NotepadController
 	protected static const string PROFILE_FILE = "$profile:NiRe_Notepad.json";
 	protected static const string PROFILE_BACKUP = "$profile:NiRe_Notepad.backup.json";
 	protected static const string PROFILE_TEMP = "$profile:NiRe_Notepad.tmp.json";
-	protected static const int PROFILE_VERSION = 6;
+	protected static const int PROFILE_VERSION = 7;
 	protected static const int TAB_COUNT = 6;
 	protected static const int LINE_EDITOR_COUNT = 10;
 	protected static const int DRAWING_COLOR_COUNT = 5;
@@ -235,6 +235,7 @@ class NIRE_NotepadController
 	protected static ref array<float> s_aDrawingVertices = {};
 	protected static ref array<int> s_aDrawingEnds = {};
 	protected static ref array<int> s_aDrawingModes = {};
+	protected static ref array<string> s_aFavoriteItems = {};
 	protected static NIRE_NotepadController s_ActiveController;
 
 	protected ref NIRE_NotepadMenuHandler m_Handler;
@@ -1656,6 +1657,7 @@ class NIRE_NotepadController
 	protected static void CreateEmptyBooks()
 	{
 		s_aMissionBooks.Clear();
+		s_aFavoriteItems.Clear();
 		s_aDrawingVertices.Clear();
 		s_aDrawingEnds.Clear();
 		s_aDrawingModes.Clear();
@@ -1693,6 +1695,26 @@ class NIRE_NotepadController
 		return book.m_aMissions[book.m_iActiveMission];
 	}
 
+	static bool IsFavoriteItem(string prefab)
+	{
+		EnsureDataLoaded();
+		return s_aFavoriteItems.Contains(prefab);
+	}
+
+	static void ToggleFavoriteItem(string prefab)
+	{
+		EnsureDataLoaded();
+		if (prefab.IsEmpty())
+			return;
+
+		int index = s_aFavoriteItems.Find(prefab);
+		if (index >= 0)
+			s_aFavoriteItems.Remove(index);
+		else
+			s_aFavoriteItems.Insert(prefab);
+		SavePersistentData();
+	}
+
 	protected static void SavePersistentData()
 	{
 		if (!s_bDataLoaded)
@@ -1700,6 +1722,8 @@ class NIRE_NotepadController
 
 		JsonSaveContext context = new JsonSaveContext();
 		if (!context.WriteValue("version", PROFILE_VERSION) || !context.WriteValue("activeTab", s_iActiveTab) || !context.WriteValue("generalNote", s_sGeneralNote) || !context.WriteValue("drawingVertices", s_aDrawingVertices) || !context.WriteValue("drawingEnds", s_aDrawingEnds) || !context.WriteValue("drawingModes", s_aDrawingModes))
+			return;
+		if (!context.WriteValue("favoriteItems", s_aFavoriteItems))
 			return;
 
 		for (int tab = 1; tab < TAB_COUNT; tab++)
@@ -1767,6 +1791,9 @@ class NIRE_NotepadController
 		ref array<float> drawingVertices = {};
 		ref array<int> drawingEnds = {};
 		ref array<int> drawingModes = {};
+		ref array<string> favoriteItems = {};
+		if (version >= 7 && !context.ReadValue("favoriteItems", favoriteItems))
+			return false;
 		if (version >= 3)
 		{
 			if (!context.ReadValue("drawingVertices", drawingVertices) || !context.ReadValue("drawingEnds", drawingEnds) || !context.ReadValue("drawingModes", drawingModes) || drawingVertices.Count() % 2 != 0 || drawingEnds.Count() != drawingModes.Count())
@@ -1890,6 +1917,7 @@ class NIRE_NotepadController
 		s_aDrawingVertices = drawingVertices;
 		s_aDrawingEnds = drawingEnds;
 		s_aDrawingModes = drawingModes;
+		s_aFavoriteItems = favoriteItems;
 		return true;
 	}
 

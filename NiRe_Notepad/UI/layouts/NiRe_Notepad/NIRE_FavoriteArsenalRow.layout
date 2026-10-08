@@ -1,0 +1,68 @@
+ButtonWidgetClass "{8D02B4399E3F3A01}" {
+ Name "Row"
+ Slot LayoutSlot "{8D02B4399E3F3A02}" {
+  HorizontalAlign 3
+  Padding 2 2 2 2
+ }
+ Color 0.16 0.22 0.24 0.95
+ {
+  HorizontalLayoutWidgetClass "{8D02B4399E3F3A03}" {
+   Name "Content"
+   Slot ButtonWidgetSlot "{8D02B4399E3F3A04}" {
+    HorizontalAlign 3
+   }
+   {
+    SizeLayoutWidgetClass "{8D02B4399E3F3A05}" {
+     Name "PreviewSize"
+     Slot LayoutSlot "{8D02B4399E3F3A06}" {
+      VerticalAlign 1
+      Padding 4 4 4 4
+     }
+     {
+      ItemPreviewWidgetClass "{8D02B4399E3F3A07}" {
+       Name "Preview"
+       Slot AlignableSlot "{8D02B4399E3F2AEE}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+       "Ignore Cursor" 1
+      }
+     }
+    }
+    TextWidgetClass "{8D02B4399E3F3A09}" {
+     Name "Label"
+     Slot LayoutSlot "{8D02B4399E3F3A0A}" {
+      VerticalAlign 3
+      Padding 8 0 4 0
+      SizeMode Fill
+      FillWeight 1
+     }
+     Text "Item"
+     Color 0.95 0.95 0.92 1
+     "Font Size" 18
+     "Min Font Size" 14
+    "Horizontal Alignment" Left
+    "Vertical Alignment" Center
+    }
+    ButtonWidgetClass "{8D02B4399E3F2AE1}" {
+     Name "FavoriteButton"
+     Slot LayoutSlot "{8D02B4399E3F2AE2}" {
+      VerticalAlign 1
+      Padding 4 2 4 2
+     }
+     Color 0.16 0.22 0.24 0.95
+     {
+      ImageWidgetClass "{8D02B4399E3F2AE3}" {
+       Name "FavoriteIcon"
+       Slot ButtonWidgetSlot "{8D02B4399E3F2AE4}" {
+       }
+       Texture "{D17288006833490F}UI/Textures/Icons/icons_wrapperUI-32.imageset"
+       Image "favouriteOff"
+       Size 32 32
+      }
+     }
+    }
+   }
+  }
+ }
+}
