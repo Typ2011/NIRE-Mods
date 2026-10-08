@@ -49,6 +49,38 @@ class IBX_RenameCrateAction : SCR_ScriptedUserAction
 	}
 }
 
+class IBX_DeleteCrateAction : SCR_ScriptedUserAction
+{
+	override bool CanBePerformedScript(IEntity user)
+	{
+		return user && IBX_GMInventoryEditorComponent.Get(GetOwner()) && !GetOwner().GetParent();
+	}
+
+	override bool CanBeShownScript(IEntity user)
+	{
+		return CanBePerformedScript(user);
+	}
+
+	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity)
+	{
+		if (!pOwnerEntity || !pUserEntity)
+			return;
+
+		RplComponent rpl = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
+		if (!rpl || rpl.IsProxy())
+			return;
+
+		PlayerManager players = GetGame().GetPlayerManager();
+		if (!players)
+			return;
+
+		int playerId = players.GetPlayerIdFromControlledEntity(pUserEntity);
+		SCR_PlayerController controller = SCR_PlayerController.Cast(players.GetPlayerController(playerId));
+		if (controller)
+			controller.IBX_CompleteCrateDeleteHold(rpl.Id());
+	}
+}
+
 //------------------------------------------------------------------------------------------------
 
 //! The client-to-server leg of a rename. A [RplRpc] declared on IBX_GMInventoryEditorComponent
@@ -57,6 +89,72 @@ class IBX_RenameCrateAction : SCR_ScriptedUserAction
 //! the requesting client, so it works for a Game Master and a plain player alike.
 modded class SCR_PlayerController
 {
+	protected RplId m_IBXPendingDeleteCrateId;
+	protected float m_IBXPendingDeleteTime;
+
+	void IBX_CompleteCrateDeleteHold(RplId crateId)
+	{
+		m_IBXPendingDeleteCrateId = RplId.Invalid();
+
+		RplComponent crateRpl = RplComponent.Cast(Replication.FindItem(crateId));
+		if (!crateRpl)
+			return;
+
+		IBX_GMInventoryEditorComponent crate = IBX_GMInventoryEditorComponent.Get(crateRpl.GetEntity());
+		IEntity user = GetControlledEntity();
+		if (!crate || !user || !crate.DeleteServer(user, false))
+			return;
+
+		m_IBXPendingDeleteCrateId = crateId;
+		m_IBXPendingDeleteTime = GetGame().GetWorld().GetWorldTime();
+		if (user == SCR_PlayerController.GetLocalControlledEntity())
+			IBX_CrateDeleteMenu.Open(crate);
+		else
+			Rpc(IBX_RpcDo_CrateDeleteNeedsConfirmation, crateId);
+	}
+
+	void IBX_RequestCrateDelete(RplId crateId)
+	{
+		if (Replication.IsServer())
+			IBX_ConfirmCrateDelete(crateId);
+		else
+			Rpc(IBX_RpcAsk_CrateDelete, crateId);
+	}
+
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void IBX_RpcAsk_CrateDelete(RplId crateId)
+	{
+		IBX_ConfirmCrateDelete(crateId);
+	}
+
+	protected void IBX_ConfirmCrateDelete(RplId crateId)
+	{
+		if (crateId != m_IBXPendingDeleteCrateId || GetGame().GetWorld().GetWorldTime() - m_IBXPendingDeleteTime > 30000)
+			return;
+
+		m_IBXPendingDeleteCrateId = RplId.Invalid();
+		RplComponent crateRpl = RplComponent.Cast(Replication.FindItem(crateId));
+		if (!crateRpl)
+			return;
+
+		IBX_GMInventoryEditorComponent crate = IBX_GMInventoryEditorComponent.Get(crateRpl.GetEntity());
+		IEntity user = GetControlledEntity();
+		if (crate && user)
+			crate.DeleteServer(user, true);
+	}
+
+	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
+	protected void IBX_RpcDo_CrateDeleteNeedsConfirmation(RplId crateId)
+	{
+		RplComponent crateRpl = RplComponent.Cast(Replication.FindItem(crateId));
+		if (!crateRpl)
+			return;
+
+		IBX_GMInventoryEditorComponent crate = IBX_GMInventoryEditorComponent.Get(crateRpl.GetEntity());
+		if (crate)
+			IBX_CrateDeleteMenu.Open(crate);
+	}
+
 	void IBX_RequestCrateRename(RplId crateId, string name)
 	{
 		Rpc(IBX_RpcAsk_CrateRename, crateId, name);
@@ -208,7 +306,99 @@ modded class SCR_InventoryStorageBaseUI
 
 modded enum ChimeraMenuPreset
 {
-	IBX_CrateRenameMenu
+	IBX_CrateRenameMenu,
+	IBX_CrateDeleteMenu
+}
+
+class IBX_CrateDeleteMenu : MUI_MenuBase
+{
+	protected static IBX_GMInventoryEditorComponent s_PendingComponent;
+	protected IBX_GMInventoryEditorComponent m_Component;
+
+	static void Open(notnull IBX_GMInventoryEditorComponent component)
+	{
+		MenuManager menuManager = GetGame().GetMenuManager();
+		if (!menuManager)
+			return;
+
+		s_PendingComponent = component;
+		menuManager.OpenMenu(ChimeraMenuPreset.IBX_CrateDeleteMenu);
+	}
+
+	override string GetMUILogTag()
+	{
+		return "IBX_CrateDelete";
+	}
+
+	override void BuildUI(notnull MUI_Runtime runtime)
+	{
+		m_Component = s_PendingComponent;
+		s_PendingComponent = null;
+		if (!m_Component)
+		{
+			Close();
+			return;
+		}
+
+		MUI_Panel root = runtime.CreatePanel("CrateDeleteRoot");
+		root.MakeOverlay();
+		root.SetFill(Color.FromRGBA(0, 0, 0, 184));
+
+		MUI_Panel frame = runtime.CreatePanel("CrateDeleteFrame");
+		frame.SetFill(MUI_Theme.Border);
+		frame.SetWidth(640);
+		frame.SetHeight(220);
+		frame.SetAlign(0.5, 0.5);
+		frame.SetRadius(18);
+		frame.SetPadding(2);
+		root.AddChild(frame);
+
+		MUI_Panel card = runtime.CreatePanel("CrateDeleteCard");
+		card.SetFill(MUI_Theme.DeepFrost);
+		card.SetFillWidth();
+		card.SetFillHeight();
+		card.SetRadius(16);
+		card.SetPadding(26);
+		card.SetGap(12);
+		frame.AddChild(card);
+
+		MUI_Label title = runtime.CreateLabel("DELETE CRATE?", "CrateDeleteTitle");
+		title.SetFontSize(MUI_Theme.FONT_TITLE);
+		title.SetBold(true);
+		title.SetHeight(42);
+		card.AddChild(title);
+
+		MUI_Label warning = runtime.CreateLabel("This crate contains items. Deleting it will destroy them too.", "CrateDeleteWarning");
+		warning.SetHeight(54);
+		card.AddChild(warning);
+
+		MUI_Row actions = runtime.CreateRow("CrateDeleteActions");
+		actions.SetFillWidth();
+		actions.SetHeight(54);
+		actions.SetGap(10);
+		card.AddChild(actions);
+
+		MUI_Button confirm = runtime.CreateButton("DELETE CRATE AND ITEMS", "CrateDeleteConfirm");
+		confirm.MakeAccent();
+		confirm.SetGrow(1);
+		confirm.GetOnClicked().Insert(Confirm);
+		actions.AddChild(confirm);
+
+		MUI_Button cancel = runtime.CreateButton("CANCEL", "CrateDeleteCancel");
+		cancel.SetGrow(1);
+		cancel.GetOnClicked().Insert(OnMUIBack);
+		actions.AddChild(cancel);
+
+		runtime.SetRoot(root);
+	}
+
+	protected void Confirm()
+	{
+		if (m_Component)
+			m_Component.RequestDelete();
+
+		Close();
+	}
 }
 
 //! A real menu rather than a workspace modal. A modal added over live gameplay leaves the mouse

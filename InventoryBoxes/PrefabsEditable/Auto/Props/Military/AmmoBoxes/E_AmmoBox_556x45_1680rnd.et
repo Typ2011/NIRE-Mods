@@ -65,7 +65,7 @@ GenericEntity : "{092FE092D6DF1EB3}Prefabs/Props/Military/AmmoBoxes/AmmoBox_556x
      Weight 4
      SizeSetupStrategy Manual
      ItemDimensions 35 32 20
-     ItemVolume 2700
+     ItemVolume 600
     }
     m_Size SLOT_2x1
     m_bDraggable 1
@@ -181,6 +181,17 @@ GenericEntity : "{092FE092D6DF1EB3}Prefabs/Props/Military/AmmoBoxes/AmmoBox_556x
     }
     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3989}" {
      Name "Rotate Crate Right"
+    }
+   }
+   IBX_DeleteCrateAction "{A1E6470C8DBF398C}" {
+    VisibilityRange 6
+    "Sort Priority" 10
+    Duration 3
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF398D}" {
+     Name "Delete Crate"
     }
    }
    IBX_RenameCrateAction "{A1E6470C8DBF398A}" {

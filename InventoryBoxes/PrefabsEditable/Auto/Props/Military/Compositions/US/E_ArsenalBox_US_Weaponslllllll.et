@@ -26,7 +26,7 @@ GenericEntity {
      Weight 47
      SizeSetupStrategy 3
      ItemDimensions 161 83 74
-     ItemVolume 123700
+     ItemVolume 27700
     }
     m_Size SLOT_3x3
     m_bDraggable 1
@@ -149,6 +149,17 @@ GenericEntity {
     }
     UIInfo SCR_ActionUIInfo "{A1E6470C8DBF3989}" {
      Name "Rotate Crate Right"
+    }
+   }
+   IBX_DeleteCrateAction "{A1E6470C8DBF398C}" {
+    VisibilityRange 6
+    "Sort Priority" 10
+    Duration 3
+    ParentContextList {
+     "default"
+    }
+    UIInfo SCR_ActionUIInfo "{A1E6470C8DBF398D}" {
+     Name "Delete Crate"
     }
    }
    IBX_RenameCrateAction "{A1E6470C8DBF398A}" {

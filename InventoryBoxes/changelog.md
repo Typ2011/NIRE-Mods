@@ -1,5 +1,36 @@
 # Changelog
 
+## 2026-10-08 - Game Master crate icons
+
+- The Inventory Boxes Game Master browser filter and the Edit Inventory, Export Inventory Preset, and Paste Inventory crate context actions now use the supplied crate icon.
+
+## 2026-10-08 - GM inventory favorites and hover preview
+
+- Added per-player persistent arsenal favorites, a star on each arsenal row, and a star filter beside search. The filter keeps the selected category, faction, and search terms.
+- Hovering an arsenal item image now shows a larger preview beside the list. Weapon previews use a wider camera view; the preview closes when the pointer leaves or a menu opens.
+
+## 2026-10-08 - Player crate deletion
+
+- Added a three-second `Delete Crate` world action to all 42 crate prefabs.
+- Empty crates delete after the hold. The server opens a Mike's UI confirmation menu for occupied crates, even when local inventory replication is stale; it warns that the items will also be destroyed.
+- The server handles the completed world action, checks range, storage, and carry state, and gives the player a one-use, 30-second grant for confirming an occupied crate. A direct client RPC cannot skip the hold.
+
+## 2026-10-08 - V5 inventory footprint
+
+- Set both factions' V5 stacks, covered and uncovered, to `SLOT_2x2` in the inventory through the shared sizing generator. Cargo cost and crate capacity remain unchanged.
+
+## 2026-10-08 - Proportional crate cargo costs and V6 footprint
+
+- Replaced the flat 95,000-unit cargo cap with 28 units per litre of mesh volume across all 42 crates. The largest covered V4 costs 93,000, allowing two in a UH-1H with 14,000 units spare; smaller V2 stacks now cost 29,700 uncovered or 34,100 covered.
+- Set both factions' V6 stacks, covered and uncovered, to `SLOT_2x2` in the inventory. V1 already used `SLOT_2x2` and retains it.
+- Extended the sizing self-check to compare V2 and V4 cargo costs and verify V6 and V1 footprints.
+
+## 2026-10-08 - Large crates fit helicopter cargo
+
+- Follow-up: reduced the transport-volume cap from 190,000 to 95,000 units for all crate variants, allowing at least two of any crate, including V4 stacks, in the UH-1H with 10,000 units spare.
+- Capped the transport volume of ten large equipment stacks at 190,000 units so each fits the UH-1H's 200,000-unit cargo hold with room for its default contents; the Mi-8 also accepts them.
+- Kept physical meshes, crate storage capacity, item dimensions, grid size, and tare weight unchanged. Updated the crate sizing generator and its self-check so regeneration preserves the helicopter limit.
+
 ## 2026-09-09 - Mikes UI text field caret fixed from here instead of forking the dependency
 
 `MUI_TextField` paints its own value text and then a caret placed after the measured width of the whole string, so the caret sits at the end of the text however far left the cursor has actually been moved. The cursor itself is fine - it lives in `MUI_EditBridge`'s hidden native `EditBoxWidget` and the arrow keys move it - but nothing on screen follows it, and it cannot be drawn correctly either: `EditBoxWidget` is `sealed` and exposes neither a cursor position nor a selection to script.

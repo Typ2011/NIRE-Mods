@@ -13,6 +13,41 @@ Progress is shown at the bottom of the screen, in the control hints bar. Releasi
 
 Important: loading and unloading only work when the vehicle inventory was opened with a middle-click ("Open New Inventory"), or the controller equivalent. It is not available through the normal vehicle inventory view.
 
+8 OCTOBER 2026 - ARSENAL FAVORITES AND ITEM PREVIEWS
+
+Arsenal Favorites
+
+- Each arsenal row in the Game Master inventory editor now has a star. Click it to mark the item as a favorite.
+- A star button beside the search field shows only your favorites. Category, faction and search filters still apply on top of it.
+- Favorites are saved per player and are kept between sessions.
+
+Item Preview on Hover
+
+- Hovering an arsenal item's picture now shows a larger preview next to the list. Weapons are shown with a wider camera view so the whole weapon fits.
+- The preview closes when the pointer moves away or a menu opens.
+
+Game Master Icons
+
+- The Inventory Boxes filter in the Game Master asset browser, and the Edit Inventory, Export Inventory Preset and Paste Inventory context actions, now show the Inventory Boxes crate icon.
+
+8 OCTOBER 2026 - HELICOPTER TRANSPORT AND CRATE DELETION
+
+Helicopter Transport
+
+- Crates now fit in helicopter cargo. At least two of any crate, including the largest pallet stacks, fit in a UH-1H with room to spare; the Mi-8 takes them as well.
+- Transport cost still scales with crate size. The largest covered V4 stack costs 93,000 cargo units, and a small V2 stack costs 29,700, or 34,100 when covered.
+- Crate storage capacity, weight and physical size are unchanged.
+
+Inventory Footprint
+
+- V5 and V6 equipment stacks, covered and uncovered, for both factions, now take 2x2 slots in the inventory, the same as V1.
+
+Deleting Crates
+
+- Any player can now delete a crate with the new Delete Crate action. Hold it for three seconds.
+- An empty crate is deleted when the hold finishes.
+- If the crate still holds items, a confirmation window opens first and warns that everything inside will be destroyed too.
+
 9 SEPTEMBER 2026 - ARSENAL SEARCH AND TEXT FIELD FIXES
 
 Arsenal Search
