@@ -25,7 +25,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "Diagnose"
+   Text "#RAMI-DIAGNOSE"
    "Font Size" 36
    "Min Font Size" 28
    "Horizontal Alignment" Center
@@ -43,7 +43,7 @@ FrameWidgetClass {
     SizeY -37.25
     OffsetBottom 0
    }
-   Text "VITALS FROM:"
+   Text "#RAMI-VITALS_FROM"
    "Font Size" 25
    "Min Font Size" 20
    "Horizontal Alignment" Center
@@ -69,7 +69,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A630BDE891}" {
      }
      Color 0 0 0 1
-     Text "MONITOR HEART RATE"
+     Text "#RAMI-MONITOR_HEART_RATE"
      "Font Size" 18
      "Min Font Size" 12
     }
@@ -88,7 +88,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "NOT MONITORED"
+   Text "#RAMI-NOT_MONITORED"
    "Font Size" 24
    "Min Font Size" 16
    "Horizontal Alignment" Center
@@ -121,7 +121,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "ECG RHYTHM // RATE ONLY"
+   Text "#RAMI-ECG_RHYTHM_RATE_ONLY"
    "Font Size" 13
    "Min Font Size" 9
   }
@@ -145,7 +145,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A630BDE897}" {
      }
      Color 0 0 0 1
-     Text "MONITOR BLOOD PRESSURE"
+     Text "#RAMI-MONITOR_BLOOD_PRESSURE"
      "Font Size" 18
      "Min Font Size" 12
     }
@@ -164,7 +164,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "NOT MONITORED"
+   Text "#RAMI-NOT_MONITORED"
    "Font Size" 24
    "Min Font Size" 16
    "Horizontal Alignment" Center
@@ -184,7 +184,7 @@ FrameWidgetClass {
     OffsetBottom 0
    }
    Color 1 0.6275 0.251 1
-   Text "SYSTOLIC"
+   Text "#RAMI-SYSTOLIC"
    "Font Size" 14
    "Min Font Size" 10
   }
@@ -202,7 +202,7 @@ FrameWidgetClass {
     OffsetBottom 0
    }
    Color 0.251 0.7529 1 1
-   Text "DIASTOLIC"
+   Text "#RAMI-DIASTOLIC"
    "Font Size" 14
    "Min Font Size" 10
   }
@@ -305,7 +305,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "RECENT 30 SECONDS"
+   Text "#RAMI-RECENT_30_SECONDS"
    "Font Size" 12
    "Min Font Size" 9
    "Horizontal Alignment" Right

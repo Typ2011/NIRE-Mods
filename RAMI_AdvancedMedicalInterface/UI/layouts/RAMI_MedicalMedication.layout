@@ -25,7 +25,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "Self Inventory"
+   Text "#RAMI-SELF_INVENTORY"
    "Font Size" 24
    "Horizontal Alignment" Center
    "Vertical Alignment" Center
@@ -87,7 +87,7 @@ FrameWidgetClass {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Epi"
+     Text "#RAMI-EPINEPHRINE"
      "Font Size" 17
      "Min Font Size" 11
      "Horizontal Alignment" Center
@@ -171,7 +171,7 @@ FrameWidgetClass {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Morphine"
+     Text "#RAMI-MORPHINE"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -255,7 +255,7 @@ FrameWidgetClass {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Naloxon"
+     Text "#RAMI-NALOXONE"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -339,7 +339,7 @@ FrameWidgetClass {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Penylephrin"
+     Text "#RAMI-PHENYLEPHRINE"
      "Font Size" 16
      "Min Font Size" 8
      "Horizontal Alignment" Center
@@ -423,7 +423,7 @@ FrameWidgetClass {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Metoprolol"
+     Text "#RAMI-METOPROLOL"
      "Font Size" 16
      "Min Font Size" 9
      "Horizontal Alignment" Center
@@ -507,7 +507,7 @@ FrameWidgetClass {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Ammonia"
+     Text "#RAMI-AMMONIA"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -591,7 +591,7 @@ FrameWidgetClass {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline"
+     Text "#RAMI-SALINE"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -675,7 +675,7 @@ FrameWidgetClass {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 500 ml"
+     Text "#RAMI-SALINE_500_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -759,7 +759,7 @@ Slot FrameWidgetSlot "{69FD60A009100003}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 1000 ml"
+     Text "#RAMI-SALINE_1000_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -843,7 +843,7 @@ Slot FrameWidgetSlot "{69FD60A00A100003}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 1500 ml"
+     Text "#RAMI-SALINE_1500_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -927,7 +927,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 750 ml"
+     Text "#RAMI-SALINE_750_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1011,7 +1011,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 250 ml"
+     Text "#RAMI-SALINE_250_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1095,7 +1095,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 1250 ml"
+     Text "#RAMI-SALINE_1250_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1164,7 +1164,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "STOP SALINE"
+     Text "#RAMI-STOP_SALINE"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1185,7 +1185,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
     SizeY 0
     OffsetBottom 0
    }
-   Text "Foreign Inventory"
+   Text "#RAMI-FOREIGN_INVENTORY"
    "Font Size" 24
    "Horizontal Alignment" Center
    "Vertical Alignment" Center
@@ -1247,7 +1247,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Epi"
+     Text "#RAMI-EPINEPHRINE"
      "Font Size" 17
      "Min Font Size" 11
      "Horizontal Alignment" Center
@@ -1331,7 +1331,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Morphine"
+     Text "#RAMI-MORPHINE"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1415,7 +1415,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Naloxon"
+     Text "#RAMI-NALOXONE"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1499,7 +1499,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Penylephrin"
+     Text "#RAMI-PHENYLEPHRINE"
      "Font Size" 16
      "Min Font Size" 8
      "Horizontal Alignment" Center
@@ -1583,7 +1583,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Metoprolol"
+     Text "#RAMI-METOPROLOL"
      "Font Size" 16
      "Min Font Size" 9
      "Horizontal Alignment" Center
@@ -1667,7 +1667,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Ammonia"
+     Text "#RAMI-AMMONIA"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1751,7 +1751,7 @@ Slot FrameWidgetSlot "{69FD60A00A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline"
+     Text "#RAMI-SALINE"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1835,7 +1835,7 @@ Slot FrameWidgetSlot "{69FD60A019100003}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 1000 ml"
+     Text "#RAMI-SALINE_1000_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -1919,7 +1919,7 @@ Slot FrameWidgetSlot "{69FD60A01A100003}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 1500 ml"
+     Text "#RAMI-SALINE_1500_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -2003,7 +2003,7 @@ Slot FrameWidgetSlot "{69FD60A01A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 750 ml"
+     Text "#RAMI-SALINE_750_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -2087,7 +2087,7 @@ Slot FrameWidgetSlot "{69FD60A01A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 500 ml"
+     Text "#RAMI-SALINE_500_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -2171,7 +2171,7 @@ Slot FrameWidgetSlot "{69FD60A01A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 250 ml"
+     Text "#RAMI-SALINE_250_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -2255,7 +2255,7 @@ Slot FrameWidgetSlot "{69FD60A01A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "Saline 1250 ml"
+     Text "#RAMI-SALINE_1250_ML"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center
@@ -2324,7 +2324,7 @@ Slot FrameWidgetSlot "{69FD60A01A100004}" {
       SizeY 0
       OffsetBottom 0
      }
-     Text "STOP SALINE"
+     Text "#RAMI-STOP_SALINE"
      "Font Size" 17
      "Min Font Size" 10
      "Horizontal Alignment" Center

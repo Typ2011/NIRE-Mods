@@ -25,7 +25,7 @@ FrameWidgetClass "{6A03010001000001}" {
     SizeY 0
     OffsetBottom 0
    }
-   Text "Triage"
+   Text "#RAMI-TRIAGE"
    "Font Size" 36
    "Min Font Size" 28
    "Horizontal Alignment" Center
@@ -50,7 +50,7 @@ FrameWidgetClass "{6A03010001000001}" {
      Slot ButtonWidgetSlot "{6A03010004030001}" {
      }
      Color 0 0 0 1
-     Text "NONE"
+     Text "#RAMI-NONE"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -76,7 +76,7 @@ FrameWidgetClass "{6A03010001000001}" {
      Slot ButtonWidgetSlot "{6A03010005030001}" {
      }
      Color 0 0.45 0 1
-     Text "MINIMAL"
+     Text "#RAMI-MINIMAL"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -102,7 +102,7 @@ FrameWidgetClass "{6A03010001000001}" {
      Slot ButtonWidgetSlot "{6A03010006030001}" {
      }
      Color 0.7 0.55 0 1
-     Text "DELAYED"
+     Text "#RAMI-DELAYED"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -128,7 +128,7 @@ FrameWidgetClass "{6A03010001000001}" {
      Slot ButtonWidgetSlot "{6A03010007030001}" {
      }
      Color 0.8 0 0 1
-     Text "IMMEDIATE"
+     Text "#RAMI-IMMEDIATE"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -154,7 +154,7 @@ FrameWidgetClass "{6A03010001000001}" {
      Slot ButtonWidgetSlot "{6A03010008030001}" {
      }
      Color 0 0 0 1
-     Text "DECEASED"
+     Text "#RAMI-DECEASED"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -173,7 +173,7 @@ FrameWidgetClass "{6A03010001000001}" {
     SizeY 0
     OffsetBottom 0
    }
-   Text "PATIENT ACTIVITY"
+   Text "#RAMI-PATIENT_ACTIVITY"
    "Font Size" 22
    "Min Font Size" 16
   }
@@ -209,7 +209,7 @@ FrameWidgetClass "{6A03010001000001}" {
        Slot LayoutSlot "{6A0301000C010001}" {
         SizeToContent 1
        }
-       Text "NO ACTIVITY RECORDED"
+       Text "#RAMI-NO_ACTIVITY_RECORDED"
        "Font Size" 14
        "Min Font Size" 11
        Wrap 1

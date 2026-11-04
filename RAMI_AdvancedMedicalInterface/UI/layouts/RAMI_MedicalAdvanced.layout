@@ -25,7 +25,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "Actions"
+   Text "#RAMI-ACTIONS"
    "Font Size" 36
    "Min Font Size" 28
    "Horizontal Alignment" Center
@@ -51,7 +51,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A62A9A83C6}" {
      }
      Color 0 0 0 1
-     Text "START CPR"
+     Text "#RAMI-START_CPR"
      "Font Size" 24
      "Min Font Size" 18
     }
@@ -77,7 +77,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A62A9A83D2}" {
      }
      Color 0 0 0 1
-     Text "BACK"
+     Text "#RAMI-BACK"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -103,7 +103,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A62A9A83D6}" {
      }
      Color 0 0 0 1
-     Text "RIGHT SIDE"
+     Text "#RAMI-RIGHT_SIDE"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -129,7 +129,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A62A9A83DA}" {
      }
      Color 0 0 0 1
-     Text "LEFT SIDE"
+     Text "#RAMI-LEFT_SIDE"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -155,7 +155,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A62A9A83CA}" {
      }
      Color 0 0 0 1
-     Text "CARRY"
+     Text "#RAMI-CARRY"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -181,7 +181,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A62A9A83CE}" {
      }
      Color 0 0 0 1
-     Text "DRAG"
+     Text "#RAMI-DRAG"
      "Font Size" 20
      "Min Font Size" 14
     }
@@ -207,7 +207,7 @@ FrameWidgetClass {
      Slot ButtonWidgetSlot "{69FD01A62A9A83DE}" {
      }
      Color 0 0 0 1
-     Text "LOAD INTO VEHICLE"
+     Text "#RAMI-LOAD_INTO_VEHICLE"
      "Font Size" 18
      "Min Font Size" 12
      Wrap 1

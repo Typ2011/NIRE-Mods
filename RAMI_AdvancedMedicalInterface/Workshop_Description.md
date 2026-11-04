@@ -21,11 +21,15 @@ Pages:
 Triage - shared triage level (None/Minimal/Delayed/Immediate/Expectant) plus a per-patient activity log.
 Diagnose - live heart-rate and blood-pressure monitors with rhythm line and BP history chart.
 Bandages & Fractures - per-zone bleeding/fracture display with direct Bandage, Tourniquet, and Medical Kit actions.
-Medication - inventory-driven controls for epinephrine, morphine, naloxone, phenylephrine, metoprolol, ammonium carbonate, and saline, with dose timers. The Saline submenu order is 500 ml, vanilla US/USSR 750 ml, 1000 ml, and 1500 ml. Active saline has a bright-yellow body indicator.
+Medication - inventory-driven controls for epinephrine, morphine, naloxone, phenylephrine, metoprolol, ammonium carbonate, and saline, with dose timers. The Saline submenu order is 250 ml, 500 ml, vanilla US/USSR 750 ml, 1000 ml, 1250 ml, and 1500 ml. Active saline has a bright-yellow body indicator.
 Advanced/Misc - CPR, carry, drag, recovery positions, and vehicle loading.
 Toggle Patient - choose yourself, a nearby patient, or a fellow vehicle occupant.
 
-Known limitations: no localization yet, no dedicated performance/regression pass. Feedback on multiplayer stability and performance is welcome.
+Localization is implemented for all 13 Reforger interface languages. Full language review and mixed-language multiplayer validation are pending.
+
+AMI is blocked while unconscious by default. Scenario authors and server administrators can explicitly allow observation using m_bAllowToOpenAMIMenuWhileUnconscious in the mission header; server JSON overrides belong under game.gameProperties.missionHeader. This does not grant treatment permissions. Restart the server process after changing this setting.
+
+The current version was tested on a server and confirmed to work as intended. Full language review and performance under real server load remain separate validation tasks. Feedback on multiplayer stability, translations, and performance is welcome.
 
 License and credits:
 AMI is licensed under the GNU General Public License version 2. Page-tab icons are adapted from ACE3 medical-menu artwork, copyright ACE3 contributors, under GPLv2. ACE3 source: https://github.com/acemod/ACE3

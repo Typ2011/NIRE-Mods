@@ -21,7 +21,7 @@ ButtonWidgetClass {
       Padding 14 14 14 14
      }
      Color 0 0 0 1
-     Text "PATIENT"
+     Text "#RAMI-PATIENT"
      "Font Size" 17
      "Min Font Size" 11
      "Horizontal Alignment" Center

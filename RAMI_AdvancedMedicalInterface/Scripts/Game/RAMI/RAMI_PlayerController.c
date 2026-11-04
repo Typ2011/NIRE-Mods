@@ -386,13 +386,13 @@ modded class SCR_PlayerController
 						medicationName += string.Format(" #%1", doseIndex + 1);
 					labels += "\n" + medicationName + "\n";
 
-					string peakValue = "PEAK ACTIVE";
+					string peakValue = "#RAMI-PEAK_ACTIVE";
 					if (elapsedTime < peakTime)
-						peakValue = "PEAK IN " + RAMI_FormatMedicationTime(peakTime - elapsedTime);
-					string halfValue = "HALF PASSED";
+						peakValue = "#RAMI-PEAK_IN " + RAMI_FormatMedicationTime(peakTime - elapsedTime);
+					string halfValue = "#RAMI-HALF_PASSED";
 					if (elapsedTime < halfTime)
-						halfValue = "HALF IN " + RAMI_FormatMedicationTime(halfTime - elapsedTime);
-					string strengthValue = string.Format("STRENGTH %1 %%", Math.Round(100 * currentConcentration / peakConcentration / antagonistScale));
+						halfValue = "#RAMI-HALF_IN " + RAMI_FormatMedicationTime(halfTime - elapsedTime);
+					string strengthValue = string.Format("#RAMI-STRENGTH %1 %%", Math.Round(100 * currentConcentration / peakConcentration / antagonistScale));
 					if (!antagonistNames.IsEmpty())
 						strengthValue += " / " + antagonistNames;
 					values += string.Format("%1\n%2\n%3", peakValue, halfValue, strengthValue);
@@ -536,14 +536,14 @@ modded class SCR_PlayerController
 	{
 		switch (drug)
 		{
-			case ACE_Medical_EDrugType.EPINEPHRINE: return "EPINEPHRINE";
-			case ACE_Medical_EDrugType.METOPROLOL: return "METOPROLOL";
-			case ACE_Medical_EDrugType.MORPHINE: return "MORPHINE";
-			case ACE_Medical_EDrugType.NALOXONE: return "NALOXONE";
-			case ACE_Medical_EDrugType.PHENYLEPHRINE: return "PHENYLEPHRINE";
+			case ACE_Medical_EDrugType.EPINEPHRINE: return "#RAMI-EPINEPHRINE";
+			case ACE_Medical_EDrugType.METOPROLOL: return "#RAMI-METOPROLOL";
+			case ACE_Medical_EDrugType.MORPHINE: return "#RAMI-MORPHINE";
+			case ACE_Medical_EDrugType.NALOXONE: return "#RAMI-NALOXONE";
+			case ACE_Medical_EDrugType.PHENYLEPHRINE: return "#RAMI-PHENYLEPHRINE";
 		}
 
-		return "MEDICATION";
+		return "#RAMI-MEDICATION";
 	}
 
 	protected string RAMI_FormatMedicationTime(float time)

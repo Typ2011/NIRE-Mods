@@ -221,8 +221,27 @@ class RAMI_MedicalMenuUI : MenuBase
 	protected float m_BleedingPulseTime;
 	protected ECharacterHitZoneGroup m_SelectedRegion = ECharacterHitZoneGroup.UPPERTORSO;
 
+	static bool CanOpenMedicalMenu()
+	{
+		SCR_ChimeraCharacter user = SCR_ChimeraCharacter.Cast(SCR_PlayerController.GetLocalControlledEntity());
+		if (!user)
+			return false;
+
+		SCR_CharacterControllerComponent controller = SCR_CharacterControllerComponent.Cast(user.GetCharacterController());
+		if (!controller)
+			return false;
+		if (!controller.IsUnconscious())
+			return true;
+
+		SCR_BaseGameMode gameMode = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
+		return gameMode && gameMode.RAMI_IsMenuAllowedWhileUnconscious();
+	}
+
 	static void OpenMedicalMenu()
 	{
+		if (!CanOpenMedicalMenu())
+			return;
+
 		s_Patient = SCR_ChimeraCharacter.Cast(SCR_PlayerController.GetLocalControlledEntity());
 		if (!s_Patient)
 			return;
@@ -631,6 +650,11 @@ class RAMI_MedicalMenuUI : MenuBase
 	protected override void OnMenuUpdate(float tDelta)
 	{
 		super.OnMenuUpdate(tDelta);
+		if (!CanOpenMedicalMenu())
+		{
+			GetGame().GetMenuManager().CloseMenuByPreset(ChimeraMenuPreset.RAMI_MedicalMenu);
+			return;
+		}
 		if (m_MenuBackgroundCommands.IsEmpty() || (m_IsPatientWindowOpen && m_PatientWindowBackgroundCommands.IsEmpty()))
 			DrawMenuBackground();
 		UpdateControllerFocus();
@@ -1081,9 +1105,9 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			ClearDiagnoseGraphs();
 			if (m_IsHeartRateMonitored && m_DiagnoseHeartRateValue)
-				m_DiagnoseHeartRateValue.SetText("READING...");
+				m_DiagnoseHeartRateValue.SetText(WidgetManager.Translate("#RAMI-READING"));
 			if (m_IsBloodPressureMonitored && m_DiagnoseBloodPressureValue)
-				m_DiagnoseBloodPressureValue.SetText("READING...");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-READING"));
 			RequestDiagnoseVitals();
 		}
 	}
@@ -1540,7 +1564,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			{
 				TextWidget pageTitle = TextWidget.Cast(m_PageRoot.FindAnyWidget("PageTitle"));
 				if (pageTitle)
-					pageTitle.SetText("Medication");
+					pageTitle.SetText(WidgetManager.Translate("#RAMI-MEDICATION"));
 			}
 		}
 
@@ -2069,9 +2093,9 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (m_TreatmentStatus)
 		{
 			if (m_IsMedicationPage)
-				m_TreatmentStatus.SetText("SELECT AN AVAILABLE MEDICATION");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-SELECT_AN_AVAILABLE_MEDICATION"));
 			else
-				m_TreatmentStatus.SetText("SELECT AN AVAILABLE TREATMENT");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-SELECT_AN_AVAILABLE_TREATMENT"));
 		}
 
 		array<ButtonWidget> advancedActionButtons = {
@@ -2128,14 +2152,14 @@ class RAMI_MedicalMenuUI : MenuBase
 		array<string> messages = {};
 		if (!playerController.RAMI_GetTriage(damageManager, triageLevel, times, messages))
 		{
-			m_TriageActivityLog.SetText("READING ACTIVITY...");
+			m_TriageActivityLog.SetText(WidgetManager.Translate("#RAMI-READING_ACTIVITY"));
 			return;
 		}
 
 		UpdateTriageButtonSelection(triageLevel);
 		if (messages.IsEmpty())
 		{
-			m_TriageActivityLog.SetText("NO ACTIVITY RECORDED");
+			m_TriageActivityLog.SetText(WidgetManager.Translate("#RAMI-NO_ACTIVITY_RECORDED"));
 			return;
 		}
 
@@ -2144,7 +2168,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			if (!activityText.IsEmpty())
 				activityText += "\n";
-			activityText += string.Format("[%1] %2", FormatLocalActivityTime(times[index]), messages[index]);
+			activityText += string.Format("[%1] %2", FormatLocalActivityTime(times[index]), RAMI_Localization.TranslateActivity(messages[index]));
 		}
 		m_TriageActivityLog.SetText(activityText);
 	}
@@ -2260,7 +2284,7 @@ class RAMI_MedicalMenuUI : MenuBase
 				m_DiagnoseHeartRateDot.m_Vertices.Clear();
 			if (m_DiagnoseHeartRateGraph)
 				m_DiagnoseHeartRateGraph.Update();
-			m_DiagnoseHeartRateValue.SetText("READING...");
+			m_DiagnoseHeartRateValue.SetText(WidgetManager.Translate("#RAMI-READING"));
 		}
 		if (widgetName == "DiagnoseBloodPressureButton" && m_IsBloodPressureMonitored && m_DiagnoseBloodPressureValue)
 		{
@@ -2269,7 +2293,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			m_DiagnoseBloodPressureGraphCommands.Clear();
 			if (m_DiagnoseBloodPressureGraph)
 				m_DiagnoseBloodPressureGraph.SetDrawCommands(m_DiagnoseBloodPressureGraphCommands);
-			m_DiagnoseBloodPressureValue.SetText("READING...");
+			m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-READING"));
 		}
 		GetGame().GetCallqueue().Remove(UpdateDiagnoseMonitor);
 		UpdateDiagnoseMonitor();
@@ -2281,23 +2305,23 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (m_DiagnoseHeartRateText)
 		{
 			if (m_IsHeartRateMonitored)
-				m_DiagnoseHeartRateText.SetText("STOP HEART RATE");
+				m_DiagnoseHeartRateText.SetText(WidgetManager.Translate("#RAMI-STOP_HEART_RATE"));
 			else
-				m_DiagnoseHeartRateText.SetText("MONITOR HEART RATE");
+				m_DiagnoseHeartRateText.SetText(WidgetManager.Translate("#RAMI-MONITOR_HEART_RATE"));
 		}
 
 		if (m_DiagnoseBloodPressureText)
 		{
 			if (m_IsBloodPressureMonitored)
-				m_DiagnoseBloodPressureText.SetText("STOP BLOOD PRESSURE");
+				m_DiagnoseBloodPressureText.SetText(WidgetManager.Translate("#RAMI-STOP_BLOOD_PRESSURE"));
 			else
-				m_DiagnoseBloodPressureText.SetText("MONITOR BLOOD PRESSURE");
+				m_DiagnoseBloodPressureText.SetText(WidgetManager.Translate("#RAMI-MONITOR_BLOOD_PRESSURE"));
 		}
 
 		if (!m_IsHeartRateMonitored && m_DiagnoseHeartRateValue)
-			m_DiagnoseHeartRateValue.SetText("NOT MONITORED");
+			m_DiagnoseHeartRateValue.SetText(WidgetManager.Translate("#RAMI-NOT_MONITORED"));
 		if (!m_IsBloodPressureMonitored && m_DiagnoseBloodPressureValue)
-			m_DiagnoseBloodPressureValue.SetText("NOT MONITORED");
+			m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-NOT_MONITORED"));
 		UpdateRequestedButtonStyles();
 	}
 
@@ -2323,9 +2347,9 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (!s_Patient)
 		{
 			if (m_IsHeartRateMonitored && m_DiagnoseHeartRateValue)
-				m_DiagnoseHeartRateValue.SetText("UNAVAILABLE");
+				m_DiagnoseHeartRateValue.SetText(WidgetManager.Translate("#RAMI-UNAVAILABLE"));
 			if (m_IsBloodPressureMonitored && m_DiagnoseBloodPressureValue)
-				m_DiagnoseBloodPressureValue.SetText("UNAVAILABLE");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-UNAVAILABLE"));
 			return;
 		}
 
@@ -2333,9 +2357,9 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (!vitals)
 		{
 			if (m_IsHeartRateMonitored && m_DiagnoseHeartRateValue)
-				m_DiagnoseHeartRateValue.SetText("UNAVAILABLE");
+				m_DiagnoseHeartRateValue.SetText(WidgetManager.Translate("#RAMI-UNAVAILABLE"));
 			if (m_IsBloodPressureMonitored && m_DiagnoseBloodPressureValue)
-				m_DiagnoseBloodPressureValue.SetText("UNAVAILABLE");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-UNAVAILABLE"));
 			return;
 		}
 
@@ -2345,7 +2369,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			if (m_DiagnoseHeartRate <= 0)
 				m_DiagnoseHeartRate = m_DiagnoseHeartRateTarget;
 			if (m_DiagnoseHeartRateTarget <= 0)
-				m_DiagnoseHeartRateValue.SetText("NONE");
+				m_DiagnoseHeartRateValue.SetText(WidgetManager.Translate("#RAMI-NONE"));
 			else if (hasMedicalKit)
 				m_DiagnoseHeartRateValue.SetText(string.Format("%1 BPM", Math.Round(m_DiagnoseHeartRateTarget)));
 			else
@@ -2365,11 +2389,11 @@ class RAMI_MedicalMenuUI : MenuBase
 				));
 			}
 			else if (systolicPressure < LOW_SYSTOLIC_PRESSURE_MMHG || diastolicPressure < LOW_DIASTOLIC_PRESSURE_MMHG)
-				m_DiagnoseBloodPressureValue.SetText("LOW");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-LOW"));
 			else if (systolicPressure > HIGH_SYSTOLIC_PRESSURE_MMHG || diastolicPressure > HIGH_DIASTOLIC_PRESSURE_MMHG)
-				m_DiagnoseBloodPressureValue.SetText("HIGH");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-HIGH"));
 			else
-				m_DiagnoseBloodPressureValue.SetText("MODERATE");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-MODERATE"));
 			if (m_DiagnoseSystolicHistory.Count() >= DIAGNOSE_BLOOD_PRESSURE_HISTORY_COUNT)
 			{
 				m_DiagnoseSystolicHistory.Clear();
@@ -2392,7 +2416,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (m_IsHeartRateMonitored && m_DiagnoseHeartRateValue)
 		{
 			if (m_DiagnoseHeartRateTarget <= 0)
-				m_DiagnoseHeartRateValue.SetText("NONE");
+				m_DiagnoseHeartRateValue.SetText(WidgetManager.Translate("#RAMI-NONE"));
 			else if (hasMedicalKit)
 				m_DiagnoseHeartRateValue.SetText(string.Format("%1 BPM", Math.Round(m_DiagnoseHeartRateTarget)));
 			else
@@ -2411,11 +2435,11 @@ class RAMI_MedicalMenuUI : MenuBase
 				));
 			}
 			else if (m_DiagnoseSystolicHistory[lastSample] < LOW_SYSTOLIC_PRESSURE_MMHG || m_DiagnoseDiastolicHistory[lastSample] < LOW_DIASTOLIC_PRESSURE_MMHG)
-				m_DiagnoseBloodPressureValue.SetText("LOW");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-LOW"));
 			else if (m_DiagnoseSystolicHistory[lastSample] > HIGH_SYSTOLIC_PRESSURE_MMHG || m_DiagnoseDiastolicHistory[lastSample] > HIGH_DIASTOLIC_PRESSURE_MMHG)
-				m_DiagnoseBloodPressureValue.SetText("HIGH");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-HIGH"));
 			else
-				m_DiagnoseBloodPressureValue.SetText("MODERATE");
+				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-MODERATE"));
 		}
 
 		if (m_DiagnoseHeartRateGraph && !m_DiagnoseHeartTrace.IsEmpty())
@@ -2686,11 +2710,11 @@ class RAMI_MedicalMenuUI : MenuBase
 	protected string GetCoarseLevel(float value, float lowThreshold, float highThreshold)
 	{
 		if (value < lowThreshold)
-			return "LOW";
+			return WidgetManager.Translate("#RAMI-LOW");
 		if (value > highThreshold)
-			return "HIGH";
+			return WidgetManager.Translate("#RAMI-HIGH");
 
-		return "MODERATE";
+		return WidgetManager.Translate("#RAMI-MODERATE");
 	}
 
 	protected SCR_HealSupportStationAction FindMedicalKitAction(SCR_ChimeraCharacter patient, ECharacterHitZoneGroup region)
@@ -2732,7 +2756,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (!action || !performer || !characterStorage || !action.CanBeShown(user) || !action.CanBePerformed(user))
 		{
 			if (m_TreatmentStatus)
-				m_TreatmentStatus.SetText("MEDICAL KIT CANNOT HEAL REGION");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-MEDICAL_KIT_CANNOT_HEAL_REGION"));
 			ClearPendingTreatment();
 			return;
 		}
@@ -2740,7 +2764,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		performer.StartAction(action);
 		m_IsMedicalKitTreatmentActive = true;
 		if (m_TreatmentStatus)
-			m_TreatmentStatus.SetText("MEDICAL KIT TREATMENT IN PROGRESS");
+			m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-MEDICAL_KIT_TREATMENT_IN_PROGRESS"));
 	}
 
 	protected void UpdatePendingMedicalKit(float timeSlice)
@@ -2762,7 +2786,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			ClearPendingTreatment();
 			if (m_TreatmentStatus)
-				m_TreatmentStatus.SetText("MEDICAL KIT TREATMENT COMPLETE");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-MEDICAL_KIT_TREATMENT_COMPLETE"));
 			return;
 		}
 
@@ -2844,7 +2868,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			m_PendingForeignCommonType = commonType;
 			playerController.RAMI_RequestForeignTreatment(damageManager, m_SelectedRegion, commonType);
 			if (m_TreatmentStatus)
-				m_TreatmentStatus.SetText("REQUESTING PATIENT ITEM");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-REQUESTING_PATIENT_ITEM"));
 			GetGame().GetCallqueue().CallLater(FinishForeignTreatmentRequest, 50, false);
 			return;
 		}
@@ -2885,7 +2909,7 @@ class RAMI_MedicalMenuUI : MenuBase
 
 		characterStorage.UseItem(item, ESlotFunction.TYPE_GADGET, SCR_EUseContext.FROM_INVENTORY);
 		if (m_TreatmentStatus)
-			m_TreatmentStatus.SetText("PREPARING TREATMENT");
+			m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-PREPARING_TREATMENT"));
 		GetGame().GetCallqueue().CallLater(FinishPendingTreatment, 50, false);
 	}
 
@@ -2919,7 +2943,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (ready && !succeeded)
 		{
 			if (m_TreatmentStatus)
-				m_TreatmentStatus.SetText("PATIENT ITEM UNAVAILABLE");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-PATIENT_ITEM_UNAVAILABLE"));
 			ClearPendingTreatment();
 			return;
 		}
@@ -2931,7 +2955,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			else
 			{
 				if (m_TreatmentStatus)
-					m_TreatmentStatus.SetText("PATIENT ITEM TRANSFER TIMED OUT");
+					m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-PATIENT_ITEM_TRANSFER_TIMED_OUT"));
 				ClearPendingTreatment();
 			}
 			return;
@@ -2961,7 +2985,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			else
 			{
 				if (m_TreatmentStatus)
-					m_TreatmentStatus.SetText("ITEM COULD NOT BE EQUIPPED");
+					m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-ITEM_COULD_NOT_BE_EQUIPPED"));
 				ClearPendingTreatment();
 			}
 			return;
@@ -3011,12 +3035,12 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			ClearPendingTreatment();
 			if (m_TreatmentStatus)
-				m_TreatmentStatus.SetText("TREATMENT STARTED");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-TREATMENT_STARTED"));
 			return;
 		}
 
 		if (m_TreatmentStatus)
-			m_TreatmentStatus.SetText("TREATMENT COULD NOT START");
+			m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-TREATMENT_COULD_NOT_START"));
 		ClearPendingTreatment();
 	}
 
@@ -3104,19 +3128,19 @@ class RAMI_MedicalMenuUI : MenuBase
 		SCR_TourniquetStorageComponent tourniquetStorage = SCR_TourniquetStorageComponent.Cast(s_Patient.FindComponent(SCR_TourniquetStorageComponent));
 		if (!tourniquetStorage)
 		{
-			m_TreatmentStatus.SetText("TOURNIQUET STORAGE UNAVAILABLE");
+			m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-TOURNIQUET_STORAGE_UNAVAILABLE"));
 			return;
 		}
 
 		if (!tourniquetStorage.RemoveTourniquetFromSlot(m_SelectedRegion, user))
 		{
-			m_TreatmentStatus.SetText("TOURNIQUET COULD NOT BE REMOVED");
+			m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-TOURNIQUET_COULD_NOT_BE_REMOVED"));
 			return;
 		}
 
 		CaptureBodyZoneState(s_Patient);
 		UpdatePatientVitals();
-		m_TreatmentStatus.SetText("TOURNIQUET REMOVED");
+		m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-TOURNIQUET_REMOVED"));
 	}
 
 	protected bool IsSelectedRegionTourniquetted()
@@ -3142,13 +3166,13 @@ class RAMI_MedicalMenuUI : MenuBase
 		bool canTreat = CanTreatPatient();
 		bool tourniquetApplied = IsSelectedRegionTourniquetted();
 		if (m_TourniquetLabel && tourniquetApplied)
-			m_TourniquetLabel.SetText("REMOVE TOURNIQUET");
+			m_TourniquetLabel.SetText(WidgetManager.Translate("#RAMI-REMOVE_TOURNIQUET"));
 		else if (m_TourniquetLabel)
-			m_TourniquetLabel.SetText("Tourniquet");
+			m_TourniquetLabel.SetText(WidgetManager.Translate("#RAMI-TOURNIQUET"));
 		if (m_TourniquetLabelForeign && tourniquetApplied)
-			m_TourniquetLabelForeign.SetText("REMOVE TOURNIQUET");
+			m_TourniquetLabelForeign.SetText(WidgetManager.Translate("#RAMI-REMOVE_TOURNIQUET"));
 		else if (m_TourniquetLabelForeign)
-			m_TourniquetLabelForeign.SetText("Tourniquet");
+			m_TourniquetLabelForeign.SetText(WidgetManager.Translate("#RAMI-TOURNIQUET"));
 
 		bool isBleeding = IsSelectedRegionBleeding();
 		bool canBandage = canTreat && isBleeding && CanStartTreatment(1, false);
@@ -3293,13 +3317,13 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			if (m_IsSelfSalineMenuOpen)
 			{
-				m_SalineToggleLabel.SetText("STANDARD ITEMS");
+				m_SalineToggleLabel.SetText(WidgetManager.Translate("#RAMI-STANDARD_ITEMS"));
 				FrameSlot.SetAnchorMin(m_SalineToggleLabel, 0, 0);
 				FrameSlot.SetAnchorMax(m_SalineToggleLabel, 1, 1);
 			}
 			else
 			{
-				m_SalineToggleLabel.SetText("SALINE ITEMS");
+				m_SalineToggleLabel.SetText(WidgetManager.Translate("#RAMI-SALINE_ITEMS"));
 				FrameSlot.SetAnchorMin(m_SalineToggleLabel, 0.22, 0);
 				FrameSlot.SetAnchorMax(m_SalineToggleLabel, 0.78, 1);
 			}
@@ -3313,13 +3337,13 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			if (m_IsForeignSalineMenuOpen)
 			{
-				m_SalineToggleLabelForeign.SetText("STANDARD ITEMS");
+				m_SalineToggleLabelForeign.SetText(WidgetManager.Translate("#RAMI-STANDARD_ITEMS"));
 				FrameSlot.SetAnchorMin(m_SalineToggleLabelForeign, 0, 0);
 				FrameSlot.SetAnchorMax(m_SalineToggleLabelForeign, 1, 1);
 			}
 			else
 			{
-				m_SalineToggleLabelForeign.SetText("SALINE ITEMS");
+				m_SalineToggleLabelForeign.SetText(WidgetManager.Translate("#RAMI-SALINE_ITEMS"));
 				FrameSlot.SetAnchorMin(m_SalineToggleLabelForeign, 0.22, 0);
 				FrameSlot.SetAnchorMax(m_SalineToggleLabelForeign, 0.78, 1);
 			}
@@ -3494,7 +3518,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			return;
 
 		if (playerController.RAMI_RequestStopSaline(damageManager) && m_TreatmentStatus)
-			m_TreatmentStatus.SetText("SALINE STOPPED");
+			m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-SALINE_STOPPED"));
 		UpdateMedicationItems();
 	}
 
@@ -3560,20 +3584,12 @@ class RAMI_MedicalMenuUI : MenuBase
 
 	protected void SetTreatmentPreview(ItemPreviewWidget preview, IEntity item)
 	{
-		if (!preview)
-			return;
-		if (!item)
-		{
-			preview.SetVisible(false);
-			return;
-		}
+		ResourceName prefab;
+		if (item && item.GetPrefabData())
+			prefab = item.GetPrefabData().GetPrefabName();
 
-		ChimeraWorld world = GetGame().GetWorld();
-		if (world && world.GetItemPreviewManager())
-		{
-			world.GetItemPreviewManager().SetPreviewItem(preview, item);
-			preview.SetVisible(true);
-		}
+		// Inventory hierarchy changes must not affect the menu's preview entity.
+		SetTreatmentPreviewFromPrefab(preview, prefab);
 	}
 
 	protected void SetTreatmentPreviewFromPrefab(ItemPreviewWidget preview, ResourceName prefab)
@@ -3630,9 +3646,9 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (m_TreatmentStatus)
 		{
 			if (m_IsMedicationPage)
-				m_TreatmentStatus.SetText("SELECT AN AVAILABLE MEDICATION");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-SELECT_AN_AVAILABLE_MEDICATION"));
 			else
-				m_TreatmentStatus.SetText("SELECT AN AVAILABLE TREATMENT");
+				m_TreatmentStatus.SetText(WidgetManager.Translate("#RAMI-SELECT_AN_AVAILABLE_TREATMENT"));
 		}
 	}
 
@@ -3738,23 +3754,75 @@ class RAMI_MedicalMenuUI : MenuBase
 		return null;
 	}
 
-	protected bool CanUseAdvancedAction(string widgetName)
+	protected ACE_CarriableEntityComponent FindCarriedPatient()
 	{
 		IEntity user = SCR_PlayerController.GetLocalControlledEntity();
 		if (!user)
+			return null;
+
+		// ACE_GetCarried is authority-local; attached helpers are available on the carrier's client.
+		for (IEntity child = user.GetChildren(); child; child = child.GetSibling())
+		{
+			ACE_Carrying_HelperCompartment helper = ACE_Carrying_HelperCompartment.Cast(child);
+			if (!helper || !helper.GetPerformer())
+				continue;
+
+			ACE_CarriableEntityComponent carriable = ACE_CarriableEntityComponent.Cast(helper.FindComponent(ACE_CarriableEntityComponent));
+			if (carriable && carriable.GetCarrier() == user)
+				return carriable;
+		}
+
+		return null;
+	}
+
+	protected bool CanUseAdvancedAction(string widgetName)
+	{
+		SCR_ChimeraCharacter user = SCR_ChimeraCharacter.Cast(SCR_PlayerController.GetLocalControlledEntity());
+		if (!user)
 			return false;
+		CharacterControllerComponent controller = user.GetCharacterController();
+		if (!controller || controller.GetLifeState() != ECharacterLifeState.ALIVE)
+			return false;
+		if ((widgetName == "AdvancedCarryButton" || widgetName == "AdvancedDragButton") && FindCarriedPatient())
+			return true;
 		if (widgetName == "AdvancedCPRButton" && ACE_Medical_CPRHelperCompartment.Cast(ACE_AnimationTools.GetHelperCompartment(user)))
 			return true;
 
 		BaseUserAction action = FindAdvancedAction(widgetName);
-		if (!action)
+		if (!action || action.WasDisabledByServer())
 			return false;
+
+		// Standalone menus have no active world-action context; retain ACE's script checks.
+		ScriptedUserAction scriptedAction = ScriptedUserAction.Cast(action);
+		if (scriptedAction)
+			return scriptedAction.CanBeShownScript(user) && scriptedAction.CanBePerformedScript(user);
 
 		return action.CanBeShown(user) && action.CanBePerformed(user);
 	}
 
 	protected void UpdateAdvancedButtons()
 	{
+		bool hasCarriedPatient = FindCarriedPatient() != null;
+		if (m_PageRoot)
+		{
+			TextWidget carryText = TextWidget.Cast(m_PageRoot.FindAnyWidget("AdvancedCarryText"));
+			TextWidget dragText = TextWidget.Cast(m_PageRoot.FindAnyWidget("AdvancedDragText"));
+			if (carryText)
+			{
+				if (hasCarriedPatient)
+					carryText.SetText(WidgetManager.Translate("#RAMI-PUT_DOWN_PATIENT"));
+				else
+					carryText.SetText(WidgetManager.Translate("#RAMI-CARRY"));
+			}
+			if (dragText)
+			{
+				if (hasCarriedPatient)
+					dragText.SetText(WidgetManager.Translate("#RAMI-RELEASE_PATIENT"));
+				else
+					dragText.SetText(WidgetManager.Translate("#RAMI-DRAG"));
+			}
+		}
+
 		ACE_Medical_VitalsComponent vitals;
 		if (s_Patient)
 			vitals = ACE_Medical_VitalsComponent.Cast(s_Patient.FindComponent(ACE_Medical_VitalsComponent));
@@ -3762,9 +3830,9 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (m_AdvancedCPRText)
 		{
 			if (isCPRPerformed)
-				m_AdvancedCPRText.SetText("STOP CPR");
+				m_AdvancedCPRText.SetText(WidgetManager.Translate("#RAMI-STOP_CPR"));
 			else
-				m_AdvancedCPRText.SetText("START CPR");
+				m_AdvancedCPRText.SetText(WidgetManager.Translate("#RAMI-START_CPR"));
 		}
 
 		SetAdvancedButtonState(m_AdvancedCPRButton, CanUseAdvancedAction("AdvancedCPRButton"));
@@ -3809,8 +3877,17 @@ class RAMI_MedicalMenuUI : MenuBase
 	void UseAdvancedAction(string widgetName)
 	{
 		IEntity user = SCR_PlayerController.GetLocalControlledEntity();
-		if (!user)
+		if (!user || !CanUseAdvancedAction(widgetName))
 			return;
+		if (widgetName == "AdvancedCarryButton" || widgetName == "AdvancedDragButton")
+		{
+			ACE_CarriableEntityComponent carriable = FindCarriedPatient();
+			if (carriable)
+			{
+				carriable.RAMI_RequestRelease();
+				return;
+			}
+		}
 		if (widgetName == "AdvancedCPRButton")
 		{
 			ACE_Medical_CPRHelperCompartment cprHelper = ACE_Medical_CPRHelperCompartment.Cast(ACE_AnimationTools.GetHelperCompartment(user));
@@ -3827,10 +3904,9 @@ class RAMI_MedicalMenuUI : MenuBase
 		ActionsPerformerComponent performer = ActionsPerformerComponent.Cast(user.FindComponent(ActionsPerformerComponent));
 		if (!performer)
 			return;
-		if (!action.CanBeShown(user) || !action.CanBePerformed(user))
-			return;
-
 		performer.PerformAction(action);
+		if (widgetName == "AdvancedCarryButton" || widgetName == "AdvancedDragButton")
+			CloseMenu();
 	}
 
 	protected void UpdateSelectedRegionText()
@@ -3840,13 +3916,13 @@ class RAMI_MedicalMenuUI : MenuBase
 
 		switch (m_SelectedRegion)
 		{
-			case ECharacterHitZoneGroup.HEAD: m_SelectedRegionText.SetText("HEAD"); break;
-			case ECharacterHitZoneGroup.UPPERTORSO: m_SelectedRegionText.SetText("CHEST"); break;
-			case ECharacterHitZoneGroup.LOWERTORSO: m_SelectedRegionText.SetText("ABDOMEN"); break;
-			case ECharacterHitZoneGroup.LEFTARM: m_SelectedRegionText.SetText("LEFT ARM"); break;
-			case ECharacterHitZoneGroup.RIGHTARM: m_SelectedRegionText.SetText("RIGHT ARM"); break;
-			case ECharacterHitZoneGroup.LEFTLEG: m_SelectedRegionText.SetText("LEFT LEG"); break;
-			case ECharacterHitZoneGroup.RIGHTLEG: m_SelectedRegionText.SetText("RIGHT LEG"); break;
+			case ECharacterHitZoneGroup.HEAD: m_SelectedRegionText.SetText(WidgetManager.Translate("#RAMI-HEAD")); break;
+			case ECharacterHitZoneGroup.UPPERTORSO: m_SelectedRegionText.SetText(WidgetManager.Translate("#RAMI-CHEST")); break;
+			case ECharacterHitZoneGroup.LOWERTORSO: m_SelectedRegionText.SetText(WidgetManager.Translate("#RAMI-ABDOMEN")); break;
+			case ECharacterHitZoneGroup.LEFTARM: m_SelectedRegionText.SetText(WidgetManager.Translate("#RAMI-LEFT_ARM")); break;
+			case ECharacterHitZoneGroup.RIGHTARM: m_SelectedRegionText.SetText(WidgetManager.Translate("#RAMI-RIGHT_ARM")); break;
+			case ECharacterHitZoneGroup.LEFTLEG: m_SelectedRegionText.SetText(WidgetManager.Translate("#RAMI-LEFT_LEG")); break;
+			case ECharacterHitZoneGroup.RIGHTLEG: m_SelectedRegionText.SetText(WidgetManager.Translate("#RAMI-RIGHT_LEG")); break;
 		}
 	}
 
@@ -3856,14 +3932,14 @@ class RAMI_MedicalMenuUI : MenuBase
 		UpdateTriagePage();
 		UpdateAdvancedButtons();
 		if (m_DiagnosePatientName)
-			m_DiagnosePatientName.SetText(string.Format("VITALS FROM: %1", GetPatientName(s_Patient)));
+			m_DiagnosePatientName.SetText(string.Format(WidgetManager.Translate("#RAMI-VITALS_FROM_1"), GetPatientName(s_Patient)));
 
 		bool foreignInteraction = s_ForeignPatient && s_Patient == s_ForeignPatient;
 		if (m_ForeignInventoryTitle)
 		{
 			m_ForeignInventoryTitle.SetVisible(foreignInteraction);
 			if (foreignInteraction)
-				m_ForeignInventoryTitle.SetText(string.Format("Inventory from %1", GetPatientName(s_Patient)));
+				m_ForeignInventoryTitle.SetText(string.Format(WidgetManager.Translate("#RAMI-INVENTORY_FROM_1"), GetPatientName(s_Patient)));
 		}
 		bool showTreatmentForeignInventory = foreignInteraction && !m_IsMedicationPage;
 		if (m_BandageRowForeign)
@@ -3894,8 +3970,8 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (!patient)
 		{
 			ResetBodyZoneVisuals();
-			m_PatientVitals.SetText("NO ACE PATIENT");
-			m_PatientMedications.SetText("NO MEDICATION DATA");
+			m_PatientVitals.SetText(WidgetManager.Translate("#RAMI-NO_ACE_PATIENT"));
+			m_PatientMedications.SetText(WidgetManager.Translate("#RAMI-NO_MEDICATION_DATA"));
 			return;
 		}
 
@@ -3909,8 +3985,8 @@ class RAMI_MedicalMenuUI : MenuBase
 			else
 				ResetBodyZoneVisuals();
 
-			m_PatientVitals.SetText("ACE MEDICAL DATA UNAVAILABLE");
-			m_PatientMedications.SetText("MEDICATION DATA UNAVAILABLE");
+			m_PatientVitals.SetText(WidgetManager.Translate("#RAMI-ACE_MEDICAL_DATA_UNAVAILABLE"));
+			m_PatientMedications.SetText(WidgetManager.Translate("#RAMI-MEDICATION_DATA_UNAVAILABLE"));
 			return;
 		}
 
@@ -3923,8 +3999,8 @@ class RAMI_MedicalMenuUI : MenuBase
 			else
 				ResetBodyZoneVisuals();
 
-			m_PatientVitals.SetText("ACE BLOOD OR RESILIENCE DATA UNAVAILABLE");
-			m_PatientMedications.SetText("MEDICATION DATA UNAVAILABLE");
+			m_PatientVitals.SetText(WidgetManager.Translate("#RAMI-ACE_BLOOD_OR_RESILIENCE_DATA_UNAVAILABLE"));
+			m_PatientMedications.SetText(WidgetManager.Translate("#RAMI-MEDICATION_DATA_UNAVAILABLE"));
 			return;
 		}
 
@@ -3989,7 +4065,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		string tourniquetValue;
 		if (bodyZoneState && bodyZoneState.HasTourniquet(m_SelectedRegion))
 		{
-			tourniquetLabel = "\nTOURNIQUET TIME";
+			tourniquetLabel = ("\n" + WidgetManager.Translate("#RAMI-TOURNIQUET_TIME"));
 			if (hasMedicalKit)
 			{
 				int elapsedSeconds = bodyZoneState.GetTourniquetElapsedSeconds(m_SelectedRegion);
@@ -3999,20 +4075,20 @@ class RAMI_MedicalMenuUI : MenuBase
 				tourniquetValue = string.Format("\n%1:%2", elapsedSeconds / 60, seconds);
 			}
 			else
-				tourniquetValue = "\nAPPLIED";
+				tourniquetValue = ("\n" + WidgetManager.Translate("#RAMI-APPLIED"));
 		}
 
 		string medicationListLabels;
 		string medicationListValues;
 		if (!medicationSummaryAvailable)
 		{
-			medicationListLabels = "LOADING...";
+			medicationListLabels = WidgetManager.Translate("#RAMI-LOADING");
 		}
 		else
 		{
 			if (salineApplied)
 			{
-				medicationListLabels = "SALINE BAG\nVOLUME REMAINING\nTIME REMAINING";
+				medicationListLabels = WidgetManager.Translate("#RAMI-SALINE_SUMMARY");
 				medicationListValues = string.Format("\n%1 ml\n%2", salineVolumeRemainingMl, FormatRemainingTime(salineTimeRemainingSeconds));
 			}
 
@@ -4023,12 +4099,15 @@ class RAMI_MedicalMenuUI : MenuBase
 					medicationListLabels += "\n\n";
 					medicationListValues += "\n\n";
 				}
-				medicationListLabels += medicationLabels;
-				medicationListValues += "\n" + medicationValues;
+				if (medicationLabels == "NONE")
+					medicationListLabels += WidgetManager.Translate("#RAMI-NONE");
+				else
+					medicationListLabels += RAMI_Localization.TranslateTokens(medicationLabels);
+				medicationListValues += "\n" + RAMI_Localization.TranslateTokens(medicationValues);
 			}
 
 			if (medicationListLabels.IsEmpty())
-				medicationListLabels = "NONE";
+				medicationListLabels = WidgetManager.Translate("#RAMI-NONE");
 		}
 		m_PatientMedications.SetText(medicationListLabels);
 		m_PatientMedicationValues.SetText(medicationListValues);
@@ -4040,7 +4119,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			float injurySeverity = bodyZoneState.GetInjurySeverity(m_SelectedRegion);
 			if (injurySeverity > 0)
 			{
-				selectedZoneLabelBlock = "\n\nINJURY";
+				selectedZoneLabelBlock = ("\n\n" + WidgetManager.Translate("#RAMI-INJURY"));
 				if (hasMedicalKit)
 					selectedZoneValueBlock = string.Format("\n\n%1 %%", Math.Round(injurySeverity * 100));
 				else
@@ -4052,15 +4131,15 @@ class RAMI_MedicalMenuUI : MenuBase
 			if ((selectedArm || selectedLeg) && bodyZoneState.HasFracture(m_SelectedRegion))
 			{
 				if (selectedArm)
-					selectedZoneLabelBlock += "\nAIMING";
+					selectedZoneLabelBlock += ("\n" + WidgetManager.Translate("#RAMI-AIMING"));
 				else
-					selectedZoneLabelBlock += "\nMOVEMENT";
-				selectedZoneValueBlock += "\nIMPAIRED";
+					selectedZoneLabelBlock += ("\n" + WidgetManager.Translate("#RAMI-MOVEMENT"));
+				selectedZoneValueBlock += ("\n" + WidgetManager.Translate("#RAMI-IMPAIRED"));
 			}
 		}
 
 		m_PatientVitals.SetText(string.Format(
-			"Vitals from: %1\n\nHEALTH\nRESILIENCE\nBLOOD\nHEMORRHAGE\nBLOOD LOSS\nBLEEDING\nPAIN\nHEALTH STATE",
+			WidgetManager.Translate("#RAMI-VITALS_SUMMARY"),
 			patientName
 		) + selectedZoneLabelBlock + tourniquetLabel);
 		if (hasMedicalKit)
@@ -4080,10 +4159,10 @@ class RAMI_MedicalMenuUI : MenuBase
 			return;
 		}
 
-		string bleedingEstimate = "NONE";
+		string bleedingEstimate = WidgetManager.Translate("#RAMI-NONE");
 		if (bleedingRateMl > 0)
 			bleedingEstimate = GetCoarseLevel(bleedingRateMl, SEVERE_BLEEDING_ML_PER_SECOND * 0.5, SEVERE_BLEEDING_ML_PER_SECOND);
-		string painEstimate = "NONE";
+		string painEstimate = WidgetManager.Translate("#RAMI-NONE");
 		if (painPercent > 0)
 			painEstimate = GetCoarseLevel(painPercent, COARSE_LOW_PERCENT_THRESHOLD, COARSE_HIGH_PERCENT_THRESHOLD);
 
@@ -4134,17 +4213,17 @@ class RAMI_MedicalMenuUI : MenuBase
 	protected string HemorrhageClassLabel(float bloodScaled)
 	{
 		if (bloodScaled <= 0)
-			return "FATAL";
+			return WidgetManager.Translate("#RAMI-FATAL");
 		if (bloodScaled <= 0.2)
-			return "CLASS IV";
+			return WidgetManager.Translate("#RAMI-CLASS_IV");
 		if (bloodScaled <= 0.4)
-			return "CLASS III";
+			return WidgetManager.Translate("#RAMI-CLASS_III");
 		if (bloodScaled <= 0.7)
-			return "CLASS II";
+			return WidgetManager.Translate("#RAMI-CLASS_II");
 		if (bloodScaled < 1)
-			return "CLASS I";
+			return WidgetManager.Translate("#RAMI-CLASS_I");
 
-		return "NORMAL";
+		return WidgetManager.Translate("#RAMI-NORMAL");
 	}
 
 	protected void UpdateBodyZoneVisuals(RAMI_BodyZoneState state)
@@ -4312,11 +4391,11 @@ class RAMI_MedicalMenuUI : MenuBase
 	{
 		switch (lifeState)
 		{
-			case ECharacterLifeState.ALIVE: return "ALIVE";
-			case ECharacterLifeState.INCAPACITATED: return "INCAPACITATED";
-			case ECharacterLifeState.DEAD: return "DECEASED";
+			case ECharacterLifeState.ALIVE: return WidgetManager.Translate("#RAMI-ALIVE");
+			case ECharacterLifeState.INCAPACITATED: return WidgetManager.Translate("#RAMI-INCAPACITATED");
+			case ECharacterLifeState.DEAD: return WidgetManager.Translate("#RAMI-DECEASED");
 		}
 
-		return "UNKNOWN";
+		return WidgetManager.Translate("#RAMI-UNKNOWN");
 	}
 }

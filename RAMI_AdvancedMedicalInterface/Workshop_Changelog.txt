@@ -1,0 +1,31 @@
+4 November 2026
+
+Added
+- Support for all 13 Reforger interface languages. AMI follows each player's game language, including menus, treatment messages, medication summaries, and activity history.
+- A mission-header and server-config option to allow opening AMI while unconscious. Access is blocked by default. Enabling it allows players to observe their treatment without granting treatment permissions.
+
+Changed
+- Added a clear checkbox label and hover description for unconscious access.
+- Improved mission-header initialization so the setting is applied when the header becomes available.
+
+Server configuration
+- Set m_bAllowToOpenAMIMenuWhileUnconscious under game.gameProperties.missionHeader to true to allow observation, or false to block access.
+- With access disabled, an open AMI window closes when the player becomes unconscious, including an open saline submenu.
+- Restart the server process after changing this setting.
+
+Validation
+- Script compilation and automated checks passed. The current version was tested on a server and confirmed to work as intended.
+
+Previous update - 11 October 2026
+
+Fixed
+- Corrected Actions validation for the acting player. Unconscious and dead players cannot perform actions; patient eligibility continues to follow ACE's conditions.
+- Fixed the script compilation error affecting the carry/drag release action.
+
+Changed
+- Starting Carry or Drag now closes AMI automatically.
+- Reopening AMI while carrying or dragging a patient offers PUT DOWN PATIENT and RELEASE PATIENT on the same buttons. Both release the currently held patient and keep AMI open.
+- Standardized Treatment button labels and item counts to a smaller 26-pixel font for both self and patient inventories.
+- Separated Treatment and Medication item previews from live inventory entities. Treatment still uses the actual inventory item, including customized MedicalKits from Expanded Saline Bags.
+
+Menu wiring tests and Workbench script compilation passed. Current behavior confirmed in game.

@@ -1,9 +1,49 @@
 # Changelog
 
+## 2026-11-04
+
+### Fixed
+
+- Mission-header settings now also resolve from the active header if the initial callback has not run, and update the server-owned game-mode setting if the header arrives after game-mode startup. A world started without an active header logs why unconscious access remains blocked.
+- Renamed the mission-header checkbox to `Allow To Open AMI Menu While Unconscious` and added a direct Workbench hover description covering enabled/disabled behavior and unchanged treatment permissions. Removed the final startup/server-override instruction line from the tooltip as requested. The serialized header/server key is now `m_bAllowToOpenAMIMenuWhileUnconscious`; existing development configs must update the previous key.
+
+### Added
+
+- Added `m_bAllowToOpenAMIMenuWhileUnconscious` to the mission header, with a server configuration override through `game.gameProperties.missionHeader`. AMI is blocked while unconscious by default; explicitly setting `true` enables observation. The disabled setting blocks opening AMI while unconscious, hides the controller opening hint, and closes an existing window immediately, including an open saline submenu. The server replicates the effective setting to clients; treatment permissions remain unchanged.
+- Localized AMI menus, patient status, treatment messages, medication summaries, activity history, interface settings, and input labels for all 13 Reforger interface languages: English, German, French, Italian, Spanish, Czech, Polish, Russian, Japanese, Korean, Brazilian Portuguese, Simplified Chinese, and Ukrainian. AMI follows the game's language setting.
+- Added a native source string table and registered runtime tables. Medication summaries remain language-independent over RPC and are translated on the viewing client. Activity history preserves player names and localizes ACE item keys on the client.
+
+### Validation
+
+- The user tested the current version on a server on 4 November 2026 and confirmed that everything works as intended. Functional server acceptance is complete based on this report. `Tests/RAMI_ServerTestplan.md` records the result; no individual case results, environment versions, or logs were supplied.
+- Unconscious-menu policy checks cover conscious and unconscious access, missing character/controller/settings, retaining the first server-overridden header, ignoring client-local header changes, forced menu closure, and the documented server JSON. Game scripts compiled with the official ACE dev sources. The subsequent server test was confirmed successful by the user; individual replication, join-in-progress, and transition cases were not separately documented.
+- Menu wiring and localization checks cover all translations, runtime/source consistency, resource registration, placeholders, multiline alignment, medication tokens, and unchanged author names.
+- Workbench Game scripts compiled with the official ACE dev sources. Visual checks in each language, native-speaker review, and a mixed-language multiplayer check remain pending in the modplan.
+
+## 2026-10-11
+
+### Changed
+
+- Standardized Treatment inventory button labels and item counts to a fixed 26-pixel font for both self and patient inventories, preserving the tourniquet removal label's line wrapping.
+
+- Starting Carry or Drag closes AMI. Reopening Actions while carrying or dragging a patient enables the same buttons as `PUT DOWN PATIENT` and `RELEASE PATIENT`. Both delegate to ACE's native release RPC for the currently held patient, regardless of the selected patient, and leave AMI open after release.
+
+### Fixed
+
+- Fixed the carry/drag release compilation error (`Method 'Rpc' is protected`) by invoking ACE's existing release RPC inside its component through a public RAMI method.
+
+- Actions now check the acting player's life state and share the same validation between button availability and execution. ACE script conditions remain authoritative for patient eligibility, positioning, and obstructions; standalone menu checks no longer depend on a world-action context. Server-disabled actions remain blocked.
+- Treatment and medication icons now use prefab previews instead of live inventory entities, isolating their rendering from inventory hierarchy changes. Treatment continues to use the actual inventory item.
+
+### Validation
+
+- Menu wiring tests and Workbench Game-script compilation passed. The user confirmed the current behavior works in game, including customized MedicalKits from Expanded Saline Bags. AMI does not override those kit prefabs.
+- The original cause of the reported medical-kit disappearance was not established; no specific inventory-loss fix is claimed. Existing editor/resource messages and a full dedicated-server regression test remain outside this validation.
+
 ## Current release highlights
 
 - Added a patient selector for the local character, nearby patients within 5 m, and occupants of the same vehicle. Unconscious occupants can be unloaded through the game's native casualty action.
-- AMI can now be opened and used while driving, riding, or operating a turret, and all Actions keep the interface open.
+- AMI can now be opened and used while driving, riding, or operating a turret. Starting Carry or Drag closes the interface; other Actions and releasing a patient keep it open.
 - Added inventory-aware saline choices for 250 ml, 500 ml, vanilla 750 ml, 1000 ml, 1250 ml, and 1500 ml. Active saline is shown on Treatment and Medication.
 - Added immediate `STOP SALINE` controls without delay or additional animation to both Saline submenus. Expanded Saline Bags returns remaining fluid to the user's inventory in 250 ml steps.
 - Exact vital values and Diagnose graphs now require a medical kit; without one, AMI provides qualitative readings.

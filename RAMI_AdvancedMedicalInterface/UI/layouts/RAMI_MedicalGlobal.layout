@@ -74,7 +74,7 @@ FrameWidgetClass {
        Slot ButtonWidgetSlot "{69FB657357FC050B}" {
        }
        Color 0 0 0 1
-       Text "Close"
+       Text "#RAMI-CLOSE"
        "Font Size" 30
        "Min Font Size" 30
       }
@@ -303,7 +303,7 @@ FrameWidgetClass {
       OffsetBottom 0
      }
      Color 0.2 0.7 1 1
-     Text "PATIENTS"
+     Text "#RAMI-PATIENTS"
      "Font Size" 22
      "Min Font Size" 14
      "Vertical Alignment" Center
@@ -323,7 +323,7 @@ FrameWidgetClass {
       OffsetBottom 0
      }
      Color 0.65 0.73 0.8 1
-     Text "IN TREATMENT RANGE"
+     Text "#RAMI-IN_TREATMENT_RANGE"
      "Font Size" 13
      "Min Font Size" 10
      "Vertical Alignment" Center
@@ -372,7 +372,7 @@ FrameWidgetClass {
       OffsetBottom 0
      }
      Color 0.65 0.73 0.8 1
-     Text "NO PATIENTS IN RANGE"
+     Text "#RAMI-NO_PATIENTS_IN_RANGE"
      "Font Size" 16
      "Min Font Size" 12
      "Horizontal Alignment" Center
@@ -457,7 +457,7 @@ FrameWidgetClass {
          Slot ButtonWidgetSlot "{7B5C9E1201000008}" {
          }
          Color 0 0 0 1
-         Text "TREAT"
+         Text "#RAMI-TREAT"
          "Font Size" 17
          "Min Font Size" 11
          "Horizontal Alignment" Center
@@ -486,7 +486,7 @@ FrameWidgetClass {
          Slot ButtonWidgetSlot "{7B5C9E120100000C}" {
          }
          Color 0 0 0 1
-         Text "UNLOAD FROM VEHICLE"
+         Text "#RAMI-UNLOAD_FROM_VEHICLE"
          "Font Size" 15
          "Min Font Size" 10
          "Horizontal Alignment" Center
