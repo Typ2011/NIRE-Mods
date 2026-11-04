@@ -25,7 +25,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "Self Inventory"
+   Text "#RAMI-SELF_INVENTORY"
    "Font Size" 28
    "Horizontal Alignment" Center
    "Vertical Alignment" Center
@@ -102,9 +102,9 @@ FrameWidgetClass {
         OffsetBottom 0
        }
        Color 1 1 1 1
-       Text "Bandage"
-       "Font Size" 35
-       "Min Font Size" 15
+       Text "#RAMI-BANDAGE"
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
       }
@@ -123,8 +123,8 @@ FrameWidgetClass {
        }
        Color 1 1 1 1
        Text "0"
-       "Font Size" 30
-       "Min Font Size" 16
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
       }
@@ -204,9 +204,9 @@ FrameWidgetClass {
         OffsetBottom 0
        }
        Color 1 1 1 1
-       Text "Tourniquet"
-       "Font Size" 35
-       "Min Font Size" 11
+       Text "#RAMI-TOURNIQUET"
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
        Wrap 1
@@ -226,8 +226,8 @@ FrameWidgetClass {
        }
        Color 1 1 1 1
        Text "0"
-       "Font Size" 30
-       "Min Font Size" 16
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
       }
@@ -307,9 +307,9 @@ FrameWidgetClass {
         OffsetBottom 0
        }
        Color 1 1 1 1
-       Text "Medical Kit"
-       "Font Size" 35
-       "Min Font Size" 13
+       Text "#RAMI-MEDICAL_KIT"
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
       }
@@ -328,8 +328,8 @@ FrameWidgetClass {
        }
        Color 1 1 1 1
        Text "0"
-       "Font Size" 30
-       "Min Font Size" 16
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
       }
@@ -350,7 +350,7 @@ FrameWidgetClass {
     SizeY 0
     OffsetBottom 0
    }
-   Text "Foreign Inventory"
+   Text "#RAMI-FOREIGN_INVENTORY"
    "Font Size" 28
    "Horizontal Alignment" Center
    "Vertical Alignment" Center
@@ -427,9 +427,9 @@ FrameWidgetClass {
         OffsetBottom 0
        }
        Color 1 1 1 1
-       Text "Bandage"
-       "Font Size" 35
-       "Min Font Size" 15
+       Text "#RAMI-BANDAGE"
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
       }
@@ -448,8 +448,8 @@ FrameWidgetClass {
        }
        Color 1 1 1 1
        Text "0"
-       "Font Size" 30
-       "Min Font Size" 16
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
       }
@@ -529,9 +529,9 @@ FrameWidgetClass {
         OffsetBottom 0
        }
        Color 1 1 1 1
-       Text "Tourniquet"
-       "Font Size" 35
-       "Min Font Size" 11
+       Text "#RAMI-TOURNIQUET"
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
        Wrap 1
@@ -551,8 +551,8 @@ FrameWidgetClass {
        }
        Color 1 1 1 1
        Text "0"
-       "Font Size" 30
-       "Min Font Size" 16
+       "Font Size" 26
+       "Min Font Size" 26
        "Horizontal Alignment" Center
        "Vertical Alignment" Center
       }

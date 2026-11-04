@@ -1,8 +1,20 @@
 modded class SCR_BaseGameMode
 {
+	[RplProp()]
+	protected bool m_bRAMI_AllowMenuWhileUnconscious;
+
 	override void OnGameStart()
 	{
 		super.OnGameStart();
+
+		if (Replication.IsServer())
+		{
+			ArmaReforgerScripted game = ArmaReforgerScripted.Cast(GetGame());
+			if (game)
+				RAMI_SetMenuAllowedWhileUnconscious(game.RAMI_IsMenuAllowedWhileUnconscious());
+			if (!GetGame().GetMissionHeader())
+				Print("AMI: No active mission header. Unconscious menu access stays disabled; launch the scenario through its mission header to apply its AMI setting.", LogLevel.WARNING);
+		}
 
 		InputManager inputManager = GetGame().GetInputManager();
 		if (inputManager)
@@ -35,5 +47,19 @@ modded class SCR_BaseGameMode
 	protected void RAMI_OpenMenu()
 	{
 		RAMI_MedicalMenuUI.OpenMedicalMenu();
+	}
+
+	bool RAMI_IsMenuAllowedWhileUnconscious()
+	{
+		return m_bRAMI_AllowMenuWhileUnconscious;
+	}
+
+	void RAMI_SetMenuAllowedWhileUnconscious(bool allow)
+	{
+		if (!Replication.IsServer())
+			return;
+
+		m_bRAMI_AllowMenuWhileUnconscious = allow;
+		Replication.BumpMe();
 	}
 }

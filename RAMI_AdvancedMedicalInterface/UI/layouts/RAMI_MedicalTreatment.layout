@@ -14,7 +14,7 @@ FrameWidgetClass {
     SizeY -10.8
     OffsetBottom 0
    }
-   Text "Medical Treatment"
+   Text "#RAMI-MEDICAL_TREATMENT"
    "Font Size" 32
    "Min Font Size" 16
    "Horizontal Alignment" Center
@@ -62,7 +62,7 @@ FrameWidgetClass {
     OffsetBottom 0
    }
    Color 0.2 0.7 1 1
-   Text "PATIENT VITALS"
+   Text "#RAMI-PATIENT_VITALS"
    "Font Size" 26
    "Min Font Size" 18
    "Vertical Alignment" Center
@@ -96,7 +96,7 @@ FrameWidgetClass {
     OffsetBottom 0
    }
    Color 0.65 0.73 0.8 1
-   Text "Waiting for ACE patient data..."
+   Text "#RAMI-WAITING_FOR_ACE_PATIENT_DATA"
    "Font Size" 16
    "Min Font Size" 16
    Wrap 1
@@ -149,7 +149,7 @@ FrameWidgetClass {
     OffsetBottom 0
    }
    Color 0.2 0.7 1 1
-   Text "MEDICATIONS"
+   Text "#RAMI-MEDICATIONS"
    "Font Size" 24
    "Min Font Size" 18
    "Vertical Alignment" Center
@@ -209,7 +209,7 @@ FrameWidgetClass {
           VerticalAlign 3
          }
          Color 0.65 0.73 0.8 1
-         Text "LOADING..."
+         Text "#RAMI-LOADING"
          "Font Size" 16
          "Min Font Size" 16
          Wrap 1
@@ -813,7 +813,7 @@ FrameWidgetClass {
     SizeY 40.8
     OffsetBottom 0
    }
-   Text "CHEST"
+   Text "#RAMI-CHEST"
    "Font Size" 20
    "Min Font Size" 16
    "Horizontal Alignment" Center
@@ -832,7 +832,7 @@ FrameWidgetClass {
     SizeY -64.8
     OffsetBottom 0
    }
-   Text "SELECT BODY REGION TO TREAT"
+   Text "#RAMI-SELECT_BODY_REGION_TO_TREAT"
    "Font Size" 35
    "Min Font Size" 30
    "Horizontal Alignment" Center

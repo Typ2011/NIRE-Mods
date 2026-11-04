@@ -20,10 +20,10 @@ VerticalLayoutWidgetClass {
    }
    components {
     SCR_SpinBoxComponent "{5472C6CBC0640458}" {
-     m_sLabel "Button text color"
+     m_sLabel "#RAMI-BUTTON_TEXT_COLOR"
      m_sLabelLayout "{F003823FF141983C}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsLabel.layout"
      m_aElementNames {
-      "Default" "White" "Yellow" "Cyan" "Black" "Red" "Orange" "Green" "Blue" "Magenta"
+      "#RAMI-DEFAULT" "#RAMI-WHITE" "#RAMI-YELLOW" "#RAMI-CYAN" "#RAMI-BLACK" "#RAMI-RED" "#RAMI-ORANGE" "#RAMI-GREEN" "#RAMI-BLUE" "#RAMI-MAGENTA"
      }
      m_bUseLightArrows 1
      m_bCycleMode 1
@@ -37,10 +37,10 @@ VerticalLayoutWidgetClass {
    }
    components {
     SCR_SpinBoxComponent "{5472C6CBC0640458}" {
-     m_sLabel "Colorblind mode"
+     m_sLabel "#RAMI-COLORBLIND_MODE"
      m_sLabelLayout "{F003823FF141983C}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsLabel.layout"
      m_aElementNames {
-      "Off" "On"
+      "#RAMI-OFF" "#RAMI-ON"
      }
      m_bUseLightArrows 1
      m_bCycleMode 1

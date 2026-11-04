@@ -7,6 +7,67 @@ GameProject {
  }
  Configurations {
   GameProjectConfig PC {
+   WidgetManagerSettings WidgetManagerSettings "{35796BBA5B5D21B2}" {
+    StringTables {
+     StringTableDefinition "{18AD6599019600A2}" {
+      StringTableSource "{D6057004495E9CBD}Language/RAMI_localization.st"
+      Languages {
+       LanguageDefinition "{77ABAF9DD63DF51B}" {
+        Code "en_us"
+        StringTableRuntime "{B63D09CD3808DEED}Language/RAMI_localization.en_us.conf"
+       }
+       LanguageDefinition "{AC629F37F9D76B8D}" {
+        Code "de_de"
+        StringTableRuntime "{366928A189F50D35}Language/RAMI_localization.de_de.conf"
+       }
+       LanguageDefinition "{8FAF8470682F2584}" {
+        Code "fr_fr"
+        StringTableRuntime "{59EA32671B4FAD37}Language/RAMI_localization.fr_fr.conf"
+       }
+       LanguageDefinition "{564388D8F5785465}" {
+        Code "it_it"
+        StringTableRuntime "{7AFCB3912D90FBF2}Language/RAMI_localization.it_it.conf"
+       }
+       LanguageDefinition "{69763B491ECF96F3}" {
+        Code "es_es"
+        StringTableRuntime "{5A181C65E0F1AC4D}Language/RAMI_localization.es_es.conf"
+       }
+       LanguageDefinition "{55BD087C9006B559}" {
+        Code "cs_cz"
+        StringTableRuntime "{8C8A598E50D9EE02}Language/RAMI_localization.cs_cz.conf"
+       }
+       LanguageDefinition "{CA2716AC15960F88}" {
+        Code "pl_pl"
+        StringTableRuntime "{25D26371E2609D17}Language/RAMI_localization.pl_pl.conf"
+       }
+       LanguageDefinition "{8032802E51D3E46D}" {
+        Code "ru_ru"
+        StringTableRuntime "{B9F89377A3CACB3D}Language/RAMI_localization.ru_ru.conf"
+       }
+       LanguageDefinition "{2B8ABAD266E0869F}" {
+        Code "ja_jp"
+        StringTableRuntime "{C4A27F4DBDEBD114}Language/RAMI_localization.ja_jp.conf"
+       }
+       LanguageDefinition "{DD73B124F490D4AA}" {
+        Code "ko_kr"
+        StringTableRuntime "{7F218D7C625C6F56}Language/RAMI_localization.ko_kr.conf"
+       }
+       LanguageDefinition "{AC0C80B162FDA97A}" {
+        Code "pt_br"
+        StringTableRuntime "{23DC07CB9A124C84}Language/RAMI_localization.pt_br.conf"
+       }
+       LanguageDefinition "{16FAC71A1EA1675B}" {
+        Code "zh_cn"
+        StringTableRuntime "{46BE284CD862B436}Language/RAMI_localization.zh_cn.conf"
+       }
+       LanguageDefinition "{28A46F1882486DDE}" {
+        Code "uk_ua"
+        StringTableRuntime "{A12A48D669F15B5A}Language/RAMI_localization.uk_ua.conf"
+       }
+      }
+     }
+    }
+   }
   }
   GameProjectConfig XBOX_ONE {
   }
