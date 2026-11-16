@@ -1,5 +1,14 @@
 class RAMI_Localization
 {
+	static string TranslateMultiline(string key, string parameter = "")
+	{
+		// Decode stringtable line breaks before inserting opaque patient names.
+		string text = WidgetManager.Translate(key, "{RAMI_PATIENT_NAME}");
+		text.Replace("\\n", "\n");
+		text.Replace("{RAMI_PATIENT_NAME}", parameter);
+		return text;
+	}
+
 	// RPC payloads retain keys until display, so the server language never determines the client's text.
 	static string TranslateTokens(string text)
 	{

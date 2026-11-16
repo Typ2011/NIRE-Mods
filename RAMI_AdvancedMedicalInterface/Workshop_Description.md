@@ -16,6 +16,12 @@ Usage: Press H to open or close AMI. Open Medical Interface is remappable in Con
 
 Toggle Patient opens a list containing yourself, patients within 5 m, and every occupant of your vehicle. Select a name, then choose TREAT. UNLOAD FROM VEHICLE is available for unconscious occupants.
 
+Pinned patients appear first in this list. Hover a blocked action or select it with a controller to see its explanation at the bottom of AMI.
+
+On Diagnose, pin up to three patients to keep their pulse, blood pressure and ACE state visible while AMI is closed or another patient is selected. A medical kit in your inventory and a maximum distance of 10 m are required per patient. Compact panels have rounded corners and a 75% opaque black background. Remaining panels close gaps from left to right.
+
+Critical and resuscitation states show a pulsing red warning with a repeating triple-beep every 5 seconds; cardiac arrest repeats every 2 seconds. Alarms can be muted separately. Death or exceeding range closes only the affected patient's panel. Missing or stale data does not trigger alarms.
+
 Pages:
 
 Triage - shared triage level (None/Minimal/Delayed/Immediate/Expectant) plus a per-patient activity log.
@@ -29,7 +35,7 @@ Localization is implemented for all 13 Reforger interface languages. Full langua
 
 AMI is blocked while unconscious by default. Scenario authors and server administrators can explicitly allow observation using m_bAllowToOpenAMIMenuWhileUnconscious in the mission header; server JSON overrides belong under game.gameProperties.missionHeader. This does not grant treatment permissions. Restart the server process after changing this setting.
 
-The current version was tested on a server and confirmed to work as intended. Full language review and performance under real server load remain separate validation tasks. Feedback on multiplayer stability, translations, and performance is welcome.
+The baseline was tested on a server on 4 November 2026. The later three-patient display and independent closure fixes were confirmed in the user's tested setup; the latest panel-repositioning change still needs final in-game confirmation before publication. Full language review, multiplayer regression of new features and performance under real server load remain separate validation tasks.
 
 License and credits:
 AMI is licensed under the GNU General Public License version 2. Page-tab icons are adapted from ACE3 medical-menu artwork, copyright ACE3 contributors, under GPLv2. ACE3 source: https://github.com/acemod/ACE3

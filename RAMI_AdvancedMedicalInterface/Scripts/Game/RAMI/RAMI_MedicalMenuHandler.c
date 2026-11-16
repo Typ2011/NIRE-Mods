@@ -9,6 +9,22 @@ class RAMI_MedicalMenuHandler : ScriptedWidgetEventHandler
 
 	override bool OnClick(Widget w, int x, int y, int button)
 	{
+		if (!w || !m_Menu)
+			return false;
+		if (m_Menu.ShowActionBlockReason(w))
+			return true;
+
+		// Events may identify a caption or icon instead of the owning button.
+		Widget clickedButton = w;
+		while (clickedButton && !ButtonWidget.Cast(clickedButton))
+			clickedButton = clickedButton.GetParent();
+		if (clickedButton)
+		{
+			if (!clickedButton.IsEnabled())
+				return false;
+			w = clickedButton;
+		}
+
 		string widgetName = w.GetName();
 		if (widgetName == "PageToggleSelf")
 			m_Menu.TogglePatient();
@@ -28,6 +44,10 @@ class RAMI_MedicalMenuHandler : ScriptedWidgetEventHandler
 		{
 			m_Menu.ShowPage(widgetName);
 		}
+		else if (widgetName == "DiagnosePinButton")
+			m_Menu.TogglePinnedMonitor();
+		else if (widgetName == "DiagnoseAlarmButton")
+			m_Menu.TogglePinnedMonitorAlarm();
 		else if (
 			widgetName == "DiagnoseHeartRateButton" ||
 			widgetName == "DiagnoseBloodPressureButton"

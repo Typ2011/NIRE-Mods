@@ -1,5 +1,140 @@
 modded class SCR_PlayerController
 {
+	protected ref array<ref RAMI_PinnedPatientMonitor> m_RAMI_PinnedMonitors = {null, null, null};
+
+	void RAMI_TogglePinnedMonitor(SCR_ChimeraCharacter patient, string patientName)
+	{
+		if (GetGame().GetPlayerController() != this)
+			return;
+		RAMI_CompactPinnedMonitors();
+		foreach (int pinnedIndex, RAMI_PinnedPatientMonitor pinnedMonitor : m_RAMI_PinnedMonitors)
+		{
+			if (pinnedMonitor && pinnedMonitor.IsPatient(patient))
+			{
+				pinnedMonitor.Stop("manual_unpin");
+				m_RAMI_PinnedMonitors[pinnedIndex] = null;
+				return;
+			}
+		}
+		if (!RAMI_MedicalMenuUI.CanOpenMedicalMenu() || !RAMI_CanPinMonitor(patient))
+			return;
+		foreach (int index, RAMI_PinnedPatientMonitor monitor : m_RAMI_PinnedMonitors)
+		{
+			if (monitor && monitor.IsActive())
+				continue;
+			m_RAMI_PinnedMonitors[index] = new RAMI_PinnedPatientMonitor();
+			if (!m_RAMI_PinnedMonitors[index].Start(this, patient, patientName, index))
+				m_RAMI_PinnedMonitors[index] = null;
+			return;
+		}
+	}
+
+	bool RAMI_CanPinMonitor(SCR_ChimeraCharacter patient)
+	{
+		if (!RAMI_PinnedPatientMonitor.CanMonitor(patient))
+			return false;
+		foreach (RAMI_PinnedPatientMonitor monitor : m_RAMI_PinnedMonitors)
+		{
+			if (!monitor || !monitor.IsActive())
+				return true;
+		}
+		return false;
+	}
+
+	bool RAMI_IsMonitorPinned(SCR_ChimeraCharacter patient)
+	{
+		return RAMI_FindPinnedMonitor(patient) != null;
+	}
+
+	bool RAMI_IsMonitorAlarmEnabled(SCR_ChimeraCharacter patient)
+	{
+		RAMI_PinnedPatientMonitor monitor = RAMI_FindPinnedMonitor(patient);
+		return monitor && monitor.IsAlarmEnabled();
+	}
+
+	void RAMI_ToggleMonitorAlarm(SCR_ChimeraCharacter patient)
+	{
+		RAMI_PinnedPatientMonitor monitor = RAMI_FindPinnedMonitor(patient);
+		if (monitor)
+			monitor.ToggleAlarm();
+	}
+
+	protected RAMI_PinnedPatientMonitor RAMI_FindPinnedMonitor(SCR_ChimeraCharacter patient)
+	{
+		foreach (RAMI_PinnedPatientMonitor monitor : m_RAMI_PinnedMonitors)
+		{
+			if (monitor && monitor.IsPatient(patient))
+				return monitor;
+		}
+		return null;
+	}
+
+	void RAMI_ReceivePinnedVitals(RplId patientId)
+	{
+		foreach (RAMI_PinnedPatientMonitor monitor : m_RAMI_PinnedMonitors)
+		{
+			if (monitor && monitor.IsActive())
+				monitor.ReceiveSample(patientId);
+		}
+	}
+
+	void RAMI_RequestPinnedMonitorLayout()
+	{
+		if (!GetGame() || GetGame().GetPlayerController() != this)
+			return;
+		// Defer array changes until the stopping monitor and any current iteration have returned.
+		GetGame().GetCallqueue().RemoveByName(this, "RAMI_CompactPinnedMonitors");
+		GetGame().GetCallqueue().CallByName(this, "RAMI_CompactPinnedMonitors");
+	}
+
+	void RAMI_CompactPinnedMonitors()
+	{
+		int destination;
+		for (int index = 0; index < m_RAMI_PinnedMonitors.Count(); index++)
+		{
+			RAMI_PinnedPatientMonitor monitor = m_RAMI_PinnedMonitors[index];
+			if (!monitor || !monitor.IsActive())
+				continue;
+			m_RAMI_PinnedMonitors[destination] = monitor;
+			monitor.SetDisplaySlot(destination);
+			destination++;
+		}
+		for (int emptyIndex = destination; emptyIndex < m_RAMI_PinnedMonitors.Count(); emptyIndex++)
+			m_RAMI_PinnedMonitors[emptyIndex] = null;
+	}
+
+	protected void RAMI_ClearPinnedMonitor(string reason)
+	{
+		bool logged;
+		foreach (int index, RAMI_PinnedPatientMonitor monitor : m_RAMI_PinnedMonitors)
+		{
+			if (monitor)
+			{
+				if (!logged && monitor.IsActive())
+				{
+					Print(string.Format("RAMI pinned monitors: clear all, reason=%1, controller=%2", reason, GetPlayerId()), LogLevel.NORMAL);
+					logged = true;
+				}
+				monitor.Stop(reason);
+			}
+			m_RAMI_PinnedMonitors[index] = null;
+		}
+		if (GetGame())
+			GetGame().GetCallqueue().RemoveByName(this, "RAMI_CompactPinnedMonitors");
+	}
+
+	override void OnControlledEntityChanged(IEntity from, IEntity to)
+	{
+		if (from != to)
+			RAMI_ClearPinnedMonitor("observer_character_changed");
+		super.OnControlledEntityChanged(from, to);
+	}
+
+	void ~SCR_PlayerController()
+	{
+		RAMI_ClearPinnedMonitor("observer_controller_deleted");
+	}
+
 	protected RplId m_RAMI_PainTargetId = RplId.Invalid();
 	protected int m_RAMI_RemotePainPercent;
 	protected int m_RAMI_LastPainRequest;

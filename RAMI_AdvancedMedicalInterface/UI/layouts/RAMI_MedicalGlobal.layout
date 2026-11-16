@@ -54,6 +54,27 @@ FrameWidgetClass {
      }
      Clipping True
     }
+    TextWidgetClass {
+     Name "ActionBlockHint"
+     "Ignore Cursor" 1
+     Visible 0
+     Slot FrameWidgetSlot {
+      Anchor 0.03 0.89 0.83 0.985
+      PositionX 0
+      PositionY 0
+      SizeX 0
+      SizeY 0
+      OffsetLeft 0
+      OffsetTop 0
+      OffsetRight 0
+      OffsetBottom 0
+     }
+     Color 1 0.8 0.4 1
+     "Font Size" 18
+     "Min Font Size" 14
+     Wrap 1
+     "Vertical Alignment" Center
+    }
     ButtonWidgetClass "{69FB65711B9D0251}" {
      Name "CloseButton"
      Slot FrameWidgetSlot "{69FB65711B9D0249}" {

@@ -310,5 +310,53 @@ FrameWidgetClass {
    "Min Font Size" 9
    "Horizontal Alignment" Right
   }
+  ButtonWidgetClass {
+   Name "DiagnosePinButton"
+   Slot FrameWidgetSlot {
+    Anchor 0.04 0.95 0.34 0.999
+    PositionX 0
+    PositionY 0
+    SizeX 0
+    SizeY 0
+    OffsetLeft 0
+    OffsetTop 0
+    OffsetRight 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass {
+     Name "DiagnosePinText"
+     Slot ButtonWidgetSlot {}
+     Text "#RAMI-PIN_MONITOR"
+     "Font Size" 16
+     "Min Font Size" 12
+    }
+   }
+  }
+  ButtonWidgetClass {
+   Name "DiagnoseAlarmButton"
+   Slot FrameWidgetSlot {
+    Anchor 0.36 0.95 0.62 0.999
+    PositionX 0
+    PositionY 0
+    SizeX 0
+    SizeY 0
+    OffsetLeft 0
+    OffsetTop 0
+    OffsetRight 0
+    OffsetBottom 0
+   }
+   Color 1 1 1 0.9
+   {
+    TextWidgetClass {
+     Name "DiagnoseAlarmText"
+     Slot ButtonWidgetSlot {}
+     Text "#RAMI-MONITOR_ALARM_ON"
+     "Font Size" 16
+     "Min Font Size" 12
+    }
+   }
+  }
  }
 }

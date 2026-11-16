@@ -32,6 +32,8 @@ class RAMI_MedicalMenuUI : MenuBase
 	protected static ref map<SCR_ChimeraCharacter, ref RAMI_BodyZoneState> s_BodyZoneStates = new map<SCR_ChimeraCharacter, ref RAMI_BodyZoneState>();
 
 	protected ref RAMI_MedicalMenuHandler m_Handler;
+	protected ref map<ButtonWidget, string> m_ActionBlockReasons = new map<ButtonWidget, string>();
+	protected string m_LastAdvancedBlockReason;
 	protected Widget m_ContentArea;
 	protected Widget m_PageRoot;
 	protected Widget m_InventoryRoot;
@@ -658,6 +660,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (m_MenuBackgroundCommands.IsEmpty() || (m_IsPatientWindowOpen && m_PatientWindowBackgroundCommands.IsEmpty()))
 			DrawMenuBackground();
 		UpdateControllerFocus();
+		UpdateActionBlockHint();
 		if (s_Patient == s_ForeignPatient && !IsForeignPatientInRange())
 		{
 			CloseMenu();
@@ -853,6 +856,7 @@ class RAMI_MedicalMenuUI : MenuBase
 
 	protected override void OnMenuClose()
 	{
+		m_ActionBlockReasons.Clear();
 		GetGame().GetCallqueue().Remove(UpdatePatientVitals);
 		GetGame().GetCallqueue().Remove(UpdateDiagnoseMonitor);
 		m_IsHeartRateMonitored = false;
@@ -1002,7 +1006,24 @@ class RAMI_MedicalMenuUI : MenuBase
 
 		string widgetName = widget.GetName();
 		ButtonWidget button = ButtonWidget.Cast(widget);
-		if (button && (widgetName == "CloseButton" || widgetName == "DiagnoseHeartRateButton" || widgetName == "DiagnoseBloodPressureButton" || widgetName.StartsWith("Advanced") || widgetName.StartsWith("Medication") || widgetName.StartsWith("PatientAction")))
+		if (button && m_ActionBlockReasons.Contains(button))
+			return button;
+		bool treatmentForeign = widgetName.Contains("Foreign");
+		if (widgetName.StartsWith("Bandage"))
+		{
+			if (treatmentForeign)
+				return m_BandageButtonForeign;
+			return m_BandageButton;
+		}
+		if (widgetName.StartsWith("Tourniquet"))
+		{
+			if (treatmentForeign)
+				return m_TourniquetButtonForeign;
+			return m_TourniquetButton;
+		}
+		if (widgetName.StartsWith("MedicalKit"))
+			return m_MedicalKitButton;
+		if (button && (widgetName == "CloseButton" || widgetName == "DiagnoseHeartRateButton" || widgetName == "DiagnoseBloodPressureButton" || widgetName == "DiagnosePinButton" || widgetName == "DiagnoseAlarmButton" || widgetName.StartsWith("Advanced") || widgetName.StartsWith("Medication") || widgetName.StartsWith("PatientAction")))
 			return button;
 
 		bool foreign = widgetName.Contains("Foreign");
@@ -1043,6 +1064,8 @@ class RAMI_MedicalMenuUI : MenuBase
 		Widget root = GetRootWidget();
 		if (root)
 		{
+			ApplyRequestedButtonStyle(ButtonWidget.Cast(root.FindAnyWidget("DiagnosePinButton")), TextWidget.Cast(root.FindAnyWidget("DiagnosePinText")), null, true);
+			ApplyRequestedButtonStyle(ButtonWidget.Cast(root.FindAnyWidget("DiagnoseAlarmButton")), TextWidget.Cast(root.FindAnyWidget("DiagnoseAlarmText")), null, true);
 			ApplyRequestedButtonStyle(m_AdvancedBackButton, TextWidget.Cast(root.FindAnyWidget("AdvancedBackText")), null, true);
 			ApplyRequestedButtonStyle(m_AdvancedRightSideButton, TextWidget.Cast(root.FindAnyWidget("AdvancedRightSideText")), null, true);
 			ApplyRequestedButtonStyle(m_AdvancedLeftSideButton, TextWidget.Cast(root.FindAnyWidget("AdvancedLeftSideText")), null, true);
@@ -1067,7 +1090,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (!button)
 			return;
 
-		bool highlighted = button == m_HoveredRequestedButton && button.IsEnabled();
+		bool highlighted = button == m_HoveredRequestedButton && !m_ActionBlockReasons.Contains(button) && button.IsEnabled();
 		if (button == m_DiagnoseHeartRateButton && m_IsHeartRateMonitored)
 			highlighted = true;
 		if (button == m_DiagnoseBloodPressureButton && m_IsBloodPressureMonitored)
@@ -1075,7 +1098,7 @@ class RAMI_MedicalMenuUI : MenuBase
 
 		if (highlighted)
 			button.SetColor(Color.FromSRGBA(51, 179, 255, 153));
-		else if (button.IsEnabled())
+		else if (button.IsEnabled() && !m_ActionBlockReasons.Contains(button))
 			button.SetColor(Color.FromSRGBA(255, 255, 255, 230));
 		else
 			button.SetColor(Color.FromSRGBA(128, 128, 128, 230));
@@ -1089,6 +1112,8 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (!text)
 			return;
 
+		// Button captions must not intercept mouse input intended for their parent button.
+		text.SetFlags(text.GetFlags() | WidgetFlags.IGNORE_CURSOR);
 		text.SetBold(baseBold || highlighted);
 		if (highlighted)
 			text.SetColor(Color.White);
@@ -1109,6 +1134,26 @@ class RAMI_MedicalMenuUI : MenuBase
 			if (m_IsBloodPressureMonitored && m_DiagnoseBloodPressureValue)
 				m_DiagnoseBloodPressureValue.SetText(WidgetManager.Translate("#RAMI-READING"));
 			RequestDiagnoseVitals();
+		}
+	}
+
+	protected void PrioritizePinnedPatients(array<SCR_ChimeraCharacter> patients, SCR_PlayerController playerController)
+	{
+		if (!playerController)
+			return;
+		// Stable ordering keeps equally prioritized patients from jumping around.
+		for (int index = 1; index < patients.Count(); index++)
+		{
+			SCR_ChimeraCharacter patient = patients[index];
+			if (!playerController.RAMI_IsMonitorPinned(patient))
+				continue;
+			int position = index;
+			while (position > 0 && !playerController.RAMI_IsMonitorPinned(patients[position - 1]))
+			{
+				patients[position] = patients[position - 1];
+				position--;
+			}
+			patients[position] = patient;
 		}
 	}
 
@@ -1140,6 +1185,7 @@ class RAMI_MedicalMenuUI : MenuBase
 			}
 		}
 
+		PrioritizePinnedPatients(patients, playerController);
 		bool changed = patients.Count() != m_ListedPatients.Count();
 		for (int index = 0; !changed && index < patients.Count(); index++)
 			changed = patients[index] != m_ListedPatients[index];
@@ -1150,6 +1196,15 @@ class RAMI_MedicalMenuUI : MenuBase
 			return;
 		}
 
+		SCR_ChimeraCharacter actionTarget = m_PatientActionTarget;
+		SCR_ChimeraCharacter focusedPatient;
+		WorkspaceWidget currentWorkspace = GetGame().GetWorkspace();
+		if (currentWorkspace)
+		{
+			int focusedIndex = m_PatientButtons.Find(ButtonWidget.Cast(currentWorkspace.GetFocusedWidget()));
+			if (focusedIndex >= 0 && focusedIndex < m_ListedPatients.Count())
+				focusedPatient = m_ListedPatients[focusedIndex];
+		}
 		ClearPatientList();
 		WorkspaceWidget workspace = GetGame().GetWorkspace();
 		if (!workspace)
@@ -1176,8 +1231,19 @@ class RAMI_MedicalMenuUI : MenuBase
 		}
 		if (m_PatientListStatus)
 			m_PatientListStatus.SetVisible(m_PatientButtons.IsEmpty());
+		if (actionTarget && m_ListedPatients.Contains(actionTarget))
+		{
+			m_PatientActionTarget = actionTarget;
+			if (m_PatientActions)
+				m_PatientActions.SetVisible(true);
+			UpdatePatientButtonVisibility();
+			UpdatePatientActionButtons();
+		}
 		UpdatePatientButtonColors();
 		ConfigurePatientListNavigation();
+		int restoredIndex = m_ListedPatients.Find(focusedPatient);
+		if (focusedPatient && restoredIndex >= 0 && restoredIndex < m_PatientButtons.Count())
+			workspace.SetFocusedWidget(m_PatientButtons[restoredIndex]);
 	}
 
 	protected SCR_RemoveCasualtyUserAction FindRemoveCasualtyAction()
@@ -1249,8 +1315,11 @@ class RAMI_MedicalMenuUI : MenuBase
 		SCR_PlayerController playerController = SCR_PlayerController.Cast(GetGame().GetPlayerController());
 		bool canTreat = playerController && m_PatientActionTarget && m_ListedPatients.Contains(m_PatientActionTarget);
 		bool canUnload = playerController && PatientIsUnconscious(m_PatientActionTarget) && FindRemoveCasualtyAction();
-		m_PatientTreatButton.SetEnabled(canTreat);
-		m_PatientUnloadButton.SetEnabled(canUnload);
+		SetActionBlockReason(m_PatientTreatButton, canTreat, "#RAMI-BLOCK_UNAVAILABLE");
+		string unloadReason = "#RAMI-BLOCK_UNAVAILABLE";
+		if (m_PatientActionTarget && !PatientIsUnconscious(m_PatientActionTarget))
+			unloadReason = "#ACE_Medical-FailReason_NotUnconscious";
+		SetActionBlockReason(m_PatientUnloadButton, canUnload, unloadReason);
 		ConfigurePatientListNavigation();
 		UpdateRequestedButtonStyles();
 	}
@@ -1276,6 +1345,7 @@ class RAMI_MedicalMenuUI : MenuBase
 
 	protected void UpdatePatientButtonColors()
 	{
+		SCR_PlayerController playerController = SCR_PlayerController.Cast(GetGame().GetPlayerController());
 		for (int index = 0; index < m_PatientButtons.Count() && index < m_ListedPatients.Count(); index++)
 		{
 			ButtonWidget button = m_PatientButtons[index];
@@ -1302,7 +1372,8 @@ class RAMI_MedicalMenuUI : MenuBase
 			TextWidget nameText = TextWidget.Cast(button.FindAnyWidget("PatientName"));
 			if (nameText)
 			{
-				nameText.SetBold(highlighted || isUnconscious);
+				bool pinned = playerController && playerController.RAMI_IsMonitorPinned(m_ListedPatients[index]);
+				nameText.SetBold(highlighted || isUnconscious || pinned);
 				if (highlighted || isUnconscious)
 					nameText.SetColor(Color.White);
 				else if (isDead)
@@ -1419,6 +1490,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		m_InventoryRoot = null;
 		if (m_PageRoot)
 			m_PageRoot.RemoveFromHierarchy();
+		m_ActionBlockReasons.Clear();
 
 		m_PatientVitals = null;
 		m_PatientVitalValues = null;
@@ -1663,8 +1735,10 @@ class RAMI_MedicalMenuUI : MenuBase
 			case "PageDiagnose":
 			{
 				array<string> diagnoseButtons = {"DiagnoseHeartRateButton", "DiagnoseBloodPressureButton"};
-				SetControllerNavigationRow(diagnoseButtons, "PageDiagnose", "CloseButton");
-				SetControllerNavigation("CloseButton", WidgetNavigationDirection.UP, "DiagnoseBloodPressureButton");
+				SetControllerNavigationRow(diagnoseButtons, "PageDiagnose", "DiagnosePinButton");
+				array<string> pinnedButtons = {"DiagnosePinButton", "DiagnoseAlarmButton"};
+				SetControllerNavigationRow(pinnedButtons, "DiagnoseHeartRateButton", "CloseButton");
+				SetControllerNavigation("CloseButton", WidgetNavigationDirection.UP, "DiagnosePinButton");
 				break;
 			}
 			case "PageBandages":
@@ -1885,6 +1959,14 @@ class RAMI_MedicalMenuUI : MenuBase
 			m_DiagnoseHeartRateButton.AddHandler(m_Handler);
 		if (m_DiagnoseBloodPressureButton)
 			m_DiagnoseBloodPressureButton.AddHandler(m_Handler);
+		ButtonWidget pinButton = ButtonWidget.Cast(m_PageRoot.FindAnyWidget("DiagnosePinButton"));
+		ButtonWidget alarmButton = ButtonWidget.Cast(m_PageRoot.FindAnyWidget("DiagnoseAlarmButton"));
+		if (pinButton)
+			pinButton.AddHandler(m_Handler);
+		if (alarmButton)
+			alarmButton.AddHandler(m_Handler);
+		if (m_CurrentPageName == "PageDiagnose" && (!m_DiagnoseHeartRateButton || !m_DiagnoseBloodPressureButton))
+			Print("RAMI: Diagnose monitor button binding failed", LogLevel.ERROR);
 		m_SelectedRegionText = TextWidget.Cast(m_PageRoot.FindAnyWidget("SelectedRegion"));
 		m_TreatmentStatus = TextWidget.Cast(m_PageRoot.FindAnyWidget("TreatmentStatus"));
 		m_ForeignInventoryTitle = TextWidget.Cast(inventoryWidgets.FindAnyWidget("ForeigninventoryTitle"));
@@ -2257,8 +2339,57 @@ class RAMI_MedicalMenuUI : MenuBase
 		return value.ToString();
 	}
 
+	void TogglePinnedMonitor()
+	{
+		SCR_PlayerController playerController = SCR_PlayerController.Cast(GetGame().GetPlayerController());
+		if (playerController)
+			playerController.RAMI_TogglePinnedMonitor(s_Patient, GetPatientName(s_Patient));
+		UpdatePinnedMonitorButtons();
+	}
+
+	void TogglePinnedMonitorAlarm()
+	{
+		SCR_PlayerController playerController = SCR_PlayerController.Cast(GetGame().GetPlayerController());
+		if (playerController)
+			playerController.RAMI_ToggleMonitorAlarm(s_Patient);
+		UpdatePinnedMonitorButtons();
+	}
+
+	protected void UpdatePinnedMonitorButtons()
+	{
+		if (!m_PageRoot || m_CurrentPageName != "PageDiagnose")
+			return;
+		SCR_PlayerController playerController = SCR_PlayerController.Cast(GetGame().GetPlayerController());
+		bool pinned = playerController && playerController.RAMI_IsMonitorPinned(s_Patient);
+		ButtonWidget pinButton = ButtonWidget.Cast(m_PageRoot.FindAnyWidget("DiagnosePinButton"));
+		TextWidget pinText = TextWidget.Cast(m_PageRoot.FindAnyWidget("DiagnosePinText"));
+		ButtonWidget alarmButton = ButtonWidget.Cast(m_PageRoot.FindAnyWidget("DiagnoseAlarmButton"));
+		TextWidget alarmText = TextWidget.Cast(m_PageRoot.FindAnyWidget("DiagnoseAlarmText"));
+		string pinKey = "#RAMI-PIN_MONITOR";
+		if (pinned)
+			pinKey = "#RAMI-UNPIN_MONITOR";
+		string pinReason = "#RAMI-BLOCK_MONITOR_LIMIT";
+		if (!s_Patient)
+			pinReason = "#RAMI-NO_ACE_PATIENT";
+		else if (!HasMedicalKit())
+			pinReason = "#RAMI-BLOCK_MEDICAL_KIT";
+		else if (!RAMI_PinnedPatientMonitor.CanMonitor(s_Patient))
+			pinReason = "#RAMI-BLOCK_MONITOR_RANGE";
+		SetActionBlockReason(pinButton, pinned || (playerController && playerController.RAMI_CanPinMonitor(s_Patient)), pinReason);
+		if (pinText)
+			pinText.SetText(WidgetManager.Translate(pinKey));
+		SetActionBlockReason(alarmButton, pinned, "#RAMI-BLOCK_PIN_REQUIRED");
+		string alarmKey = "#RAMI-MONITOR_ALARM_OFF";
+		if (playerController && playerController.RAMI_IsMonitorAlarmEnabled(s_Patient))
+			alarmKey = "#RAMI-MONITOR_ALARM_ON";
+		if (alarmText)
+			alarmText.SetText(WidgetManager.Translate(alarmKey));
+		UpdateRequestedButtonStyles();
+	}
+
 	void ToggleDiagnoseMonitor(string widgetName)
 	{
+		Print(string.Format("RAMI: ToggleDiagnoseMonitor %1", widgetName), LogLevel.NORMAL);
 		if (widgetName == "DiagnoseHeartRateButton")
 			m_IsHeartRateMonitored = !m_IsHeartRateMonitored;
 		else if (widgetName == "DiagnoseBloodPressureButton")
@@ -2302,6 +2433,7 @@ class RAMI_MedicalMenuUI : MenuBase
 
 	protected void UpdateDiagnoseButtonText()
 	{
+		UpdatePinnedMonitorButtons();
 		if (m_DiagnoseHeartRateText)
 		{
 			if (m_IsHeartRateMonitored)
@@ -2649,7 +2781,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		m_DiagnoseBloodPressureGraph.SetDrawCommands(m_DiagnoseBloodPressureGraphCommands);
 	}
 
-	protected void GetTreatmentInventoryItems(out array<IEntity> items)
+	protected static void GetTreatmentInventoryItems(out array<IEntity> items)
 	{
 		SCR_ChimeraCharacter inventoryOwner = SCR_ChimeraCharacter.Cast(SCR_PlayerController.GetLocalControlledEntity());
 		if (!inventoryOwner)
@@ -2701,10 +2833,28 @@ class RAMI_MedicalMenuUI : MenuBase
 		return medicalKit;
 	}
 
-	protected bool HasMedicalKit()
+	// Exact vitals unlock: a carried medical kit, or vanilla medic qualification (MEDIC group role, also granted by NIRE Advanced GM, or the ROLE_MEDIC label).
+	static bool HasMedicalKit()
 	{
-		int count;
-		return FindMedicalKit(count) != null;
+		SCR_ChimeraCharacter localCharacter = SCR_ChimeraCharacter.Cast(SCR_PlayerController.GetLocalControlledEntity());
+		array<SCR_EGroupRole> medicRoles = {SCR_EGroupRole.MEDIC};
+		array<EEditableEntityLabel> medicLabels = {EEditableEntityLabel.ROLE_MEDIC};
+		if (localCharacter && (localCharacter.HasRole(medicRoles) || localCharacter.HasLabel(medicLabels)))
+			return true;
+
+		array<IEntity> items = {};
+		GetTreatmentInventoryItems(items);
+		foreach (IEntity item : items)
+		{
+			if (!item)
+				continue;
+
+			// ACE kits are inventory containers; they need not provide the legacy healing action.
+			if (item.FindComponent(ACE_Medical_MedicalKitInventoryStorageComponent) || item.FindComponent(SCR_HealSupportStationComponent))
+				return true;
+		}
+
+		return false;
 	}
 
 	protected string GetCoarseLevel(float value, float lowThreshold, float highThreshold)
@@ -3240,6 +3390,135 @@ class RAMI_MedicalMenuUI : MenuBase
 		UpdateTreatmentItemNavigation();
 	}
 
+	protected void SetActionBlockReason(ButtonWidget button, bool available, string reason)
+	{
+		if (!button)
+			return;
+		// Keep blocked controls focusable for explanations; the shared click handler consumes them.
+		button.SetEnabled(true);
+		if (available)
+			m_ActionBlockReasons.Remove(button);
+		else
+		{
+			if (reason.IsEmpty())
+				reason = "#RAMI-BLOCK_UNAVAILABLE";
+			m_ActionBlockReasons.Set(button, reason);
+		}
+	}
+
+	bool ShowActionBlockReason(Widget widget)
+	{
+		ButtonWidget button = GetRequestedButton(widget);
+		if (!button || !m_ActionBlockReasons.Contains(button))
+			return false;
+		m_HoveredRequestedButton = button;
+		UpdateActionBlockHint();
+		return true;
+	}
+
+	protected void UpdateActionBlockHint()
+	{
+		Widget root = GetRootWidget();
+		if (!root)
+			return;
+		TextWidget hint = TextWidget.Cast(root.FindAnyWidget("ActionBlockHint"));
+		if (!hint)
+			return;
+		ButtonWidget button = m_HoveredRequestedButton;
+		InputManager inputManager = GetGame().GetInputManager();
+		WorkspaceWidget workspace = GetGame().GetWorkspace();
+		if (inputManager && workspace && inputManager.GetLastUsedInputDevice() == EInputDeviceType.GAMEPAD)
+			button = GetRequestedButton(workspace.GetFocusedWidget());
+		string reason;
+		if (button && button.IsVisibleInHierarchy())
+			m_ActionBlockReasons.Find(button, reason);
+		hint.SetVisible(!reason.IsEmpty());
+		if (!reason.IsEmpty())
+			hint.SetText(RAMI_Localization.TranslateTokens(reason));
+	}
+
+	protected string GetTreatmentBlockReason(ButtonWidget button, TextWidget count)
+	{
+		if (!s_Patient)
+			return "#RAMI-NO_ACE_PATIENT";
+		SCR_ChimeraCharacter user = SCR_ChimeraCharacter.Cast(SCR_PlayerController.GetLocalControlledEntity());
+		if (!user)
+			return "#RAMI-BLOCK_USER_UNABLE";
+		CharacterControllerComponent controller = user.GetCharacterController();
+		if (!controller || controller.GetLifeState() != ECharacterLifeState.ALIVE)
+			return "#RAMI-BLOCK_USER_UNABLE";
+		if (!CanTreatPatient())
+			return "#RAMI-DECEASED";
+		SCR_PlayerController playerController = SCR_PlayerController.Cast(GetGame().GetPlayerController());
+		if (!playerController || !playerController.RAMI_IsTreatmentTargetInRange(s_Patient))
+			return "#RAMI-BLOCK_RANGE";
+		if ((button == m_BandageButton || button == m_BandageButtonForeign) && !IsSelectedRegionBleeding())
+			return "#RAMI-BLOCK_NO_BLEEDING";
+
+		bool foreign = button && button.GetName().Contains("Foreign");
+		int treatmentType;
+		if (button == m_BandageButton || button == m_BandageButtonForeign)
+			treatmentType = 1;
+		else if (button == m_TourniquetButton || button == m_TourniquetButtonForeign)
+		{
+			if (IsSelectedRegionTourniquetted())
+				return "#RAMI-TOURNIQUET_STORAGE_UNAVAILABLE";
+			treatmentType = 4;
+		}
+		else
+		{
+			for (int index = 0; index < m_MedicationTypes.Count() && index < m_MedicationButtons.Count() && index < m_MedicationButtonsForeign.Count(); index++)
+			{
+				if (button == m_MedicationButtons[index] || button == m_MedicationButtonsForeign[index])
+					treatmentType = m_MedicationTypes[index];
+			}
+		}
+		if (treatmentType > 0 && !SCR_PlayerController.RAMI_CanApplyMedicationToRegion(s_Patient, treatmentType, m_SelectedRegion))
+			return "#RAMI-BLOCK_REGION";
+		if (foreign && treatmentType > 0)
+		{
+			int foreignCount;
+			bool canApply;
+			SCR_CharacterDamageManagerComponent damageManager = SCR_CharacterDamageManagerComponent.Cast(s_Patient.GetDamageManager());
+			if (treatmentType >= RAMI_ETreatmentType.EPINEPHRINE && !playerController.RAMI_GetMedicationInventory(damageManager, m_SelectedRegion, treatmentType, foreignCount, canApply))
+				return "#RAMI-LOADING";
+			if (treatmentType == 1 || treatmentType == 4)
+			{
+				int bandageCount, tourniquetCount;
+				bool canBandage, canTourniquet;
+				ResourceName bandagePrefab, tourniquetPrefab;
+				if (!GetForeignTreatmentInventory(bandageCount, tourniquetCount, canBandage, canTourniquet, bandagePrefab, tourniquetPrefab))
+					return "#RAMI-LOADING";
+			}
+		}
+		if (count && count.GetText().ToInt() <= 0)
+			return "#RAMI-BLOCK_MISSING_ITEM";
+		if (!foreign && treatmentType > 0)
+		{
+			array<IEntity> items = {};
+			GetTreatmentInventoryItems(items);
+			foreach (IEntity item : items)
+			{
+				if (!SCR_PlayerController.RAMI_ItemMatchesTreatment(item, treatmentType))
+					continue;
+				SCR_ConsumableItemComponent consumable;
+				SCR_ConsumableEffectHealthItems effect = GetTreatmentEffect(item, consumable);
+				int failReason;
+				if (!effect || effect.CanApplyEffectToHZ(s_Patient, user, m_SelectedRegion, failReason))
+					continue;
+				switch (failReason)
+				{
+					case SCR_EConsumableFailReason.ALREADY_APPLIED: return "#RAMI-BLOCK_ALREADY_APPLIED";
+					case SCR_EConsumableFailReason.UNDAMAGED: return "#RAMI-BLOCK_NO_INJURY";
+					case SCR_EConsumableFailReason.IS_BLEEDING: return "#AR-Inventory_Bleeding";
+					case SCR_EConsumableFailReason.ACE_MEDICAL_NOT_INCAPACITATED: return "#ACE_Medical-FailReason_NotUnconscious";
+					case SCR_EConsumableFailReason.ACE_MEDICAL_TOO_DAMAGED: return "#ACE_Medical-FailReason_TooInjured";
+				}
+			}
+		}
+		return "#RAMI-BLOCK_UNAVAILABLE";
+	}
+
 	protected void SetTreatmentButtonState(
 		ButtonWidget button,
 		Widget content,
@@ -3249,8 +3528,10 @@ class RAMI_MedicalMenuUI : MenuBase
 		bool enabled
 	)
 	{
-		if (button)
-			button.SetEnabled(enabled);
+		string reason;
+		if (!enabled)
+			reason = GetTreatmentBlockReason(button, count);
+		SetActionBlockReason(button, enabled, reason);
 		if (content)
 			content.SetEnabled(true);
 
@@ -3454,7 +3735,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			if (widgetName == "MedicationSalineToggle" + suffix)
 			{
-				if (!m_SalineToggleButton || !m_SalineToggleButton.IsEnabled())
+				if (!m_SalineToggleButton || !m_SalineToggleButton.IsEnabled() || m_ActionBlockReasons.Contains(m_SalineToggleButton))
 					return true;
 				m_IsSelfSalineMenuOpen = !m_IsSelfSalineMenuOpen;
 				UpdateMedicationItems();
@@ -3465,7 +3746,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			if (widgetName == "MedicationSalineToggle" + suffix + "Foreign")
 			{
-				if (!m_SalineToggleButtonForeign || !m_SalineToggleButtonForeign.IsEnabled())
+				if (!m_SalineToggleButtonForeign || !m_SalineToggleButtonForeign.IsEnabled() || m_ActionBlockReasons.Contains(m_SalineToggleButtonForeign))
 					return true;
 				m_IsForeignSalineMenuOpen = !m_IsForeignSalineMenuOpen;
 				UpdateMedicationItems();
@@ -3514,7 +3795,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		SCR_CharacterDamageManagerComponent damageManager;
 		if (s_Patient)
 			damageManager = SCR_CharacterDamageManagerComponent.Cast(s_Patient.GetDamageManager());
-		if (!button || !button.IsEnabled() || !playerController || !damageManager)
+		if (!button || !button.IsEnabled() || m_ActionBlockReasons.Contains(button) || !playerController || !damageManager)
 			return;
 
 		if (playerController.RAMI_RequestStopSaline(damageManager) && m_TreatmentStatus)
@@ -3777,27 +4058,41 @@ class RAMI_MedicalMenuUI : MenuBase
 
 	protected bool CanUseAdvancedAction(string widgetName)
 	{
+		m_LastAdvancedBlockReason = "#RAMI-BLOCK_UNAVAILABLE";
 		SCR_ChimeraCharacter user = SCR_ChimeraCharacter.Cast(SCR_PlayerController.GetLocalControlledEntity());
 		if (!user)
 			return false;
 		CharacterControllerComponent controller = user.GetCharacterController();
 		if (!controller || controller.GetLifeState() != ECharacterLifeState.ALIVE)
+		{
+			m_LastAdvancedBlockReason = "#RAMI-BLOCK_USER_UNABLE";
 			return false;
+		}
 		if ((widgetName == "AdvancedCarryButton" || widgetName == "AdvancedDragButton") && FindCarriedPatient())
 			return true;
 		if (widgetName == "AdvancedCPRButton" && ACE_Medical_CPRHelperCompartment.Cast(ACE_AnimationTools.GetHelperCompartment(user)))
 			return true;
 
 		BaseUserAction action = FindAdvancedAction(widgetName);
-		if (!action || action.WasDisabledByServer())
+		if (!action)
 			return false;
+		if (action.WasDisabledByServer())
+		{
+			m_LastAdvancedBlockReason = "#RAMI-BLOCK_SERVER";
+			return false;
+		}
 
 		// Standalone menus have no active world-action context; retain ACE's script checks.
 		ScriptedUserAction scriptedAction = ScriptedUserAction.Cast(action);
+		action.SetCannotPerformReason(string.Empty);
+		bool available;
 		if (scriptedAction)
-			return scriptedAction.CanBeShownScript(user) && scriptedAction.CanBePerformedScript(user);
-
-		return action.CanBeShown(user) && action.CanBePerformed(user);
+			available = scriptedAction.CanBeShownScript(user) && scriptedAction.CanBePerformedScript(user);
+		else
+			available = action.CanBeShown(user) && action.CanBePerformed(user);
+		if (!available && !action.GetCannotPerformReason().IsEmpty())
+			m_LastAdvancedBlockReason = action.GetCannotPerformReason();
+		return available;
 	}
 
 	protected void UpdateAdvancedButtons()
@@ -3867,7 +4162,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		if (!button)
 			return;
 
-		button.SetEnabled(enabled);
+		SetActionBlockReason(button, enabled, m_LastAdvancedBlockReason);
 		Color buttonColor = Color.FromSRGBA(128, 128, 128, 230);
 		if (enabled)
 			buttonColor = Color.FromSRGBA(255, 255, 255, 230);
@@ -3928,18 +4223,19 @@ class RAMI_MedicalMenuUI : MenuBase
 
 	protected void UpdatePatientVitals()
 	{
+		UpdatePinnedMonitorButtons();
 		UpdatePatientList();
 		UpdateTriagePage();
 		UpdateAdvancedButtons();
 		if (m_DiagnosePatientName)
-			m_DiagnosePatientName.SetText(string.Format(WidgetManager.Translate("#RAMI-VITALS_FROM_1"), GetPatientName(s_Patient)));
+			m_DiagnosePatientName.SetText(WidgetManager.Translate("#RAMI-VITALS_FROM_1", GetPatientName(s_Patient)));
 
 		bool foreignInteraction = s_ForeignPatient && s_Patient == s_ForeignPatient;
 		if (m_ForeignInventoryTitle)
 		{
 			m_ForeignInventoryTitle.SetVisible(foreignInteraction);
 			if (foreignInteraction)
-				m_ForeignInventoryTitle.SetText(string.Format(WidgetManager.Translate("#RAMI-INVENTORY_FROM_1"), GetPatientName(s_Patient)));
+				m_ForeignInventoryTitle.SetText(WidgetManager.Translate("#RAMI-INVENTORY_FROM_1", GetPatientName(s_Patient)));
 		}
 		bool showTreatmentForeignInventory = foreignInteraction && !m_IsMedicationPage;
 		if (m_BandageRowForeign)
@@ -4088,7 +4384,7 @@ class RAMI_MedicalMenuUI : MenuBase
 		{
 			if (salineApplied)
 			{
-				medicationListLabels = WidgetManager.Translate("#RAMI-SALINE_SUMMARY");
+				medicationListLabels = RAMI_Localization.TranslateMultiline("#RAMI-SALINE_SUMMARY");
 				medicationListValues = string.Format("\n%1 ml\n%2", salineVolumeRemainingMl, FormatRemainingTime(salineTimeRemainingSeconds));
 			}
 
@@ -4138,8 +4434,8 @@ class RAMI_MedicalMenuUI : MenuBase
 			}
 		}
 
-		m_PatientVitals.SetText(string.Format(
-			WidgetManager.Translate("#RAMI-VITALS_SUMMARY"),
+		m_PatientVitals.SetText(RAMI_Localization.TranslateMultiline(
+			"#RAMI-VITALS_SUMMARY",
 			patientName
 		) + selectedZoneLabelBlock + tourniquetLabel);
 		if (hasMedicalKit)

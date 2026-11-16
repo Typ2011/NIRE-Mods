@@ -1,5 +1,38 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Exact vitals, diagnosis graphs and pinned monitoring now also unlock for characters with the vanilla medic qualification: the MEDIC group role (including the role set via NIRE Advanced GM) or the ROLE_MEDIC character label, not only when a medical kit is carried.
+
+## 2026-11-07
+
+### Added
+
+- Up to three independent pinned patient panels at the top right, with name, pulse, blood pressure and ACE vital state. Panels persist while AMI is closed or another patient is selected. Pin/unpin and alarm controls apply to the selected patient.
+- Pinned monitoring requires the observer's medical kit and a patient within 10 metres. Death, patient loss or exceeding range closes only that patient's panel. Remaining panels close gaps from left to right; new patients append on the right without resetting readings or alarm settings.
+- Critical/resuscitation states use a pulsing red background, bright rounded border and bold values. A dedicated triple-beep repeats every five seconds, or every two seconds during cardiac arrest. Per-patient mute, stale-data suppression and separation between simultaneous alarms are included. Death closes the affected panel and its sound.
+- Pinned patients are listed first with stable ordering and bold names. Patient selection and controller focus are retained; existing bleeding, unconsciousness and death indicators remain in effect.
+- Mouse-hover and controller-selection explanations for blocked treatment, medication, Actions, patient-list and monitor controls. Blocked clicks show the explanation without starting treatment. Available ACE/engine reasons are reused; unknown causes remain general and pending inventory data is not treated as empty inventory.
+- New monitor and blocked-action text across all 13 interface languages, for a total of 177 entries. A reproducible local alarm sample and targeted regression tests are included.
+
+### Changed
+
+- Pinned panels use a compact layout with a 75% opaque black background and rounded corners. Critical warning styling applies only while current ACE data supports it.
+
+### Fixed
+
+- Reforger 1.9 regressions affecting patient names, multiline vitals/saline labels and monitor-button input.
+- ACE medical-kit recognition for exact readings and diagnosis graphs, including the kit's inventory-container component.
+- Independent monitor cleanup, public object-addressed timer callbacks and guarded controller cleanup. A patient's death no longer triggers blanket removal through RAMI's controller death callback. Stop reasons are logged for diagnosis.
+
+### Validation
+
+- All nine automated regression suites passed. The user confirmed the 1.9 fixes, three concurrent panels, 75% rounded appearance and the corrected independent closure after patient death in their tested setup.
+- Earlier Workbench compilation was verified in logs under Reforger 1.9.0.37; the user also reported later compilations without script errors. The final automatic-repositioning change still needs its own current Workbench compilation and in-game confirmation.
+- The server acceptance from 4 November applies to that baseline. Dedicated multiplayer coverage of the new features, full language/layout review and load testing remain open. Workshop and Discord announcements are local drafts; nothing was published.
+
 ## 2026-11-04
 
 ### Fixed
